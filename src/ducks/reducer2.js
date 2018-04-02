@@ -1,8 +1,8 @@
 import axios from "axios";
-
 const GET_CITY = "GET_CITY";
 const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
+const GET_PLACE = "GET_PLACE";
 
 const initialState = {
   info: [],
@@ -56,28 +56,24 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         travelDates: action.payload
       });
-
 //Get place for TripView.js
-case `${GET_PlACE}_PENDING`:
+case `${GET_PLACE}_PENDING`:
 return Object.assign({}, state, { isLoading: true });
-
-case `${GET_PlACE}_FULFILLED`:
+case `${GET_PLACE}_FULFILLED`:
 return Object.assign({}, state, {
   isLoading: false,
   placeDetail: action.payload,
 });
-case `${GET_PlACE}_REJECTED`:
+case `${GET_PLACE}_REJECTED`:
 return Object.assign({}, state, {
   isLoading: false,
   didErr: true
 });
-
 //default value
     default:
       return state;
   }
 }
-
 export function getCity() {
   return {
     type: GET_CITY,
@@ -105,17 +101,13 @@ export function getTravelDates() {
       .catch(err => err.errMessage)
   };
 }
-
-
 export function getPlace(placeId) {
   return {
-    type: GET_PlACE,
+    type: GET_PLACE,
     payload: axios
       .request(`api/getPlaceDetail/${placeId}`)
       .then(resp => resp.data)
       .catch(err => err.errMessage)
   };
 }
-
-
 

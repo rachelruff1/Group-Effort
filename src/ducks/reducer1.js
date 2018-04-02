@@ -12,7 +12,7 @@ export function getProfile() {
 }
 
 const initialState = {
-  image: "",
+  image: "jjuujj",
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr"

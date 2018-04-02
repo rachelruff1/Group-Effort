@@ -1,18 +1,18 @@
 import axios from "axios";
-const GETINFO2 = "GETINFO2";
+const GET_PROFILE =  "GET_PROFILE";
 
-export function Getinfo2() {
+export function getProfile() {
   return {
-    type: GETINFO2,
+    type: GET_PROFILE,
     payload: axios
-      .request({ url: `/api/theEndPointForInfo2` })
+      .request({ url: `/api/getProfile` })
       .then(response => response.data)
       .catch(err => err.errMessage)
   };
 }
 
 const initialState = {
-  info2: [],
+  image: "jjuujj",
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr"
@@ -20,15 +20,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case `${GETINFO2}_PENDING`:
+    case `$ {GET_PROFILE}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
 
-    case `${GETINFO2}_FULFILLED`:
+    case `$ {GET_PROFILE}_FULFILLED`:
       return Object.assign({}, state, {
+        
         isLoading: false,
-        info2: action.payload
+        image: action.payload
       });
-    case `${GETINFO2}_REJECTED`:
+    case `$ {GET_PROFILE}_REJECTED`:
       return Object.assign({}, state, {
         isLoading: false,
         didErr: true

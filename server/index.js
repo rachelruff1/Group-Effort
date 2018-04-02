@@ -66,10 +66,13 @@ passport.use(
               .createUserByAuthId([
                 profile.id,
                 profile._json.name,
-                profile._json.email
+                profile._json.email,
+                profile.picture
               ])
-              .then(created => done(null, created[0]));
+              .then(created => done(null, created[0])
+            );
           } else {
+           console.log(profile)
             return done(null, response[0]);
           }
         })
@@ -81,12 +84,14 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user);
 });
-passport.deserializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user)
+
+);
 
 app.get(
   "/Auth",
   passport.authenticate("auth0", {
-    successRedirect: "/",
+    successRedirect: "http://localhost:3000/#/",
     failureRedirect: "/Auth"
   })
 );
@@ -99,6 +104,13 @@ app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
 app.get('/api/getPlaceDetail/:id', ctrl.getPlaceData);
+
+app.get("/api/getProfile", (req, res) => {
+  console.log(req.user.picture)
+  req.app.get("db")
+  .getUserImage([req.user.picture])
+  .then(response => {res.status(200).json(response)})
+});
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

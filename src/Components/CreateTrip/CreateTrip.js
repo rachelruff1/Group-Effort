@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import axios from 'axios';
-import connect from 'react-redux';
+import MyTripCard from "../MyTripCard/MyTripCard";
+
 
 class CreateTrip extends Component{
     constructor(props){

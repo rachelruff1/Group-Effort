@@ -27,11 +27,12 @@ render(){
 }
 
 let mapStateToProps = state => {
-    const { placeDetail, placeId, test } = state;
+    const { placeDetail, placeId, test, errMessage } = state;
     return {
       placeDetail,
       placeId,
-      test
+      test,
+      errMessage
     };
   };
 

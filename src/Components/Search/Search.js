@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Geosuggest from "react-geosuggest";
 
 class Search extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Search extends Component {
     return (
       <div className="Search">
         <p>Search</p>
-        <input onChange={e => this.searchinput(e)} />
+        <Geosuggest />
         <button> Go </button>
       </div>
     );

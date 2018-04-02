@@ -6,17 +6,18 @@ class TripView extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            testId: 'ChIJPZQJvBo8TIYRov7INbBx08o'
         }
     }
 
 componentDidMount(){
-    this.props.getPlace(this.props.placeId);
+    this.props.getPlace(this.state.testId);
 }
 
 
 render(){
-    console.log(this.props.placeDetail);
+    console.log(this.props);
     return(
         <div>
             
@@ -25,11 +26,15 @@ render(){
 }
 }
 
-function mapStateToProps(state) {
+let mapStateToProps = state => {
+    const { placeDetail, placeId, test } = state;
     return {
-      placeDetail: state.placeDetail,
-      placeId: state.placeId
+      placeDetail,
+      placeId,
+      test
     };
-  }
+  };
 
-export default connect(mapStateToProps, {getPlace})(TripView);
+  export default connect(mapStateToProps, { getPlace })(
+    TripView
+  );

@@ -98,7 +98,7 @@ app.get(
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
-app.get('/api/places/:id', ctrl.getPlaceData);
+app.get('/api/getPlaceDetail/:id', ctrl.getPlaceData);
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

@@ -10,7 +10,7 @@ import CreateTrip from "./Components/CreateTrip/CreateTrip";
 export default (
   <Switch>
     <Route component={Home} exact path="/" />
-    <Route component={Auth} path="/Auth" />
+    <Route component={Auth} path="/auth" />
     <Route component={TripView} path="/location-details" />
     <Route component={CreateTrip} path="/createtrip" />
   </Switch>

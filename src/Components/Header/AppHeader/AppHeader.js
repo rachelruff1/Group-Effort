@@ -3,7 +3,7 @@ import './AppHeader.css';
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getProfile } from "../../../ducks/reducer1";
-import AppDrawer from "./Drawer.js";
+// import AppDrawer from "./Drawer.js";
 
 
 class AppHeader extends Component {

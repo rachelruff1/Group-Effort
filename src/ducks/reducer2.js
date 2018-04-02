@@ -12,12 +12,13 @@ const initialState = {
   city: "",
   destination: "",
   travelDates: null,
-  placeDetail: {}
+  placeDetail: {},
+  test: 'hi'
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-//City
+    //City
     case `${GET_CITY}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_CITY}_REJECTED`:
@@ -30,7 +31,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         city: action.payload
       });
-//Destination
+    //Destination
     case `${GET_DESTINATION}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_DESTINATION}_REJECTED`:
@@ -43,7 +44,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         destination: action.payload
       });
-//Travel Dates
+    //Travel Dates
     case `${GET_TRAVEL_DATES}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_TRAVEL_DATES}_REJECTED`:
@@ -56,20 +57,23 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         travelDates: action.payload
       });
-//Get place for TripView.js
-case `${GET_PLACE}_PENDING`:
-return Object.assign({}, state, { isLoading: true });
-case `${GET_PLACE}_FULFILLED`:
-return Object.assign({}, state, {
-  isLoading: false,
-  placeDetail: action.payload,
-});
-case `${GET_PLACE}_REJECTED`:
-return Object.assign({}, state, {
-  isLoading: false,
-  didErr: true
-});
-//default value
+
+    //Get place for TripView.js
+    case `${GET_PLACE}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_PLACE}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_PLACE}_FULFILLED`:
+      console.log("action.payload:", action.payload.result);
+      return Object.assign({}, state, {
+        isLoading: false,
+        placeDetail: action.payload.result
+      });
+
+    //default value
     default:
       return state;
   }
@@ -102,12 +106,15 @@ export function getTravelDates() {
   };
 }
 export function getPlace(placeId) {
+  console.log(placeId);
   return {
     type: GET_PLACE,
     payload: axios
-      .request(`api/getPlaceDetail/${placeId}`)
-      .then(resp => resp.data)
+      .get(`/api/getPlaceDetail/${placeId}`)
+      .then(resp => {
+        console.log(resp.data);
+        return resp.data;
+      })
       .catch(err => err.errMessage)
   };
 }
-

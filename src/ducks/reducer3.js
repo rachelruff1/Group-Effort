@@ -11,8 +11,7 @@ const initialState = {
   errMessage: "errrrrr",
   city: "",
   destination: "",
-  travelDates: null,
-  placeDetail: {}
+  travelDates: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -56,22 +55,6 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         travelDates: action.payload
       });
-
-//Get place for TripView.js
-case `${GET_PlACE}_PENDING`:
-return Object.assign({}, state, { isLoading: true });
-
-case `${GET_PlACE}_FULFILLED`:
-return Object.assign({}, state, {
-  isLoading: false,
-  placeDetail: action.payload,
-});
-case `${GET_PlACE}_REJECTED`:
-return Object.assign({}, state, {
-  isLoading: false,
-  didErr: true
-});
-
 //default value
     default:
       return state;
@@ -105,17 +88,3 @@ export function getTravelDates() {
       .catch(err => err.errMessage)
   };
 }
-
-
-export function getPlace(placeId) {
-  return {
-    type: GET_PlACE,
-    payload: axios
-      .request(`api/getPlaceDetail/${placeId}`)
-      .then(resp => resp.data)
-      .catch(err => err.errMessage)
-  };
-}
-
-
-

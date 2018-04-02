@@ -8,6 +8,7 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 const massive = require("massive");
 const port = 3001;
+const ctrl = require('./controller.js');
 
 const app = express();
 // import from .env
@@ -97,6 +98,7 @@ app.get(
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
+app.get('/api/places/:id', ctrl.getPlaceData);
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

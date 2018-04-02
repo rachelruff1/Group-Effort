@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import routes from "./routes";
-import Header from "./Components/Header/Header";
+import AppHeader from "./Components/Header/AppHeader/AppHeader";
 class App extends Component {
   render() {
     return <div className="App">
-      <Header />
+      <AppHeader />
       <div>
       {routes}
       </div></div>;

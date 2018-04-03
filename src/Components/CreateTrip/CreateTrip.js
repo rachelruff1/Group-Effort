@@ -25,6 +25,8 @@ class CreateTrip extends Component{
     }
 
     //componentDidMount?
+    
+
 
     //handlers
     updateTripName(e){

@@ -111,6 +111,15 @@ app.get("/api/getProfile", (req, res) => {
   .getUserImage([req.user.picture])
   .then(response => {res.status(200).json(response)})
 });
+app.get('/api/getCities', ctrl.getCities);
+app.get('/api/getTrip', ctrl.getTrip);
+app.get('/api/getSaved', ctrl.getSaved);
+app.get('/api/getFood', ctrl.getFood);
+app.get('/api/getThingsToDo', ctrl.getThingsToDo);
+app.get('/api/getMuseums', ctrl.getMuseums);
+app.get('/api/getFacts', ctrl.getFacts);
+
+
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

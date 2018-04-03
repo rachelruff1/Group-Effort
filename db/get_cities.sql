@@ -1,0 +1,1 @@
+SELECT * FROM city WHERE trip_id = $1;

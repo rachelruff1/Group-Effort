@@ -4,14 +4,19 @@ import axios from "axios";
 class Search extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      searchResult: {}
+    };
   }
 
   render() {
     return (
       <div className="Search">
-        <Geosuggest onSuggestSelect={sug => console.log(sug)} />
+        <Geosuggest
+          onSuggestSelect={sug => this.setState({ searchResult: sug })}
+        />
 
-        <button> Go </button>
+        <button onClick={console.log(this.state.searchResult)} />
       </div>
     );
   }

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {open: false };
+        this.state = { open: false };
     }
 
 handleToggle = () => this.setState({ open: !this.state.open });

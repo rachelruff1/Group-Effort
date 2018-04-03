@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import Search from "../../Search/Search";
 // import { getProfile } from "../../../ducks/reducer1";
-// import AppDrawer from "./Drawer.js";
+import AppDrawer from "./Drawer.js";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -15,35 +16,22 @@ class AppHeader extends Component {
   }
   render() {
     return (
-      <nav>
-        <div className="nav-desktop">
-          <img
-            className="logo"
-            src={require("../../../Assets/Images/Logo.png")}
-            alt=""
-          />
-
-          <div className="nav-links-desktop">
-            <NavLink to="/" className="nav-links-desktop">
-              Home
-            </NavLink>
+      <header className="app-header">
+        <div className="navbar">
+          <div className="responsive-nav">
+            <AppDrawer />
           </div>
         </div>
-        <NavLink to="/" class="nav-mobile">
-          <img className="logo" />
-          <NavLink exact to="/" className="nav-link-mobile">
-            Home
-          </NavLink>
-        </NavLink>
-      </nav>
-    );
+      </header>
+    )
   }
+
 }
-function mapStateToProps(state) {
-  return {
-    image: state.reducer1.image
-  };
-}
+  function mapStateToProps(state) {
+    return {
+      image: state.reducer1.image
+    };
+  }
 
 export default connect(mapStateToProps, {
 //   getProfile

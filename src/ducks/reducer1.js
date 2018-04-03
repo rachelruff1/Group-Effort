@@ -4,7 +4,7 @@ const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
 const GET_CITIES = "GET_CITIES";
 
 const initialState = {
-  image: "jjuujj",
+  image: "",
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr",

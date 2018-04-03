@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Search from "../../Search/Search";
 // import { getProfile } from "../../../ducks/reducer1";
-// import AppDrawer from "./Drawer.js";
+import AppDrawer from "./Drawer.js";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -26,11 +26,12 @@ class AppHeader extends Component {
     )
   }
 
-function mapStateToProps(state) {
-  return {
-    image: state.reducer1.image
-  };
 }
+  function mapStateToProps(state) {
+    return {
+      image: state.reducer1.image
+    };
+  }
 
 export default connect(mapStateToProps, {
 //   getProfile

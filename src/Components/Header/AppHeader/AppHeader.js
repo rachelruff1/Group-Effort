@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { getProfile } from "../../../ducks/reducer1";
+// import { getProfile } from "../../../ducks/reducer1";
 // import AppDrawer from "./Drawer.js";
 
 class AppHeader extends Component {
@@ -11,27 +11,27 @@ class AppHeader extends Component {
   }
 
   componentDidMount() {
-    this.props.getProfile();
+    // this.props.getProfile();
   }
   render() {
     return (
       <nav>
         <div className="nav-desktop">
           <img
-            class="logo"
+            className="logo"
             src={require("../../../Assets/Images/Logo.png")}
             alt=""
           />
 
           <div className="nav-links-desktop">
-            <NavLink to="/" class="nav-links-desktop">
+            <NavLink to="/" className="nav-links-desktop">
               Home
             </NavLink>
           </div>
         </div>
         <NavLink to="/" class="nav-mobile">
-          <img class="logo" />
-          <NavLink exact to="/" class="nav-link-mobile">
+          <img className="logo" />
+          <NavLink exact to="/" className="nav-link-mobile">
             Home
           </NavLink>
         </NavLink>
@@ -46,5 +46,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  getProfile
+//   getProfile
 })(AppHeader);

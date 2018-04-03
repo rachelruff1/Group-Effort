@@ -18,6 +18,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+
     //City
     case `${GET_CITY}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -67,7 +68,6 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_PLACE}_FULFILLED`:
-      console.log("action.payload:", action.payload.result);
       return Object.assign({}, state, {
         isLoading: false,
         placeDetail: action.payload.result
@@ -106,15 +106,11 @@ export function getTravelDates() {
   };
 }
 export function getPlace(placeId) {
-  console.log(placeId);
   return {
     type: GET_PLACE,
     payload: axios
       .get(`/api/getPlaceDetail/${placeId}`)
-      .then(resp => {
-        console.log(resp.data);
-        return resp.data;
-      })
+      .then(resp => resp.data)
       .catch(err => err.errMessage)
   };
 }

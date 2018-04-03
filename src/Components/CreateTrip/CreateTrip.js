@@ -1,6 +1,10 @@
 import React, {Component} from "react";
+<<<<<<< HEAD
 import MyTripCard from "../MyTripCard/MyTripCard";
 
+=======
+import connect from 'react-redux';
+>>>>>>> master
 
 class CreateTrip extends Component{
     constructor(props){

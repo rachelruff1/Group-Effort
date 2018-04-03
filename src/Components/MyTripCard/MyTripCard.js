@@ -12,11 +12,15 @@ class MyTripCard extends Component{
                     <h2>Trip to ${this.props.city} </h2>
                     <TextField
                       hintText="Change Trip Name"
-                      onChange = {e=>updateTripName(e.target.value)}
+                      
                       />
                     <div>
                         <p>Destination: ${this.props.destination}</p>
                         <p>Travel Dates: ${this.props.dates}</p>
+                           <TextField
+                            hintText="Change Trip Dates"
+                            
+                            />
                     </div>
                 </section>
             </div>

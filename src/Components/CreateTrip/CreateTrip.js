@@ -6,6 +6,7 @@ import MyTripCard from "../MyTripCard/MyTripCard";
 import AddToTrip from "../AddToTrip/AddToTrip";
 
 
+
 class CreateTrip extends Component{
     constructor(props){
         super(props);
@@ -77,6 +78,7 @@ render(){
             <main>
                 <h2>You have no trips planned... you should do something about that...</h2>
                 <AddToTrip/>
+                <MyTripCard/>
             </main>
         </div>
     )

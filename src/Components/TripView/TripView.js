@@ -17,7 +17,7 @@ componentDidMount(){
 
 
 render(){
-    console.log(this.props.placeDetail);
+    console.log(this.props.placeId);
     const {placeDetail} = this.props;
     return(
         <div>
@@ -29,7 +29,8 @@ render(){
 
   const mapStateToProps = (state) => ({
     placeDetail: state.reducer2.placeDetail,
-    test: state.reducer2.test
+    test: state.reducer2.test,
+    placeId: state.reducer1.placeId
   })
 
   export default connect(mapStateToProps, { getPlace })(

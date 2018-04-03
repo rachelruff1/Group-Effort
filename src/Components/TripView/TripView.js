@@ -17,7 +17,7 @@ componentDidMount(){
 
 
 render(){
-    console.log(this.props);
+    console.log(this.props.placeDetail);
     return(
         <div>
             
@@ -26,15 +26,10 @@ render(){
 }
 }
 
-let mapStateToProps = state => {
-    const { placeDetail, placeId, test, errMessage } = state;
-    return {
-      placeDetail,
-      placeId,
-      test,
-      errMessage
-    };
-  };
+  const mapStateToProps = (state) => ({
+    placeDetail: state.reducer2.placeDetail,
+    test: state.reducer2.test
+  })
 
   export default connect(mapStateToProps, { getPlace })(
     TripView

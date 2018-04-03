@@ -12,6 +12,7 @@ class CreateTrip extends Component{
         super(props);
 
         this.state = {
+            trip: [],
             tripName: "",
             destination: "",
             tripDates: ""
@@ -65,20 +66,30 @@ class CreateTrip extends Component{
 render(){
     console.log(this)
 
-    const {
-        updateTripName,
-        updateDestinaton,
-        updateTripDates
-    } = this;
+    // const {
+    //     updateTripName,
+    //     updateDestinaton,
+    //     updateTripDates
+    // } = this;
 
-    const tripId = this.props.match.params.id;
+    // const tripId = this.props.match.params.id;
+
+    let newTrip = this.state.trip.length > 0 && this.state.trip.map((val, i)=>{
+        return <MyTripCard
+                plannedTrip={val}
+                updateTripName={this.updateTripName}
+                />
+
+    })
     
     return(
         <div>
             <main>
                 <h2>You have no trips planned... you should do something about that...</h2>
+                {this.state.trip.length > 0 && <h1>test</h1>}
+                {newTrip}
                 <AddToTrip/>
-                <MyTripCard/>
+                
             </main>
         </div>
     )

@@ -18,7 +18,7 @@ render(){
     return(
         <div>
             <figure>
-                <button>+ ADD TO TRIP</button>
+                <button>+ CREATE TRIP</button>
             </figure>
         </div>
     )

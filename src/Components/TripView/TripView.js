@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getPlace} from '../../ducks/reducer2';
+import CitySideBar from './CitySideBar/CitySideBar';
 
 class TripView extends Component {
     constructor(props){
@@ -22,6 +23,7 @@ render(){
     return(
         <div>
             <h1>{placeDetail.name} </h1>
+            <CitySideBar/>
         </div>
     )
 }

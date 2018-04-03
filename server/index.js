@@ -100,7 +100,7 @@ app.get(
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
-app.get("/api/getPlaceDetail/:id", ctrl.getPlaceData);
+app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
   console.log(req.user);
@@ -111,7 +111,7 @@ app.get("/api/getProfile", (req, res) => {
       res.status(200).json(response);
     });
 });
-app.get('/api/getCities', ctrl.getCities);
+app.get('/api/getCities/:tripid', ctrl.getCities);
 app.get('/api/getTrip', ctrl.getTrip);
 app.get('/api/getSaved', ctrl.getSaved);
 app.get('/api/getFood', ctrl.getFood);

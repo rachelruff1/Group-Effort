@@ -28,6 +28,8 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import {updatePlaceId} from '../../ducks/reducer1';
+import {connect} from 'react-redux';
 
 /* eslint-disable react/prop-types */
 const renderSuggestion = ({ formattedSuggestion }) => (
@@ -84,12 +86,16 @@ class Search extends Component {
 
     geocodeByAddress(address)
       .then(results => {
-        console.log("Geocode Success", results[0].place_id); // eslint-disable-line no-console
-        this.setState({
-          geocodeResults: this.renderGeocodeSuccess(results[0].place_id),
-          loading: false
-        });
-      })
+        console.log(results[0].place_id);
+        this.props.updatePlaceId(results[0].place_id)})
+
+      //   console.log("Geocode Success", results[0].place_id); // eslint-disable-line no-console
+      //   this.setState({
+      //     geocodeResults: this.renderGeocodeSuccess(results[0].place_id),
+      //     loading: false
+      //   });
+      // })
+      // .then(res => {console.log(results[0].place_id); this.props.updatePlaceId(this.state.geocodeResults)})
       .catch(error => {
         console.log("Geocode Error", error); // eslint-disable-line no-console
         this.setState({
@@ -126,6 +132,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log()
     const inputProps = {
       type: "text",
       value: this.state.address,
@@ -166,5 +173,5 @@ class Search extends Component {
     );
   }
 }
-
-export default Search;
+const mapStatetoProps = state => state;
+export default connect(mapStatetoProps,{updatePlaceId})(Search);

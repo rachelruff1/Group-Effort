@@ -18,9 +18,10 @@ componentDidMount(){
 
 render(){
     console.log(this.props.placeDetail);
+    const {placeDetail} = this.props;
     return(
         <div>
-            
+            <h1>{placeDetail.name} </h1>
         </div>
     )
 }

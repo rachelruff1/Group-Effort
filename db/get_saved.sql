@@ -1,0 +1,1 @@
+SELECT * FROM saved WHERE city_id = $1;

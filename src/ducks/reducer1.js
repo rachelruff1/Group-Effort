@@ -3,7 +3,7 @@ const GET_PROFILE = "GET_PROFILE";
 const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
 
 const initialState = {
-  image: "jjuujj",
+  image: "",
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr",

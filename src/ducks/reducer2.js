@@ -3,6 +3,7 @@ const GET_CITY = "GET_CITY";
 const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
 const GET_PLACE = "GET_PLACE";
+const CREATE_TRIP = "CREATE_TRIP";
 
 const initialState = {
   info: [],
@@ -72,7 +73,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         placeDetail: action.payload.result
       });
-
+      
     //default value
     default:
       return state;
@@ -112,5 +113,19 @@ export function getPlace(placeId) {
       .get(`/api/getPlaceDetail/${placeId}`)
       .then(resp => resp.data)
       .catch(err => err.errMessage)
+  };
+}
+export function createTrip(){
+  return {
+    type: CREATE_TRIP,
+    payload: axios
+      .post('/api/createTrip', {
+
+      })
+      .then(response => {
+        console.log(response);
+        return response.data;
+      })
+      .catch(console.log)
   };
 }

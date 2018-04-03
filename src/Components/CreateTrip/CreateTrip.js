@@ -11,9 +11,9 @@ class CreateTrip extends Component{
         super(props);
 
         this.state = {
-            tripName = "",
-            destination = "",
-            tripDates = ""
+            tripName: "",
+            destination: "",
+            tripDates: ""
         }
 
         //bindings
@@ -43,7 +43,35 @@ class CreateTrip extends Component{
         });
     }
 
+    checkForTrip(){
+        this.state.tripName !== "" &&
+        this.state.destination !== "" &&
+        this.state.tripDates !== ""
+        ? this.props
+            .createTrip(
+                this.props.match.params.id,
+                this.state.tripName,
+                this.state.destination,
+                this.state.tripDates
+            )
+            .then(alert("Trip Added!"))
+            .then(response =>
+              this.props.history.push(`/tripView/${this.props.match.params.id}`)
+            )
+            :alert("Create a trip!");
+    }
+
 render(){
+    console.log(this)
+
+    const {
+        updateTripName,
+        updateDestinaton,
+        updateTripDates
+    } = this;
+
+    const tripId = this.props.match.params.id;
+    
     return(
         <div>
             <main>

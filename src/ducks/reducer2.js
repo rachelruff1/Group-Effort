@@ -115,12 +115,15 @@ export function getPlace(placeId) {
       .catch(err => err.errMessage)
   };
 }
-export function createTrip(){
+export function createTrip(tripID, tripName, destination, tripDates){
   return {
     type: CREATE_TRIP,
     payload: axios
       .post('/api/createTrip', {
-
+        tripID,
+        tripName,
+        destination,
+        tripDates
       })
       .then(response => {
         console.log(response);

@@ -8,7 +8,7 @@ const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 const massive = require("massive");
 const port = 3001;
-const ctrl = require('./controller.js');
+const ctrl = require("./controller.js");
 
 const app = express();
 // import from .env
@@ -69,10 +69,9 @@ passport.use(
                 profile._json.email,
                 profile.picture
               ])
-              .then(created => done(null, created[0])
-            );
+              .then(created => done(null, created[0]));
           } else {
-           console.log(profile)
+            console.log(profile);
             return done(null, response[0]);
           }
         })
@@ -84,9 +83,7 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user);
 });
-passport.deserializeUser((user, done) => done(null, user)
-
-);
+passport.deserializeUser((user, done) => done(null, user));
 
 app.get(
   "/Auth",
@@ -103,13 +100,16 @@ app.get(
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
-app.get('/api/getPlaceDetail/:id', ctrl.getPlaceData);
+app.get("/api/getPlaceDetail/:id", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
-  console.log(req.user.picture)
-  req.app.get("db")
-  .getUserImage([req.user.picture])
-  .then(response => {res.status(200).json(response)})
+  console.log(req.user);
+  req.app
+    .get("db")
+    .getUserImage([req.user.authid])
+    .then(response => {
+      res.status(200).json(response);
+    });
 });
 app.get('/api/getCities', ctrl.getCities);
 app.get('/api/getTrip', ctrl.getTrip);

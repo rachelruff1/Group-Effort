@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Search from "../Search/Search";
+import SearchBox from "../Search/SearchBox";
+import { connect } from "react-redux";
 class LocationView extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="LocationView">
@@ -9,7 +13,7 @@ class LocationView extends Component {
 
         <div className="SearchbaronLocation">
           new search ???
-          <Search />
+          <SearchBox />
         </div>
 
         <div className="locationimg">
@@ -24,4 +28,5 @@ class LocationView extends Component {
   }
 }
 
-export default LocationView;
+const mapStatetoProps = state => state;
+export default connect(mapStatetoProps, {})(LocationView);

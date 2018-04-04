@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import { updatePlaceId } from "../../ducks/reducer1";
-=======
 import { updatePlaceId, updateLatLng } from "../../ducks/reducer1";
->>>>>>> master
 import { connect } from "react-redux";
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
@@ -33,14 +29,13 @@ const SearchBox = compose(
           this.setState({
             places
           });
-          console.log(this.props, 'HIIIIIII:', places[0].geometry.location.lat());
-          
-          
-          
-          
-          this.props.updatePlaceId(
-            places[0].place_id
+          console.log(
+            this.props,
+            "HIIIIIII:",
+            places[0].geometry.location.lat()
           );
+
+          this.props.updatePlaceId(places[0].place_id);
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
           this.props.updateLatLng(latlng);
           // props.updatePlaceId(places.place_id);
@@ -76,13 +71,6 @@ const SearchBox = compose(
         }}
       />
     </StandaloneSearchBox>
-<<<<<<< HEAD
-
-    {goog.places.map(
-      ({ place_id, formatted_address, geometry: { location } }) => (
-        <p key={place_id}>
-          {console.log(location.lat())} {console.log(location.lng())}
-=======
     {goog.places.map(
       ({ place_id, formatted_address, geometry: { location } }) => (
         <p key={place_id}>
@@ -91,7 +79,6 @@ const SearchBox = compose(
             console.log(location.lat())} {console.log(location.lng())
             }{console.log(this)
             } */}
->>>>>>> master
         </p>
       )
     )}
@@ -100,8 +87,6 @@ const SearchBox = compose(
 
 const mapStatetoProps = state => state;
 
-<<<<<<< HEAD
-export default connect(mapStatetoProps, { updatePlaceId })(SearchBox);
-=======
-export default connect(mapStatetoProps, { updatePlaceId, updateLatLng })(SearchBox);
->>>>>>> master
+export default connect(mapStatetoProps, { updatePlaceId, updateLatLng })(
+  SearchBox
+);

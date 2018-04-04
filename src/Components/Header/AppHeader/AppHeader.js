@@ -3,10 +3,10 @@ import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Search from "../../Search/Search";
-// import { getProfile } from "../../../ducks/reducer1";
+import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
-import { getProfile } from "../../../ducks/reducer1";
+import Logo from "../../Logo/Logo";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class AppHeader extends Component {
   render() {
     console.log(this.props)
     return (
-      <header className="app-header">
+      <header className="app-header">  
+      <Logo/>  
       <Link to="/Auth">
       {this.props.picture && <img src={this.props.picture} />}
           <button className="authbutton">Login</button>

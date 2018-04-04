@@ -1,5 +1,6 @@
 .app-header {
-	background-color: #2b2b2b;
+	background: linear-gradient(to right ,#BEDAD7, #4EADA5 , #2387DE);;
 	overflow: hidden;
-    padding: 1em;
+	padding: 1em;
+	height: 10vh;
 }

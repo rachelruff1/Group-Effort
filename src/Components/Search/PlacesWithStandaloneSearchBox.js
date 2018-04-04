@@ -8,6 +8,19 @@ const {
 } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
 
+// export default class SearchState extends Component {
+//   constructor(props){
+//     super(props)
+//     this.state=({
+//       placesId: {}
+//     })
+    
+  
+
+
+
+
+
   
    export const PlacesWithStandaloneSearchBox = compose(
       withProps({
@@ -31,14 +44,15 @@ const {
               this.setState({
                 places
               });
-              // console.log(places);
+              console.log(places);
               // props.updatePlaceId(places.place_id);
             }
           });
         }
       }),
       withScriptjs
-    )(goog => (
+    )
+    (goog => (
       <div
         data-standalone-searchbox=""
         // onclick={console.log(props)}
@@ -78,7 +92,7 @@ const {
         </ol>
       </div>
     ));
-  
+ 
 
 
 // const mapStatetoProps = state => state;

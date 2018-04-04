@@ -53,7 +53,7 @@ passport.use(
       clientSecret: CLIENT_SECRET,
       clientID: CLIENT_ID,
       scope: "openid profile email",
-      callbackURL: "/Auth"
+      callbackURL: "/auth"
     },
     (accessToken, resfreshToken, extraParams, profile, done) => {
       app
@@ -71,7 +71,6 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            console.log("Anything", profile);
             return done(null, response[0]);
           }
         })
@@ -86,10 +85,10 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => done(null, user));
 
 app.get(
-  "/Auth",
+  "/auth",
   passport.authenticate("auth0", {
     successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "/Auth"
+    failureRedirect: "/auth"
   })
 );
 
@@ -103,10 +102,10 @@ app.get("/api/test", (req, res) => {
 app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
-  console.log(req.user);
+  console.log(req.user.authid);
   req.app
     .get("db")
-    .getUserImage([req.user])
+    .getUserImage([req.user.authid])
     .then(response => {
       res.status(200).json(response);
     });

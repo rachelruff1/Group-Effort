@@ -19,6 +19,7 @@ class AppHeader extends Component {
     return (
       <header className="app-header">
       <Link to="/Auth">
+      <img src={this.props.picture} />
           <button className="authbutton">Login</button>
         </Link>
         <div className="navbar">

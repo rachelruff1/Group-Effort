@@ -6,6 +6,7 @@ import Search from "../../Search/Search";
 // import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
+import Logo from "../../Logo/Logo";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class AppHeader extends Component {
   }
   render() {
     return (
-      <header className="app-header">
+      <header className="app-header">  
+      <Logo/>  
       <Link to="/Auth">
           <button className="authbutton">Login</button>
         </Link>

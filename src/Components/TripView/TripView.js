@@ -55,7 +55,8 @@ const mapStateToProps = state => ({
   test: state.reducer2.test,
   trip: state.reducer1.trip,
   cities: state.reducer1.cities,
-  placeId: state.reducer1.placeId
+  placeId: state.reducer1.placeId,
+  latlng: state.reducer1.latlng
 });
 
 export default connect(mapStateToProps, { getPlace, getTrip, getCities, getSaved, getFood, getThingsToDo, getMuseums, getWebcams, getFacts })(

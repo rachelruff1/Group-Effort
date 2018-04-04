@@ -106,7 +106,7 @@ app.get("/api/getProfile", (req, res) => {
   // console.log(req.user);
   req.app
     .get("db")
-    .getUserImage([req.user])
+    .getUserImage([req.user.authid])
     .then(response => {
       res.status(200).json(response);
     });

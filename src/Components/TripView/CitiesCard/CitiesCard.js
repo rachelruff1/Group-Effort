@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CitiesCard = props => {
-    console.log(props);
+    // console.log(props);
     return (
         <div>
             <h3>{props.city.city_name}</h3>

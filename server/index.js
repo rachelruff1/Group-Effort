@@ -108,8 +108,9 @@ app.get("/api/getProfile", (req, res) => {
     .get("db")
     .getUserImage([req.user.authid])
     .then(response => {
+      console.log(response, "look here!")
       res.status(200).json(response);
-    });
+    }).catch(console.log)
 });
 app.get('/api/getCities/:tripid', ctrl.getCities);
 app.get('/api/getTrip/:tripid', ctrl.getTrip);

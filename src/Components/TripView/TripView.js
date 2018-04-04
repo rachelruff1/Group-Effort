@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { getPlace } from "../../ducks/reducer2";
 import { getTrip, getCities, getSaved, getFood, getThingsToDo, getMuseums, getWebcams, getFacts } from "../../ducks/reducer1";
 import CitiesCard from "./CitiesCard/CitiesCard";
@@ -54,8 +54,8 @@ const mapStateToProps = state => ({
   placeDetail: state.reducer2.placeDetail,
   test: state.reducer2.test,
   trip: state.reducer1.trip,
-  cities: state.reducer1.cities
-  // placeId: state.reducer1.placeId
+  cities: state.reducer1.cities,
+  placeId: state.reducer1.placeId
 });
 
 export default connect(mapStateToProps, { getPlace, getTrip, getCities, getSaved, getFood, getThingsToDo, getMuseums, getWebcams, getFacts })(

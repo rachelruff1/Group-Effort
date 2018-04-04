@@ -53,7 +53,7 @@ passport.use(
       clientSecret: CLIENT_SECRET,
       clientID: CLIENT_ID,
       scope: "openid profile email",
-      callbackURL: "/Auth"
+      callbackURL: "/auth"
     },
     (accessToken, resfreshToken, extraParams, profile, done) => {
       app
@@ -71,7 +71,6 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            console.log("Anything", profile);
             return done(null, response[0]);
           }
         })

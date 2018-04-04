@@ -106,11 +106,12 @@ app.get("/api/getProfile", (req, res) => {
   // console.log(req.user);
   req.app
     .get("db")
-    .getUserImage([req.user.authid])
+    .getUserImage([req.user])
     .then(response => {
       res.status(200).json(response);
     });
 });
+<<<<<<< HEAD
 app.get('/api/getCities/:tripid', ctrl.getCities);
 app.get('/api/getTrip/:tripid', ctrl.getTrip);
 app.get('/api/getSaved/:id', ctrl.getSaved);
@@ -121,6 +122,15 @@ app.get('/api/getWebcams/:id', ctrl.getWebcams);
 app.get('/api/getFacts/:id', ctrl.getFacts);
 
 
+=======
+app.get("/api/getCities/:tripid", ctrl.getCities);
+app.get("/api/getTrip", ctrl.getTrip);
+app.get("/api/getSaved", ctrl.getSaved);
+app.get("/api/getFood", ctrl.getFood);
+app.get("/api/getThingsToDo", ctrl.getThingsToDo);
+app.get("/api/getMuseums", ctrl.getMuseums);
+app.get("/api/getFacts", ctrl.getFacts);
+>>>>>>> master
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

@@ -21,6 +21,7 @@ const GET_FACTS = 'GET_FACTS';
 const initialState = {
   user: {},
   image: "",
+  picture: "",
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr",
@@ -53,7 +54,7 @@ export default function reducer(state = initialState, action) {
     case `${GET_PROFILE}_FULFILLED`:
       return Object.assign({}, state, {
         isLoading: false,
-        image: action.payload
+        picture: action.payload
       });
     case `${GET_PROFILE}_REJECTED`:
       return Object.assign({}, state, {
@@ -71,7 +72,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
-      case `${GET_CITIES}_FULFILLED`:
+    case `${GET_CITIES}_FULFILLED`:
       // console.log("reducer func:", action.payload);
       return Object.assign({}, state, {
         isLoading: false,

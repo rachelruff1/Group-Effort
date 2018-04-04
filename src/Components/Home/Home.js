@@ -2,30 +2,20 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import "./Home.css";
 class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      test: ""
-    };
   }
 
-  componentDidMount() {
-    axios.get(`/api/test`).then(results => {
-      this.setState({
-        test: results.data
-      });
-    });
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div className="Home">
-        <Search />
-        <p>{this.state.test}</p>
-        <Link to="/Auth">
-          <button className="authbutton">Login</button>
-        </Link>
+        <div className="homesearch">
+          <Search />
+        </div>
       </div>
     );
   }

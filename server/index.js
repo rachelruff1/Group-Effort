@@ -71,7 +71,7 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            console.log(profile);
+            console.log("Anything", profile);
             return done(null, response[0]);
           }
         })
@@ -100,26 +100,24 @@ app.get(
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
-app.get("/api/getPlaceDetail/:id", ctrl.getPlaceData);
+app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
   console.log(req.user);
   req.app
     .get("db")
-    .getUserImage([req.user.authid])
+    .getUserImage([req.user])
     .then(response => {
       res.status(200).json(response);
     });
 });
-app.get('/api/getCities', ctrl.getCities);
-app.get('/api/getTrip', ctrl.getTrip);
-app.get('/api/getSaved', ctrl.getSaved);
-app.get('/api/getFood', ctrl.getFood);
-app.get('/api/getThingsToDo', ctrl.getThingsToDo);
-app.get('/api/getMuseums', ctrl.getMuseums);
-app.get('/api/getFacts', ctrl.getFacts);
-
-
+app.get("/api/getCities/:tripid", ctrl.getCities);
+app.get("/api/getTrip", ctrl.getTrip);
+app.get("/api/getSaved", ctrl.getSaved);
+app.get("/api/getFood", ctrl.getFood);
+app.get("/api/getThingsToDo", ctrl.getThingsToDo);
+app.get("/api/getMuseums", ctrl.getMuseums);
+app.get("/api/getFacts", ctrl.getFacts);
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

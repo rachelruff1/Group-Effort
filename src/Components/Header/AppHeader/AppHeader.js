@@ -22,7 +22,7 @@ class AppHeader extends Component {
       <header className="app-header">  
       <Logo/>  
       <Link to="/Auth">
-      {this.props.picture && <img src={this.props.picture} />}
+      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
           <button className="authbutton">Login</button>
         </Link>
         <div className="navbar">

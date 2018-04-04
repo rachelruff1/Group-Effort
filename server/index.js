@@ -53,7 +53,7 @@ passport.use(
       clientSecret: CLIENT_SECRET,
       clientID: CLIENT_ID,
       scope: "openid profile email",
-      callbackURL: "/Auth"
+      callbackURL: "/auth"
     },
     (accessToken, resfreshToken, extraParams, profile, done) => {
       app
@@ -86,10 +86,10 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => done(null, user));
 
 app.get(
-  "/Auth",
+  "/auth",
   passport.authenticate("auth0", {
     successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "/Auth"
+    failureRedirect: "/auth"
   })
 );
 
@@ -111,7 +111,6 @@ app.get("/api/getProfile", (req, res) => {
       res.status(200).json(response);
     });
 });
-<<<<<<< HEAD
 app.get('/api/getCities/:tripid', ctrl.getCities);
 app.get('/api/getTrip/:tripid', ctrl.getTrip);
 app.get('/api/getSaved/:id', ctrl.getSaved);
@@ -120,17 +119,6 @@ app.get('/api/getThingsToDo/:id', ctrl.getThingsToDo);
 app.get('/api/getMuseums/:id', ctrl.getMuseums);
 app.get('/api/getWebcams/:id', ctrl.getWebcams);
 app.get('/api/getFacts/:id', ctrl.getFacts);
-
-
-=======
-app.get("/api/getCities/:tripid", ctrl.getCities);
-app.get("/api/getTrip", ctrl.getTrip);
-app.get("/api/getSaved", ctrl.getSaved);
-app.get("/api/getFood", ctrl.getFood);
-app.get("/api/getThingsToDo", ctrl.getThingsToDo);
-app.get("/api/getMuseums", ctrl.getMuseums);
-app.get("/api/getFacts", ctrl.getFacts);
->>>>>>> master
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

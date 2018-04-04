@@ -71,6 +71,10 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
+<<<<<<< HEAD
+=======
+            // console.log(profile);
+>>>>>>> master
             return done(null, response[0]);
           }
         })
@@ -102,7 +106,11 @@ app.get("/api/test", (req, res) => {
 app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
+<<<<<<< HEAD
   console.log(req.user.authid);
+=======
+  // console.log(req.user);
+>>>>>>> master
   req.app
     .get("db")
     .getUserImage([req.user.authid])
@@ -110,13 +118,14 @@ app.get("/api/getProfile", (req, res) => {
       res.status(200).json(response);
     });
 });
-app.get("/api/getCities/:tripid", ctrl.getCities);
-app.get("/api/getTrip", ctrl.getTrip);
-app.get("/api/getSaved", ctrl.getSaved);
-app.get("/api/getFood", ctrl.getFood);
-app.get("/api/getThingsToDo", ctrl.getThingsToDo);
-app.get("/api/getMuseums", ctrl.getMuseums);
-app.get("/api/getFacts", ctrl.getFacts);
+app.get('/api/getCities/:tripid', ctrl.getCities);
+app.get('/api/getTrip/:tripid', ctrl.getTrip);
+app.get('/api/getSaved/:id', ctrl.getSaved);
+app.get('/api/getFood/:id', ctrl.getFood);
+app.get('/api/getThingsToDo/:id', ctrl.getThingsToDo);
+app.get('/api/getMuseums/:id', ctrl.getMuseums);
+app.get('/api/getWebcams/:id', ctrl.getWebcams);
+app.get('/api/getFacts/:id', ctrl.getFacts);
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

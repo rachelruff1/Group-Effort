@@ -114,3 +114,5 @@ export function getPlace(placeId) {
       .catch(err => err.errMessage)
   };
 }
+
+

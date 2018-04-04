@@ -17,9 +17,11 @@ class Home extends Component {
         <div className="homesearch">
           <Auth/>
           < br/>
-          <Link to='/location-details'><button>TripView.js</button></Link>
+          <Link to='/location-details'><button>TripView</button></Link>
         </div>
+        <figure className="search">
         <SearchBox/>
+        </figure>
       </div>
     );
   }

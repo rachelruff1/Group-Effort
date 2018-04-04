@@ -7,6 +7,7 @@ const LOGOUT = "LOGOUT";
 const GET_PROFILE = "GET_PROFILE";
 
 const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
+const UPDATE_LAT_LNG = 'UPDATE_LAT_LNG'
 const GET_CITIES = "GET_CITIES";
 const GET_TRIP = "GET_TRIP";
 
@@ -26,6 +27,7 @@ const initialState = {
   didErr: false,
   errMessage: "errrrrr",
   placeId: "",
+  latlng: '',
   cities: {},
   trip: {},
   saved: {},
@@ -64,6 +66,10 @@ export default function reducer(state = initialState, action) {
 
     case UPDATE_PLACE_ID:
       return Object.assign({}, state, { placeId: action.payload });
+
+      case UPDATE_LAT_LNG:
+      console.log('updatellng:', action.payload)
+      return Object.assign({}, state, { latlng: action.payload });
 
     case `${GET_CITIES}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -230,6 +236,14 @@ export function updatePlaceId(placeId) {
   return {
     type: UPDATE_PLACE_ID,
     payload: placeId
+  };
+}
+
+export function updateLatLng(latlng) {
+  console.log(latlng);
+  return {
+    type: UPDATE_LAT_LNG,
+    payload: latlng
   };
 }
 

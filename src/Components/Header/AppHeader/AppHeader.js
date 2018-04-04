@@ -20,9 +20,9 @@ class AppHeader extends Component {
     console.log(this.props)
     return (
       <header className="app-header">  
+      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
       <Logo/>  
       <Link to="/Auth">
-      {this.props.picture && <img src={this.props.picture} />}
           <button className="authbutton">Login</button>
         </Link>
         <div className="navbar">

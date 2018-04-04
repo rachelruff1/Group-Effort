@@ -71,10 +71,7 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-<<<<<<< HEAD
-=======
-            // console.log(profile);
->>>>>>> master
+            console.log(profile);
             return done(null, response[0]);
           }
         })
@@ -106,11 +103,7 @@ app.get("/api/test", (req, res) => {
 app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
-<<<<<<< HEAD
-  console.log(req.user.authid);
-=======
-  // console.log(req.user);
->>>>>>> master
+  console.log(req.user);
   req.app
     .get("db")
     .getUserImage([req.user.authid])

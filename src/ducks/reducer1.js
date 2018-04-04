@@ -220,7 +220,7 @@ export function getProfile() {
     type: GET_PROFILE,
     payload: axios
       .get(`/api/getProfile`)
-      .then(response => response.data)
+      .then(response => response.data[0].picture)
       .catch(err => err.errMessage)
   };
 }

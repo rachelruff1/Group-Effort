@@ -19,9 +19,20 @@ class Home extends Component {
           < br/>
           <Link to='/location-details'><button>TripView</button></Link>
         </div>
-          <div className="title-card">
+        <div className="title-card">
           <h1>TRIPPIE</h1>
           </div>
+        <div className="group-transition">
+          <div className="transition-1">
+            Where
+          </div>
+          <div className="transition-2">
+            You
+          </div>
+          {/* <div className="transition-3">
+            Go?
+          </div> */}
+        </div> 
         <figure className="search">
         <SearchBox/>
         </figure>

@@ -27,16 +27,15 @@ class AppHeader extends Component {
           </div>
         </div>
       </header>
-    )
+    );
   }
-
 }
-  function mapStateToProps(state) {
-    return {
-      image: state.reducer1.image
-    };
-  }
+function mapStateToProps(state) {
+  return {
+    picture: state.reducer1.picture
+  };
+}
 
 export default connect(mapStateToProps, {
-//   getProfile
+  //   getProfile
 })(AppHeader);

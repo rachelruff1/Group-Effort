@@ -8,6 +8,7 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import Logo from "../../Logo/Logo";
 
+
 class AppHeader extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class AppHeader extends Component {
     console.log(this.props)
     return (
       <header className="app-header">  
-      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
+      {this.props.picture && <img className="user-photo"  src={this.props.picture} /> }
       <Logo/>  
       <Link to="/Auth">
           <button className="authbutton">Login</button>

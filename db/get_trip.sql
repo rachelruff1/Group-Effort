@@ -1,1 +1,1 @@
-SELECT * FROM trip WHERE user_id = $1;
+SELECT * FROM trip WHERE trip_id = $1;

@@ -71,7 +71,7 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            // console.log(profile);
+            console.log(profile);
             return done(null, response[0]);
           }
         })
@@ -103,13 +103,14 @@ app.get("/api/test", (req, res) => {
 app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
-  // console.log(req.user);
+  console.log(req.user);
   req.app
     .get("db")
-    .getUserImage([req.user])
+    .getUserImage([req.user.authid])
     .then(response => {
+      console.log(response, "look here!")
       res.status(200).json(response);
-    });
+    }).catch(console.log)
 });
 app.get('/api/getCities/:tripid', ctrl.getCities);
 app.get('/api/getTrip/:tripid', ctrl.getTrip);

@@ -71,7 +71,7 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            console.log(profile);
+            console.log("Anything", profile);
             return done(null, response[0]);
           }
         })
@@ -106,7 +106,7 @@ app.get("/api/getProfile", (req, res) => {
   console.log(req.user);
   req.app
     .get("db")
-    .getUserImage([req.user.authid])
+    .getUserImage([req.user])
     .then(response => {
       res.status(200).json(response);
     });

@@ -1,6 +1,8 @@
 import React from "react";
- import { updatePlaceId } from "../../ducks/reducer1";
- import { connect } from "react-redux";
+import { updatePlaceId } from "../../ducks/reducer1";
+import { connect } from "react-redux";
+import './SearchBox.css'
+
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
 const {

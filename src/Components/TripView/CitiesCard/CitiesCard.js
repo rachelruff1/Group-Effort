@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { Component } from "react";
+import {connect} from 'react-redux';
+import { getCityDetail } from "../../../ducks/reducer1";
 
-const CitiesCard = props => {
-    // console.log(props);
+class CitiesCard extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    // console.log(this.props);
     return (
-        <div>
-            <h3>{props.city.city_name}</h3>
-            <p>{props.city.start_date} - {props.city.end_date}</p>
-        </div>
-    )
+      <div>
+        <h3 onClick={() => this.props.getCityDetail(this.props.city.city_id)}>
+          {this.props.city.city_name}
+        </h3>
+        <p>
+          {this.props.city.start_date} - {this.props.city.end_date}
+        </p>
+      </div>
+    );
+  }
 }
 
-export default CitiesCard;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, { getCityDetail })(CitiesCard);

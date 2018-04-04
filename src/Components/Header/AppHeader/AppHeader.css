@@ -4,3 +4,10 @@
 	padding: 1em;
 	height: 10vh;
 }
+.user-photo {
+	display: flex;
+	float: right;
+	border: 2px solid white;
+	border-radius: 50px 50px 50px 50px;
+	height: 10vh;
+}

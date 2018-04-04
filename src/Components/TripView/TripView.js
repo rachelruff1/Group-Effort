@@ -22,8 +22,10 @@ class TripView extends Component {
       data: {},
       testId: "ChIJPZQJvBo8TIYRov7INbBx08o",
       tripId: 1,
-      latLng: ""
+      latLng: "",
+      index: ''
     };
+    this.updateLatLng = this.updateLatLng.bind(this);
   }
 
   componentDidMount() {
@@ -34,13 +36,19 @@ class TripView extends Component {
       .then(resp => this.setState({ latLng: this.props.cities[0].lat_lng }));
   }
 
+updateLatLng (index){
+  this.setState({
+    latLng: this.props.cities[index].lat_lng
+  });
+}
+
   render() {
     console.log('this', this.state.latLng);
     const { tripId } = this.state;
     const { trip, cities } = this.props;
     const citiesMap =
       cities.length > 0 &&
-      cities.map((c, i) => <CitiesCard key={i} city={c} />);
+      cities.map((c, i) => <CitiesCard key={i} city={c} updateLatLng={this.updateLatLng} index={i}/>);
     return (
       <body className="trip-view-container">
         <header>

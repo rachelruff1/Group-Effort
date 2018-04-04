@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { updatePlaceId } from "../../ducks/reducer1";
-import { connect } from "react-redux";
+// import { updatePlaceId } from "../../ducks/reducer1";
+// import { connect } from "react-redux";
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
 const {
   StandaloneSearchBox
 } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
-const searching = props => {
+
   
-    const searchingItAll = compose(
+   export const PlacesWithStandaloneSearchBox = compose(
       withProps({
         googleMapURL:
           "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
@@ -78,10 +78,10 @@ const searching = props => {
         </ol>
       </div>
     ));
-  }
+  
 
 
-const mapStatetoProps = state => state;
+// const mapStatetoProps = state => state;
 
-export const PlacesWithStandaloneSearchBox = connect(mapStatetoProps,{updatePlaceId})(searching);
+// export const PlacesWithStandaloneSearchBox = connect(mapStatetoProps,{updatePlaceId})(searching);
 

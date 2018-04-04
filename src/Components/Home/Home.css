@@ -1,5 +1,6 @@
 .Home{
   background-image: url("home-img.jpg");
+
   /* background: linear-gradient(to right, #4EADA5 , #2387DE); */
   background-size: 100%;
   height: 100vh;
@@ -14,9 +15,18 @@
   align-content: center;
 }
 
+.title-card{
+  font-family: 'Cinzel', serif;
+  font-size: 45px;
+  color: rgb(78, 78, 78);
+  position: fixed;
+  left: 85vh;
+  top: 30vh;
+}
+
 .search{
   position: fixed;
-  left: 70vh;
+  left: 85vh;
   top: 50vh;
   
 }

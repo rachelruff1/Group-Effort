@@ -1,6 +1,11 @@
 .Home{
-  background-image: url("home-img.jpg");
+  background:
+  linear-gradient(
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2)
+   ), url("home-img.jpg");
   background-repeat: no-repeat;
+  overflow: hidden;
   /* background: linear-gradient(to right, #4EADA5 , #2387DE); */
   background-size: 100%;
   height: 100vh;
@@ -15,71 +20,92 @@
   align-content: center;
 }
 
-.title-card{
+/* .title-card{
   font-family: 'Cinzel', serif;
   font-size: 45px;
-  color: rgb(78, 78, 78);
-  text-shadow: 2px 2px 2px #2387DE;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 5px 2px rgb(0, 0, 0);
   position: fixed;
   left: 85vh;
   top: 30vh;
-}
+} */
 
-.group-transition{
+#group-transition{
+  animation: showup 5s; 
   text-align:center;
-  color: rgb(78, 78, 78);
-  text-shadow: 2px 2px 2px #2387DE;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
   font-weight:300;
   font-size:32px;
   padding-top:40vh;
   height:100vh;
   overflow:hidden;
-  -webkit-backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
-  -webkit-transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0); */
 }
 
+
 .transition-1{
-  animation: showup 2s infinite;   
-  animation: slidein 5s infinite;
-  display:inline-block;
+  animation: slidein 5s;   
+  display:inline-block;ro 
   overflow:hidden;
   white-space:nowrap;
 }
 
 .transition-2{
   margin-top: -45px;
-  animation: showup 2s infinite; 
-  animation: slidein2 5s infinite;
+  animation: slidein2 5s; 
+  
 }
 
-/* .transition-3{
-  margin-left:-355px;
-  animation: slidein 9s infinite;
-} */
+.transition-3{
+  margin-top: -37px;
+  animation: slidein3 5s; 
+  
+}
+
+.transition-4{
+  margin-top: -37px;
+  animation: slidein4 5s; 
+  
+}
+
+.hr-1{
+  width:500px;
+  animation: width-line 5s;
+}
 
 @keyframes showup {
-  0% {opacity:0;}
-  20% {opacity:1;}
-  80% {opacity:1;}
-  100% {opacity:0;}
+ from {opacity: 0;}
+ to {opacity: 1;}
 }
 
 @keyframes slidein {
   0% { margin-left:-2000px; }
-  100% { margin-left:-500px; }
+  100% { margin-left:-220px; }
 }
 
 @keyframes slidein2 {
   0% { margin-left:-2000px; }
-  100% { margin-left:-345px; }
+  100% { margin-left:-70px; }
 }
 
-@keyframes slidein2 {
-  0% { margin-left:-2000px; }
-  100% { margin-left:-345px; }
+@keyframes slidein3 {
+  0% { margin-right:-2000px; }
+  100% { margin-right:-80px; }
 }
 
+@keyframes slidein4 {
+  0% { margin-right:-2000px; }
+  100% { margin-right:-240px; }
+}
+
+
+@keyframes width-line {
+  0% {width: 0px;}
+  100% {width: 500px;}
+}
 
 
 

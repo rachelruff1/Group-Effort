@@ -96,7 +96,7 @@ updateLatLng (index){
           </div>
         </div>
         <sidebar className="city-side-bar">{citiesMap}</sidebar>
-      </body>
+      </body> 
     );
   }
 }

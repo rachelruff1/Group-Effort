@@ -18,7 +18,7 @@ const GET_THINGS_TO_DO = 'GET_THINGS_TO_DO';
 const GET_MUSEUMS = 'GET_MUSEUMS';
 const GET_WEBCAMS = 'GET_WEBCAMS';
 const GET_FACTS = 'GET_FACTS';
-
+const UPDATE_LOCATION_DATA = 'UPDATE_LOCATION_DATA';
 
 
 const initialState = {
@@ -38,7 +38,11 @@ const initialState = {
   thingsToDo :{},
   museums : {},
   webcams : {},
-  facts : {}
+  facts : {},
+
+  city: '',
+  state: '',
+  country: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -197,6 +201,10 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         facts: action.payload[0]
       });
+
+      case UPDATE_LOCATION_DATA:
+      console.log(action);
+      return Object.assign({}, state, { city: action.payload, state: action.data, country: action.moreData });
 
     default:
       return state;
@@ -389,5 +397,15 @@ export function getFacts(tripId){
       return resp.data;
     })
     .catch(err => err.errMessage)
+  }
+}
+
+export function updateLocationData(city, state, country){
+  console.log('hit:', city, state, country);
+  return{
+    type: UPDATE_LOCATION_DATA,
+    payload: city,
+    data: state,
+    moreData: country
   }
 }

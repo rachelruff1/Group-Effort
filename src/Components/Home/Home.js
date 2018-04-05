@@ -23,6 +23,9 @@ class Home extends Component {
         {/* <div className="title-card">
           <h1>TRIPPIE</h1>
           </div> */}
+          <figure className="search">
+        <SearchBox/>
+        </figure>
         <div id="group-transition">
           <div className="transition-1">
             Plan
@@ -38,9 +41,7 @@ class Home extends Component {
           </div>
           <hr className="hr-1"/>
         </div> 
-        <figure className="search">
-        <SearchBox/>
-        </figure>
+        
       </div>
     );
   }

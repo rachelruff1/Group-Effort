@@ -30,7 +30,15 @@
   top: 30vh;
 } */
 
+.search{
+  position: fixed;
+  left: 85vh;
+  top: 50vh;
+  
+}
+
 #group-transition{
+  position: fixed;
   animation: showup 5s; 
   text-align:center;
   color: rgb(255, 255, 255);
@@ -40,39 +48,53 @@
   padding-top:40vh;
   height:100vh;
   overflow:hidden;
-  /* -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -webkit-transform: translate3d(0,0,0); */
+  
 }
 
 
 .transition-1{
-  animation: slidein 5s;   
-  display:inline-block;ro 
+  animation: slidein 5s;
+  position: fixed;
+  top: 45vh; 
+  left: 42vw;  
+  display:inline-block;
   overflow:hidden;
   white-space:nowrap;
 }
 
 .transition-2{
+  position: fixed;
+  top: 49.75vh; 
+  left: 46vw;
   margin-top: -45px;
   animation: slidein2 5s; 
   
 }
 
 .transition-3{
+  position: fixed;
+  top: 48.85vh; 
+  right: 46vw;
   margin-top: -37px;
   animation: slidein3 5s; 
   
 }
 
 .transition-4{
+  position: fixed;
+  top: 48.85vh; 
+  right: 41vw;
   margin-top: -37px;
   animation: slidein4 5s; 
   
 }
 
 .hr-1{
+  position: fixed;
+  top: 49vh;
+  left: 50vw;
   width:500px;
+  transform: translate(-50%, -50%);
   animation: width-line 5s;
 }
 
@@ -83,22 +105,22 @@
 
 @keyframes slidein {
   0% { margin-left:-2000px; }
-  100% { margin-left:-220px; }
+  100% { margin-left:0vw; }
 }
 
 @keyframes slidein2 {
   0% { margin-left:-2000px; }
-  100% { margin-left:-70px; }
+  100% { margin-left:0px; }
 }
 
 @keyframes slidein3 {
   0% { margin-right:-2000px; }
-  100% { margin-right:-80px; }
+  100% { margin-right:0px; }
 }
 
 @keyframes slidein4 {
   0% { margin-right:-2000px; }
-  100% { margin-right:-240px; }
+  100% { margin-right:0px; }
 }
 
 
@@ -109,9 +131,3 @@
 
 
 
-.search{
-  position: fixed;
-  left: 85vh;
-  top: 50vh;
-  
-}

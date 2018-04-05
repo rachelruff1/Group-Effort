@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
+import ParkCard from "../ParkCard/ParkCard";
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -9,24 +10,21 @@ class LocationView extends Component {
   render() {
     return (
       <div className="LocationView">
-        <h3>-----name of city----</h3>
-
         <div className="SearchbaronLocation">
-          new search ???
           <SearchBox />
+          {console.log(this.props, "adsfadfasdfafdafdsfads")}
+          <h1>{this.props.city}</h1>
+          <p>img.of.city</p>
         </div>
-
-        <div className="locationimg">
-          <img href="" alt="img of location" />
-        </div>
-        <Link to={"/auth"}>
-          <button> New </button>
-        </Link>
-        <button> Add </button>
+        <ParkCard />
       </div>
     );
   }
 }
 
-const mapStatetoProps = state => state;
-export default connect(mapStatetoProps, {})(LocationView);
+function mapStateToProps(state) {
+  return {
+    city: state.reducer2.city
+  };
+}
+export default connect(mapStateToProps)(LocationView);

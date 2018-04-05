@@ -29,6 +29,7 @@ const SearchBox = compose(
           this.setState({
             places
           });
+          alert("ckicked");
           console.log(
             this.props,
             "HIIIIIII:",

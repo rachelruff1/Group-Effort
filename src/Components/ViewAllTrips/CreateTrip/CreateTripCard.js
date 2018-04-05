@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
-import SearchBox from "../../Search/SearchBox";
+import CreateTripSearch from "./CreateTripSearch";
 
 const optionsStyle = {
   maxWidth: 255,
@@ -21,7 +21,7 @@ class CreateTripCard extends Component {
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
-      city: this.props.city,
+      cityDetail: {cityName: this.props.city, state: '', country: '', latLng: '', startDate: '', endDate: '', place_id: ''},
       startDate: "",
       endDate: "",
       minDate: minDate,
@@ -55,7 +55,8 @@ class CreateTripCard extends Component {
       <div>
         {this.state.edit === false ? null : (
           <div>
-            <SearchBox /><button onClick={() => this.toggleEdit()}>back</button>
+              
+            <CreateTripSearch /><button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
         <section>
@@ -71,14 +72,14 @@ class CreateTripCard extends Component {
             <DatePicker
               onChange={this.handleChangeMinDate}
               autoOk={this.state.autoOk}
-              floatingLabelText="Min Date"
+              floatingLabelText="Start Date"
               defaultDate={this.state.minDate}
               disableYearSelection={this.state.disableYearSelection}
             />
             <DatePicker
               onChange={this.handleChangeMaxDate}
               autoOk={this.state.autoOk}
-              floatingLabelText="Max Date"
+              floatingLabelText="End Date"
               defaultDate={this.state.maxDate}
               disableYearSelection={this.state.disableYearSelection}
             />

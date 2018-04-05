@@ -6,16 +6,19 @@ import RaisedButton from "material-ui/RaisedButton";
 import { createNewTrip } from "../../../ducks/reducer2";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
+import CreateTripSearch from "./CreateTripSearch";
 
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
       edit: false,
-      cities: '',
-      tripName: ''
+      cities: [],
+      newCityDetail: {},
+      tripName: this.props.city
     };
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.setTripName = this.setTripName.bind(this);
     this.updateTripName = this.updateTripName.bind(this);
   }
 
@@ -23,45 +26,62 @@ class CreateTrip extends Component {
     this.setState({ edit: !this.state.edit });
   }
 
-componentDidMount(){
-    this.updateTripName(this.props.city);
-}
-
-
-  updateTripName(city) {
-      console.log('hit');
-      this.setState({
-          tripName: city
-      })
+  componentDidMount(props) {
+    this.setTripName(this.props.city);
   }
 
+  setTripName(city) {
+    console.log("hit update");
+    this.setState({
+      tripName: city
+    });
+    this.state.cities.push(city);
+  }
+  updateTripName(e) {
+    this.setState({
+      tripName: e.target.value
+    });
+  }
+  searchNewPlace(newCityDetail){
+    this.state.cities.push(newCityDetail.cityName);
+    this.setState({
+        newCityDetail: newCityDetail
+    });
+  }
+  addName(city){
+      console.log(this.state, city);
+    //   this.state.cities.push(city);
+  }
   render() {
-      console.log(this.state);
+    console.log(this);
     const style = {
       margin: 12
     };
-    const createTripCardMap = {};
+    const createTripCardMap =
+      this.state.cities.length > 0 &&
+      this.state.cities.map((c, i) => <CreateTripCard key={i} city={c} />);
 
-    return this.state.edit === false ? (
+    return (
+    // this.state.edit === false ? (
+
       
-        // {this.state.edit === false ? null : (
-        //     <div className="searchBox">
-        //       <SearchBox />
-        //       <button onClick={() => this.toggleEdit()}>back</button>
-        //     </div>
-        //   )}
-
 
       <div>
+          {this.state.edit === false ? null : (
+          <div className="searchBox">
+            <CreateTripSearch />
+            <button onClick={() => this.toggleEdit()}>back</button>
+          </div>
+        )}
         <TextField
           id="text-field-default"
           floatingLabelText="Trip name"
           defaultValue={`Trip to ${this.state.tripName}`}
+          onChange={e => this.updateTripName(e)}
         />
-        <CreateTripCard />
-        {/* {createTripCardMap} */}
+        {createTripCardMap}
         <RaisedButton
-          onClick={()=>this.toggleEdit()}
+          onClick={() => this.toggleEdit()}
           label="+ ADD DESTINATION"
           style={style}
         />
@@ -71,11 +91,14 @@ componentDidMount(){
           style={style}
         />
       </div>
-    ) : (
-      <div className='searchBox'>
-      <SearchBox/><button onClick={()=>this.toggleEdit()}>back</button>
-      </div> 
-    );
+    ) 
+    // : (
+    //   <div className="searchBox">
+      
+    //     <CreateTripSearch addDestination={this.searchNewPlace} addName={this.addName}/>
+    //     <button onClick={() => this.toggleEdit()}>back</button>
+    //   </div>
+    // );
   }
 }
 const mapStateToProps = state => ({

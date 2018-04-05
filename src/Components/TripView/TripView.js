@@ -43,7 +43,7 @@ updateLatLng (index){
 }
 
   render() {
-    console.log('this', this.state.latLng);
+    console.log('this', this);
     const { tripId } = this.state;
     const { trip, cities } = this.props;
     const citiesMap =

@@ -8,12 +8,14 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from '../../Logo/trippie_logo.png';
 import Login from '../../Auth/Auth';
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 class AppHeader extends Component {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {
     this.props.getProfile();
   }
@@ -38,7 +40,6 @@ function mapStateToProps(state) {
     picture: state.reducer1.picture
   };
 }
-
 export default connect(mapStateToProps, {
     getProfile
 })(AppHeader);

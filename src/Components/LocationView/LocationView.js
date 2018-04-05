@@ -13,7 +13,10 @@ class LocationView extends Component {
         <div className="SearchbaronLocation">
           <SearchBox />
           {console.log(this.props, "adsfadfasdfafdafdsfads")}
-          <h1>{this.props.city}</h1>
+          <h1>
+            {/* add conditinal  */}
+            {this.props.city},{this.props.state},{this.props.country}
+          </h1>
           <p>img.of.city</p>
         </div>
         <ParkCard />
@@ -24,7 +27,9 @@ class LocationView extends Component {
 
 function mapStateToProps(state) {
   return {
-    city: state.reducer2.city
+    city: state.reducer1.city,
+    state: state.reducer1.state,
+    country: state.reducer1.country
   };
 }
 export default connect(mapStateToProps)(LocationView);

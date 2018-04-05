@@ -1,5 +1,9 @@
 import React from "react";
-import { updatePlaceId, updateLatLng, updateLocationData } from "../../ducks/reducer1";
+import {
+  updatePlaceId,
+  updateLatLng,
+  updateLocationData
+} from "../../ducks/reducer1";
 import { connect } from "react-redux";
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
@@ -29,17 +33,22 @@ const SearchBox = compose(
           this.setState({
             places
           });
-          console.log(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name);
-          
-          
-          
-          
-          this.props.updatePlaceId(
-            places[0].place_id
+          console.log(
+            places[0].address_components[0].long_name,
+            places[0].address_components[2].short_name,
+            places[0].address_components[3].long_name
           );
+
+          this.props.updatePlaceId(places[0].place_id);
+
+          this.props.updatePlaceId(places[0].place_id);
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
           this.props.updateLatLng(latlng);
-          this.props.updateLocationData(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name);
+          this.props.updateLocationData(
+            places[0].address_components[0].long_name,
+            places[0].address_components[2].short_name,
+            places[0].address_components[3].long_name
+          );
           // props.updatePlaceId(places.place_id);
         }
       });
@@ -89,4 +98,8 @@ const SearchBox = compose(
 
 const mapStatetoProps = state => state;
 
-export default connect(mapStatetoProps, { updatePlaceId, updateLatLng, updateLocationData })(SearchBox);
+export default connect(mapStatetoProps, {
+  updatePlaceId,
+  updateLatLng,
+  updateLocationData
+})(SearchBox);

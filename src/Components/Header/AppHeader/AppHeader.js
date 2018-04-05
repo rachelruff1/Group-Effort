@@ -6,7 +6,7 @@ import Search from "../../Search/Search";
 import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
-import Logo from "../../Logo/Logo";
+import test2 from '../../Logo/trippie_logo.png';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -19,9 +19,9 @@ class AppHeader extends Component {
   render() {
     console.log(this.props)
     return (
-      <header className="app-header">  
+      <header className="app-header">  Hi
       {this.props.picture && <img className="user-photo" src={this.props.picture} />}
-      <Logo/>  
+      <img className="logo" src={test2} alt="logo" />
       <Link to="/Auth">
           <button className="authbutton">Login</button>
         </Link>

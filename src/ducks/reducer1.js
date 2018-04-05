@@ -10,6 +10,7 @@ const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
 const UPDATE_LAT_LNG = 'UPDATE_LAT_LNG'
 const GET_CITIES = "GET_CITIES";
 const GET_TRIP = "GET_TRIP";
+const GET_CITY_DETAIL = 'GET_CITY_DETAIL';
 
 const GET_SAVED = 'GET_SAVED';
 const GET_FOOD = 'GET_FOOD';
@@ -17,6 +18,7 @@ const GET_THINGS_TO_DO = 'GET_THINGS_TO_DO';
 const GET_MUSEUMS = 'GET_MUSEUMS';
 const GET_WEBCAMS = 'GET_WEBCAMS';
 const GET_FACTS = 'GET_FACTS';
+const UPDATE_LOCATION_DATA = 'UPDATE_LOCATION_DATA';
 
 
 const initialState = {
@@ -29,13 +31,18 @@ const initialState = {
   placeId: "",
   latlng: '',
   cities: {},
+  cityId: '',
   trip: {},
   saved: {},
   food: {},
   thingsToDo :{},
   museums : {},
   webcams : {},
-  facts : {}
+  facts : {},
+
+  city: '',
+  state: '',
+  country: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -105,6 +112,24 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
+
+      case `${GET_CITY_DETAIL}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_CITY_DETAIL}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+      case `${GET_CITY_DETAIL}_FULFILLED`:
+      console.log("reducer func:", action.payload);
+      return Object.assign({}, state, {
+        isLoading: false,
+        cityId: action.payload
+      });
+
+
+
+      //TRIP CALLS FROM DB AND APIS
       case `${GET_SAVED}_FULFILLED`:
       // console.log("reducer func:", action.payload[0]);
       return Object.assign({}, state, {
@@ -135,7 +160,7 @@ export default function reducer(state = initialState, action) {
       // console.log("reducer func:", action.payload[0]);
       return Object.assign({}, state, {
         isLoading: false,
-        thingsToDo: action.payload[0]
+        thingsToDo: action.payload
       });
       case `${GET_MUSEUMS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -145,10 +170,10 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
       case `${GET_MUSEUMS}_FULFILLED`:
-      // console.log("reducer func:", action.payload[0]);
+      console.log("reducer func:", action.payload);
       return Object.assign({}, state, {
         isLoading: false,
-        museums: action.payload[0]
+        museums: action.payload
       });
       case `${GET_WEBCAMS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -176,6 +201,11 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         facts: action.payload[0]
       });
+
+      case UPDATE_LOCATION_DATA:
+      console.log(action);
+      return Object.assign({}, state, { city: action.payload, state: action.data, country: action.moreData });
+
     default:
       return state;
   }
@@ -275,6 +305,22 @@ export function getTrip(tripId) {
   };
 }
 
+export function getCityDetail(cityId){
+  console.log("hit:", cityId);
+  return {
+    type: GET_CITY_DETAIL,
+    payload: axios
+      .get(`/api/getCityDetail/${cityId}`)
+      .then(resp => {
+        console.log(resp.data);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+//TRIP DETAIL CALLS (DB AND API CALLS)
+
 export function getSaved(tripId) {
   console.log('hit:', tripId);
   return{
@@ -314,12 +360,12 @@ export function getThingsToDo(tripId) {
     .catch(err => err.errMessage)
   }
 }
-export function getMuseums(tripId) {
-  console.log('hit:', tripId);
+export function getMuseums(latlng) {
+  console.log('hit:', latlng);
   return{
     type: GET_MUSEUMS,
     payload: axios
-    .get(`/api/get/${tripId}`)
+    .get(`/api/getMuseums/${latlng}`)
     .then(resp => {
       console.log(resp.data);
       return resp.data;
@@ -351,5 +397,15 @@ export function getFacts(tripId){
       return resp.data;
     })
     .catch(err => err.errMessage)
+  }
+}
+
+export function updateLocationData(city, state, country){
+  console.log('hit:', city, state, country);
+  return{
+    type: UPDATE_LOCATION_DATA,
+    payload: city,
+    data: state,
+    moreData: country
   }
 }

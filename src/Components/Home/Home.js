@@ -18,6 +18,7 @@ class Home extends Component {
           <Auth/>
           < br/>
           <Link to='/location-details'><button>TripView</button></Link>
+          <Link to='/createtrip'><button>CreateTrip</button></Link>
         </div>
         {/* <div className="title-card">
           <h1>TRIPPIE</h1>

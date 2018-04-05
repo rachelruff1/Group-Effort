@@ -7,6 +7,7 @@ import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from '../../Logo/trippie_logo.png';
+import Login from '../../Auth/Auth';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -19,12 +20,10 @@ class AppHeader extends Component {
   render() {
     console.log(this.props)
     return (
-      <header className="app-header">  Hi
+      <header className="app-header">
       {this.props.picture && <img className="user-photo" src={this.props.picture} />}
-      <img className="logo" src={test2} alt="logo" />
-      <Link to="/Auth">
-          <button className="authbutton">Login</button>
-        </Link>
+      <Login/>
+      <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />

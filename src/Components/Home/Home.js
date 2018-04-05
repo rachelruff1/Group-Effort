@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import Auth from "../Auth/Auth";
 import  SearchBox from "../Search/SearchBox";
 
 class Home extends Component {
@@ -15,10 +14,9 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
-          <Auth/>
           < br/>
           <Link to='/location-details'><button>TripView</button></Link>
-          <Link to='/createtrip'><button>CreateTrip</button></Link>
+          <Link to='/view-all-trips'><button>ViewAllTrips</button></Link>
         </div>
           <div className="title-card">
           <h1>TRIPPIE</h1>

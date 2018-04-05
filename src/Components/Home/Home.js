@@ -20,12 +20,28 @@ class Home extends Component {
           <Link to='/location-details'><button>TripView</button></Link>
           <Link to='/createtrip'><button>CreateTrip</button></Link>
         </div>
-          <div className="title-card">
+        {/* <div className="title-card">
           <h1>TRIPPIE</h1>
-          </div>
-        <figure className="search">
+          </div> */}
+          <figure className="search">
         <SearchBox/>
         </figure>
+        <div id="group-transition">
+          <div className="transition-1">
+            Plan
+          </div>
+          <div className="transition-2">
+            Your
+          </div>
+          <div className="transition-3">
+            Trip
+          </div>
+          <div className="transition-4">
+            Today
+          </div>
+          <hr className="hr-1"/>
+        </div> 
+        
       </div>
     );
   }

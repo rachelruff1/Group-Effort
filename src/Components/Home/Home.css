@@ -1,6 +1,11 @@
 .Home{
-  background-image: url("home-img.jpg");
-
+  background:
+  linear-gradient(
+     rgba(0, 0, 0, 0.2),
+     rgba(0, 0, 0, 0.2)
+   ), url("home-img.jpg");
+  background-repeat: no-repeat;
+  overflow: hidden;
   /* background: linear-gradient(to right, #4EADA5 , #2387DE); */
   background-size: 100%;
   height: 100vh;
@@ -15,14 +20,15 @@
   align-content: center;
 }
 
-.title-card{
+/* .title-card{
   font-family: 'Cinzel', serif;
   font-size: 45px;
-  color: rgb(78, 78, 78);
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 5px 2px rgb(0, 0, 0);
   position: fixed;
   left: 85vh;
   top: 30vh;
-}
+} */
 
 .search{
   position: fixed;
@@ -30,3 +36,98 @@
   top: 50vh;
   
 }
+
+#group-transition{
+  position: fixed;
+  animation: showup 5s; 
+  text-align:center;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+  font-weight:300;
+  font-size:32px;
+  padding-top:40vh;
+  height:100vh;
+  overflow:hidden;
+  
+}
+
+
+.transition-1{
+  animation: slidein 5s;
+  position: fixed;
+  top: 45vh; 
+  left: 42vw;  
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.transition-2{
+  position: fixed;
+  top: 49.75vh; 
+  left: 46vw;
+  margin-top: -45px;
+  animation: slidein2 5s; 
+  
+}
+
+.transition-3{
+  position: fixed;
+  top: 48.85vh; 
+  right: 46vw;
+  margin-top: -37px;
+  animation: slidein3 5s; 
+  
+}
+
+.transition-4{
+  position: fixed;
+  top: 48.85vh; 
+  right: 41vw;
+  margin-top: -37px;
+  animation: slidein4 5s; 
+  
+}
+
+.hr-1{
+  position: fixed;
+  top: 49vh;
+  left: 50vw;
+  width:500px;
+  transform: translate(-50%, -50%);
+  animation: width-line 5s;
+}
+
+@keyframes showup {
+ from {opacity: 0;}
+ to {opacity: 1;}
+}
+
+@keyframes slidein {
+  0% { margin-left:-2000px; }
+  100% { margin-left:0vw; }
+}
+
+@keyframes slidein2 {
+  0% { margin-left:-2000px; }
+  100% { margin-left:0px; }
+}
+
+@keyframes slidein3 {
+  0% { margin-right:-2000px; }
+  100% { margin-right:0px; }
+}
+
+@keyframes slidein4 {
+  0% { margin-right:-2000px; }
+  100% { margin-right:0px; }
+}
+
+
+@keyframes width-line {
+  0% {width: 0px;}
+  100% {width: 500px;}
+}
+
+
+

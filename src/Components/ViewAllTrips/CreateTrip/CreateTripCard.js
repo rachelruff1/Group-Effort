@@ -74,7 +74,7 @@ class CreateTripCard extends Component {
             onClick={() => this.toggleEdit()}
             id="text-field-default"
             floatingLabelText="This will be city name"
-            defaultValue={this.props.city}
+            defaultValue={this.props.cityName}
           />
           <div style={optionsStyle}>
             <DatePicker
@@ -101,8 +101,6 @@ class CreateTripCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  city: state.reducer1.city
-});
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {})(CreateTripCard);

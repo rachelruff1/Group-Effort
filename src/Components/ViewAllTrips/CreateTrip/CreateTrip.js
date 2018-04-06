@@ -13,10 +13,10 @@ class CreateTrip extends Component {
     super(props);
     this.state = {
       edit: false,
-      tripName: '',
+      tripName: "",
       defaultCityDetail: {},
-      newCityDetail: [],
-    //   tripName: this.props.city
+      newCityDetail: []
+      //   tripName: this.props.city
     };
     this.toggleEdit = this.toggleEdit.bind(this);
     this.setTripName = this.setTripName.bind(this);
@@ -25,15 +25,21 @@ class CreateTrip extends Component {
   }
 
   componentDidMount(props) {
-    this.setTripName(this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
+    this.setTripName(
+      this.props.city,
+      this.props.state,
+      this.props.country,
+      this.props.latlng,
+      this.props.placeId
+    );
   }
 
-//This runs on component did mount to set initial State w/ data from reducer
+  //This runs on component did mount to set initial State w/ data from reducer
 
   setTripName(cityName, state, country, latLng, placeId) {
     this.setState({
       tripName: cityName,
-      newCityDetail: [{ cityName, state, country, latLng, placeId  }]
+      newCityDetail: [{ cityName, state, country, latLng, placeId }]
     });
   }
 
@@ -50,7 +56,10 @@ class CreateTrip extends Component {
     // console.log(cityName, state, country, latLng, placeId);
     this.setState(
       {
-        newCityDetail: [...this.state.newCityDetail, { cityName, state, country, latLng, placeId }],
+        newCityDetail: [
+          ...this.state.newCityDetail,
+          { cityName, state, country, latLng, placeId }
+        ],
         edit: !this.state.edit
       },
       () => console.log(this.state)
@@ -66,7 +75,7 @@ class CreateTrip extends Component {
       this.state.newCityDetail.length > 0 &&
       this.state.newCityDetail.map((c, i) => {
         console.log(c.cityName);
-        return <CreateTripCard key={i} cityName={c.cityName} index={i}/>;
+        return <CreateTripCard key={i} cityName={c.cityName} index={i} />;
       });
 
     return (
@@ -88,8 +97,7 @@ class CreateTrip extends Component {
         {/* {this.state.newCityDetail === {} ? <CreateTripCard city={this.state.defaultCityDetail} /> : <div> <CreateTripCard city={this.state.defaultCityDetail} />  */}
         {createTripCardMap}
         {/* </div>} */}
-        
-       
+
         <RaisedButton
           onClick={() => this.toggleEdit()}
           label="+ ADD DESTINATION"

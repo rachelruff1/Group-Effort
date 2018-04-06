@@ -3,16 +3,13 @@ const GET_CITY = "GET_CITY";
 const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
 const GET_PLACE = "GET_PLACE";
-const CREATE_TRIP = "CREATE_TRIP";
+const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 
 const initialState = {
   info: [],
   isLoading: false,
   didErr: false,
   errMessage: "errrrrr",
-  city: "",
-  destination: "",
-  travelDates: null,
   placeDetail: {},
   test: 'hi'
 };
@@ -115,15 +112,12 @@ export function getPlace(placeId) {
       .catch(err => err.errMessage)
   };
 }
-export function createTrip(tripID, tripName, destination, tripDates){
+export function createNewTrip(tripName, tripStart, tripEnd){
   return {
-    type: CREATE_TRIP,
+    type: CREATE_NEW_TRIP,
     payload: axios
-      .post('/api/createTrip', {
-        tripID,
-        tripName,
-        destination,
-        tripDates
+      .post('/api/createNewTrip', {
+        tripName, tripStart, tripEnd
       })
       .then(response => {
         console.log(response);

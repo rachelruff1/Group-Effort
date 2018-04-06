@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
 import ParkCard from "../ParkCard/ParkCard";
+import MuseumCard from "../../MuseumCard/MuseumCard";
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,9 @@ class LocationView extends Component {
           <p>img.of.city</p>
         </div>
         <ParkCard />
+        <div>
+          <MuseumCard />
+        </div>
       </div>
     );
   }

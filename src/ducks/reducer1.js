@@ -35,7 +35,7 @@ const initialState = {
   saved: {},
   food: {},
   thingsToDo: {},
-  museums: {},
+  museums: [],
   webcams: {},
   facts: {},
   parks: [],
@@ -380,8 +380,8 @@ export function getMuseums(latlng) {
     payload: axios
       .get(`/api/getMuseums/${latlng}`)
       .then(resp => {
-        console.log(resp.data);
-        return resp.data;
+        console.log(resp.data.results, "7777777 musemums ");
+        return resp.data.results;
       })
       .catch(err => err.errMessage)
   };

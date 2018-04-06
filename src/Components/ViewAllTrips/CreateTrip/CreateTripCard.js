@@ -21,7 +21,15 @@ class CreateTripCard extends Component {
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
-      cityDetail: {cityName: this.props.city, state: '', country: '', latLng: '', startDate: '', endDate: '', place_id: ''},
+    //   cityDetail: {
+    //     cityName: this.props.city,
+    //     state: "",
+    //     country: "",
+    //     latLng: "",
+    //     startDate: "",
+    //     endDate: "",
+    //     place_id: ""
+    //   },
       startDate: "",
       endDate: "",
       minDate: minDate,
@@ -55,8 +63,8 @@ class CreateTripCard extends Component {
       <div>
         {this.state.edit === false ? null : (
           <div>
-              
-            <CreateTripSearch /><button onClick={() => this.toggleEdit()}>back</button>
+            <CreateTripSearch />
+            <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
         <section>

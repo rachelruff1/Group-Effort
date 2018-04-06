@@ -37,8 +37,6 @@ const CreateTripSearch = compose(
           );
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
 
-          // this.props.addName(places[0].address_components[0].long_name);
-
           this.props.addDestination(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name, latlng, places[0].place_id)
          
         }

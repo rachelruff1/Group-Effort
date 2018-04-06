@@ -14,8 +14,9 @@ class CreateTrip extends Component {
     this.state = {
       edit: false,
       cities: [],
-      newCityDetail: {},
-      tripName: this.props.city
+      defaultCityDetail: {},
+      newCityDetail: [],
+    //   tripName: this.props.city
     };
     this.toggleEdit = this.toggleEdit.bind(this);
     this.setTripName = this.setTripName.bind(this);
@@ -23,45 +24,52 @@ class CreateTrip extends Component {
     this.searchNewPlace = this.searchNewPlace.bind(this);
   }
 
+  componentDidMount(props) {
+    this.setTripName(this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
+  }
+
+//This runs on component did mount to set initial State w/ data from reducer
+
+  setTripName(cityName, state, country, latLng, placeId) {
+    console.log("hit update");
+    this.setState({
+    //   tripName: city,
+      newCityDetail: [{ cityName, state, country, latLng, placeId  }]
+    });
+  }
+
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
-  componentDidMount(props) {
-    this.setTripName(this.props.city);
-  }
-
-  setTripName(city) {
-    console.log("hit update");
-    this.setState({
-      tripName: city,
-      cities: []
-    });
-    this.state.cities.push(city);
-  }
   updateTripName(e) {
     this.setState({
-      tripName: e.target.value
+      defaultCityDetail: {city: e.target.value}
     });
   }
   searchNewPlace(cityName, state, country, latLng, placeId) {
     console.log(cityName, state, country, latLng, placeId);
-    this.state.cities.push(cityName);
-    this.setState({
-      newCityDetail: { cityName, state, country, latLng, placeId },
-      edit: !this.state.edit
-    });
-
+    this.setState(
+      {
+        cities: [...this.state.cities, cityName],
+        newCityDetail: [...this.state.newCityDetail, { cityName, state, country, latLng, placeId }],
+        edit: !this.state.edit
+      },
+      () => console.log(this.state)
+    );
   }
 
   render() {
-    console.log(this.state.cities);
+    console.log(this.state);
     const style = {
       margin: 12
     };
     const createTripCardMap =
-      this.state.cities.length > 0 &&
-      this.state.cities.map((c, i) => {console.log(c); return <CreateTripCard key={i} city={c} />});
+      this.state.newCityDetail.length > 0 &&
+      this.state.newCityDetail.map((c, i) => {
+        console.log(c.cityName);
+        return <CreateTripCard key={i} city={c.cityName} index={i}/>;
+      });
 
     return (
       // this.state.edit === false ? (
@@ -76,11 +84,14 @@ class CreateTrip extends Component {
         <TextField
           id="text-field-default"
           floatingLabelText="Trip name"
-          defaultValue={`Trip to ${this.state.tripName}`}
+          defaultValue={`Trip to ${this.state.defaultCityDetail.city}`}
           onChange={e => this.updateTripName(e)}
         />
-        <CreateTripCard city={this.props.city}/>
+        {/* {this.state.newCityDetail === {} ? <CreateTripCard city={this.state.defaultCityDetail} /> : <div> <CreateTripCard city={this.state.defaultCityDetail} />  */}
         {createTripCardMap}
+        {/* </div>} */}
+        
+       
         <RaisedButton
           onClick={() => this.toggleEdit()}
           label="+ ADD DESTINATION"
@@ -103,7 +114,11 @@ class CreateTrip extends Component {
   }
 }
 const mapStateToProps = state => ({
-  city: state.reducer1.city
+  city: state.reducer1.city,
+  state: state.reducer1.state,
+  country: state.reducer1.country,
+  latlng: state.reducer1.latlng,
+  placeId: state.reducer1.placeId
 });
 
 export default connect(mapStateToProps, { createNewTrip })(CreateTrip);

@@ -275,7 +275,7 @@ export function getProfile() {
 }
 
 export function updatePlaceId(placeId) {
-  console.log(placeId);
+  // console.log(placeId);
   return {
     type: UPDATE_PLACE_ID,
     payload: placeId
@@ -283,7 +283,7 @@ export function updatePlaceId(placeId) {
 }
 
 export function updateLatLng(latlng) {
-  console.log(latlng);
+  // console.log(latlng);
   return {
     type: UPDATE_LAT_LNG,
     payload: latlng
@@ -291,7 +291,7 @@ export function updateLatLng(latlng) {
 }
 
 export function getCities(tripId) {
-  console.log("hit:", tripId);
+  // console.log("hit:", tripId);
   return {
     type: GET_CITIES,
     payload: axios
@@ -414,7 +414,7 @@ export function getFacts(tripId) {
 }
 
 export function updateLocationData(city, state, country) {
-  console.log("hit:", city, state, country);
+  // console.log("hit:", city, state, country);
   return {
     type: UPDATE_LOCATION_DATA,
     payload: city,

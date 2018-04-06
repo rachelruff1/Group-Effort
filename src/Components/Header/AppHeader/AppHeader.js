@@ -8,7 +8,6 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from "../../Logo/trippie_logo.png";
 import Login from "../../Auth/Auth";
-import MenuExampleSimple from "./dropdown";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -43,7 +42,7 @@ class AppHeader extends Component {
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
-            {this.state.toggle == true ? <MenuExampleSimple /> : null}
+            {/* {this.state.toggle == true ? <MenuExampleSimple /> : null} */}
           </div>
         </div>
       </header>

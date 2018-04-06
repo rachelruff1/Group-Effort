@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import  SearchBox from "../Search/SearchBox";
 
+
 class Home extends Component {
   constructor() {
     super();
@@ -14,6 +15,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
+
           <br/>
           <Link to='/location-details'><button>TripView</button></Link>
           <Link to='/view-all-trips'><button>ViewAllTrips</button></Link>

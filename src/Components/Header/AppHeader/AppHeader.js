@@ -10,17 +10,15 @@ import test2 from '../../Logo/trippie_logo.png';
 import Login from '../../Auth/Auth';
 import ProfileDropDown from '../../ProfileDropDown/ProfileDropDown';
 
+
 class AppHeader extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      toggle: false
-    }
-    this.toggleDropDown = this.toggleDropDown.bind(this);
   }
   componentDidMount() {
     this.props.getProfile();
   }
+
 
   toggleDropDown(){
     console.log(this.state.toggle)
@@ -28,20 +26,22 @@ class AppHeader extends Component {
       toggle: !(this.state.toggle)
     })
   }
+
   render() {
-    console.log(this.state.toggle);
+    console.log(this.props)
     return (
       <header className="app-header">
+
         
       {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()}/>}
       <div className="login-buttons">
+
       <Login/>
-      </div>
       <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
-    
+
           </div>
         </div>
             {this.state.toggle == true ?  <ProfileDropDown /> : null}

@@ -108,19 +108,20 @@ app.get("/api/getProfile", (req, res) => {
     .get("db")
     .getUserImage([req.user.authid])
     .then(response => {
-      console.log(response, "look here!")
+      console.log(response, "look here!");
       res.status(200).json(response);
-    }).catch(console.log)
+    })
+    .catch(console.log);
 });
-app.get('/api/getCities/:tripid', ctrl.getCities);
-app.get('/api/getTrip/:tripid', ctrl.getTrip);
-app.get('/api/getSaved/:id', ctrl.getSaved);
-app.get('/api/getFood/:id', ctrl.getFood);
-app.get('/api/getThingsToDo/:id', ctrl.getThingsToDo);
-app.get('/api/getMuseums/:id', ctrl.getMuseums);
-app.get('/api/getWebcams/:id', ctrl.getWebcams);
-app.get('/api/getFacts/:id', ctrl.getFacts);
-
+app.get("/api/getCities/:tripid", ctrl.getCities);
+app.get("/api/getTrip/:tripid", ctrl.getTrip);
+app.get("/api/getSaved/:id", ctrl.getSaved);
+app.get("/api/getFood/:id", ctrl.getFood);
+app.get("/api/getThingsToDo/:id", ctrl.getThingsToDo);
+app.get("/api/getMuseums/:id", ctrl.getMuseums);
+app.get("/api/getWebcams/:id", ctrl.getWebcams);
+app.get("/api/getFacts/:id", ctrl.getFacts);
+app.get("/api/getParks/:id", ctrl.getParks);
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

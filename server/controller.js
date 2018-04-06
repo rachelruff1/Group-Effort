@@ -4,7 +4,7 @@ const googlePlacesBase =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
 let places = [];
 let museums = [];
-
+let parks = [];
 const getUser = (req, res, next) => {
   const db = req.app.get("db");
   db.user
@@ -165,6 +165,20 @@ const getWebcams = (req, res, next) => {
       next(err);
     });
 };
+const getParks = (req, res, next) => {
+  console.log("THE PARKS:", req.params);
+  axios
+    .get(
+      `${googlePlacesBase}${
+        req.params.id
+      }&type=park&radius=1000&key=${googleApiKey}`
+    )
+    .then(resp => {
+      parks = resp.data;
+      res.status(200).json(parks);
+    })
+    .catch(() => res.status(500).json());
+};
 
 module.exports = {
   getPlaceData,
@@ -175,5 +189,6 @@ module.exports = {
   getThingsToDo,
   getMuseums,
   getWebcams,
-  getFacts
+  getFacts,
+  getParks
 };

@@ -14,5 +14,6 @@ export default (
     <Route component={TripView} path="/location-details" />
     <Route component={CreateTrip} path="/createtrip" />
     <Route component={LocationView} path="/location" />
+    
   </Switch>
 );

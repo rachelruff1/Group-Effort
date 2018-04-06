@@ -6,14 +6,12 @@ import Search from "../../Search/Search";
 import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
-import Logo from "../../Logo/Logo";
-
-
+import test2 from '../../Logo/trippie_logo.png';
+import Login from '../../Auth/Auth';
 class AppHeader extends Component {
   constructor(props) {
     super(props);
   }
-
   componentDidMount() {
     this.props.getProfile();
   }
@@ -22,10 +20,15 @@ class AppHeader extends Component {
     return (
       <header className="app-header">  
       {this.props.picture && <img className="user-photo"  src={this.props.picture} /> }
-      <Logo/>  
+      {/* <Logo/>   */}
       <Link to="/Auth">
           <button className="authbutton">Login</button>
         </Link>
+        </header>,
+      <header className="app-header">
+      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
+      <Login/>
+      <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
@@ -40,7 +43,6 @@ function mapStateToProps(state) {
     picture: state.reducer1.picture
   };
 }
-
 export default connect(mapStateToProps, {
     getProfile
 })(AppHeader);

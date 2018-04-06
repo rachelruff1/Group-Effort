@@ -11,3 +11,8 @@
 	border-radius: 50px 50px 50px 50px;
 	height: 10vh;
 }
+
+.logo {
+    height: 80px;
+    width: 80px;
+}

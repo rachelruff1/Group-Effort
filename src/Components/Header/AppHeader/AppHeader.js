@@ -34,6 +34,7 @@ class AppHeader extends Component {
             <AppDrawer />
           </div>
         </div>
+        </div>
       </header>
     );
   }

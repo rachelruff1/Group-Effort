@@ -3,6 +3,7 @@ import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
 import CreateTripSearch from "./CreateTripSearch";
+import './CreateTripCard.css';
 
 const optionsStyle = {
   maxWidth: 255,
@@ -15,21 +16,12 @@ class CreateTripCard extends Component {
 
     const minDate = new Date();
     const maxDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() - 1);
+    minDate.setFullYear(minDate.getFullYear());
     minDate.setHours(0, 0, 0, 0);
-    maxDate.setFullYear(maxDate.getFullYear() + 1);
+    maxDate.setFullYear(maxDate.getFullYear());
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
-    //   cityDetail: {
-    //     cityName: this.props.city,
-    //     state: "",
-    //     country: "",
-    //     latLng: "",
-    //     startDate: "",
-    //     endDate: "",
-    //     place_id: ""
-    //   },
       startDate: "",
       endDate: "",
       minDate: minDate,
@@ -67,9 +59,7 @@ class CreateTripCard extends Component {
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
-        <section>
-          {/*Trip name: "Trip to ..."*/}
-          {/* <h3>{this.props.city}</h3> */}
+        <section className='create-trip-card-container'>
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
@@ -91,9 +81,6 @@ class CreateTripCard extends Component {
               defaultDate={this.state.maxDate}
               disableYearSelection={this.state.disableYearSelection}
             />
-            {/* <p>Destination: `${this.props.destination}`</p>
-                        <p>Travel Dates: `${this.props.dates}`</p>
-                            */}
           </div>
         </section>
       </div>

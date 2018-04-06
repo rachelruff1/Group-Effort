@@ -1,18 +1,63 @@
+/*For IPhone 5/SE*/
+@media only screen and (max-width: 320px) {
+	.app-header {
+		position: fixed;
+		background: transparent;
+		overflow: hidden;
+		padding: 1em;
+		height: 10vh;
+		width: 90vw;
+	}
+
+	.user-photo {
+		position: fixed;
+		right: 5vw;
+		border: 1px solid white;
+		border-radius: 50px 50px 50px 50px;
+		height: 5vh;
+	}
+
+	.login-buttons{
+		position: fixed;
+		left: 45vw;
+	}
+	
+	.responsive-nav{
+		visibility: hidden;
+	}
+
+	.logo {
+		position: fixed;
+		top: 0vh;
+		height: 15vh;
+		/* width: 10vw; */
+	 }
+}
+
+/*For Full Screen*/
+@media only screen and (min-width: 1900px) {
 .app-header {
-	background: linear-gradient(to right ,#BEDAD7, #4EADA5 , #2387DE);;
+	position: fixed;
+	background: transparent;
 	overflow: hidden;
 	padding: 1em;
 	height: 10vh;
 }
 .user-photo {
-	display: flex;
-	float: right;
+	position: fixed;
+	right: 5vw;
 	border: 2px solid white;
 	border-radius: 50px 50px 50px 50px;
 	height: 10vh;
 }
 
+.responsive-nav{
+	visibility: hidden;
+}
+
 .logo {
-    height: 80px;
-    width: 80px;
+	
+    height: 100px;
+    width: 100px;
+ }
 }

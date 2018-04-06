@@ -8,7 +8,7 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from '../../Logo/trippie_logo.png';
 import Login from '../../Auth/Auth';
-import MenuExampleSimple from './dropdown';
+import ProfileDropDown from '../'
 
 class AppHeader extends Component {
   constructor(props) {
@@ -31,16 +31,8 @@ class AppHeader extends Component {
     console.log(this.state.toggle);
     return (
       <header className="app-header">
-<<<<<<< HEAD
-      <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />
-      
-      
-      {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />}
-      
-=======
       {this.props.picture && <img className="user-photo" src={this.props.picture} />}
       <div className="login-buttons">
->>>>>>> master
       <Login/>
       </div>
       <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>

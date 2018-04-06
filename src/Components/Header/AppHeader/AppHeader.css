@@ -1,4 +1,4 @@
-{/*For IPhone 5/SE*/}
+/*For IPhone 5/SE*/
 @media only screen and (max-width: 320px) {
 	.app-header {
 		position: fixed;
@@ -17,6 +17,15 @@
 		height: 5vh;
 	}
 
+	.login-buttons{
+		position: fixed;
+		left: 45vw;
+	}
+	
+	.responsive-nav{
+		visibility: hidden;
+	}
+
 	.logo {
 		position: fixed;
 		top: 0vh;
@@ -25,7 +34,7 @@
 	 }
 }
 
-{/*For Full Screen*/}
+/*For Full Screen*/
 @media only screen and (min-width: 1900px) {
 .app-header {
 	position: fixed;

@@ -20,7 +20,9 @@ class AppHeader extends Component {
     return (
       <header className="app-header">
       {this.props.picture && <img className="user-photo" src={this.props.picture} />}
+      <div className="login-buttons">
       <Login/>
+      </div>
       <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">

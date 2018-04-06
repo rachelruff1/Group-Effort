@@ -1,5 +1,5 @@
 
-{/*For IPhone 5/SE*/}
+/*For IPhone 5/SE*/
 @media only screen and (max-width: 320px) {
 .Home{
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -22,20 +22,55 @@
 
 #group-transition {
   position: fixed;
-  animation: showup 5s;
+  top: -15vh;
+  left: 40vw;
+  
   text-align: center;
   color: rgb(255, 255, 255);
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
   font-weight: 300;
-  font-size: 20px;
+  font-size: 24px;
   padding-top: 40vh;
   height: 100vh;
   overflow: hidden;
 }
 
+.transition-1 {
+  animation: showup 5s; 
 }
 
-{/*For Full Screen*/}
+.transition-2 {
+  animation: showup 5.5s;
+}
+
+.transition-3 {
+  animation: showup 6s;
+}
+
+.transition-4 {
+  animation: showup 6.5s;
+}
+
+.hr-1 {
+  visibility: hidden;
+}
+
+
+@keyframes showup {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+}
+
+/*For Full Screen*/
+
 @media only screen and (min-width: 1890px) {
 .Home {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),

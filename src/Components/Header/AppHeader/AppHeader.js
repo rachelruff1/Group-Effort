@@ -23,6 +23,7 @@ class AppHeader extends Component {
   }
 
   toggleDropDown(){
+    console.log(this.state.toggle)
     this.setState({
       toggle: !(this.state.toggle)
     })
@@ -40,9 +41,10 @@ class AppHeader extends Component {
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
-            {this.state.toggle == true ?  <ProfileDropDown /> : null}
+    
           </div>
         </div>
+            {this.state.toggle == true ?  <ProfileDropDown /> : null}
       </header>
     );
   }

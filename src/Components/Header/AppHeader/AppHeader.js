@@ -8,7 +8,7 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from '../../Logo/trippie_logo.png';
 import Login from '../../Auth/Auth';
-import MenuExampleSimple from './dropdown';
+import ProfileDropDown from '../../ProfileDropDown/ProfileDropDown';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -31,33 +31,16 @@ class AppHeader extends Component {
     console.log(this.state.toggle);
     return (
       <header className="app-header">
-<<<<<<< HEAD
         
       {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()}/>}
-=======
-<<<<<<< HEAD
-      <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />
-      
-      
-      {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />}
-      
-=======
-      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
->>>>>>> master
       <div className="login-buttons">
->>>>>>> master
       <Login/>
       </div>
       <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
-<<<<<<< HEAD
             {this.state.toggle == true ?  <ProfileDropDown /> : null}
-=======
-            {this.state.toggle == true ?  <MenuExampleSimple /> : null}
-            
->>>>>>> master
           </div>
         </div>
       </header>

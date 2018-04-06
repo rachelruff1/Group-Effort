@@ -8,8 +8,9 @@ const style = {
   margin: '16px 32px 16px 0',
 };
 
-const MenuExampleSimple = () => (
-  <div>
+const ProfileDropDown = () => (
+  <div style={{width: "200px", height: "200px"}}>
+    <h1 style={{fontSize: "80px"}}>TESTING</h1>
     <Paper style={style}>
       <Menu>
         <MenuItem primaryText="Maps" />
@@ -29,4 +30,4 @@ const MenuExampleSimple = () => (
   </div>
 );
 
-export default MenuExampleSimple;
+export default ProfileDropDown;

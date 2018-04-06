@@ -3,7 +3,7 @@ import {createTrip} from "../../ducks/reducer2";
 import {connect} from 'react-redux'
 
 import MyTripCard from "../MyTripCard/MyTripCard";
-import AddToTrip from "../AddToTrip/AddToTrip";
+import CreateTripButton from "./CreateTripButton/CreateTripButton";
 
 
 
@@ -90,7 +90,7 @@ render(){
                 <h2>You have no trips planned... you should do something about that...</h2>
                 {this.state.trip.length > 0 && <h1>test</h1>}
                 {newTrip}
-                <AddToTrip/>
+                <CreateTripButton/>
                 
             </main>
         </div>

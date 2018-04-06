@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import testimg from "../../Components/Home/home-img.jpg";
 import { getParks } from "../../ducks/reducer1";
+import "./ParkCard.css";
 import {
   Card,
   CardActions,
@@ -27,7 +28,8 @@ class ParkCard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="parkcards">
+        <p>Parks:</p>
         {this.props.parks.length > 0 &&
           this.props.parks.map((parks, i) => (
             <Card>

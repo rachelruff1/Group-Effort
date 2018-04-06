@@ -18,6 +18,15 @@ class AppHeader extends Component {
   componentDidMount() {
     this.props.getProfile();
   }
+
+
+  toggleDropDown(){
+    console.log(this.state.toggle)
+    this.setState({
+      toggle: !(this.state.toggle)
+    })
+  }
+
   render() {
     console.log(this.props)
     return (
@@ -32,8 +41,10 @@ class AppHeader extends Component {
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
+
           </div>
         </div>
+            {this.state.toggle == true ?  <ProfileDropDown /> : null}
       </header>
     );
   }

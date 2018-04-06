@@ -8,7 +8,7 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from '../../Logo/trippie_logo.png';
 import Login from '../../Auth/Auth';
-import ProfileDropDown from '../'
+import ProfileDropDown from '../../ProfileDropDown/ProfileDropDown';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -31,7 +31,8 @@ class AppHeader extends Component {
     console.log(this.state.toggle);
     return (
       <header className="app-header">
-      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
+        
+      {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()}/>}
       <div className="login-buttons">
       <Login/>
       </div>
@@ -39,8 +40,7 @@ class AppHeader extends Component {
         <div className="navbar">
           <div className="responsive-nav">
             <AppDrawer />
-            {this.state.toggle == true ?  <MenuExampleSimple /> : null}
-            
+            {this.state.toggle == true ?  <ProfileDropDown /> : null}
           </div>
         </div>
       </header>
@@ -48,10 +48,10 @@ class AppHeader extends Component {
   }
 }
 function mapStateToProps(state) {
-  return {
-    picture: state.reducer1.picture
-  };
+ return {
+   picture: state.reducer1.picture
+ };
 }
 export default connect(mapStateToProps, {
-    getProfile
+   getProfile
 })(AppHeader);

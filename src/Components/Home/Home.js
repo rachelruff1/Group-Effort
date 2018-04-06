@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-<<<<<<< HEAD
-import  SearchBox from "../Search/SearchBox";
-=======
 import Auth from "../Auth/Auth";
 import SearchBox from "../Search/SearchBox";
->>>>>>> master
 
 class Home extends Component {
   constructor() {
@@ -19,19 +15,13 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
-<<<<<<< HEAD
-          < br/>
-          <Link to='/location-details'><button>TripView</button></Link>
-          <Link to='/view-all-trips'><button>ViewAllTrips</button></Link>
-=======
           <br />
           <Link to="/location-details">
             <button>TripView</button>
           </Link>
-          <Link to="/createtrip">
+          <Link to="/create-trip">
             <button>CreateTrip</button>
           </Link>
->>>>>>> master
         </div>
         <figure className="search">
           <SearchBox />

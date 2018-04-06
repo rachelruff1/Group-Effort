@@ -67,6 +67,9 @@
 
 }
 
+
+
+
 /*For Small Laptops*/
 @media only screen and (min-width: 1024px) {
   /*remove element for final product*/
@@ -86,7 +89,7 @@
 
   #group-transition {
     position: fixed;
-    animation: showup 5s;
+    animation: showup 10s;
     text-align: center;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
@@ -110,9 +113,9 @@
   .transition-2 {
     position: fixed;
     top: 49.75vh;
-    left: 41vw;
+    left: 44vw;
     margin-top: -45px;
-    animation: slidein2 5s;
+    animation: slidein 5s;
   }
   
   .transition-3 {
@@ -120,15 +123,15 @@
     top: 48.85vh;
     right: 45vw;
     margin-top: -37px;
-    animation: slidein3 5s;
+    animation: slidein2 5s;
   }
   
   .transition-4 {
     position: fixed;
     top: 48.85vh;
-    right: 35vw;
+    right: 37vw;
     margin-top: -37px;
-    animation: slidein4 5s;
+    animation: slidein2 5s;
   }
   
   .hr-1 {
@@ -144,12 +147,53 @@
     position: fixed;
     left: 35vw;
     top: 50vh;
+    animation: showup 10s;
   }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slidein {
+    0% {
+      margin-left: -2000px;
+    }
+    100% {
+      margin-left: 0vw;
+    }
+  }
+  
+  @keyframes slidein2 {
+    0% {
+      margin-right: -2000px;
+    }
+    100% {
+      margin-right: 0px;
+    }
+  }
+  
+  @keyframes width-line {
+    0% {
+      width: 0px;
+    }
+    100% {
+      width: 500px;
+    }
+  }
+
 }
+
+
+
 
 /*For Full Screen*/
 
-@media only screen and (min-width: 1890px) {
+@media only screen and (min-width: 1900px) {
 .Home {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url("home-img.jpg");
@@ -172,53 +216,56 @@
   position: fixed;
   left: 85vh;
   top: 50vh;
+  animation: showup 10s;
 }
 
 #group-transition {
   position: fixed;
-  animation: showup 5s;
+  animation: showup 10s;
   text-align: center;
   color: rgb(255, 255, 255);
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
   font-weight: 300;
   font-size: 32px;
   padding-top: 40vh;
+  margin-top: -37px;
   height: 100vh;
   overflow: hidden;
 }
 
 .transition-1 {
-  animation: slidein 5s;
   position: fixed;
-  top: 45vh;
+  top: 44.9vh;
   left: 42.5vw;
-  display: inline-block;
+  animation: slidein 6s;
+  /* margin-top: -37px; */
+  /* display: inline-block;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: nowrap; */
 }
 
 .transition-2 {
   position: fixed;
   top: 49.75vh;
   left: 46.5vw;
-  margin-top: -45px;
-  animation: slidein2 5s;
+  /* margin-top: -37px; */
+  animation: slidein 6s;
 }
 
 .transition-3 {
   position: fixed;
   top: 48.85vh;
   right: 46.5vw;
-  margin-top: -37px;
-  animation: slidein3 5s;
+  /* margin-top: -37px; */
+  animation: slidein2 6s;
 }
 
 .transition-4 {
   position: fixed;
   top: 48.85vh;
   right: 41.5vw;
-  margin-top: -37px;
-  animation: slidein4 5s;
+  /* margin-top: -37px; */
+  animation: slidein2 6s;
 }
 
 .hr-1 {
@@ -249,24 +296,6 @@
 }
 
 @keyframes slidein2 {
-  0% {
-    margin-left: -2000px;
-  }
-  100% {
-    margin-left: 0px;
-  }
-}
-
-@keyframes slidein3 {
-  0% {
-    margin-right: -2000px;
-  }
-  100% {
-    margin-right: 0px;
-  }
-}
-
-@keyframes slidein4 {
   0% {
     margin-right: -2000px;
   }

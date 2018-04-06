@@ -31,12 +31,18 @@ class AppHeader extends Component {
     console.log(this.state.toggle);
     return (
       <header className="app-header">
+<<<<<<< HEAD
       <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />
       
       
       {this.props.picture && <img className="user-photo" src={this.props.picture} onClick={()=>this.toggleDropDown()} />}
       
+=======
+      {this.props.picture && <img className="user-photo" src={this.props.picture} />}
+      <div className="login-buttons">
+>>>>>>> master
       <Login/>
+      </div>
       <Link to='/'><img className="logo" src={test2} alt="logo" /></Link>
         <div className="navbar">
           <div className="responsive-nav">

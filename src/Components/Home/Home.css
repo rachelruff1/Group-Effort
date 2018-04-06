@@ -65,8 +65,86 @@
   }
 }
 
+}
 
+/*For Small Laptops*/
+@media only screen and (min-width: 1024px) {
+  /*remove element for final product*/
+ .homesearch{
+  visibility: hidden;
+ }
 
+  
+  .Home {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+      url("home-img.jpg");
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: 130vw;
+    height: 100vh;
+  }
+
+  #group-transition {
+    position: fixed;
+    animation: showup 5s;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-weight: 300;
+    font-size: 28px;
+    padding-top: 40vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .transition-1 {
+    animation: slidein 5s;
+    position: fixed;
+    top: 44vh;
+    left: 38vw;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .transition-2 {
+    position: fixed;
+    top: 49.75vh;
+    left: 41vw;
+    margin-top: -45px;
+    animation: slidein2 5s;
+  }
+  
+  .transition-3 {
+    position: fixed;
+    top: 48.85vh;
+    right: 45vw;
+    margin-top: -37px;
+    animation: slidein3 5s;
+  }
+  
+  .transition-4 {
+    position: fixed;
+    top: 48.85vh;
+    right: 35vw;
+    margin-top: -37px;
+    animation: slidein4 5s;
+  }
+  
+  .hr-1 {
+    position: fixed;
+    top: 49vh;
+    left: 50vw;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    animation: width-line 5s;
+  }
+
+  .search {
+    position: fixed;
+    left: 35vw;
+    top: 50vh;
+  }
 }
 
 /*For Full Screen*/

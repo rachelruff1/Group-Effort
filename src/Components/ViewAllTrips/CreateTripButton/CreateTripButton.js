@@ -19,7 +19,7 @@ render(){
     return(
         <div>
             <figure>
-                <button>+ CREATE TRIP</button>
+                <Link to='create-trip'><button>+ CREATE TRIP</button></Link>
             </figure>
         </div>
     )

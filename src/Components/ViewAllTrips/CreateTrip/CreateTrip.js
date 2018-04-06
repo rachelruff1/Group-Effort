@@ -20,6 +20,7 @@ class CreateTrip extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.setTripName = this.setTripName.bind(this);
     this.updateTripName = this.updateTripName.bind(this);
+    this.searchNewPlace = this.searchNewPlace.bind(this);
   }
 
   toggleEdit() {
@@ -33,7 +34,8 @@ class CreateTrip extends Component {
   setTripName(city) {
     console.log("hit update");
     this.setState({
-      tripName: city
+      tripName: city,
+      cities: []
     });
     this.state.cities.push(city);
   }
@@ -42,34 +44,32 @@ class CreateTrip extends Component {
       tripName: e.target.value
     });
   }
-  searchNewPlace(newCityDetail){
-    this.state.cities.push(newCityDetail.cityName);
+  searchNewPlace(cityName, state, country, latLng, placeId) {
+    console.log(cityName, state, country, latLng, placeId);
+    this.state.cities.push(cityName);
     this.setState({
-        newCityDetail: newCityDetail
+      newCityDetail: { cityName, state, country, latLng, placeId },
+      edit: !this.state.edit
     });
+
   }
-  addName(city){
-      console.log(this.state, city);
-    //   this.state.cities.push(city);
-  }
+
   render() {
-    console.log(this);
+    console.log(this.state.cities);
     const style = {
       margin: 12
     };
     const createTripCardMap =
       this.state.cities.length > 0 &&
-      this.state.cities.map((c, i) => <CreateTripCard key={i} city={c} />);
+      this.state.cities.map((c, i) => {console.log(c); return <CreateTripCard key={i} city={c} />});
 
     return (
-    // this.state.edit === false ? (
-
-      
+      // this.state.edit === false ? (
 
       <div>
-          {this.state.edit === false ? null : (
+        {this.state.edit === false ? null : (
           <div className="searchBox">
-            <CreateTripSearch />
+            <CreateTripSearch addDestination={this.searchNewPlace} />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
@@ -79,6 +79,7 @@ class CreateTrip extends Component {
           defaultValue={`Trip to ${this.state.tripName}`}
           onChange={e => this.updateTripName(e)}
         />
+        <CreateTripCard city={this.props.city}/>
         {createTripCardMap}
         <RaisedButton
           onClick={() => this.toggleEdit()}
@@ -91,10 +92,10 @@ class CreateTrip extends Component {
           style={style}
         />
       </div>
-    ) 
+    );
     // : (
     //   <div className="searchBox">
-      
+
     //     <CreateTripSearch addDestination={this.searchNewPlace} addName={this.addName}/>
     //     <button onClick={() => this.toggleEdit()}>back</button>
     //   </div>

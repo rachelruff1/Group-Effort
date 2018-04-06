@@ -36,10 +36,10 @@ const CreateTripSearch = compose(
             places[0].address_components[3].long_name
           );
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
-          
-          this.props.addName(places[0].address_components[0].long_name);
 
-          // this.props.addDestination({cityName: places[0].address_components[0].long_name, state: places[0].address_components[2].short_name, country: places[0].address_components[3].long_name, latLng: latlng, place_id: places[0].place_id})
+          // this.props.addName(places[0].address_components[0].long_name);
+
+          this.props.addDestination(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name, latlng, places[0].place_id)
          
         }
       });

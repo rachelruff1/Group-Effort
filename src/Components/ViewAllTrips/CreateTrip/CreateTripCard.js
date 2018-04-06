@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
-import CreateTripSearch from "./CreateTripSearch";
-import './CreateTripCard.css';
+import { updateCityInTrip } from "../../../ducks/reducer2";
+import CardSearch from "./SearchBars/CardSearch";
+import "./CreateTripCard.css";
 
 const optionsStyle = {
   maxWidth: 255,
@@ -31,6 +32,7 @@ class CreateTripCard extends Component {
       edit: false
     };
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.updateTrip = this.updateTrip.bind(this);
   }
 
   handleChangeMinDate = (event, date) => {
@@ -49,17 +51,22 @@ class CreateTripCard extends Component {
     this.setState({ edit: !this.state.edit });
   }
 
+  updateTrip(cityName, state, country, latLng, placeId) {
+    console.log(cityName, state, country, latLng, placeId, this.props.index);
+    this.props.updateCityInTrip(cityName, state, country, latLng, placeId, this.props.index);
+  }
+
   render() {
     console.log(this);
     return (
       <div>
         {this.state.edit === false ? null : (
           <div>
-            <CreateTripSearch />
+            <CardSearch updateTrip={this.updateTrip} />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
-        <section className='create-trip-card-container'>
+        <section className="create-trip-card-container">
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
@@ -90,4 +97,4 @@ class CreateTripCard extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {})(CreateTripCard);
+export default connect(mapStateToProps, { updateCityInTrip })(CreateTripCard);

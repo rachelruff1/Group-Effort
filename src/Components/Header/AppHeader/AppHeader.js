@@ -33,6 +33,7 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
+      <div>
         {this.props.picture && (
           <img
             className="user-photo"
@@ -53,6 +54,7 @@ class AppHeader extends Component {
           {this.state.toggle == true ? <ProfileDropDown /> : null}
         </div>
         </div>
+        
       </header>
     );
   }

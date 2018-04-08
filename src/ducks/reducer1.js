@@ -20,6 +20,13 @@ const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
 
+//CREATETRIP.JS
+const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
+const ADD_CITY_TO_TRIP = "ADD_CITY_TO_TRIP";
+const UPDATE_TRIP_NAME = "UPDATE_TRIP_NAME";
+const UPDATE_CITIES_IN_TRIP = "UPDATE_CITIES_IN_TRIP";
+const ADD_DATES_TO_CITIES = "ADD_DATES_TO_CITIES";
+
 const initialState = {
   user: {},
   image: "",
@@ -42,7 +49,10 @@ const initialState = {
 
   city: "",
   state: "",
-  country: ""
+  country: "",
+  //CREATETRIP.JS
+  citiesInTrip: [],
+  tripName: ""
 };
 
 export default function reducer(state = initialState, action) {
@@ -75,7 +85,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { placeId: action.payload });
 
     case UPDATE_LAT_LNG:
-      console.log("updatellng:", action.payload);
+      // console.log("updatellng:", action.payload);
       return Object.assign({}, state, { latlng: action.payload });
 
     case `${GET_CITIES}_PENDING`:
@@ -215,12 +225,47 @@ export default function reducer(state = initialState, action) {
       });
 
     case UPDATE_LOCATION_DATA:
-      console.log(action);
+      // console.log(action, initialState);
       return Object.assign({}, state, {
         city: action.payload,
         state: action.data,
         country: action.moreData
       });
+
+    //CREATETRIP.JS
+
+    case GET_CITIES_IN_TRIP:
+      console.log(action);
+      return Object.assign({}, state, {
+        citiesInTrip: [{cityName: state.city, state: state.state, country: state.country, latLng:state.latlng, placeId: state.placeId}],
+        // [...state.citiesInTrip, action.payload],
+        //, startDate:'', endDate: ''
+        tripName: action.payload.cityName
+      });
+
+    case ADD_CITY_TO_TRIP:
+    console.log(state, action.payload);
+      return Object.assign({}, state, {
+        citiesInTrip: [...state.citiesInTrip, action.payload]
+      });
+
+    case UPDATE_CITIES_IN_TRIP:
+    console.log(state.citiesInTrip, 'index', action.index, 'resp', action.payload)
+      let newArr = state.citiesInTrip.slice();
+      newArr.splice(action.index, 1, action.payload);
+      console.log(newArr);
+      return Object.assign({}, state, { citiesInTrip: newArr
+        // state.citiesInTrip.splice(action.index, 1, action.payload) 
+      });
+
+    case UPDATE_TRIP_NAME:
+      return Object.assign({}, state, { tripName: action.payload });
+
+    case ADD_DATES_TO_CITIES:
+    console.log(action.payload);
+      return Object.assign({}, state, {
+        citiesInTrip: {}
+      })
 
     default:
       return state;
@@ -434,4 +479,50 @@ export function getParks(latlng) {
       })
       .catch(err => err.errMessage)
   };
+}
+
+//CREATETRIP.JS
+
+export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
+  console.log(cityName, state, country, latLng, placeId);
+  return {
+    type: GET_CITIES_IN_TRIP,
+    payload: { cityName, state, country, latLng, placeId }
+  };
+}
+
+export function addCityToTrip(cityName, state, country, latLng, placeId) {
+  console.log(cityName, state, country, latLng, placeId);
+  return {
+    type: ADD_CITY_TO_TRIP,
+    payload: {
+      cityName,
+      state,
+      country,
+      latLng,
+      placeId
+    }
+  };
+}
+
+export function updateTripName(tripName) {
+  return {
+    type: UPDATE_TRIP_NAME,
+    payload: tripName
+  };
+}
+
+export function updateCitiesInTrip(cityName, state, country, latLng, placeId, index){
+  return {
+    type: UPDATE_CITIES_IN_TRIP,
+    payload: {cityName, state, country, latLng, placeId},
+    index: index
+  }
+}
+
+export function addDatesToCities(startDate, endDate, index){
+  return {
+    type: ADD_DATES_TO_CITIES,
+    payload: {startDate, endDate, index}
+  }
 }

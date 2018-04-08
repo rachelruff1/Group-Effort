@@ -4,6 +4,11 @@ import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import { createNewTrip } from "../../../ducks/reducer2";
+import {
+  getCitiesInTrip,
+  addCityToTrip,
+  updateTripName
+} from "../../../ducks/reducer1";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
@@ -13,108 +18,60 @@ class CreateTrip extends Component {
     super(props);
     this.state = {
       edit: false,
-      tripName: "",
-      defaultCityDetail: {},
-      newCityDetail: [],
-      //   tripName: this.props.city
-      index: "",
-      newCityInTrip: {}
+      index: ""
     };
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.setTripName = this.setTripName.bind(this);
-    this.updateTripName = this.updateTripName.bind(this);
-    this.searchNewPlace = this.searchNewPlace.bind(this);
-    this.updateNewCityDetailArray = this.updateNewCityDetailArray.bind(this);
+    this.addDestination = this.addDestination.bind(this);
   }
 
   componentDidMount(props) {
-    console.log('HIT DIDMOUNT');
-    this.setTripName(
-      this.props.city,
-      this.props.state,
-      this.props.country,
-      this.props.latlng,
-      this.props.placeId
-    );
-  //  this.updateNewCityDetailArray(
-  //         this.props.index,
-  //         this.props.newCityInTrip);
-       
+    // console.log("HIT DIDMOUNT", this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
+
+    this.props.getCitiesInTrip();
+      // this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId );
   }
 
   //This runs on component did mount to set initial State w/ data from reducer
 
-componentWillReceiveProps(props){
-  console.log('HIT WILL RECEIVE', 'index', props.index, 'city', props.newCityInTrip);
-  let newValue = this.state.newCityDetail.slice();
-    newValue.splice(props.index, 1, props.newCityInTrip);
-    this.setState({
-      newCityDetail: newValue
-    });
-    // this.updateNewCityDetailArray();
-}
-
-
-  setTripName(cityName, state, country, latLng, placeId) {
-    this.setState({
-      tripName: cityName,
-      newCityDetail: [{ cityName, state, country, latLng, placeId }]
-    });
-  }
-
-  updateNewCityDetailArray() {
-    console.log('hit!!!!!!:', this, 'index', this.props.index, 'city',this.props.newCityInTrip);
-    let newValue = this.state.newCityDetail.slice();
-    newValue.splice(this.props.index, 1, this.props.newCity);
-    this.setState({
-      newCityDetail: newValue
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(
+  //     "HIT WILL RECEIVE",
+  //     "index",
+  //     this.props.citiesInTrip
+  //   );
+  //   this.toggleEdit();
+  // }
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
-  updateTripName(e) {
-    this.setState({
-      tripName: e.target.value
-    });
-  }
-  searchNewPlace(cityName, state, country, latLng, placeId) {
-    // console.log(cityName, state, country, latLng, placeId);
-    this.setState(
-      {
-        newCityDetail: [
-          ...this.state.newCityDetail,
-          { cityName, state, country, latLng, placeId }
-        ],
-        edit: !this.state.edit
-      },
-      () => console.log(this.state)
-    );
+  addDestination(cityName, state, country, latLng, placeId){
+    this.props.addCityToTrip(cityName, state, country, latLng, placeId);
+    this.toggleEdit();
   }
 
   render() {
-    console.log('state', this.state.index, 'props', this.props.index);
-    // this.state.index === this.props.index ? null : this.updateNewCityDetailArray(this.props.index,
-    //   this.props.newCityInTrip);
+    console.log(this.props.citiesInTrip);
     const style = {
       margin: 12
     };
     const createTripCardMap =
-      this.state.newCityDetail.length > 0 &&
-      this.state.newCityDetail.map((c, i) => {
+      this.props.citiesInTrip.length > 0 &&
+      this.props.citiesInTrip.map((c, i) => {
         console.log(c.cityName);
-        return <CreateTripCard key={i} cityName={c.cityName} index={i} />;
+        return <CreateTripCard key={i} cityDetail={c} index={i} />;
       });
 
     return (
-      // this.state.edit === false ? (
 
       <div>
         {this.state.edit === false ? null : (
           <div className="searchBox">
-            <CreateTripSearch addDestination={this.searchNewPlace} />
+            <CreateTripSearch
+              source="createTripContainer"
+              addDestination={this.addDestination}
+            />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
@@ -122,11 +79,9 @@ componentWillReceiveProps(props){
           id="text-field-default"
           floatingLabelText="Trip name"
           defaultValue={`Trip to ${this.props.city}`}
-          onChange={e => this.updateTripName(e)}
+          onChange={e => this.props.updateTripName(e.target.value)}
         />
-        {/* {this.state.newCityDetail === {} ? <CreateTripCard city={this.state.defaultCityDetail} /> : <div> <CreateTripCard city={this.state.defaultCityDetail} />  */}
         {createTripCardMap}
-        {/* </div>} */}
 
         <RaisedButton
           onClick={() => this.toggleEdit()}
@@ -140,23 +95,23 @@ componentWillReceiveProps(props){
         />
       </div>
     );
-    // : (
-    //   <div className="searchBox">
-
-    //     <CreateTripSearch addDestination={this.searchNewPlace} addName={this.addName}/>
-    //     <button onClick={() => this.toggleEdit()}>back</button>
-    //   </div>
-    // );
   }
 }
 const mapStateToProps = state => ({
+  tripName: state.reducer1.tripName,
   city: state.reducer1.city,
   state: state.reducer1.state,
   country: state.reducer1.country,
   latlng: state.reducer1.latlng,
   placeId: state.reducer1.placeId,
   newCityInTrip: state.reducer2.newCityInTrip,
-  index: state.reducer2.index
+  index: state.reducer2.index,
+  citiesInTrip: state.reducer1.citiesInTrip
 });
 
-export default connect(mapStateToProps, { createNewTrip })(CreateTrip);
+export default connect(mapStateToProps, {
+  createNewTrip,
+  getCitiesInTrip,
+  addCityToTrip,
+  updateTripName
+})(CreateTrip);

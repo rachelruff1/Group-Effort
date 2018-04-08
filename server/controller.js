@@ -180,6 +180,37 @@ const getParks = (req, res, next) => {
     .catch(() => res.status(500).json());
 };
 
+const createNewTrip = (req, res, next) => {
+  console.log('new trip ctrl', req.body)
+  const {tripName, startDate, endDate} = req.body;
+  const db = req.app.get("db");
+  db
+    .create_new_trip([tripName, startDate, endDate, req.user.id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+}
+
+const addCityToDatabase = (req, res, next) => {
+  console.log('new trip ctrl', req.body)
+  const db = req.app.get("db");
+  db
+    .add_city_to_database([req.params.tripid])
+    .then(resp => {
+      // console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+}
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -190,5 +221,8 @@ module.exports = {
   getMuseums,
   getWebcams,
   getFacts,
-  getParks
+  getParks,
+
+  createNewTrip,
+  addCityToDatabase
 };

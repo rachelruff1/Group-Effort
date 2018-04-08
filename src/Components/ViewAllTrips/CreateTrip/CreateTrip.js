@@ -7,7 +7,7 @@ import { createNewTrip } from "../../../ducks/reducer2";
 import {
   getCitiesInTrip,
   addCityToTrip,
-  updateTripName
+  updateTripName, addCityToDatabase
 } from "../../../ducks/reducer1";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
@@ -89,7 +89,7 @@ class CreateTrip extends Component {
           style={style}
         />
         <RaisedButton
-          onClick={this.props.createNewTrip}
+          onClick={()=>this.props.createNewTrip(this.props.tropName).then(resp=> this.props.citiesInTrip.map(x=>this.props.addCityToDatabase(x, resp)))}
           label="DONE"
           style={style}
         />
@@ -113,5 +113,6 @@ export default connect(mapStateToProps, {
   createNewTrip,
   getCitiesInTrip,
   addCityToTrip,
-  updateTripName
+  updateTripName,
+  addCityToDatabase
 })(CreateTrip);

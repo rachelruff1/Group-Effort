@@ -89,13 +89,14 @@ addDate(){
   }
 
   render() {
-    console.log(this);
+    console.log(this.state, this.state.minDate.getDate());
     // this.props.cityName === this.state.cityName? null :
     // this.setCityName(this.props.cityName);
     return (
       <div>
         {this.state.edit === false ? null : (
           <div>
+            
             <CreateTripSearch source='createTripCard' updateTrip={this.updateTrip} />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>

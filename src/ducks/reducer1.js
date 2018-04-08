@@ -27,6 +27,9 @@ const UPDATE_TRIP_NAME = "UPDATE_TRIP_NAME";
 const UPDATE_CITIES_IN_TRIP = "UPDATE_CITIES_IN_TRIP";
 const ADD_DATES_TO_CITIES = "ADD_DATES_TO_CITIES";
 
+const ADD_CITY_TO_DATABASE = "ADD_CITY_TO_DATABASE";
+const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+
 const initialState = {
   user: {},
   image: "",
@@ -237,35 +240,50 @@ export default function reducer(state = initialState, action) {
     case GET_CITIES_IN_TRIP:
       console.log(action);
       return Object.assign({}, state, {
-        citiesInTrip: [{cityName: state.city, state: state.state, country: state.country, latLng:state.latlng, placeId: state.placeId}],
+        citiesInTrip: [
+          {
+            cityName: state.city,
+            state: state.state,
+            country: state.country,
+            latLng: state.latlng,
+            placeId: state.placeId
+          }
+        ],
         // [...state.citiesInTrip, action.payload],
         //, startDate:'', endDate: ''
         tripName: action.payload.cityName
       });
 
     case ADD_CITY_TO_TRIP:
-    console.log(state, action.payload);
+      console.log(state, action.payload);
       return Object.assign({}, state, {
         citiesInTrip: [...state.citiesInTrip, action.payload]
       });
 
     case UPDATE_CITIES_IN_TRIP:
-    console.log(state.citiesInTrip, 'index', action.index, 'resp', action.payload)
+      console.log(
+        state.citiesInTrip,
+        "index",
+        action.index,
+        "resp",
+        action.payload
+      );
       let newArr = state.citiesInTrip.slice();
       newArr.splice(action.index, 1, action.payload);
       console.log(newArr);
-      return Object.assign({}, state, { citiesInTrip: newArr
-        // state.citiesInTrip.splice(action.index, 1, action.payload) 
+      return Object.assign({}, state, {
+        citiesInTrip: newArr
+        // state.citiesInTrip.splice(action.index, 1, action.payload)
       });
 
     case UPDATE_TRIP_NAME:
       return Object.assign({}, state, { tripName: action.payload });
 
     case ADD_DATES_TO_CITIES:
-    console.log(action.payload);
+      console.log(action.payload);
       return Object.assign({}, state, {
         citiesInTrip: {}
-      })
+      });
 
     default:
       return state;
@@ -512,17 +530,52 @@ export function updateTripName(tripName) {
   };
 }
 
-export function updateCitiesInTrip(cityName, state, country, latLng, placeId, index){
+export function updateCitiesInTrip(
+  cityName,
+  state,
+  country,
+  latLng,
+  placeId,
+  index
+) {
   return {
     type: UPDATE_CITIES_IN_TRIP,
-    payload: {cityName, state, country, latLng, placeId},
+    payload: { cityName, state, country, latLng, placeId },
     index: index
-  }
+  };
 }
 
-export function addDatesToCities(startDate, endDate, index){
+export function addDatesToCities(startDate, endDate, index) {
   return {
     type: ADD_DATES_TO_CITIES,
-    payload: {startDate, endDate, index}
-  }
+    payload: { startDate, endDate, index }
+  };
+}
+
+export function createNewTrip(tripName) {
+  let startDate = {};
+  let endDate = {};
+  return {
+    type: CREATE_NEW_TRIP,
+    payload: axios
+      .post("/api/createNewTrip", { tripName, startDate, endDate })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function addCityToDatabase(city, tripId) {
+  return {
+    type: ADD_CITY_TO_DATABASE,
+    payload: axios
+      .post("/api/addCityToDatabase", { city, tripId })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
 }

@@ -19,7 +19,7 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
-
+const GET_MALL = "GET_MALL";
 const initialState = {
   user: {},
   image: "",
@@ -39,6 +39,7 @@ const initialState = {
   webcams: {},
   facts: {},
   parks: [],
+  mall: [],
 
   city: "",
   state: "",
@@ -220,6 +221,19 @@ export default function reducer(state = initialState, action) {
         city: action.payload,
         state: action.data,
         country: action.moreData
+      });
+    case `${GET_MALL}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_MALL}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_MALL}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        mall: action.payload
       });
 
     default:
@@ -405,6 +419,19 @@ export function getFacts(tripId) {
       .then(resp => {
         console.log(resp.data);
         return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function getMall(latlng) {
+  return {
+    type: GET_MALL,
+    payload: axios
+      .get(`/api/getMall/${latlng}`)
+      .then(resp => {
+        console.log(resp.data.results, "Malllllllls");
+        return resp.data.results;
       })
       .catch(err => err.errMessage)
   };

@@ -122,6 +122,7 @@ app.get("/api/getMuseums/:id", ctrl.getMuseums);
 app.get("/api/getWebcams/:id", ctrl.getWebcams);
 app.get("/api/getFacts/:id", ctrl.getFacts);
 app.get("/api/getParks/:id", ctrl.getParks);
+app.get("/api/getMall/:id", ctrl.getMall);
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

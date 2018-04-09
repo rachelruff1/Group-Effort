@@ -6,6 +6,7 @@ let places = [];
 let museums = [];
 let parks = [];
 let food = [];
+let mall = [];
 const getUser = (req, res, next) => {
   const db = req.app.get("db");
   db.user
@@ -90,7 +91,7 @@ const getSaved = (req, res, next) => {
     });
 };
 const getFood = (req, res, next) => {
-  console.log("FOOOOOOOOOOD RESDUCSER", req.params);
+  console.log("m", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -180,6 +181,20 @@ const getParks = (req, res, next) => {
     })
     .catch(() => res.status(500).json());
 };
+const getMall = (req, res, next) => {
+  console.log("Malllllllls", req.params);
+  axios
+    .get(
+      `${googlePlacesBase}${
+        req.params.id
+      }&type=shopping_mall&radius=1000&key=${googleApiKey}`
+    )
+    .then(resp => {
+      mall = resp.data;
+      res.status(200).json(mall);
+    })
+    .catch(() => res.status(500).json());
+};
 
 module.exports = {
   getPlaceData,
@@ -191,5 +206,6 @@ module.exports = {
   getMuseums,
   getWebcams,
   getFacts,
-  getParks
+  getParks,
+  getMall
 };

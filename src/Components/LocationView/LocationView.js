@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
+import MallCard from "../../MallCard/MallCard";
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,9 @@ class LocationView extends Component {
         </div>
         <div>
           <FoodCard />
+        </div>
+        <div>
+          <MallCard />
         </div>
       </div>
     );

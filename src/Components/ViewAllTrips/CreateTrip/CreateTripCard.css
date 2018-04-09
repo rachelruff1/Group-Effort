@@ -1,0 +1,7 @@
+.create-trip-card-container {
+    padding: 0 0 30px 30px;
+    width: 300px;
+    height:auto;
+    border: 1px solid black;
+    margin: 15px;
+}

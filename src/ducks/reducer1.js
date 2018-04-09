@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -19,6 +20,19 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
+
+//CREATETRIP.JS
+const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
+const ADD_CITY_TO_TRIP = "ADD_CITY_TO_TRIP";
+const UPDATE_TRIP_NAME = "UPDATE_TRIP_NAME";
+const UPDATE_CITIES_IN_TRIP = "UPDATE_CITIES_IN_TRIP";
+const ADD_DATES_TO_CITIES = "ADD_DATES_TO_CITIES";
+
+const ADD_CITY_TO_DATABASE = "ADD_CITY_TO_DATABASE";
+const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+const UPDATE_START_DATE = "UPDATE_START_DATE";
+const UPDATE_END_DATE = "UPDATE_END_DATE";
+
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
 const initialState = {
@@ -45,7 +59,10 @@ const initialState = {
 
   city: "",
   state: "",
-  country: ""
+  country: "",
+  //CREATETRIP.JS
+  citiesInTrip: [],
+  tripName: ""
 };
 
 export default function reducer(state = initialState, action) {
@@ -78,7 +95,7 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { placeId: action.payload });
 
     case UPDATE_LAT_LNG:
-      console.log("updatellng:", action.payload);
+      // console.log("updatellng:", action.payload);
       return Object.assign({}, state, { latlng: action.payload });
 
     case `${GET_CITIES}_PENDING`:
@@ -218,7 +235,7 @@ export default function reducer(state = initialState, action) {
       });
 
     case UPDATE_LOCATION_DATA:
-      console.log(action);
+      // console.log(action, initialState);
       return Object.assign({}, state, {
         city: action.payload,
         state: action.data,
@@ -250,6 +267,72 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         movie: action.payload
       });
+
+    //CREATETRIP.JS
+
+    case GET_CITIES_IN_TRIP:
+      console.log(action);
+      return Object.assign({}, state, {
+        citiesInTrip: [
+          {
+            cityName: state.city,
+            state: state.state,
+            country: state.country,
+            latLng: state.latlng,
+            placeId: state.placeId
+          }
+        ],
+        // [...state.citiesInTrip, action.payload],
+        //, startDate:'', endDate: ''
+        tripName: action.payload.cityName
+      });
+
+    case ADD_CITY_TO_TRIP:
+      console.log(state, action.payload);
+      return Object.assign({}, state, {
+        citiesInTrip: [...state.citiesInTrip, action.payload]
+      });
+
+    case UPDATE_CITIES_IN_TRIP:
+      console.log(
+        state.citiesInTrip,
+        "index",
+        action.index,
+        "resp",
+        action.payload
+      );
+      let newArr = state.citiesInTrip.slice();
+      newArr.splice(action.index, 1, action.payload);
+      console.log(newArr);
+      return Object.assign({}, state, {
+        citiesInTrip: newArr
+        // state.citiesInTrip.splice(action.index, 1, action.payload)
+      });
+
+    case UPDATE_TRIP_NAME:
+      return Object.assign({}, state, { tripName: action.payload });
+
+    case ADD_DATES_TO_CITIES:
+      // console.log(action.payload);
+      let updateCityArr = state.citiesInTrip.slice();
+      updateCityArr[action.payload.index].startDate = action.payload.startDate;
+      updateCityArr[action.payload.index].endDate = action.payload.endDate;
+      console.log(updateCityArr);
+      return Object.assign({}, state, {
+        citiesInTrip: updateCityArr
+      });
+    case UPDATE_START_DATE:
+      let updateCityStart = state.citiesInTrip.slice();
+      updateCityStart[action.payload.index].startDate =
+        action.payload.startDate;
+      console.log(updateCityStart);
+      return Object.assign({}, state, { citiesInTrip: updateCityStart });
+    case UPDATE_END_DATE:
+      console.log(action.payload.index, action.payload.endDate);
+      let updateCityEnd = state.citiesInTrip.slice();
+      updateCityEnd[action.payload.index].endDate = action.payload.endDate;
+      console.log(updateCityEnd);
+      return Object.assign({}, state, { citiesInTrip: updateCityEnd });
 
     default:
       return state;
@@ -484,5 +567,121 @@ export function getParks(latlng) {
         return resp.data.results;
       })
       .catch(err => err.errMessage)
+  };
+}
+
+//CREATETRIP.JS
+
+export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
+  console.log(cityName, state, country, latLng, placeId);
+  return {
+    type: GET_CITIES_IN_TRIP,
+    payload: { cityName, state, country, latLng, placeId }
+  };
+}
+
+export function addCityToTrip(cityName, state, country, latLng, placeId) {
+  console.log(cityName, state, country, latLng, placeId);
+  return {
+    type: ADD_CITY_TO_TRIP,
+    payload: {
+      cityName,
+      state,
+      country,
+      latLng,
+      placeId
+    }
+  };
+}
+
+export function updateTripName(tripName) {
+  return {
+    type: UPDATE_TRIP_NAME,
+    payload: tripName
+  };
+}
+
+export function updateCitiesInTrip(
+  cityName,
+  state,
+  country,
+  latLng,
+  placeId,
+  index
+) {
+  return {
+    type: UPDATE_CITIES_IN_TRIP,
+    payload: { cityName, state, country, latLng, placeId },
+    index: index
+  };
+}
+
+export function addDatesToCities(startMUI, endMUI, index) {
+  let s = startMUI.toString();
+  let e = endMUI.toString();
+  let startDate = moment(s).format("MM/DD/YYYY");
+  let endDate = moment(e).format("MM/DD/YYYY");
+  console.log(startDate, endDate, index);
+  return {
+    type: ADD_DATES_TO_CITIES,
+    payload: { startDate, endDate, index }
+  };
+}
+
+export function createNewTrip(tripName, cities) {
+  console.log(cities);
+  let dates = [];
+  cities.map(x => {
+    console.log(x, x.startDate, x.endDate);
+    let newStart = x.startDate;
+    let newEnd = x.endDate;
+    dates.push(newStart, newEnd);
+    console.log(dates);
+  });
+  dates.sort();
+  let startDate = dates[0];
+  let endDate = dates[dates.length-1];
+
+  console.log("newtrip1", tripName, startDate, endDate);
+  return {
+    type: CREATE_NEW_TRIP,
+    payload: axios
+      .post("/api/createNewTrip", { tripName, startDate, endDate })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function addCityToDatabase(city, tripId) {
+  return {
+    type: ADD_CITY_TO_DATABASE,
+    payload: axios
+      .post("/api/addCityToDatabase", { city, tripId })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function updateStartDate(startMUI, index) {
+  let s = startMUI.toString();
+  let startDate = moment(s).format("MM/DD/YYYY");
+  return {
+    type: UPDATE_START_DATE,
+    payload: { startDate, index }
+  };
+}
+
+export function updateEndDate(endMUI, index) {
+  let e = endMUI.toString();
+  let endDate = moment(e).format("MM/DD/YYYY");
+  return {
+    type: UPDATE_END_DATE,
+    payload: { endDate, index }
   };
 }

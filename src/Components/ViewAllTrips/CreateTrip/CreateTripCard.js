@@ -48,8 +48,6 @@ class CreateTripCard extends Component {
 
   // componentWillReceiveProps(props) {
 
-  //     this.toggleEdit()
-
   // }
 
   handleChangeMinDate = (event, date) => {

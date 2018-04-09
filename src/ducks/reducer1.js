@@ -20,7 +20,6 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
-<<<<<<< HEAD
 
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
@@ -34,10 +33,8 @@ const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 const UPDATE_START_DATE = "UPDATE_START_DATE";
 const UPDATE_END_DATE = "UPDATE_END_DATE";
 
-=======
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
->>>>>>> master
 const initialState = {
   user: {},
   image: "",

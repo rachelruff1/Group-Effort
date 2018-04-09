@@ -16,14 +16,14 @@ class Profile extends Component {
     render() {
         return(
             
+        <div className="main-content-wrapper">
             <div className="profile-info-container">Profile Page
                 <div className="info-container">
-                <p className="attributes">{this.props.userinfo.name}</p>
-                </div>
-                <div className="info-container">
-                <p className="attributes">{this.props.userinfo.email}</p>
+                    <p className="attributes">{this.props.userinfo.name}</p>
+                    <p className="attributes">{this.props.userinfo.email}</p>
                 </div>
             </div>
+        </div>
             
             
         )

@@ -46,12 +46,8 @@
 	}
 	
 	.logo {
-		display: flex;
-		float: left;
-		/* position: fixed; */
-		top: 0vh;
-		height: 60px;
-		/* width: 10vw; */
+		display: absolute;
+		height: 10vh;
 	 }
 
 	 .login-buttons{

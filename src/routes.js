@@ -6,6 +6,7 @@ import TripView from "./Components/TripView/TripView";
 import LocationView from "./Components/LocationView/LocationView";
 import ViewAllTrips from "./Components/ViewAllTrips/ViewAllTrips";
 import CreateTrip from "./Components/ViewAllTrips/CreateTrip/CreateTrip";
+import Profile from "./Components/Profile/Profile";
 //Steven said he didn't want to see capital titles on the route path: ie "/Auth", just sayin'
 
 export default (
@@ -15,7 +16,8 @@ export default (
     <Route component={TripView} path="/location-details" />
     <Route component={ViewAllTrips} path="/view-all-trips" />
     <Route component={LocationView} path="/location" />
-    <Route component={CreateTrip} path ='/create-trip'/>
+    <Route component={CreateTrip} path="/create-trip"/>
+    <Route component={Profile} path="/profile"/>
     
     
   </Switch>

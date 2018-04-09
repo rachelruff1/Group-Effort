@@ -34,6 +34,30 @@
 	 }
 }
 
+/*For Med mobile phone*/
+@media only screen and (min-width: 375px) {
+	.app-header {
+		position: fixed;
+		background: transparent;
+		overflow: hidden;
+		padding: 1em;
+		height: 10vh;
+		width: 90vw;
+	}
+}
+
+/*For large mobile phone*/
+@media only screen and (min-width: 425px) {
+	.app-header {
+		position: fixed;
+		background: transparent;
+		overflow: hidden;
+		padding: 1em;
+		height: 10vh;
+		width: 90vw;
+	}
+}
+
 
 /*For Small Laptops*/
 @media only screen and (min-width: 1024px) {

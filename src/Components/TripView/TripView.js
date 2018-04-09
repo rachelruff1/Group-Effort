@@ -21,7 +21,7 @@ class TripView extends Component {
     this.state = {
       data: {},
       testId: "ChIJPZQJvBo8TIYRov7INbBx08o",
-      tripId: 1,
+      tripId: 16,
       latLng: "",
       index: ''
     };
@@ -51,12 +51,16 @@ updateLatLng (index){
       cities.map((c, i) => <CitiesCard key={i} city={c} updateLatLng={this.updateLatLng} index={i}/>);
     return (
       <body className="trip-view-container">
-        <header>
-          <h1>{trip.name} </h1>
+        <header className="trip-title">
+        <div className="trip-box">
+          <h1>{trip.trip_name} </h1>
+          
           <h3>
-            {trip.start_date} - {trip.start_date}
+            {trip.start_date} - {trip.end_date}
           </h3>
+          </div>
         </header>
+        <div>
         <div className="trip-view-selectors">
           <div
             className="saved-container"
@@ -65,16 +69,16 @@ updateLatLng (index){
             Saved
           </div>
           <div
-            className="food-container"
+            className="restaurant-container"
             onClick={() => this.props.getFood(tripId)}
           >
-            Food
+            Restaurants
           </div>
           <div
-            className="ttd-container"
+            className="theater-container"
             onClick={() => this.props.getThingsToDo(tripId)}
           >
-            Things To Do
+            Theaters
           </div>
           <div
             className="museums-container"
@@ -83,19 +87,22 @@ updateLatLng (index){
             Museums
           </div>
           <div
-            className="webcams-container"
+            className="parks-container"
             onClick={() => this.props.getWebcams()}
           >
-            WebCams
+            Parks
           </div>
           <div
-            className="geninfo-container"
+            className="shopping-container"
             onClick={() => this.props.getFacts(tripId)}
           >
-            GeneralInfo
+           Shopping
           </div>
         </div>
+        <div className="side-bar">
         <sidebar className="city-side-bar">{citiesMap}</sidebar>
+        </div>
+        </div>
       </body> 
     );
   }

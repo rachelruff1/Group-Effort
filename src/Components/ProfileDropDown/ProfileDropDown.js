@@ -2,6 +2,10 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+<<<<<<< HEAD
+=======
+import './ProfileDropDown.css';
+>>>>>>> 7ab6a1cee9a5c85bb0f403b959f101e08012c910
 
 const style = {
   display: 'inline-block',
@@ -9,7 +13,11 @@ const style = {
 };
 
 const ProfileDropDown = () => (
+<<<<<<< HEAD
   <div>
+=======
+  <div className="drop-down-main">
+>>>>>>> 7ab6a1cee9a5c85bb0f403b959f101e08012c910
     <Paper style={style}>
       <Menu>
         <MenuItem primaryText="Maps" />
@@ -18,6 +26,7 @@ const ProfileDropDown = () => (
         <MenuItem primaryText="Apps" />
       </Menu>
     </Paper>
+<<<<<<< HEAD
     <Paper style={style}>
       <Menu>
         <MenuItem primaryText="Refresh" />
@@ -26,6 +35,8 @@ const ProfileDropDown = () => (
         <MenuItem primaryText="Sign out" />
       </Menu>
     </Paper>
+=======
+>>>>>>> 7ab6a1cee9a5c85bb0f403b959f101e08012c910
   </div>
 );
 

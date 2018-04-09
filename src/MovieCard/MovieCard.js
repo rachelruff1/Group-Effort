@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import testimg from "../../Components/Home/home-img.jpg";
-import { getParks } from "../../ducks/reducer1";
-import "./ParkCard.css";
+import testimg from "../Components/Home/home-img.jpg";
+import { getMovie } from "../ducks/reducer1";
+import "./MovieCard.css";
 import {
   Card,
   CardActions,
@@ -12,33 +12,33 @@ import {
   CardText
 } from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
-class ParkCard extends Component {
+class MovieCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parks: []
+      Movie: []
     };
   }
 
   componentDidMount(props) {
-    this.props.getParks(this.props.latlng).then(res => {
-      this.setState({ parks: this.props.parks });
+    this.props.getMovie(this.props.latlng).then(res => {
+      this.setState({ mall: this.props.movie });
     });
   }
 
   render() {
     return (
-      <div className="parkcards">
-        <p>Parks:</p>
-        {this.props.parks.length > 0 &&
-          this.props.parks.map((parks, i) => (
+      <div className="Moviecards">
+        <p>malls:</p>
+        {this.props.movie.length > 0 &&
+          this.props.movie.map((movie, i) => (
             <Card>
               <CardMedia
                 overlay={
                   <CardTitle
                     title={
-                      this.props.parks[i] != undefined
-                        ? this.props.parks[i].name
+                      this.props.movie[i] != undefined
+                        ? this.props.movie[i].name
                         : ""
                     }
                   />
@@ -48,8 +48,8 @@ class ParkCard extends Component {
               </CardMedia>
               <CardTitle
                 title={
-                  this.props.parks[i] != undefined
-                    ? this.props.parks[i].rating
+                  this.props.movie[i] != undefined
+                    ? this.props.movie[i].rating
                     : ""
                 }
                 subtitle=""
@@ -58,10 +58,7 @@ class ParkCard extends Component {
               <CardActions>
                 <FlatButton label="Add to trip" />
                 <FlatButton label="new" />
-                {console.log(
-                  this.props.parks[i],
-                  "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"
-                )}
+                {console.log(this.props.movie[i], "movie")}
               </CardActions>
             </Card>
           ))}
@@ -72,8 +69,8 @@ class ParkCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    parks: state.reducer1.parks,
-    latlng: state.reducer1.latlng
+    latlng: state.reducer1.latlng,
+    movie: state.reducer1.movie
   };
 }
-export default connect(mapStateToProps, { getParks })(ParkCard);
+export default connect(mapStateToProps, { getMovie })(MovieCard);

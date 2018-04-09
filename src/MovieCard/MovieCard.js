@@ -29,7 +29,7 @@ class MovieCard extends Component {
   render() {
     return (
       <div className="Moviecards">
-        <p>malls:</p>
+        <p>movie theaters :</p>
         {this.props.movie.length > 0 &&
           this.props.movie.map((movie, i) => (
             <Card>

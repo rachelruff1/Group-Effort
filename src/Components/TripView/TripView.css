@@ -15,21 +15,20 @@
 	align-items: flex-start;
     align-content: stretch;
     position: fixed;
-    left: 19.5vw;
-    top: 14vh;
-    
-}
-
-sidebar{
-    padding: 20px;
+    left: 15vw;
+    top: 14vh;    
 }
 
 .trip-box{
     width: 80vw;
     padding: 20px;    
     border: 2px solid black;
-    border-top: none;
-   
+    border-top: none;   
+    border-right: none;
+}
+
+sidebar{
+    padding: 20px;
 }
 
 .city-side-bar{
@@ -38,7 +37,7 @@ sidebar{
 	justify-content: space-between;
 	align-items: flex-start;
     align-content: space-between;
-    font-size: 24px;
+    font-size: 16px;
     overflow: auto;
     height:80%;
     position: fixed;
@@ -50,18 +49,19 @@ sidebar{
     
 
 .trip-view-selectors{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid: 200px/ auto auto auto;
+    /* flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
-    align-content: space-around;
-    width: 60vw;
-    height: 65vh;
+    align-content: space-around; */
+    width: 73.75vw;
+    height: 50vh;
     position: fixed;
     top: 31.1vh;
-    left: 19.5vw;
-    padding: 15px;
+    left: 15vw;
+    padding: 80px;
     border: 2px solid black;
     border-top: none;
     border-right: none;
@@ -70,8 +70,10 @@ sidebar{
 
 .trip-view-selectors div {
     background-color: lightgrey;
-    width: 275px;
-    height:275px;
+    text-align: center;
+    width: 225px;
+    height:225px;
+    padding: 30px;
     border: 2px solid black;
-    margin: 15px;
+    margin: 25px;
 }

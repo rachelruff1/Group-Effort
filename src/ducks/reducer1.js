@@ -33,7 +33,7 @@ const initialState = {
   cityId: "",
   trip: {},
   saved: {},
-  food: {},
+  food: [],
   thingsToDo: {},
   museums: [],
   webcams: {},
@@ -159,7 +159,7 @@ export default function reducer(state = initialState, action) {
       // console.log("reducer func:", action.payload[0]);
       return Object.assign({}, state, {
         isLoading: false,
-        food: action.payload[0]
+        food: action.payload
       });
     case `${GET_THINGS_TO_DO}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -347,15 +347,15 @@ export function getSaved(tripId) {
       .catch(err => err.errMessage)
   };
 }
-export function getFood(tripId) {
-  console.log("hit:", tripId);
+export function getFood(latlng) {
+  console.log("hit:foood", latlng);
   return {
     type: GET_FOOD,
     payload: axios
-      .get(`/api/get/${tripId}`)
+      .get(`/api/getFood/${latlng}`)
       .then(resp => {
-        console.log(resp.data);
-        return resp.data;
+        console.log(resp.data.results, "foooooooodssssss");
+        return resp.data.results;
       })
       .catch(err => err.errMessage)
   };

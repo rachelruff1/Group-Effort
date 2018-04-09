@@ -50,30 +50,51 @@ sidebar{
 
 .trip-view-selectors{
     display: grid;
-    grid: 200px/ auto auto auto;
-    /* flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-    align-content: space-around; */
+    grid-template-columns: 275px 275px 275px;
+    grid-template-rows: 275px 275px;
+    grid-column-gap: 65px;
+    grid-row-gap: 45px;
+    justify-content: space-evenly;
+    align-content: space-between;    
     width: 73.75vw;
-    height: 50vh;
+    height: 65vh;
     position: fixed;
     top: 31.1vh;
     left: 15vw;
-    padding: 80px;
+    padding: 15px;
     border: 2px solid black;
     border-top: none;
     border-right: none;
     border-bottom: none;
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 2px black;
 }
 
 .trip-view-selectors div {
     background-color: lightgrey;
     text-align: center;
-    width: 225px;
-    height:225px;
-    padding: 30px;
+    /* width: 225px; */
+    /* height:225px; */
+    /* padding: 30px; */
     border: 2px solid black;
-    margin: 25px;
+    /* margin: 25px; */
+}
+
+.shopping-container{
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+}
+
+.restaurant-container{
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+}
+
+.museums-container{
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
 }

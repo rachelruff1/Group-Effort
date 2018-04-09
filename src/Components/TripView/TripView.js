@@ -68,16 +68,16 @@ updateLatLng (index){
             Saved
           </div>
           <div
-            className="food-container"
+            className="restaurant-container"
             onClick={() => this.props.getFood(tripId)}
           >
-            Food
+            Restaurants
           </div>
           <div
-            className="ttd-container"
+            className="theater-container"
             onClick={() => this.props.getThingsToDo(tripId)}
           >
-            Things To Do
+            Movie Theaters
           </div>
           <div
             className="museums-container"
@@ -89,13 +89,13 @@ updateLatLng (index){
             className="webcams-container"
             onClick={() => this.props.getWebcams()}
           >
-            WebCams
+            Parks
           </div>
           <div
-            className="geninfo-container"
+            className="shopping-container"
             onClick={() => this.props.getFacts(tripId)}
           >
-            GeneralInfo
+           Shopping
           </div>
         </div>
         

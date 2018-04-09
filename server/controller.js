@@ -211,6 +211,41 @@ const getMovie = (req, res, next) => {
     .catch(() => res.status(500).json());
 };
 
+const createNewTrip = (req, res, next) => {
+  console.log('new trip ctrl', req.body)
+  let tempId = 9;
+  //REPLACE TEMP WITH REQ.USER.ID WHEN IT IS WORKING!!!!!
+  const {tripName, startDate, endDate} = req.body;
+  const db = req.app.get("db");
+  db
+    .create_new_trip([tripName, startDate, endDate, tempId])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+}
+
+const addCityToDatabase = (req, res, next) => {
+  console.log('new trip ctrl', req.body)
+  const {cityName, country, endDate, latLng, placeId, startDate, state,} = req.body.city;
+  const {tripId} = req.body;
+  const db = req.app.get("db");
+  db
+    .add_city_to_database([cityName, state, country, latLng, placeId, startDate, endDate, tripId])
+    .then(resp => {
+      // console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+}
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -222,6 +257,9 @@ module.exports = {
   getWebcams,
   getFacts,
   getParks,
+
+  createNewTrip,
+  addCityToDatabase,
   getMall,
   getMovie
 };

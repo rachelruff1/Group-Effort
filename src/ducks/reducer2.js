@@ -4,6 +4,7 @@ const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
 const GET_PLACE = "GET_PLACE";
 const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+const UPDATE_CITY_IN_TRIP = "UPDATE_CITY_IN_TRIP";
 
 const initialState = {
   info: [],
@@ -11,7 +12,9 @@ const initialState = {
   didErr: false,
   errMessage: "errrrrr",
   placeDetail: {},
-  test: 'hi'
+  test: 'hi',
+  newCityInTrip : {},
+  index: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -70,6 +73,14 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         placeDetail: action.payload.result
       });
+
+    //get trip info from search bar in create trip card to replace in create trip
+    case UPDATE_CITY_IN_TRIP:
+    console.log(action);
+      return Object.assign({}, state, {
+        newCityInTrip : action.payload,
+        index: action.index
+      })
       
     //default value
     default:
@@ -125,4 +136,12 @@ export function createNewTrip(tripName, tripStart, tripEnd){
       })
       .catch(console.log)
   };
+}
+
+export function updateCityInTrip(cityName, state, country, latLng, placeId, index){
+  return{
+    type: UPDATE_CITY_IN_TRIP,
+    payload: {cityName, state, country, latLng, placeId},
+    index: index
+  }
 }

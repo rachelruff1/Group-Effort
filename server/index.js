@@ -122,6 +122,9 @@ app.get("/api/getMuseums/:id", ctrl.getMuseums);
 app.get("/api/getWebcams/:id", ctrl.getWebcams);
 app.get("/api/getFacts/:id", ctrl.getFacts);
 app.get("/api/getParks/:id", ctrl.getParks);
+
+app.post('/api/createNewTrip', ctrl.createNewTrip);
+app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 //------------- end of endpoints ----------------

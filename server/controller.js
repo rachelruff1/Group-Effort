@@ -200,9 +200,11 @@ const createNewTrip = (req, res, next) => {
 
 const addCityToDatabase = (req, res, next) => {
   console.log('new trip ctrl', req.body)
+  const {cityName, country, endDate, latLng, placeId, startDate, state,} = req.body.city;
+  const {tripId} = req.body;
   const db = req.app.get("db");
   db
-    .add_city_to_database([req.params.tripid])
+    .add_city_to_database([cityName, state, country, latLng, placeId, startDate, endDate, tripId])
     .then(resp => {
       // console.log(resp);
       res.status(200).send(resp);

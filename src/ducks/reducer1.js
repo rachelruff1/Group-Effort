@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -297,7 +298,7 @@ export default function reducer(state = initialState, action) {
       console.log(updateCityStart);
       return Object.assign({}, state, { citiesInTrip: updateCityStart });
     case UPDATE_END_DATE:
-    console.log(action.payload.index, action.payload.endDate);
+      console.log(action.payload.index, action.payload.endDate);
       let updateCityEnd = state.citiesInTrip.slice();
       updateCityEnd[action.payload.index].endDate = action.payload.endDate;
       console.log(updateCityEnd);
@@ -563,7 +564,11 @@ export function updateCitiesInTrip(
   };
 }
 
-export function addDatesToCities(startDate, endDate, index) {
+export function addDatesToCities(startMUI, endMUI, index) {
+  let s = startMUI.toString();
+  let e = endMUI.toString();
+  let startDate = moment(s).format("MM/DD/YYYY");
+  let endDate = moment(e).format("MM/DD/YYYY");
   console.log(startDate, endDate, index);
   return {
     type: ADD_DATES_TO_CITIES,
@@ -571,8 +576,21 @@ export function addDatesToCities(startDate, endDate, index) {
   };
 }
 
-export function createNewTrip(tripName, startDate, endDate) {
-  console.log('newtrip1', tripName, startDate, endDate);
+export function createNewTrip(tripName, cities) {
+  console.log(cities);
+  let dates = [];
+  cities.map(x => {
+    console.log(x, x.startDate, x.endDate);
+    let newStart = x.startDate;
+    let newEnd = x.endDate;
+    dates.push(newStart, newEnd);
+    console.log(dates);
+  });
+  dates.sort();
+  let startDate = dates[0];
+  let endDate = dates[dates.length-1];
+
+  console.log("newtrip1", tripName, startDate, endDate);
   return {
     type: CREATE_NEW_TRIP,
     payload: axios
@@ -598,14 +616,18 @@ export function addCityToDatabase(city, tripId) {
   };
 }
 
-export function updateStartDate(startDate, index) {
+export function updateStartDate(startMUI, index) {
+  let s = startMUI.toString();
+  let startDate = moment(s).format("MM/DD/YYYY");
   return {
     type: UPDATE_START_DATE,
     payload: { startDate, index }
   };
 }
 
-export function updateEndDate(endDate, index) {
+export function updateEndDate(endMUI, index) {
+  let e = endMUI.toString();
+  let endDate = moment(e).format("MM/DD/YYYY");
   return {
     type: UPDATE_END_DATE,
     payload: { endDate, index }

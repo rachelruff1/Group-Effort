@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
-import { updateCitiesInTrip, addDatesToCities, updateStartDate, updateEndDate } from "../../../ducks/reducer1";
+import {
+  updateCitiesInTrip,
+  addDatesToCities,
+  updateStartDate,
+  updateEndDate
+} from "../../../ducks/reducer1";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 import "./CreateTripCard.css";
+import moment from "moment";
 
 const optionsStyle = {
   maxWidth: 255,
@@ -23,29 +29,27 @@ class CreateTripCard extends Component {
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
-      test: "2018-04-08T05:00:00.000Z",
       cityName: "",
       minDate: minDate,
       maxDate: maxDate,
-      autoOk: false,
-      disableYearSelection: false,
       edit: false
     };
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
-    // this.setCityName = this.setCityName.bind(this);
   }
 
   componentDidMount(props) {
-    // this.addDate(this.state.minDate);
-    this.props.addDatesToCities(this.state.minDate, this.state.maxDate, this.props.index);
+    this.props.addDatesToCities(
+      this.state.minDate,
+      this.state.maxDate,
+      this.props.index
+    );
   }
 
-
   // componentWillReceiveProps(props) {
-   
+
   //     this.toggleEdit()
-  
+
   // }
 
   handleChangeMinDate = (event, date) => {
@@ -81,15 +85,16 @@ class CreateTripCard extends Component {
   }
 
   render() {
-    console.log(this.props);
-    // this.props.cityName === this.state.cityName? null :
-    // this.setCityName(this.props.cityName);
+    console.log(this);
+
     return (
       <div>
         {this.state.edit === false ? null : (
           <div>
-            
-            <CreateTripSearch source='createTripCard' updateTrip={this.updateTrip} />
+            <CreateTripSearch
+              source="createTripCard"
+              updateTrip={this.updateTrip}
+            />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
@@ -98,26 +103,25 @@ class CreateTripCard extends Component {
             onClick={() => this.toggleEdit()}
             id="text-field-default"
             floatingLabelText="This will be city name"
-            defaultValue={(this.props.cityDetail.cityName) ?(this.props.cityDetail.cityName) : null}
+            defaultValue={
+              this.props.cityDetail.cityName
+                ? this.props.cityDetail.cityName
+                : null
+            }
             // {(this.state.cityName) ? this.state.cityName : 'no state'}
             // {(this.state.cityName) ? this.state.cityName : this.props.cityName}
           />
           <div style={optionsStyle}>
             <DatePicker
+              value={this.state.minDate}
               onChange={this.handleChangeMinDate}
-              autoOk={this.state.autoOk}
-              floatingLabelText="Start Date"
-              defaultDate={this.state.minDate}
-              disableYearSelection={this.state.disableYearSelection}
+              formatDate={date => moment(date).format("ddd, MMM D")}
             />
             <DatePicker
+              value={this.state.maxDate}
               onChange={this.handleChangeMaxDate}
-              autoOk={this.state.autoOk}
-              floatingLabelText="End Date"
-              defaultDate={this.state.maxDate}
-              disableYearSelection={this.state.disableYearSelection}
+              formatDate={date => moment(date).format("ddd, MMM D")}
             />
-            <button onClick={()=>this.addDate()}>Add Dates</button>
           </div>
         </section>
       </div>
@@ -127,4 +131,9 @@ class CreateTripCard extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { updateCitiesInTrip, addDatesToCities, updateStartDate, updateEndDate })(CreateTripCard);
+export default connect(mapStateToProps, {
+  updateCitiesInTrip,
+  addDatesToCities,
+  updateStartDate,
+  updateEndDate
+})(CreateTripCard);

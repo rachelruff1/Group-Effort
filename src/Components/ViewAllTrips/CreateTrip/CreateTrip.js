@@ -6,11 +6,14 @@ import RaisedButton from "material-ui/RaisedButton";
 import {
   getCitiesInTrip,
   addCityToTrip,
-  updateTripName, addCityToDatabase, createNewTrip
+  updateTripName,
+  addCityToDatabase,
+  createNewTrip
 } from "../../../ducks/reducer1";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
+
 
 class CreateTrip extends Component {
   constructor(props) {
@@ -27,7 +30,7 @@ class CreateTrip extends Component {
     // console.log("HIT DIDMOUNT", this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
 
     this.props.getCitiesInTrip();
-      // this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId );
+    // this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId );
   }
 
   //This runs on component did mount to set initial State w/ data from reducer
@@ -45,7 +48,7 @@ class CreateTrip extends Component {
     this.setState({ edit: !this.state.edit });
   }
 
-  addDestination(cityName, state, country, latLng, placeId){
+  addDestination(cityName, state, country, latLng, placeId) {
     this.props.addCityToTrip(cityName, state, country, latLng, placeId);
     this.toggleEdit();
   }
@@ -63,7 +66,6 @@ class CreateTrip extends Component {
       });
 
     return (
-
       <div>
         {this.state.edit === false ? null : (
           <div className="searchBox">
@@ -74,6 +76,7 @@ class CreateTrip extends Component {
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
+        
         <TextField
           id="text-field-default"
           floatingLabelText="Trip name"
@@ -88,7 +91,20 @@ class CreateTrip extends Component {
           style={style}
         />
         <RaisedButton
-          onClick={()=>this.props.createNewTrip(this.props.tripName, '1/2/18', '2/3/18').then(resp=> {console.log(resp.action.payload[0].trip_id);this.props.citiesInTrip.map(x=>{console.log(x);this.props.addCityToDatabase(x, resp.action.payload[0].trip_id)})})}
+          onClick={() =>
+            this.props
+              .createNewTrip(this.props.tripName, this.props.citiesInTrip)
+              .then(resp => {
+                console.log(resp.action.payload[0].trip_id);
+                this.props.citiesInTrip.map(x => {
+                  console.log(x);
+                  this.props.addCityToDatabase(
+                    x,
+                    resp.action.payload[0].trip_id
+                  );
+                });
+              })
+          }
           label="DONE"
           style={style}
         />

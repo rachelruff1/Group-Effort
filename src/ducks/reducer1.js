@@ -348,7 +348,6 @@ export function getSaved(tripId) {
   };
 }
 export function getFood(latlng) {
-  console.log("hit:foood", latlng);
   return {
     type: GET_FOOD,
     payload: axios
@@ -374,13 +373,11 @@ export function getThingsToDo(tripId) {
   };
 }
 export function getMuseums(latlng) {
-  console.log("hit:", latlng);
   return {
     type: GET_MUSEUMS,
     payload: axios
       .get(`/api/getMuseums/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results, "7777777 musemums ");
         return resp.data.results;
       })
       .catch(err => err.errMessage)

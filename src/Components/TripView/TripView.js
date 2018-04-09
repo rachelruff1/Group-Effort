@@ -51,12 +51,15 @@ updateLatLng (index){
       cities.map((c, i) => <CitiesCard key={i} city={c} updateLatLng={this.updateLatLng} index={i}/>);
     return (
       <body className="trip-view-container">
-        <header>
-          <h1>{trip.name} </h1>
+        <header className="trip-title">
+        <div className="trip-box">
+          <h1>{trip.trip_name} </h1>
           <h3>
             {trip.start_date} - {trip.start_date}
           </h3>
+          </div>
         </header>
+        <div>
         <div className="trip-view-selectors">
           <div
             className="saved-container"
@@ -95,7 +98,10 @@ updateLatLng (index){
             GeneralInfo
           </div>
         </div>
+        
         <sidebar className="city-side-bar">{citiesMap}</sidebar>
+        
+        </div>
       </body> 
     );
   }

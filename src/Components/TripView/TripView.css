@@ -1,14 +1,77 @@
 .trip-view-container {
-    width: 100%;
+    background:  linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), 
+    url("Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: 100vw;
     height: 100vh;
-    display: grid;
-    /* grid-template:  */
+}
+
+.trip-title{
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 19.5vw;
+    top: 14vh;
+    
+}
+
+sidebar{
+    padding: 20px;
+}
+
+.trip-box{
+    width: 80vw;
+    padding: 20px;    
+    border: 2px solid black;
+    border-top: none;
+   
+}
+
+.city-side-bar{
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+    align-content: space-between;
+    font-size: 24px;
+    overflow: auto;
+    height:80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 50px;
+    margin-left: -40px;
+}
+    
+
+.trip-view-selectors{
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+    align-content: space-around;
+    width: 60vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 19.5vw;
+    padding: 15px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
 }
 
 .trip-view-selectors div {
     background-color: lightgrey;
-    width: 200px;
-    height:200px;
-    border: 1px solid black;
+    width: 275px;
+    height:275px;
+    border: 2px solid black;
     margin: 15px;
 }

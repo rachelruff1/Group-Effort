@@ -122,9 +122,14 @@ app.get("/api/getMuseums/:id", ctrl.getMuseums);
 app.get("/api/getWebcams/:id", ctrl.getWebcams);
 app.get("/api/getFacts/:id", ctrl.getFacts);
 app.get("/api/getParks/:id", ctrl.getParks);
+<<<<<<< HEAD
 
 app.post('/api/createNewTrip', ctrl.createNewTrip);
 app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
+=======
+app.get("/api/getMall/:id", ctrl.getMall);
+app.get("/api/getMovie/:id", ctrl.getMovie);
+>>>>>>> master
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

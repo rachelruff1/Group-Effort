@@ -5,6 +5,9 @@ const googlePlacesBase =
 let places = [];
 let museums = [];
 let parks = [];
+let food = [];
+let mall = [];
+let movie = [];
 const getUser = (req, res, next) => {
   const db = req.app.get("db");
   db.user
@@ -89,16 +92,16 @@ const getSaved = (req, res, next) => {
     });
 };
 const getFood = (req, res, next) => {
-  // console.log(req.params);
+  console.log("m", req.params);
   axios
     .get(
       `${googlePlacesBase}${
         req.params.id
-      }&type=museum&radius=1000&key=${googleApiKey}`
+      }&type=restaurant&radius=1000&key=${googleApiKey}`
     )
     .then(resp => {
-      museums = resp.data;
-      res.status(200).json(museums);
+      food = resp.data;
+      res.status(200).json(food);
     })
     .catch(() => res.status(500).json());
 };
@@ -179,6 +182,34 @@ const getParks = (req, res, next) => {
     })
     .catch(() => res.status(500).json());
 };
+const getMall = (req, res, next) => {
+  console.log("Malllllllls", req.params);
+  axios
+    .get(
+      `${googlePlacesBase}${
+        req.params.id
+      }&type=shopping_mall&radius=1000&key=${googleApiKey}`
+    )
+    .then(resp => {
+      mall = resp.data;
+      res.status(200).json(mall);
+    })
+    .catch(() => res.status(500).json());
+};
+const getMovie = (req, res, next) => {
+  console.log("MOOOOViessss", req.params);
+  axios
+    .get(
+      `${googlePlacesBase}${
+        req.params.id
+      }&type=movie_theater&radius=1000&key=${googleApiKey}`
+    )
+    .then(resp => {
+      movie = resp.data;
+      res.status(200).json(movie);
+    })
+    .catch(() => res.status(500).json());
+};
 
 const createNewTrip = (req, res, next) => {
   console.log('new trip ctrl', req.body)
@@ -228,5 +259,7 @@ module.exports = {
   getParks,
 
   createNewTrip,
-  addCityToDatabase
+  addCityToDatabase,
+  getMall,
+  getMovie
 };

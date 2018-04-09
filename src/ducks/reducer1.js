@@ -20,6 +20,7 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
+<<<<<<< HEAD
 
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
@@ -33,6 +34,10 @@ const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 const UPDATE_START_DATE = "UPDATE_START_DATE";
 const UPDATE_END_DATE = "UPDATE_END_DATE";
 
+=======
+const GET_MALL = "GET_MALL";
+const GET_MOVIE = "GET_MOVIE";
+>>>>>>> master
 const initialState = {
   user: {},
   image: "",
@@ -46,12 +51,14 @@ const initialState = {
   cityId: "",
   trip: {},
   saved: {},
-  food: {},
+  food: [],
   thingsToDo: {},
   museums: [],
   webcams: {},
   facts: {},
   parks: [],
+  mall: [],
+  movie: [],
 
   city: "",
   state: "",
@@ -175,7 +182,7 @@ export default function reducer(state = initialState, action) {
       // console.log("reducer func:", action.payload[0]);
       return Object.assign({}, state, {
         isLoading: false,
-        food: action.payload[0]
+        food: action.payload
       });
     case `${GET_THINGS_TO_DO}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -236,6 +243,32 @@ export default function reducer(state = initialState, action) {
         city: action.payload,
         state: action.data,
         country: action.moreData
+      });
+    case `${GET_MALL}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_MALL}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_MALL}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        mall: action.payload
+      });
+    case `${GET_MOVIE}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_MOVIE}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_MOVIE}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        movie: action.payload
       });
 
     //CREATETRIP.JS
@@ -429,15 +462,14 @@ export function getSaved(tripId) {
       .catch(err => err.errMessage)
   };
 }
-export function getFood(tripId) {
-  console.log("hit:", tripId);
+export function getFood(latlng) {
   return {
     type: GET_FOOD,
     payload: axios
-      .get(`/api/get/${tripId}`)
+      .get(`/api/getFood/${latlng}`)
       .then(resp => {
-        console.log(resp.data);
-        return resp.data;
+        console.log(resp.data.results, "foooooooodssssss");
+        return resp.data.results;
       })
       .catch(err => err.errMessage)
   };
@@ -456,13 +488,11 @@ export function getThingsToDo(tripId) {
   };
 }
 export function getMuseums(latlng) {
-  console.log("hit:", latlng);
   return {
     type: GET_MUSEUMS,
     payload: axios
       .get(`/api/getMuseums/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results, "7777777 musemums ");
         return resp.data.results;
       })
       .catch(err => err.errMessage)
@@ -490,6 +520,31 @@ export function getFacts(tripId) {
       .then(resp => {
         console.log(resp.data);
         return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function getMall(latlng) {
+  return {
+    type: GET_MALL,
+    payload: axios
+      .get(`/api/getMall/${latlng}`)
+      .then(resp => {
+        console.log(resp.data.results, "Malllllllls");
+        return resp.data.results;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+export function getMovie(latlng) {
+  return {
+    type: GET_MOVIE,
+    payload: axios
+      .get(`/api/getMovie/${latlng}`)
+      .then(resp => {
+        console.log(resp.data.results, "Moviessssssss");
+        return resp.data.results;
       })
       .catch(err => err.errMessage)
   };

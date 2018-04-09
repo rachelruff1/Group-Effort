@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
-import { updateCitiesInTrip, addDatesToCities } from "../../../ducks/reducer1";
+import { updateCitiesInTrip, addDatesToCities, updateStartDate, updateEndDate } from "../../../ducks/reducer1";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 import "./CreateTripCard.css";
 
@@ -23,9 +23,8 @@ class CreateTripCard extends Component {
     maxDate.setHours(0, 0, 0, 0);
 
     this.state = {
+      test: "2018-04-08T05:00:00.000Z",
       cityName: "",
-      startDate: "",
-      endDate: "",
       minDate: minDate,
       maxDate: maxDate,
       autoOk: false,
@@ -34,13 +33,13 @@ class CreateTripCard extends Component {
     };
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
-    this.addDate = this.addDate.bind(this);
     // this.setCityName = this.setCityName.bind(this);
   }
 
-  // componentDidMount(props) {
-  //   this.props.addDatesToCities(this.state.startDate, this.state.endDate, this.props.index);
-  // }
+  componentDidMount(props) {
+    // this.addDate(this.state.minDate);
+    this.props.addDatesToCities(this.state.minDate, this.state.maxDate, this.props.index);
+  }
 
 
   // componentWillReceiveProps(props) {
@@ -48,27 +47,20 @@ class CreateTripCard extends Component {
   //     this.toggleEdit()
   
   // }
-addDate(){
-  this.props.addDatesToCities(this.state.minDate, this.state.maxDate, this.props.index)
-}
 
-
-  // setCityName(city) {
-  //   console.log('hit', city);
-  //   this.setState({
-  //     cityName : city
-  //   });
-  // }
   handleChangeMinDate = (event, date) => {
     this.setState({
       minDate: date
     });
+    this.props.updateStartDate(date, this.props.index);
   };
 
   handleChangeMaxDate = (event, date) => {
     this.setState({
       maxDate: date
     });
+    // console.log(this.state.maxDate)
+    this.props.updateEndDate(date, this.props.index);
   };
 
   toggleEdit() {
@@ -89,7 +81,7 @@ addDate(){
   }
 
   render() {
-    console.log(this.state, this.state.minDate.getDate());
+    console.log(this.props);
     // this.props.cityName === this.state.cityName? null :
     // this.setCityName(this.props.cityName);
     return (
@@ -135,4 +127,4 @@ addDate(){
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { updateCitiesInTrip, addDatesToCities })(CreateTripCard);
+export default connect(mapStateToProps, { updateCitiesInTrip, addDatesToCities, updateStartDate, updateEndDate })(CreateTripCard);

@@ -29,6 +29,8 @@ const ADD_DATES_TO_CITIES = "ADD_DATES_TO_CITIES";
 
 const ADD_CITY_TO_DATABASE = "ADD_CITY_TO_DATABASE";
 const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+const UPDATE_START_DATE = "UPDATE_START_DATE";
+const UPDATE_END_DATE = "UPDATE_END_DATE";
 
 const initialState = {
   user: {},
@@ -280,10 +282,26 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { tripName: action.payload });
 
     case ADD_DATES_TO_CITIES:
-      console.log(action.payload);
+      // console.log(action.payload);
+      let updateCityArr = state.citiesInTrip.slice();
+      updateCityArr[action.payload.index].startDate = action.payload.startDate;
+      updateCityArr[action.payload.index].endDate = action.payload.endDate;
+      console.log(updateCityArr);
       return Object.assign({}, state, {
-        citiesInTrip: {}
+        citiesInTrip: updateCityArr
       });
+    case UPDATE_START_DATE:
+      let updateCityStart = state.citiesInTrip.slice();
+      updateCityStart[action.payload.index].startDate =
+        action.payload.startDate;
+      console.log(updateCityStart);
+      return Object.assign({}, state, { citiesInTrip: updateCityStart });
+    case UPDATE_END_DATE:
+    console.log(action.payload.index, action.payload.endDate);
+      let updateCityEnd = state.citiesInTrip.slice();
+      updateCityEnd[action.payload.index].endDate = action.payload.endDate;
+      console.log(updateCityEnd);
+      return Object.assign({}, state, { citiesInTrip: updateCityEnd });
 
     default:
       return state;
@@ -546,15 +564,15 @@ export function updateCitiesInTrip(
 }
 
 export function addDatesToCities(startDate, endDate, index) {
+  console.log(startDate, endDate, index);
   return {
     type: ADD_DATES_TO_CITIES,
     payload: { startDate, endDate, index }
   };
 }
 
-export function createNewTrip(tripName) {
-  let startDate = {};
-  let endDate = {};
+export function createNewTrip(tripName, startDate, endDate) {
+  console.log('newtrip1', tripName, startDate, endDate);
   return {
     type: CREATE_NEW_TRIP,
     payload: axios
@@ -577,5 +595,19 @@ export function addCityToDatabase(city, tripId) {
         return resp.data;
       })
       .catch(err => err.errMessage)
+  };
+}
+
+export function updateStartDate(startDate, index) {
+  return {
+    type: UPDATE_START_DATE,
+    payload: { startDate, index }
+  };
+}
+
+export function updateEndDate(endDate, index) {
+  return {
+    type: UPDATE_END_DATE,
+    payload: { endDate, index }
   };
 }

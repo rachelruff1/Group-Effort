@@ -182,10 +182,12 @@ const getParks = (req, res, next) => {
 
 const createNewTrip = (req, res, next) => {
   console.log('new trip ctrl', req.body)
+  let tempId = 9;
+  //REPLACE TEMP WITH REQ.USER.ID WHEN IT IS WORKING!!!!!
   const {tripName, startDate, endDate} = req.body;
   const db = req.app.get("db");
   db
-    .create_new_trip([tripName, startDate, endDate, req.user.id])
+    .create_new_trip([tripName, startDate, endDate, tempId])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);

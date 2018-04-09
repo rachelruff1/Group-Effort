@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
-import { createNewTrip } from "../../../ducks/reducer2";
 import {
   getCitiesInTrip,
   addCityToTrip,
-  updateTripName, addCityToDatabase
+  updateTripName, addCityToDatabase, createNewTrip
 } from "../../../ducks/reducer1";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
@@ -89,7 +88,7 @@ class CreateTrip extends Component {
           style={style}
         />
         <RaisedButton
-          onClick={()=>this.props.createNewTrip(this.props.tropName).then(resp=> this.props.citiesInTrip.map(x=>this.props.addCityToDatabase(x, resp)))}
+          onClick={()=>this.props.createNewTrip(this.props.tripName, '1/2/18', '2/3/18').then(resp=> {console.log(resp.action.payload[0].trip_id);this.props.citiesInTrip.map(x=>{console.log(x);this.props.addCityToDatabase(x, resp.action.payload[0].trip_id)})})}
           label="DONE"
           style={style}
         />

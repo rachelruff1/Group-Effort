@@ -6,6 +6,7 @@ import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
 import MallCard from "../../MallCard/MallCard";
+import MovieCard from "../../MovieCard/MovieCard";
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +32,9 @@ class LocationView extends Component {
         </div>
         <div>
           <MallCard />
+        </div>
+        <div>
+          <MovieCard />
         </div>
       </div>
     );

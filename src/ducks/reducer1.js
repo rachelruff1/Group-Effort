@@ -20,6 +20,7 @@ const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
 const GET_MALL = "GET_MALL";
+const GET_MOVIE = "GET_MOVIE";
 const initialState = {
   user: {},
   image: "",
@@ -40,6 +41,7 @@ const initialState = {
   facts: {},
   parks: [],
   mall: [],
+  movie: [],
 
   city: "",
   state: "",
@@ -234,6 +236,19 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: false,
         mall: action.payload
+      });
+    case `${GET_MOVIE}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_MOVIE}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_MOVIE}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        movie: action.payload
       });
 
     default:
@@ -431,6 +446,18 @@ export function getMall(latlng) {
       .get(`/api/getMall/${latlng}`)
       .then(resp => {
         console.log(resp.data.results, "Malllllllls");
+        return resp.data.results;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+export function getMovie(latlng) {
+  return {
+    type: GET_MOVIE,
+    payload: axios
+      .get(`/api/getMovie/${latlng}`)
+      .then(resp => {
+        console.log(resp.data.results, "Moviessssssss");
         return resp.data.results;
       })
       .catch(err => err.errMessage)

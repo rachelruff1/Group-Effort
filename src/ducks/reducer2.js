@@ -4,6 +4,7 @@ const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
 const GET_PLACE = "GET_PLACE";
 const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+const GET_USER_INFO = "GET_USER_INFO";
 
 const initialState = {
   info: [],
@@ -11,7 +12,9 @@ const initialState = {
   didErr: false,
   errMessage: "errrrrr",
   placeDetail: {},
-  test: 'hi'
+  test: 'hi',
+  userinfo: {}
+
 };
 
 export default function reducer(state = initialState, action) {
@@ -70,6 +73,18 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         placeDetail: action.payload.result
       });
+      case `${GET_USER_INFO}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_USER_INFO}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_USER_INFO}_FULFILLED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        userinfo: action.payload
+      });
       
     //default value
     default:
@@ -108,6 +123,16 @@ export function getPlace(placeId) {
     type: GET_PLACE,
     payload: axios
       .get(`/api/getPlaceDetail/${placeId}`)
+      .then(resp => resp.data)
+      .catch(err => err.errMessage)
+  };
+}
+export function getUserInfo() {
+  console.log("444444544455555")
+  return {
+    type: GET_USER_INFO,
+    payload: axios
+      .get(`/api/getUserInfo`)
       .then(resp => resp.data)
       .catch(err => err.errMessage)
   };

@@ -1,0 +1,16 @@
+.attributes {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.profile-info-container {
+  display: flex;
+  background-image: url("../Logo/Profilepagebackground.jpeg");
+  height: 100vh;
+
+
+}
+.info-container {
+    
+}

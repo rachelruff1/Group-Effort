@@ -7,6 +7,8 @@
 		padding: 1em;
 		height: 10vh;
 		width: 90vw;
+		border-bottom: 2px solid #000;
+		
 	}
 
 	.user-photo {
@@ -15,6 +17,7 @@
 		border: 1px solid white;
 		border-radius: 50px 50px 50px 50px;
 		height: 5vh;
+		z-index: 3;
 	}
 
 	.login-buttons{
@@ -43,6 +46,7 @@
 		overflow: hidden;
 		padding: 1em;
 		width: 100%;
+		border-bottom: 2px solid #000;
 	}
 	
 	.logo {
@@ -81,6 +85,7 @@
 	overflow: hidden;
 	padding: 1em;
 	width: 100%;
+	border-bottom: 2px solid #000;
 }
 .user-photo {
 	position: fixed;

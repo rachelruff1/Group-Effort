@@ -6,6 +6,9 @@ class Profile extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        
+    }
 
 
     render() {

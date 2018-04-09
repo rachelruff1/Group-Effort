@@ -8,7 +8,8 @@ import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from "../../Logo/trippie_logo.png";
 import Login from "../../Auth/Auth";
-import ProfileDropDown from "../../ProfileDropDown/ProfileDropDown";
+import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
+import Profile from "../../Profile/Profile";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class AppHeader extends Component {
   }
 
   toggleDropDown() {
-    console.log(this.state.toggle);
+    //console.log(this.state.toggle);
     this.setState({
       toggle: !this.state.toggle
     });
@@ -41,6 +42,7 @@ class AppHeader extends Component {
             onClick={() => this.toggleDropDown()}
           />
         )}
+        {this.state.toggle == true ? <ProfilePopOver/> : null}
         <div className="login-buttons">
           <Login />
           <Link to="/">
@@ -51,7 +53,6 @@ class AppHeader extends Component {
               <AppDrawer />
             </div>
           </div>
-          {this.state.toggle == true ? <ProfileDropDown /> : null}
         </div>
         </div>
         

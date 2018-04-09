@@ -1,61 +1,703 @@
-.trip-view-container {
-    background:  linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), 
-    url("Trip-view-img.jpg");
+/*For Small Mobile Phones*/
+@media only screen and (min-width: 320px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("mobile-Trip-view-img.jpg");
     overflow: hidden;
     background-repeat: no-repeat;
-    background-size: 100vw;
+    background-position: 15% 50%;
+    /* background-size: 195vw; */
     height: 100vh;
-}
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
 
-.trip-title{
+  .trip-title {
     display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
     align-content: stretch;
     position: fixed;
-    left: 15vw;
-    top: 14vh;    
-}
+    left: 25vw;
+    top: 12vh;
+  }
 
-.trip-box{
+  .trip-box {
+    font-size: 15px;
     width: 80vw;
-    padding: 20px;    
-    border: 2px solid black;
-    border-top: none;   
-    border-right: none;
-}
-
-sidebar{
     padding: 20px;
+  }
+
+  sidebar {
+    padding: 40px;
+    width: 15vw;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    font-size: 12px;
+    overflow: auto;
+    height: 80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 0px;
+    margin-left: -30px;
+  }
+
+  .trip-view-selectors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    width: 73.75vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 20vw;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 2px 2px black;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .shopping-container {
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+  }
+
+  .restaurant-container {
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+  }
+
+  .museums-container {
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
-.city-side-bar{
+/*For Med Mobile Phones*/
+@media only screen and (min-width: 375px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("mobile-Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 15% 50%;
+    /* background-size: 195vw; */
+    height: 100vh;
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
+
+  .trip-title {
     display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 25vw;
+    top: 12vh;
+  }
+
+  .trip-box {
+    font-size: 15px;
+    width: 80vw;
+    padding: 20px;
+  }
+
+  sidebar {
+    padding: 40px;
+    width: 20vw;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     align-content: space-between;
-    font-size: 16px;
+    font-size: 12px;
     overflow: auto;
-    height:80%;
+    height: 80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 0px;
+    margin-left: -30px;
+  }
+
+  .trip-view-selectors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    width: 73.75vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 20vw;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 2px 2px black;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .shopping-container {
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+  }
+
+  .restaurant-container {
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+  }
+
+  .museums-container {
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/*For Large Mobile Phones*/
+@media only screen and (min-width: 425px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("mobile-Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 15% 50%;
+    /* background-size: 195vw; */
+    height: 100vh;
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
+
+  .trip-title {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 25vw;
+    top: 12vh;
+  }
+
+  .trip-box {
+    font-size: 15px;
+    width: 80vw;
+    padding: 20px;
+  }
+
+  sidebar {
+    padding: 40px;
+    width: 20vw;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    font-size: 12px;
+    overflow: auto;
+    height: 80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 0px;
+    margin-left: -30px;
+  }
+
+  .trip-view-selectors {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    width: 73.75vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 20vw;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 2px 2px black;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .shopping-container {
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+  }
+
+  .restaurant-container {
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+  }
+
+  .museums-container {
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/*For Tablets*/
+@media only screen and (min-width: 768px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 12% 50%;
+    background-size: 195vw;
+    height: 100vh;
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
+
+  .trip-title {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 20vw;
+    top: 11.5vh;
+  }
+
+  .trip-box {
+    width: 80vw;
+    padding: 20px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+  }
+
+  sidebar {
+    padding: 40px;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    font-size: 10px;
+    overflow: auto;
+    height: 80%;
     position: fixed;
     top: 14vh;
     left: 2.2vw;
     padding-right: 50px;
     margin-left: -40px;
-}
-    
+  }
 
-.trip-view-selectors{
+  .trip-view-selectors {
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px;
+    justify-content: space-around;
+    align-content: space-around;
+    width: 73.75vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 20vw;
+    padding: 15px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    font-size: 20px;
+    color: white;
+    text-shadow: 2px 2px black;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+  }
+
+  .shopping-container {
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+  }
+
+  .restaurant-container {
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+  }
+
+  .museums-container {
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/*For Small Laptops*/
+@media only screen and (min-width: 1024px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 25% 50%;
+    background-size: 143vw;
+    height: 100vh;
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
+
+  .trip-title {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 20vw;
+    top: 11.5vh;
+  }
+
+  .trip-box {
+    width: 80vw;
+    padding: 20px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+  }
+
+  sidebar {
+    padding: 40px;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    font-size: 14px;
+    overflow: auto;
+    height: 80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 50px;
+    margin-left: -40px;
+  }
+
+  .trip-view-selectors {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px;
+    justify-content: space-around;
+    align-content: space-around;
+    width: 73.75vw;
+    height: 65vh;
+    position: fixed;
+    top: 31.1vh;
+    left: 20vw;
+    padding: 15px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    font-size: 28px;
+    color: white;
+    text-shadow: 2px 2px black;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    border: 2px solid black;
+  }
+
+  .shopping-container {
+    background-image: url("shopping-img.jpg");
+    background-size: 45vh;
+    padding-top: 112.5px;
+  }
+
+  .restaurant-container {
+    background-image: url("restaurant-img.jpg");
+    background-size: 25vw;
+    padding-top: 112.5px;
+  }
+
+  .museums-container {
+    background-image: url("museum-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/*For Full Screen*/
+
+@media only screen and (min-width: 1900px) {
+  .trip-view-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+      url("Trip-view-img.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: 100vw;
+    height: 100vh;
+    color: white;
+    text-shadow: 2px 2px black;
+    animation: showup 5s;
+  }
+
+  .trip-title {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    position: fixed;
+    left: 15vw;
+    top: 14vh;
+  }
+
+  .trip-box {
+    width: 80vw;
+    padding: 20px;
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+  }
+
+  sidebar {
+    padding: 40px;
+  }
+
+  .city-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    font-size: 16px;
+    overflow: auto;
+    height: 80%;
+    position: fixed;
+    top: 14vh;
+    left: 2.2vw;
+    padding-right: 50px;
+    margin-left: -40px;
+  }
+
+  .trip-view-selectors {
     display: grid;
     grid-template-columns: 275px 275px 275px;
     grid-template-rows: 275px 275px;
     grid-column-gap: 65px;
     grid-row-gap: 45px;
     justify-content: space-evenly;
-    align-content: space-between;    
+    align-content: space-between;
     width: 73.75vw;
     height: 65vh;
     position: fixed;
@@ -69,32 +711,56 @@ sidebar{
     font-size: 30px;
     color: white;
     text-shadow: 2px 2px black;
-}
+  }
 
-.trip-view-selectors div {
+  .trip-view-selectors div {
     background-color: lightgrey;
     text-align: center;
-    /* width: 225px; */
-    /* height:225px; */
-    /* padding: 30px; */
     border: 2px solid black;
-    /* margin: 25px; */
-}
+  }
 
-.shopping-container{
+  .shopping-container {
     background-image: url("shopping-img.jpg");
     background-size: 45vh;
     padding-top: 112.5px;
-}
+  }
 
-.restaurant-container{
+  .restaurant-container {
     background-image: url("restaurant-img.jpg");
     background-size: 25vw;
     padding-top: 112.5px;
-}
+  }
 
-.museums-container{
+  .museums-container {
     background-image: url("museum-img.jpg");
     background-size: 20vw;
     padding-top: 112.5px;
+  }
+
+  .theater-container {
+    background-image: url("theater-img.jpg");
+    background-size: 20vw;
+    padding-top: 112.5px;
+  }
+
+  .parks-container {
+    background-image: url("parks-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  .saved-container {
+    background-image: url("saved-img.jpg");
+    background-size: 15vw;
+    padding-top: 112.5px;
+  }
+
+  @keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }

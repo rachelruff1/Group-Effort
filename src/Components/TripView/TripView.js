@@ -21,7 +21,7 @@ class TripView extends Component {
     this.state = {
       data: {},
       testId: "ChIJPZQJvBo8TIYRov7INbBx08o",
-      tripId: 1,
+      tripId: 16,
       latLng: "",
       index: ''
     };
@@ -54,8 +54,9 @@ updateLatLng (index){
         <header className="trip-title">
         <div className="trip-box">
           <h1>{trip.trip_name} </h1>
+          
           <h3>
-            {trip.start_date} - {trip.start_date}
+            {trip.start_date} - {trip.end_date}
           </h3>
           </div>
         </header>
@@ -77,7 +78,7 @@ updateLatLng (index){
             className="theater-container"
             onClick={() => this.props.getThingsToDo(tripId)}
           >
-            Movie Theaters
+            Theaters
           </div>
           <div
             className="museums-container"
@@ -86,7 +87,7 @@ updateLatLng (index){
             Museums
           </div>
           <div
-            className="webcams-container"
+            className="parks-container"
             onClick={() => this.props.getWebcams()}
           >
             Parks
@@ -98,9 +99,9 @@ updateLatLng (index){
            Shopping
           </div>
         </div>
-        
+        <div className="side-bar">
         <sidebar className="city-side-bar">{citiesMap}</sidebar>
-        
+        </div>
         </div>
       </body> 
     );

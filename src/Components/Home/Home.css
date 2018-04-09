@@ -377,6 +377,7 @@
     overflow: hidden;
     background-size: 100vw;
     height: 100vh;
+    animation: showup 5s;
   }
 
   .homesearch {

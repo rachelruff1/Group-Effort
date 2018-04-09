@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import SearchBox from "../Search/SearchBox";
+import moment from 'moment';
 
 class Home extends Component {
   constructor() {
@@ -11,6 +12,8 @@ class Home extends Component {
   componentDidMount() {}
 
   render() {
+    const test = moment().format("MM/DD/YYYY");
+    // .toString();
     return (
       <div className="Home">
         <div className="homesearch">
@@ -21,6 +24,7 @@ class Home extends Component {
           <Link to="/view-all-trips">
             <button>ViewAllTrips</button>
           </Link>
+          {test}
         </div>
         <figure className="search">
           <SearchBox />

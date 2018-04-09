@@ -7,7 +7,7 @@ const {
   StandaloneSearchBox
 } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
-const CreateTripSearch = compose(
+const CardSearch = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
@@ -29,15 +29,15 @@ const CreateTripSearch = compose(
           this.setState({
             places
           });
-          console.log(
-            this.props,
-            places[0].address_components[0].long_name,
-            places[0].address_components[2].short_name,
-            places[0].address_components[3].long_name
-          );
+        //   console.log('HIIIIIIII',
+        //     this.props,
+        //     places[0].address_components[0].long_name,
+        //     places[0].address_components[2].short_name,
+        //     places[0].address_components[3].long_name
+        //   );
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
 
-          this.props.addDestination(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name, latlng, places[0].place_id)
+          this.props.updateTrip(places[0].address_components[0].long_name, places[0].address_components[2].short_name, places[0].address_components[3].long_name, latlng, places[0].place_id);
          
         }
       });
@@ -89,4 +89,4 @@ const mapStatetoProps = state => state;
 
 export default connect(mapStatetoProps, {
 
-})(CreateTripSearch);
+})(CardSearch);

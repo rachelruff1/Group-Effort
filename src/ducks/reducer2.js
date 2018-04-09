@@ -4,7 +4,11 @@ const GET_DESTINATION = "GET_DESTINATION";
 const GET_TRAVEL_DATES = "GET_TRAVEL_DATES";
 const GET_PLACE = "GET_PLACE";
 const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
+<<<<<<< HEAD
 const GET_USER_INFO = "GET_USER_INFO";
+=======
+const UPDATE_CITY_IN_TRIP = "UPDATE_CITY_IN_TRIP";
+>>>>>>> 917e4a65557d7d262aa6b8c5676b971671f0e6f8
 
 const initialState = {
   info: [],
@@ -13,8 +17,13 @@ const initialState = {
   errMessage: "errrrrr",
   placeDetail: {},
   test: 'hi',
+<<<<<<< HEAD
   userinfo: {}
 
+=======
+  newCityInTrip : {},
+  index: ''
+>>>>>>> 917e4a65557d7d262aa6b8c5676b971671f0e6f8
 };
 
 export default function reducer(state = initialState, action) {
@@ -73,6 +82,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         placeDetail: action.payload.result
       });
+<<<<<<< HEAD
       case `${GET_USER_INFO}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_USER_INFO}_REJECTED`:
@@ -85,6 +95,16 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         userinfo: action.payload
       });
+=======
+
+    //get trip info from search bar in create trip card to replace in create trip
+    case UPDATE_CITY_IN_TRIP:
+    console.log(action);
+      return Object.assign({}, state, {
+        newCityInTrip : action.payload,
+        index: action.index
+      })
+>>>>>>> 917e4a65557d7d262aa6b8c5676b971671f0e6f8
       
     //default value
     default:
@@ -150,4 +170,12 @@ export function createNewTrip(tripName, tripStart, tripEnd){
       })
       .catch(console.log)
   };
+}
+
+export function updateCityInTrip(cityName, state, country, latLng, placeId, index){
+  return{
+    type: UPDATE_CITY_IN_TRIP,
+    payload: {cityName, state, country, latLng, placeId},
+    index: index
+  }
 }

@@ -685,3 +685,4 @@ export function updateEndDate(endMUI, index) {
     payload: { endDate, index }
   };
 }
+

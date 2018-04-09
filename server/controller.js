@@ -212,10 +212,10 @@ const getMovie = (req, res, next) => {
 };
 
 const createNewTrip = (req, res, next) => {
-  console.log('new trip ctrl', req.body)
+  console.log("new trip ctrl", req.body);
   let tempId = 9;
   //REPLACE TEMP WITH REQ.USER.ID WHEN IT IS WORKING!!!!!
-  const {tripName, startDate, endDate} = req.body;
+  const { tripName, startDate, endDate } = req.body;
   const db = req.app.get("db");
   db
     .create_new_trip([tripName, startDate, endDate, tempId])
@@ -227,15 +227,32 @@ const createNewTrip = (req, res, next) => {
       console.log(err);
       next(err);
     });
-}
+};
 
 const addCityToDatabase = (req, res, next) => {
-  console.log('new trip ctrl', req.body)
-  const {cityName, country, endDate, latLng, placeId, startDate, state,} = req.body.city;
-  const {tripId} = req.body;
+  console.log("new trip ctrl", req.body);
+  const {
+    cityName,
+    country,
+    endDate,
+    latLng,
+    placeId,
+    startDate,
+    state
+  } = req.body.city;
+  const { tripId } = req.body;
   const db = req.app.get("db");
   db
-    .add_city_to_database([cityName, state, country, latLng, placeId, startDate, endDate, tripId])
+    .add_city_to_database([
+      cityName,
+      state,
+      country,
+      latLng,
+      placeId,
+      startDate,
+      endDate,
+      tripId
+    ])
     .then(resp => {
       // console.log(resp);
       res.status(200).send(resp);
@@ -244,7 +261,23 @@ const addCityToDatabase = (req, res, next) => {
       console.log(err);
       next(err);
     });
-}
+};
+
+const getAllTrips = (req, res, next) => {
+  const { id } = req.params;
+  console.log(id);
+  const db = req.app.get("db");
+  db
+    .get_all_trips([id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
 
 module.exports = {
   getPlaceData,
@@ -261,5 +294,6 @@ module.exports = {
   createNewTrip,
   addCityToDatabase,
   getMall,
-  getMovie
+  getMovie,
+  getAllTrips
 };

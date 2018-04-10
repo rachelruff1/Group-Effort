@@ -4,18 +4,13 @@ import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import {
-  getCitiesInTrip,
-  addCityToTrip,
-  updateTripName,
-  addCityToDatabase,
-  createNewTrip
-} from "../../../ducks/reducer1";
-import CreateTripCard from "./CreateTripCard";
-import SearchBox from "../../Search/SearchBox";
-import CreateTripSearch from "./SearchBars/CreateTripSearch";
+    getCities
+} from "../../ducks/reducer1";
+import CreateTripCard from "../ViewAllTrips/CreateTrip/CreateTripCard";
+import CreateTripSearch from "../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 
 
-class CreateTrip extends Component {
+class EditTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,23 +21,10 @@ class CreateTrip extends Component {
     this.addDestination = this.addDestination.bind(this);
   }
 
-  componentDidMount(props) {
-    // console.log("HIT DIDMOUNT", this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
-
-    this.props.getCitiesInTrip();
-    // this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId );
+  componentDidMount() {
+      console.log(this.match.params.id);
+    //   this.props.getCities(this.match.params.id);
   }
-
-  //This runs on component did mount to set initial State w/ data from reducer
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(
-  //     "HIT WILL RECEIVE",
-  //     "index",
-  //     this.props.citiesInTrip
-  //   );
-  //   this.toggleEdit();
-  // }
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
@@ -54,20 +36,21 @@ class CreateTrip extends Component {
   }
 
   render() {
-    console.log(this.props.citiesInTrip);
-    const style = {
-      margin: 12
-    };
-    const createTripCardMap =
-      this.props.citiesInTrip.length > 0 &&
-      this.props.citiesInTrip.map((c, i) => {
-        console.log(c.cityName);
-        return <CreateTripCard key={i} cityDetail={c} index={i} />;
-      });
+    // console.log(this.props.cities);
+    // const style = {
+    //   margin: 12
+    // };
+    // const createTripCardMap =
+    //   this.props.cities.length > 0 &&
+    //   this.props.cities.map((c, i) => {
+    //     console.log(c.cityName);
+    //     return <CreateTripCard key={i} cityDetail={c} index={i} />;
+    //   });
 
     return (
       <div>
-        {this.state.edit === false ? null : (
+          Hi
+        {/* {this.state.edit === false ? null : (
           <div className="searchBox">
             <CreateTripSearch
               source="createTripContainer"
@@ -107,27 +90,18 @@ class CreateTrip extends Component {
           }
           label="SAVE"
           style={style}
-        />
+        /> */}
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
   tripName: state.reducer1.tripName,
-  city: state.reducer1.city,
-  state: state.reducer1.state,
-  country: state.reducer1.country,
-  latlng: state.reducer1.latlng,
-  placeId: state.reducer1.placeId,
+  cities: state.reducer1.cities,
   newCityInTrip: state.reducer2.newCityInTrip,
-  index: state.reducer2.index,
-  citiesInTrip: state.reducer1.citiesInTrip
+  index: state.reducer2.index
 });
 
 export default connect(mapStateToProps, {
-  createNewTrip,
-  getCitiesInTrip,
-  addCityToTrip,
-  updateTripName,
-  addCityToDatabase
-})(CreateTrip);
+    getCities
+})(EditTrip);

@@ -8,16 +8,17 @@ import {
   updateStartDate,
   updateEndDate
 } from "../../../ducks/reducer1";
-import CreateTripSearch from "./SearchBars/CreateTripSearch";
-import "./CreateTripCard.css";
+import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
+import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 import moment from "moment";
+import EditTrip from "../EditTrip";
 
 const optionsStyle = {
   maxWidth: 255,
   marginRight: "auto"
 };
 
-class CreateTripCard extends Component {
+class EditTripCard extends Component {
   constructor(props) {
     super(props);
 
@@ -38,13 +39,13 @@ class CreateTripCard extends Component {
     this.updateTrip = this.updateTrip.bind(this);
   }
 
-  componentDidMount(props) {
-    this.props.addDatesToCities(
-      this.state.minDate,
-      this.state.maxDate,
-      this.props.index
-    );
-  }
+//   componentDidMount(props) {
+//     this.props.addDatesToCities(
+//       this.state.minDate,
+//       this.state.maxDate,
+//       this.props.index
+//     );
+//   }
 
   // componentWillReceiveProps(props) {
 
@@ -101,7 +102,7 @@ class CreateTripCard extends Component {
             onClick={() => this.toggleEdit()}
             id="text-field-default"
             value={
-              this.props.cityDetail.cityName
+              this.props.cityDetail.city_name
                 
             }
             // {(this.state.cityName) ? this.state.cityName : 'no state'}
@@ -109,12 +110,12 @@ class CreateTripCard extends Component {
           />
           <div style={optionsStyle}>
             <DatePicker
-              value={this.state.minDate}
+              value={this.props.cityDetail.start_date}
               onChange={this.handleChangeMinDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
             <DatePicker
-              value={this.state.maxDate}
+              value={this.props.cityDetail.start_date}
               onChange={this.handleChangeMaxDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
@@ -132,4 +133,4 @@ export default connect(mapStateToProps, {
   addDatesToCities,
   updateStartDate,
   updateEndDate
-})(CreateTripCard);
+})(EditTripCard);

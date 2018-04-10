@@ -55,7 +55,7 @@ const getCities = (req, res, next) => {
   db
     .get_cities([req.params.tripid])
     .then(resp => {
-      // console.log(resp);
+      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {

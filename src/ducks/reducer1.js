@@ -33,6 +33,9 @@ const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 const UPDATE_START_DATE = "UPDATE_START_DATE";
 const UPDATE_END_DATE = "UPDATE_END_DATE";
 
+//EDITTRIP.JS
+const SET_TRIP_NAME = "SET_TRIP_NAME";
+
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
 const initialState = {
@@ -109,7 +112,8 @@ export default function reducer(state = initialState, action) {
       // console.log("reducer func:", action.payload);
       return Object.assign({}, state, {
         isLoading: false,
-        cities: action.payload
+        cities: action.payload,
+        tripName: action.payload[0].trip_name
       });
     case `${GET_TRIP}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -308,6 +312,9 @@ export default function reducer(state = initialState, action) {
         citiesInTrip: newArr
         // state.citiesInTrip.splice(action.index, 1, action.payload)
       });
+
+      case SET_TRIP_NAME:
+      return Object.assign({}, state, { tripName: action.payload });
 
     case UPDATE_TRIP_NAME:
       return Object.assign({}, state, { tripName: action.payload });
@@ -686,3 +693,9 @@ export function updateEndDate(endMUI, index) {
   };
 }
 
+export function setTripName(tripName){
+  return {
+    type: SET_TRIP_NAME,
+    payload: tripName
+  }
+}

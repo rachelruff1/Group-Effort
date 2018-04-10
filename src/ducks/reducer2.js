@@ -218,7 +218,7 @@ export function getAllTrips(id) {
     payload: axios.get(`/api/getAllTrips/${id}`).then(resp => {
       console.log(resp);
       resp.data.map(x => {
-        if (x.start_date === today || x.end_date === today) {
+        if (x.start_date <= today && x.end_date >= today) {
           current.push(x);
         } else if (x.end_date < today) {
           past.push(x);
@@ -233,9 +233,6 @@ export function getAllTrips(id) {
   };
 }
 
-export function editTrip(tripId){
-console.log('hit edit');
-}
 
 export function deleteTrip(tripId, index){
   console.log('hit delete', tripId);

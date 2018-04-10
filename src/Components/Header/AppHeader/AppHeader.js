@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import Search from "../../Search/Search";
 import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";

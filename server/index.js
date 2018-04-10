@@ -139,12 +139,11 @@ app.get("/api/getParks/:id", ctrl.getParks);
 app.get("/api/getPhotoref/:id", ctrl.getPhotoref);
 app.get("/api/getPlaceimg/:id", ctrl.getPlaceimg);
 
-
 app.post("/api/createNewTrip", ctrl.createNewTrip);
 app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
-app.delete('/api/deleteTrip/:id', ctrl.deleteTrip);
-app.post('/api/createNewTrip', ctrl.createNewTrip);
-app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
+app.delete("/api/deleteTrip/:id", ctrl.deleteTrip);
+app.post("/api/createNewTrip", ctrl.createNewTrip);
+app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 

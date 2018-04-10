@@ -291,7 +291,6 @@ const getAllTrips = (req, res, next) => {
     });
 };
 
-
 const getPhotoref = (req, res, next) => {
   axios
     .get(
@@ -301,7 +300,9 @@ const getPhotoref = (req, res, next) => {
     )
     .then(resp => {
       res.status(200).send(resp.data.result.photos[0].photo_reference);
-    })}
+
+    });
+};
 
 const deleteTrip = (req, res, next) => {
   const { id } = req.params;
@@ -312,7 +313,6 @@ const deleteTrip = (req, res, next) => {
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
-
     })
     .catch(err => {
       console.log(err);

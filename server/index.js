@@ -101,8 +101,15 @@ app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user)
   res.status(200).json(req.user);
 });
-
-
+//endpoint to check logged in status
+app.get("/api/me", (req, res) => {
+  console.log(req.user);
+  if (req.user) {
+    res.status(200).json(req.user);
+  } else {
+    res.status(500).json({ message: "User is not logged in" });
+  }
+ });
 
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");

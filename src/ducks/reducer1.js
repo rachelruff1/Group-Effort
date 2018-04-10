@@ -20,6 +20,7 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
+const VERIFY_USER = "VERIFY_USER";
 
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
@@ -62,7 +63,9 @@ const initialState = {
   country: "",
   //CREATETRIP.JS
   citiesInTrip: [],
-  tripName: ""
+  tripName: "",
+  //CONDITIONAL LOG-IN BUTTON STATE
+  auth_status: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -90,6 +93,10 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
+
+      case `${VERIFY_USER}_FULFILLED`:
+     console.log(action.payload, "payload");
+     return Object.assign({}, state, { auth_status: action.payload });
 
     case UPDATE_PLACE_ID:
       return Object.assign({}, state, { placeId: action.payload });
@@ -340,6 +347,23 @@ export default function reducer(state = initialState, action) {
 }
 
 //FUNCTIONS
+
+export function verifyUser() {
+  return {
+    type: VERIFY_USER,
+    payload: axios
+      .request({ url: "/api/me" })
+      .then(res => {
+        if (!res.data.authid.includes("google")) {
+          return false;
+        } else {
+          console.log("else");
+          return true;
+        }
+      })
+      .catch(err => err.message)
+  };
+ }
 
 export function getUser() {
   return {

@@ -3,7 +3,7 @@ import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Search from "../../Search/Search";
-import { getProfile } from "../../../ducks/reducer1";
+import { getProfile, verifyUser } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
 import test2 from "../../Logo/trippie_logo.png";
@@ -21,6 +21,7 @@ class AppHeader extends Component {
   }
   componentDidMount() {
     this.props.getProfile();
+    this.props.verifyUser();
   }
 
   toggleDropDown() {
@@ -34,7 +35,8 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-      <Login />
+      {this.props.auth_status != true ? (
+      <Login />) : false}
         <div className="login-buttons">
           
           <Link to="/">
@@ -46,7 +48,6 @@ class AppHeader extends Component {
             </div>
           </div>
         </div>
-
         {this.props.picture && (
           <img
             className="user-photo"
@@ -66,5 +67,5 @@ function mapStateToProps(state) {
   };
 }
 export default connect(mapStateToProps, {
-  getProfile
+  getProfile, verifyUser
 })(AppHeader);

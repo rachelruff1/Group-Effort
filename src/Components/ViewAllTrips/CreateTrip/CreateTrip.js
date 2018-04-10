@@ -27,6 +27,7 @@ class CreateTrip extends Component {
   }
 
   componentDidMount(props) {
+    console.log(this.match.params.id);
     // console.log("HIT DIDMOUNT", this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
 
     this.props.getCitiesInTrip();

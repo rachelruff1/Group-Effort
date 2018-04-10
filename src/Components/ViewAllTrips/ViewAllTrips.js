@@ -3,6 +3,7 @@ import { createTrip, getAllTrips } from "../../ducks/reducer2";
 import { connect } from "react-redux";
 import CreateTripButton from "./CreateTripButton/CreateTripButton";
 import IndividualTripCard from "./IndividualTripCard/IndividualTripCard";
+import {Link} from 'react-router-dom';
 
 class ViewAllTrips extends Component {
   constructor(props) {
@@ -46,6 +47,12 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
       <div>
         <main>
             <h1>MY TRIPS</h1>
+
+            {currentTrips === false && futureTrips === false && pastTrips === false ? null : <div><h2>
+                You have no trips. 
+            </h2>
+            {currentTrips}</div>}
+
             {currentTrips === false ? null : <div><h2>
                 Current Trips
             </h2>
@@ -58,18 +65,9 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
                 Past Trips
             </h2>
             {pastTrips}</div>}
-            
-            {/* <h1>
-                Future Trips
-            </h1>
-            {futureTrips}
-            
-            <h1>
-                Past Trips
-            </h1>
-            {pastTrips} */}
 
-          <CreateTripButton />
+<Link to='/create-trip'><button>+ Create Trip</button></Link>
+          {/* <CreateTripButton /> */}
         </main>
       </div>
     );

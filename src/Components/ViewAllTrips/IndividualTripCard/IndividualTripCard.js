@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { editTrip, deleteTrip } from "../../../ducks/reducer2";
+import {Link} from 'react-router-dom';
 
 const IndividualTripCard = props => {
   console.log(props.index);
@@ -10,7 +11,7 @@ const IndividualTripCard = props => {
       <p>
         {props.city.start_date} - {props.city.end_date}
       </p>
-      <button onClick={() => props.editTrip(props.city.trip_id)}>Edit</button>
+      <Link to={`/edit-trip/${props.city.trip_id}`}><button onClick={() => props.editTrip(props.city.trip_id)}>Edit</button></Link>
       <button onClick={() => {props.deleteTrip(props.city.trip_id); 
     //   props.toggle();
         window.location.reload();

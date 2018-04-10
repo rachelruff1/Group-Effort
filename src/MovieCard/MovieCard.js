@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import testimg from "../Components/Home/home-img.jpg";
+import movieimg from "../Assets/Images/movie.jpg";
 import { getMovie } from "../ducks/reducer1";
 import "./MovieCard.css";
 import {
@@ -44,7 +44,7 @@ class MovieCard extends Component {
                   />
                 }
               >
-                <img src={testimg} alt="" />
+                <img src={movieimg} alt="" />
               </CardMedia>
               <CardTitle
                 title={

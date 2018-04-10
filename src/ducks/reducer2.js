@@ -9,6 +9,7 @@ const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 const GET_USER_INFO = "GET_USER_INFO";
 const UPDATE_CITY_IN_TRIP = "UPDATE_CITY_IN_TRIP";
 const GET_ALL_TRIPS = "GET_ALL_TRIPS";
+const DELETE_TRIP = "DELETE_TRIP";
 
 const initialState = {
   info: [],
@@ -24,8 +25,10 @@ const initialState = {
 
   test: "hi",
   newCityInTrip: {},
-  index: ""
-
+  index: "",
+  past: [],
+  current: [],
+  future: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -102,6 +105,22 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         newCityInTrip: action.payload,
         index: action.index
+      });
+
+      case `${GET_ALL_TRIPS}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_ALL_TRIPS}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_ALL_TRIPS}_FULFILLED`:
+    console.log('HIIITTT', action);
+      return Object.assign({}, state, {
+        isLoading: false,
+        past: action.payload.past,
+        current: action.payload.current,
+        future: action.payload.future
       });
 
     //default value
@@ -195,7 +214,7 @@ export function getAllTrips(id) {
   let future = [];
   console.log(today);
   return {
-    tpe: GET_ALL_TRIPS,
+    type: GET_ALL_TRIPS,
     payload: axios.get(`/api/getAllTrips/${id}`).then(resp => {
       console.log(resp);
       resp.data.map(x => {
@@ -210,5 +229,23 @@ export function getAllTrips(id) {
       console.log(past, current, future);
       return { past, current, future };
     })
+    .catch(err => err.errMessage)
   };
+}
+
+export function editTrip(tripId){
+console.log('hit edit');
+}
+
+export function deleteTrip(tripId, index){
+  console.log('hit delete', tripId);
+  return {
+    type: DELETE_TRIP,
+    payload: axios
+    .delete(`/api/deleteTrip/${tripId}`)
+    .then(resp =>index)
+    .catch(err => err.errMessage)
+  }
+
+  
 }

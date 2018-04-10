@@ -5,7 +5,8 @@
       url("mobile-home-img.jpg");
     background-repeat: no-repeat;
     height: 100vh;
-    background-size: 65vh;
+    /* background-size: 65vh; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
   }
 
   .search {
@@ -67,7 +68,8 @@
       url("mobile-home-img.jpg");
     background-repeat: no-repeat;
     height: 100vh;
-    background-size: 100vh;
+    /* background-size: 100vh; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
   }
 
   .search {
@@ -128,7 +130,8 @@
       url("mobile-home-img.jpg");
     background-repeat: no-repeat;
     height: 100vh;
-    background-size: 100vh;
+    /* background-size: 100vh; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
   }
 
   .search {
@@ -192,7 +195,9 @@
       url("mobile-home-img.jpg");
     background-repeat: no-repeat;
     height: 100vh;
-    background-size: 100vh;
+    /* background-size: 100vh; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
+    background-position: center center;
   }
 
   .search {
@@ -262,7 +267,8 @@
       url("home-img.jpg");
     background-repeat: no-repeat;
     overflow: hidden;
-    background-size: 130vw;
+    /* background-size: 130vw; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
     height: 100vh;
   }
 
@@ -375,7 +381,8 @@
       url("home-img.jpg");
     background-repeat: no-repeat;
     overflow: hidden;
-    background-size: 100vw;
+    /* background-size: 100vw; */
+    background-size: cover; /*this keeps us from seeing white gaps*/ 
     height: 100vh;
     animation: showup 5s;
   }

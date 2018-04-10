@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import Search from "../../Search/Search";
+import Search from "../../Search/SearchBox";
 import { getProfile } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
@@ -34,9 +34,8 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-      <Login />
+        <Login />
         <div className="login-buttons">
-          
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
@@ -54,8 +53,7 @@ class AppHeader extends Component {
             onClick={() => this.toggleDropDown()}
           />
         )}
-        {this.state.toggle == true ? <ProfilePopOver/> : null}
-        
+        {this.state.toggle == true ? <ProfilePopOver /> : null}
       </header>
     );
   }

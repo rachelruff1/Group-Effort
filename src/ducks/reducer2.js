@@ -18,9 +18,10 @@ const initialState = {
   errMessage: "errrrrr",
   placeDetail: {},
 
-  test: 'hi',
+  test: "hi",
   userinfo: {},
   newCityInTrip: {},
+
   index: '',
 
   test: "hi",
@@ -29,6 +30,7 @@ const initialState = {
   past: [],
   current: [],
   future: []
+
 };
 
 export default function reducer(state = initialState, action) {
@@ -86,7 +88,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         placeDetail: action.payload.result
       });
-      case `${GET_USER_INFO}_PENDING`:
+    case `${GET_USER_INFO}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_USER_INFO}_REJECTED`:
       return Object.assign({}, state, {
@@ -166,7 +168,7 @@ export function getPlace(placeId) {
 }
 
 export function getUserInfo() {
-  console.log("444444544455555")
+  console.log("444444544455555");
   return {
     type: GET_USER_INFO,
     payload: axios
@@ -175,7 +177,7 @@ export function getUserInfo() {
       .catch(err => err.errMessage)
   };
 }
-export function createNewTrip(tripName, tripStart, tripEnd){
+export function createNewTrip(tripName, tripStart, tripEnd) {
   return {
     type: CREATE_NEW_TRIP,
     payload: axios

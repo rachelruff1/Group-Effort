@@ -11,6 +11,7 @@ import Login from "../../Auth/Auth";
 import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
 import Profile from "../../Profile/Profile";
 import Auth2 from "../../Auth/Auth2";
+import noUser from "../../../Assets/Images/defaultuser2.png";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -48,13 +49,13 @@ class AppHeader extends Component {
             </div>
           </div>
         </div>
-        {this.props.picture && (
+        
           <img
             className="user-photo"
-            src={this.props.picture}
+            src={this.props.auth_status !== true ? noUser  : this.props.picture }
             onClick={() => this.toggleDropDown()}
           />
-        )}
+        
         {this.state.toggle == true ? <ProfilePopOver /> : null}
       </header>
     );

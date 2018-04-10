@@ -97,6 +97,13 @@ app.get(
 
 //------------- start of endpoints --------------
 
+
+
+app.get("/api/logout", (req, res) => {
+  req.session.destroy();
+  res.status(200).send("session destroyed, bitches")
+})
+
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
   res.status(200).json(req.user);

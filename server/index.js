@@ -97,6 +97,13 @@ app.get(
 
 //------------- start of endpoints --------------
 
+app.get("/api/getUserInfo", (req, res) => {
+  console.log(req.user)
+  res.status(200).json(req.user);
+});
+
+
+
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });

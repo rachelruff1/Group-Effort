@@ -34,16 +34,9 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-        {this.props.picture && (
-          <img
-            className="user-photo"
-            src={this.props.picture}
-            onClick={() => this.toggleDropDown()}
-          />
-        )}
-        {this.state.toggle == true ? <ProfilePopOver/> : null}
+      <Login />
         <div className="login-buttons">
-          <Login />
+          
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
@@ -53,6 +46,16 @@ class AppHeader extends Component {
             </div>
           </div>
         </div>
+
+        {this.props.picture && (
+          <img
+            className="user-photo"
+            src={this.props.picture}
+            onClick={() => this.toggleDropDown()}
+          />
+        )}
+        {this.state.toggle == true ? <ProfilePopOver/> : null}
+        
       </header>
     );
   }

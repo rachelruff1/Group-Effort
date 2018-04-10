@@ -300,8 +300,10 @@ const getPhotoref = (req, res, next) => {
     )
     .then(resp => {
       res.status(200).send(resp.data.result.photos[0].photo_reference);
+
     });
 };
+
 const deleteTrip = (req, res, next) => {
   const { id } = req.params;
   console.log(id);

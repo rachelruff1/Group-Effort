@@ -18,7 +18,7 @@ export default (
     <Route component={LocationView} path="/location" />
     <Route component={CreateTrip} path="/create-trip"/>
     <Route component={Profile} path="/profile"/>
-    
+    <Route component={CreateTrip} path='/edit-trip/:id' />
     
   </Switch>
 );

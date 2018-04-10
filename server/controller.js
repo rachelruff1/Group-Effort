@@ -291,6 +291,7 @@ const getAllTrips = (req, res, next) => {
     });
 };
 
+
 const getPhotoref = (req, res, next) => {
   axios
     .get(
@@ -300,13 +301,24 @@ const getPhotoref = (req, res, next) => {
     )
     .then(resp => {
       res.status(200).send(resp.data.result.photos[0].photo_reference);
+
+const deleteTrip = (req, res, next) => {
+  const { id } = req.params;
+  console.log(id);
+  const db = req.app.get("db");
+  db
+    .delete_trip([id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+
     })
     .catch(err => {
       console.log(err);
       next(err);
     });
 };
-//https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJdd4hrwug2EcRmSrV3Vo6llI&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -321,6 +333,7 @@ module.exports = {
   getPlaceimg,
   getPhotoref,
 
+  deleteTrip,
   createNewTrip,
   addCityToDatabase,
   getMall,

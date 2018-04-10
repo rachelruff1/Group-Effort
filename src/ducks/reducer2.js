@@ -20,7 +20,7 @@ const initialState = {
   test: 'hi',
   userinfo: {},
   newCityInTrip: {},
-  index: ''
+  index: '',
 
   test: "hi",
   newCityInTrip: {},

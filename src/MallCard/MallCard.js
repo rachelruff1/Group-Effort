@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import testimg from "../Components/Home/home-img.jpg";
+import mallimg from "../Assets/Images/mall.jpg";
 import { getMall } from "../ducks/reducer1";
 import "./MallCard.css";
 import {
@@ -44,7 +44,7 @@ class FoodCard extends Component {
                   />
                 }
               >
-                <img src={testimg} alt="" />
+                <img src={mallimg} alt="" />
               </CardMedia>
               <CardTitle
                 title={

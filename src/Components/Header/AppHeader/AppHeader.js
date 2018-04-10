@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import Search from "../../Search/Search";
+import Search from "../../Search/SearchBox";
 import { getProfile, verifyUser } from "../../../ducks/reducer1";
 import AppDrawer from "./Drawer.js";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import test2 from "../../Logo/trippie_logo.png";
 import Login from "../../Auth/Auth";
 import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
 import Profile from "../../Profile/Profile";
+
 
 class AppHeader extends Component {
   constructor(props) {
@@ -35,10 +36,14 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-      {this.props.auth_status != true ? (
-      <Login />) : false}
+
+
+
+
+
+      {this.props.auth_status !== true? (
+      <div><Login /></div>) : <div></div>}
         <div className="login-buttons">
-          
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
@@ -55,15 +60,15 @@ class AppHeader extends Component {
             onClick={() => this.toggleDropDown()}
           />
         )}
-        {this.state.toggle == true ? <ProfilePopOver/> : null}
-        
+        {this.state.toggle == true ? <ProfilePopOver /> : null}
       </header>
     );
   }
 }
 function mapStateToProps(state) {
   return {
-    picture: state.reducer1.picture
+    picture: state.reducer1.picture,
+    auth_status: state.reducer1.auth_status
   };
 }
 export default connect(mapStateToProps, {

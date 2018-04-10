@@ -13,54 +13,61 @@ class ViewAllTrips extends Component {
       tripName: "",
       destination: "",
       tripDates: "",
-      current: [],
-      future: [],
-      past: [],
-      id: 9
+      id: 9,
+      toggle: true
     };
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
-    this.props.getAllTrips(this.state.id).then(resp => {
-      console.log(resp);
-      this.setState({
-        current: [resp.action.payload.current],
-        future: [resp.action.payload.future],
-        past: [resp.action.payload.past]
-      });
-    });
+    this.props.getAllTrips(this.state.id);
   }
-
+toggle(){
+    this.setState({
+        toggle: !(this.state.toggle)
+    })
+}
 
   render() {
-    console.log(this.state.future[0], this.state.current[0], this.state.past[0]);
+    console.log(this.props.future, this.props.current, this.props.past);
     const futureTrips =
-      this.state.future.length > 0 &&
-      this.state.future[0].map((c, i) => <IndividualTripCard key={i} city={c} />);
+      this.props.future.length > 0 &&
+      this.props.future.map((c, i) => <IndividualTripCard key={i} city={c} index={i} toggle={this.toggle}/>);
 
     const pastTrips =
-      this.state.past.length > 0 &&
-      this.state.past[0].map((c, i) => <IndividualTripCard key={i} city={c} />);
+      this.props.past.length > 0 &&
+      this.props.past.map((c, i) => <IndividualTripCard key={i} city={c} index={i} toggle={this.toggle}/>);
     
     const currentTrips =
-      this.state.current.length > 0 &&
-      this.state.current[0].map((c, i) => <IndividualTripCard key={i} city={c} />);
-
+      this.props.current.length > 0 &&
+      this.props.current.map((c, i) => <IndividualTripCard key={i} city={c} index={i} toggle={this.toggle}/>);
+console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
     return (
       <div>
         <main>
-            <h1>
+            <h1>MY TRIPS</h1>
+            {currentTrips === false ? null : <div><h2>
                 Current Trips
-            </h1>
-            {currentTrips}
-            <h1>
+            </h2>
+            {currentTrips}</div>}
+            {futureTrips === false ? null : <div><h2>
+                Future Trips
+            </h2>
+            {futureTrips}</div>}
+            {pastTrips === false ? null : <div><h2>
+                Past Trips
+            </h2>
+            {pastTrips}</div>}
+            
+            {/* <h1>
                 Future Trips
             </h1>
             {futureTrips}
+            
             <h1>
                 Past Trips
             </h1>
-            {pastTrips}
+            {pastTrips} */}
 
           <CreateTripButton />
         </main>
@@ -68,7 +75,14 @@ class ViewAllTrips extends Component {
     );
   }
 }
-const mapStateToProps = state => state;
+
+
+
+const mapStateToProps = state => ({
+    current: state.reducer2.current,
+    future: state.reducer2.future,
+    past: state.reducer2.past
+  });
 
 export default connect(mapStateToProps, {
   getAllTrips

@@ -123,6 +123,7 @@ app.get("/api/getWebcams/:id", ctrl.getWebcams);
 app.get("/api/getFacts/:id", ctrl.getFacts);
 app.get("/api/getParks/:id", ctrl.getParks);
 
+app.delete('/api/deleteTrip/:id', ctrl.deleteTrip);
 app.post('/api/createNewTrip', ctrl.createNewTrip);
 app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);

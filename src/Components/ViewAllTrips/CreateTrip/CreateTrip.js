@@ -87,7 +87,7 @@ class CreateTrip extends Component {
 
         <RaisedButton
           onClick={() => this.toggleEdit()}
-          label="+ ADD DESTINATION"
+          label="+ ADD CITY"
           style={style}
         />
         <RaisedButton
@@ -105,7 +105,7 @@ class CreateTrip extends Component {
                 });
               })
           }
-          label="DONE"
+          label="SAVE"
           style={style}
         />
       </div>

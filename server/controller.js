@@ -279,6 +279,22 @@ const getAllTrips = (req, res, next) => {
     });
 };
 
+const deleteTrip = (req, res, next) => {
+  const { id } = req.params;
+  console.log(id);
+  const db = req.app.get("db");
+  db
+    .delete_trip([id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -291,6 +307,7 @@ module.exports = {
   getFacts,
   getParks,
 
+  deleteTrip,
   createNewTrip,
   addCityToDatabase,
   getMall,

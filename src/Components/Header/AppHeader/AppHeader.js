@@ -10,7 +10,7 @@ import test2 from "../../Logo/trippie_logo.png";
 import Login from "../../Auth/Auth";
 import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
 import Profile from "../../Profile/Profile";
-
+import Auth2 from "../../Auth/Auth2";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -36,13 +36,8 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-
-
-
-
-
       {this.props.auth_status !== true? (
-      <div><Login /></div>) : <div></div>}
+      <div><Login /></div>) : <div><Auth2 /></div>}
         <div className="login-buttons">
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />

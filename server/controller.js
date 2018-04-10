@@ -233,7 +233,6 @@ const createNewTrip = (req, res, next) => {
 };
 
 const getPlaceimg = (req, res, next) => {
-  console.log("img", req.params);
   axios
     .get(`${googlePlacesImgBase}${req.params.id}&key=${googleApiKey}`)
     .then(resp => {
@@ -293,7 +292,6 @@ const getAllTrips = (req, res, next) => {
 };
 
 const getPhotoref = (req, res, next) => {
-  console.log("hit2:$$$$$", req.params);
   axios
     .get(
       `https://maps.googleapis.com/maps/api/place/details/json?placeid=${
@@ -301,7 +299,6 @@ const getPhotoref = (req, res, next) => {
       }&key=${googleApiKey}`
     )
     .then(resp => {
-      console.log("------------", resp.data.result.photos[0].photo_reference);
       res.status(200).send(resp.data.result.photos[0].photo_reference);
     })
     .catch(err => {

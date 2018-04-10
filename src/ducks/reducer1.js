@@ -429,7 +429,6 @@ export function updatePlacephotoref(placeId) {
     payload: axios
       .get(`/api/getPhotoref/${placeId}`)
       .then(resp => {
-        console.log(resp, "**********");
         return resp.data;
       })
       .catch(console.log)
@@ -619,7 +618,6 @@ export function getPlaceimg(placephotoref) {
     payload: axios
       .get(`/api/getPlaceimg/${placephotoref}`)
       .then(resp => {
-        console.log("resp.datat", resp.data);
         return resp.data;
       })
       .catch(console.log)

@@ -23,7 +23,6 @@ class LocationView extends Component {
     // img.src = "data:image/jpeg;base64," + btoa(this.props.placeimg);
     // document.body.appendChild(img);
 
-    console.log(typeof this.props.placeimg);
     return (
       <div className="LocationView">
         <div className="SearchbaronLocation">

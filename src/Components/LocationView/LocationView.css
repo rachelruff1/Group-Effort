@@ -1,0 +1,20 @@
+.location-body{
+    background-image: url("location-view-img.jpg");
+    background-size: cover;
+    height:100vh;
+    overflow: hidden;
+    display: flex;
+    
+}
+
+.location-card-group{
+    position: relative;
+    top: 35vh;
+}
+
+.park-card{    
+    height: 20vh;
+    min-width:20vw;  
+    overflow: scroll;
+}
+

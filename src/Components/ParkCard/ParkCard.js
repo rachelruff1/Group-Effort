@@ -46,7 +46,7 @@ class ParkCard extends Component {
               >
                 <img src={testimg} alt="" />
               </CardMedia>
-              <CardTitle
+              <CardTitle className="cardtitle"
                 title={
                   this.props.parks[i] != undefined
                     ? this.props.parks[i].rating

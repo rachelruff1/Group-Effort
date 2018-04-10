@@ -1,4 +1,17 @@
+
+
+
+
 .parkcards {
-  height: 60px;
-  width: 300px;
+  font-size: 10px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+  height: 20vh;
+  width: 30vw;
+  position: relative;
+  top: 10vh;
 }

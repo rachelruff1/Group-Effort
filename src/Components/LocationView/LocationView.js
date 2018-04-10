@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
+import "./LocationView.css";
 import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
@@ -13,29 +14,27 @@ class LocationView extends Component {
   }
   render() {
     return (
-      <div className="LocationView">
-        <div className="SearchbaronLocation">
+      <div className="location-body">
+        <div className="location-searchBox">
           <SearchBox />
+        </div>
           {console.log(this.props, "adsfadfasdfafdafdsfads")}
+        <div className="location-title">
           <h1>
             {/* add conditinal  */}
             {this.props.city},{this.props.state},{this.props.country}
           </h1>
+        </div>
+        <div className="location-image">
           <p>img.of.city</p>
         </div>
-        <ParkCard />
-        <div>
-          <MuseumCard />
-        </div>
-        <div>
-          <FoodCard />
-        </div>
-        <div>
-          <MallCard />
-        </div>
-        <div>
-          <MovieCard />
-        </div>
+        <section className="location-card-group">
+          <div className="park-card"><ParkCard /></div>
+          <div className="museum-card"><MuseumCard /></div>
+          <div className="food-card"><FoodCard /></div>
+          <div className="mall-card"><MallCard /></div>
+          <div className="movie-card"><MovieCard /></div>
+        </section>
       </div>
     );
   }

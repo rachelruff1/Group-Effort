@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import movieimg from "../Assets/Images/movie.jpg";
+import noimg from "../Assets/Images/icon-no-image.svg";
 import { getMovie } from "../ducks/reducer1";
 import "./MovieCard.css";
 import {
@@ -44,7 +44,16 @@ class MovieCard extends Component {
                   />
                 }
               >
-                <img src={movieimg} alt="" />
+                <img
+                  src={
+                    this.props.movie[i].photos != undefined
+                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                          this.props.movie[i].photos[0].photo_reference
+                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                      : noimg
+                  }
+                  alt=""
+                />
               </CardMedia>
               <CardTitle
                 title={

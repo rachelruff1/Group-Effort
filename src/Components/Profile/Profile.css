@@ -1,0 +1,23 @@
+.profile-shell {
+    background-image: url("../Logo/Profilepagebackground.jpeg");
+    background-position: center;
+    background-size: cover;
+    width:100vw;
+    height: 100vh;
+}
+
+.attributes {
+}
+
+.main-content-wrapper {
+    margin: 0 auto;
+    max-width: 960px; 
+    padding-top: 100px;
+    padding-right: 10px; 
+    padding-left: 10px; 
+  }
+
+.info-container {
+  position: absolute;
+  
+}

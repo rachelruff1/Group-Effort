@@ -1,20 +1,21 @@
 /*For IPhone 5/SE*/
-@media only screen and (max-width: 320px) {
+/* @media only screen and (max-width: 320px) {
 	.app-header {
-		position: fixed;
 		background: transparent;
 		overflow: hidden;
 		padding: 1em;
-		height: 10vh;
 		width: 90vw;
+		border-bottom: 2px solid #000;
+		height: 40px;
 	}
 
 	.user-photo {
 		position: fixed;
 		right: 5vw;
 		border: 1px solid white;
-		border-radius: 50px 50px 50px 50px;
+		border-radius: 50px;
 		height: 5vh;
+		z-index: 3;
 	}
 
 	.login-buttons{
@@ -32,55 +33,55 @@
 		height: 30px;
 		width: 30px;
 	 }
-}
+} */
 
 /*For Med mobile phone*/
-@media only screen and (min-width: 375px) {
+/* @media only screen and (min-width: 375px) {
 	.app-header {
-		position: fixed;
 		background: transparent;
 		overflow: hidden;
 		padding: 1em;
-		height: 10vh;
 		width: 90vw;
+		height: 50px;
 	}
-}
+} */
 
 /*For large mobile phone*/
-@media only screen and (min-width: 425px) {
+/* @media only screen and (min-width: 425px) {
 	.app-header {
-		position: fixed;
 		background: transparent;
 		overflow: hidden;
 		padding: 1em;
-		height: 10vh;
+		height: 50px;
 		width: 90vw;
 	}
-}
+} */
 
 
 /*For Small Laptops*/
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 768px) {
 	.app-header {
+		display: inline-block;
 		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 50px;
 		background: transparent;
 		overflow: hidden;
 		padding: 1em;
-		width: 100%;
+		width: 98%;
+		border-bottom: 2px solid #000;
 	}
 	
 	.logo {
-		display: flex;
-		float: left;
-		/* position: fixed; */
-		top: 0vh;
-		height: 60px;
-		/* width: 10vw; */
+		width: 80px;
 	 }
 
 	 .login-buttons{
 		position: fixed;
 		left: 45vw;
+		top: 0;
 	}
 
 	 .responsive-nav{
@@ -88,9 +89,8 @@
 	}
 
 	 .user-photo {
-		position: fixed;
-		top: 15px;
-		right: 62px;
+		float: right;
+		margin-right: 15px;
 		border: 1px solid white;
 		border-radius: 50px;
 		height: 50px;
@@ -98,29 +98,66 @@
 }
 
 /*For Full Screen*/
-@media only screen and (min-width: 1900px) {
-.app-header {
-	position: fixed;
-	background: transparent;
-	overflow: hidden;
-	padding: 1em;
-	width: 100%;
-}
-.user-photo {
-	position: fixed;
-	right: 5vw;
-	border: 2px solid white;
-	border-radius: 50px;
-	height: 60px;
-}
-
-.responsive-nav{
-	visibility: hidden;
-}
-
-.logo {
+@media only screen and (min-width: 769px) {
+	.app-header {
+		display: inline-block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 50px;
+		background: transparent;
+		overflow: hidden;
+		padding: 1em;
+		width: 98%;
+		border-bottom: 2px solid #000;
+	}
 	
-    height: 30px;
-		width: 30px;
- }
+	.logo {
+		width: 80px;
+		/*height will adjust according to the width*/
+	 }
+
+	 .login-buttons{
+		position: fixed;
+		left: 45vw;
+		top: 0;
+	}
+
+	 .responsive-nav{
+		visibility: hidden;
+	}
+
+	 .user-photo {
+		float: right;
+		margin-right: 15px;
+		border: 1px solid white;
+		border-radius: 50px;
+		height: 50px;
+	}
+}
+
+/*****************************AUTHORIZATION STYLES*****************************/
+
+.auth {
+	display: inline-block;
+}
+.auth-button {
+	position: relative;
+	letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-left: 10px;
+    user-select: none;
+	padding: 4px 8px;
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	background-color: #2387de;
+	transition: background-color .3s;
+}
+
+.auth-button:hover {
+	background-color: #1673c4;
 }

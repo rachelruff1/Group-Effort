@@ -97,6 +97,13 @@ app.get(
 
 //------------- start of endpoints --------------
 
+app.get("/api/getUserInfo", (req, res) => {
+  console.log(req.user)
+  res.status(200).json(req.user);
+});
+
+
+
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
 });
@@ -127,6 +134,8 @@ app.post('/api/createNewTrip', ctrl.createNewTrip);
 app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
+
+app.get('/api/getAllTrips/:id', ctrl.getAllTrips);
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

@@ -11,6 +11,9 @@ class LocationView extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount(props) {}
+
   render() {
     return (
       <div className="LocationView">
@@ -45,7 +48,8 @@ function mapStateToProps(state) {
   return {
     city: state.reducer1.city,
     state: state.reducer1.state,
-    country: state.reducer1.country
+    country: state.reducer1.country,
+    placeid: state.reducer1.placeid
   };
 }
 export default connect(mapStateToProps)(LocationView);

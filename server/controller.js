@@ -2,12 +2,15 @@ const axios = require("axios");
 const googleApiKey = "AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko";
 const googlePlacesBase =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
+const googlePlacesImgBase =
+  "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
 let places = [];
 let museums = [];
 let parks = [];
 let food = [];
 let mall = [];
 let movie = [];
+let placeimg = "";
 const getUser = (req, res, next) => {
   const db = req.app.get("db");
   db.user
@@ -229,6 +232,17 @@ const createNewTrip = (req, res, next) => {
     });
 };
 
+const getPlaceimg = (req, res, next) => {
+  console.log("img", req.params);
+  axios
+    .get(`${googlePlacesBase}${req.params.id}&key=${googleApiKey}`)
+    .then(resp => {
+      placeimg = resp.data;
+      res.status(200).json(placeimg);
+    })
+    .catch(() => res.status(500).json());
+};
+
 const addCityToDatabase = (req, res, next) => {
   console.log("new trip ctrl", req.body);
   const {
@@ -290,6 +304,7 @@ module.exports = {
   getWebcams,
   getFacts,
   getParks,
+  getPlaceimg,
 
   createNewTrip,
   addCityToDatabase,

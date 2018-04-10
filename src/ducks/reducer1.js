@@ -20,6 +20,7 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
+const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
@@ -56,6 +57,7 @@ const initialState = {
   parks: [],
   mall: [],
   movie: [],
+  placeimg: "",
 
   city: "",
   state: "",
@@ -266,6 +268,19 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: false,
         movie: action.payload
+      });
+    case `${GET_PLACE_IMG}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_PLACE_IMG}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_PLACE_IMG}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        placeimg: action.payload
       });
 
     //CREATETRIP.JS
@@ -570,6 +585,18 @@ export function getParks(latlng) {
   };
 }
 
+export function getPlaceimg() {
+  return {
+    type: GET_PLACE_IMG,
+    payload: axios
+      .get("/api/getPlaceimg")
+      .then(resp => {
+        return resp.data;
+      })
+      .catch(console.log)
+  };
+}
+
 //CREATETRIP.JS
 
 export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
@@ -640,7 +667,7 @@ export function createNewTrip(tripName, cities) {
   });
   dates.sort();
   let startDate = dates[0];
-  let endDate = dates[dates.length-1];
+  let endDate = dates[dates.length - 1];
 
   console.log("newtrip1", tripName, startDate, endDate);
   return {
@@ -685,4 +712,3 @@ export function updateEndDate(endMUI, index) {
     payload: { endDate, index }
   };
 }
-

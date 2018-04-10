@@ -6,6 +6,7 @@ const EDIT_USER = "EDIT_USER";
 const LOGOUT = "LOGOUT";
 const GET_PROFILE = "GET_PROFILE";
 
+const UPDATE_PLACE_PHOTOREF = "UPDATE_PLACE_PHOTOREF";
 const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
 const UPDATE_LAT_LNG = "UPDATE_LAT_LNG";
 const GET_CITIES = "GET_CITIES";
@@ -58,6 +59,7 @@ const initialState = {
   mall: [],
   movie: [],
   placeimg: "",
+  placephotoref: "",
 
   city: "",
   state: "",
@@ -92,7 +94,19 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
-
+    case `${UPDATE_PLACE_PHOTOREF}_FULFILLED`:
+      console.log("reducer func:", action);
+      return Object.assign({}, state, {
+        isLoading: false,
+        placephotoref: action.payload
+      });
+    case `${UPDATE_PLACE_PHOTOREF}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${UPDATE_PLACE_PHOTOREF}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
     case UPDATE_PLACE_ID:
       return Object.assign({}, state, { placeId: action.payload });
 
@@ -408,6 +422,19 @@ export function updatePlaceId(placeId) {
     payload: placeId
   };
 }
+export function updatePlacephotoref(placeId) {
+  console.log("hit:$$$$$$", placeId);
+  return {
+    type: UPDATE_PLACE_PHOTOREF,
+    payload: axios
+      .get(`/api/getPhotoref/${placeId}`)
+      .then(resp => {
+        console.log(resp, "**********");
+        return resp.data;
+      })
+      .catch(console.log)
+  };
+}
 
 export function updateLatLng(latlng) {
   // console.log(latlng);
@@ -585,12 +612,14 @@ export function getParks(latlng) {
   };
 }
 
-export function getPlaceimg() {
+export function getPlaceimg(placephotoref) {
+  console.log("hit:^^^^^^", placephotoref);
   return {
     type: GET_PLACE_IMG,
     payload: axios
-      .get("/api/getPlaceimg")
+      .get(`/api/getPlaceimg/${placephotoref}`)
       .then(resp => {
+        console.log("resp.datat", resp.data);
         return resp.data;
       })
       .catch(console.log)

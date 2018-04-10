@@ -235,10 +235,9 @@ const createNewTrip = (req, res, next) => {
 const getPlaceimg = (req, res, next) => {
   console.log("img", req.params);
   axios
-    .get(`${googlePlacesBase}${req.params.id}&key=${googleApiKey}`)
+    .get(`${googlePlacesImgBase}${req.params.id}&key=${googleApiKey}`)
     .then(resp => {
-      placeimg = resp.data;
-      res.status(200).json(placeimg);
+      res.status(200).json(resp.data);
     })
     .catch(() => res.status(500).json());
 };
@@ -293,6 +292,24 @@ const getAllTrips = (req, res, next) => {
     });
 };
 
+const getPhotoref = (req, res, next) => {
+  console.log("hit2:$$$$$", req.params);
+  axios
+    .get(
+      `https://maps.googleapis.com/maps/api/place/details/json?placeid=${
+        req.params.id
+      }&key=${googleApiKey}`
+    )
+    .then(resp => {
+      console.log("------------", resp.data.result.photos[0].photo_reference);
+      res.status(200).send(resp.data.result.photos[0].photo_reference);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+//https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJdd4hrwug2EcRmSrV3Vo6llI&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko
 module.exports = {
   getPlaceData,
   getCities,
@@ -305,6 +322,7 @@ module.exports = {
   getFacts,
   getParks,
   getPlaceimg,
+  getPhotoref,
 
   createNewTrip,
   addCityToDatabase,

@@ -127,6 +127,7 @@ app.get("/api/getMuseums/:id", ctrl.getMuseums);
 app.get("/api/getWebcams/:id", ctrl.getWebcams);
 app.get("/api/getFacts/:id", ctrl.getFacts);
 app.get("/api/getParks/:id", ctrl.getParks);
+app.get("/api/getPhotoref/:id", ctrl.getPhotoref);
 app.get("/api/getPlaceimg/:id", ctrl.getPlaceimg);
 
 app.post("/api/createNewTrip", ctrl.createNewTrip);

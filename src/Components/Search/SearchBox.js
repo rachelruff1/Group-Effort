@@ -53,6 +53,7 @@ const SearchBox = compose(
           // props.updatePlaceId(places.place_id);
 
           this.props.updatePlacephotoref(places[0].place_id);
+        //potential search box formating
         }
       });
     }

@@ -97,6 +97,14 @@ app.get(
 
 //------------- start of endpoints --------------
 
+
+
+app.get("/api/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("http://localhost:3000/#")
+  
+})
+
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
   res.status(200).json(req.user);

@@ -3,22 +3,23 @@ import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
 import {
-  updateCitiesInTrip,
-  addDatesToCities,
-  updateStartDate,
-  updateEndDate,
-  deleteCity
+  updateEditTrip,
+  updateStartDateEdit,
+  updateEndDateEdit,
+  deleteCity,
+  updateEditCitiesInTrip
 } from "../../../ducks/reducer1";
-import CreateTripSearch from "./SearchBars/CreateTripSearch";
-import "./CreateTripCard.css";
+import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
+import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 import moment from "moment";
+import EditTrip from "../EditTrip";
 
 const optionsStyle = {
   maxWidth: 255,
   marginRight: "auto"
 };
 
-class CreateTripCard extends Component {
+class EditTripCard extends Component {
   constructor(props) {
     super(props);
 
@@ -36,23 +37,14 @@ class CreateTripCard extends Component {
       edit: false
     };
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.updateTrip = this.updateTrip.bind(this);
+    this.updateEditTrip = this.updateEditTrip.bind(this);
   }
-
-  componentDidMount(props) {
-    this.props.addDatesToCities(
-      this.state.minDate,
-      this.state.maxDate,
-      this.props.index
-    );
-  }
-
 
   handleChangeMinDate = (event, date) => {
     this.setState({
       minDate: date
     });
-    this.props.updateStartDate(date, this.props.index);
+    this.props.updateStartDateEdit(date, this.props.index);
   };
 
   handleChangeMaxDate = (event, date) => {
@@ -60,17 +52,21 @@ class CreateTripCard extends Component {
       maxDate: date
     });
     // console.log(this.state.maxDate)
-    this.props.updateEndDate(date, this.props.index);
+    this.props.updateEndDateEdit(date, this.props.index);
   };
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
-  updateTrip(cityName, state, country, latLng, placeId) {
-    console.log(cityName, state, country, latLng, placeId, this.props.index);
-    this.props.updateCitiesInTrip(
-      cityName, state, country, latLng, placeId,
+  updateEditTrip(city_name, state, country, lat_lng, place_id) {
+    console.log(city_name, state, country, lat_lng, place_id, this.props.index);
+    this.props.updateEditCitiesInTrip(
+      city_name,
+      state,
+      country,
+      lat_lng,
+      place_id,
       this.props.index
     );
     this.toggleEdit();
@@ -84,35 +80,31 @@ class CreateTripCard extends Component {
         {this.state.edit === false ? null : (
           <div>
             <CreateTripSearch
-              source="createTripCard"
-              updateTrip={this.updateTrip}
+              source="editTripCard"
+              updateEditTrip={this.updateEditTrip}
             />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
         <section className="create-trip-card-container">
-
-        {/* check delete for cityId phrasing in the object */}
-        
-        <button onClick={()=>this.props.deleteCity(this.props.cityDetail.cityId)}>x</button>
+          <button onClick={() => this.props.deleteCity(this.props.index)}>
+            x
+          </button>
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
-            value={
-              this.props.cityDetail.cityName
-                
-            }
+            value={this.props.cityDetail.city_name}
             // {(this.state.cityName) ? this.state.cityName : 'no state'}
             // {(this.state.cityName) ? this.state.cityName : this.props.cityName}
           />
           <div style={optionsStyle}>
             <DatePicker
-              value={this.state.minDate}
+              value={new Date(this.props.cityDetail.start_date)}
               onChange={this.handleChangeMinDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
             <DatePicker
-              value={this.state.maxDate}
+              value={new Date(this.props.cityDetail.end_date)}
               onChange={this.handleChangeMaxDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
@@ -126,9 +118,8 @@ class CreateTripCard extends Component {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
-  updateCitiesInTrip,
-  addDatesToCities,
-  updateStartDate,
-  updateEndDate,
+  updateEditCitiesInTrip,
+  updateStartDateEdit,
+  updateEndDateEdit,
   deleteCity
-})(CreateTripCard);
+})(EditTripCard);

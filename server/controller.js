@@ -59,7 +59,7 @@ const getCities = (req, res, next) => {
   db
     .get_cities([req.params.tripid])
     .then(resp => {
-      // console.log(resp);
+      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -320,6 +320,84 @@ const deleteTrip = (req, res, next) => {
     });
 };
 
+const deleteCity = (req, res, next) => {
+  const db = req.app.get("db");
+  db
+    .delete_city([id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
+const updateTripOnEdit = (req, res, next) => {
+  const {tripId, tripName, startDateOnUpdateTrip, endDateOnEditTrip} = req.body;
+  const db = req.app.get("db");
+  db
+    .update_trip_on_edit([tripId, tripName, startDateOnUpdateTrip, endDateOnEditTrip])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
+const addCitiesOnEdit = (req, res, next) => {
+  const {tripId} = req.params;
+  const {city_name,
+    state,
+    country,
+    lat_lng,
+    place_id,
+    start_date,
+    end_date,
+    trip_id} = req.params.city;  
+  const db = req.app.get("db");
+  db
+    .add_city_on_edit([city_name,
+      state,
+      country,
+      lat_lng,
+      place_id,
+      start_date,
+      end_date,
+      trip_id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
+const updateCitiesOnEdit = (req, res, next) => {
+  const {
+    start_date,
+    end_date, city_id} = req.body;
+  const db = req.app.get("db");
+  db
+    .update_trip_on_edit([
+      start_date,
+      end_date, city_id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -339,5 +417,9 @@ module.exports = {
   addCityToDatabase,
   getMall,
   getMovie,
-  getAllTrips
+  getAllTrips,
+  deleteCity,
+  updateTripOnEdit,
+  addCitiesOnEdit,
+  updateCitiesOnEdit
 };

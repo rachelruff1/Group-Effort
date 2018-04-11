@@ -1,17 +1,29 @@
+.card-name{
+  height: 5vh;
+  font-size: 20px;
+}
 
+.park-img{
+  max-width: 200px;
+}
 
+.card-title{
+  font-size: 20px;
+  width:10vw;
+  height: 10px;
+  
+  }
 
-
-.parkcards {
-  font-size: 10px;
+.parkcards {  
   display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-around;
 	align-items: center;
-	align-content: stretch;
-  height: 20vh;
-  width: 30vw;
+  align-content: stretch;
+ 
+  height: 15vh;
+  width: 50vw;
   position: relative;
   top: 10vh;
 }

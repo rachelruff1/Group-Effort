@@ -26,26 +26,21 @@ class LocationView extends Component {
 
     return (
       <div className="location-body">
-        <div className="location-searchBox">
-          <SearchBox />
+        
+        <div className="location-title">
           <h1>
             {/* add conditinal  */}
-            {this.props.city},{this.props.state},{this.props.country}
+            {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
+        </div>
+        <div className="location-image">
           <img
-            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
-
-        <ParkCard />
-        <div>
-          <MuseumCard />
-        </div>
-        <div className="location-image">
-          <p>img.of.city</p>
-        </div>
+        
         <section className="location-card-group">
           <div className="park-card"><ParkCard /></div>
           <div className="museum-card"><MuseumCard /></div>

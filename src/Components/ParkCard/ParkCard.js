@@ -33,36 +33,31 @@ class ParkCard extends Component {
         {this.props.parks.length > 0 &&
           this.props.parks.map((parks, i) => (
             <Card>
-              <CardMedia
-                overlay={
-                  <CardTitle
-                    title={
+              
+                  <div className="card-name">{
                       this.props.parks[i] != undefined
                         ? this.props.parks[i].name
                         : ""
                     }
-                  />
-                }
-              >
-                <img src={parkimg} alt="" />
-              </CardMedia>
-              <CardTitle className="cardtitle"
-                title={
+                  </div>
+              
+                <img src={parkimg} className="park-img" alt="" />
+              
+              <div className="card-title">{
                   this.props.parks[i] != undefined
                     ? this.props.parks[i].rating
                     : ""
                 }
-                subtitle=""
-              />
+                </div>
               <CardText />
-              <CardActions>
-                <FlatButton label="Add to trip" />
-                <FlatButton label="new" />
+              <div>
+                <button className="add-button">Add to trip</button>
+                <button className="new-button">New</button>
                 {console.log(
                   this.props.parks[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"
                 )}
-              </CardActions>
+              </div>
             </Card>
           ))}
       </div>

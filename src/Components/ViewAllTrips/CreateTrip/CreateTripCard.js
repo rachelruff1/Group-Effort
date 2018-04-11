@@ -47,9 +47,6 @@ class CreateTripCard extends Component {
     );
   }
 
-  // componentWillReceiveProps(props) {
-
-  // }
 
   handleChangeMinDate = (event, date) => {
     this.setState({
@@ -73,11 +70,7 @@ class CreateTripCard extends Component {
   updateTrip(cityName, state, country, latLng, placeId) {
     console.log(cityName, state, country, latLng, placeId, this.props.index);
     this.props.updateCitiesInTrip(
-      cityName,
-      state,
-      country,
-      latLng,
-      placeId,
+      cityName, state, country, latLng, placeId,
       this.props.index
     );
     this.toggleEdit();

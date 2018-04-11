@@ -3,10 +3,11 @@ import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
 import {
-  updateCitiesInTrip,
-  addDatesToCities,
-  updateStartDate,
-  updateEndDate, deleteCity
+  updateEditTrip,
+  updateStartDateEdit,
+  updateEndDateEdit,
+  deleteCity,
+  updateEditCitiesInTrip
 } from "../../../ducks/reducer1";
 import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
@@ -36,26 +37,14 @@ class EditTripCard extends Component {
       edit: false
     };
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.updateTrip = this.updateTrip.bind(this);
+    this.updateEditTrip = this.updateEditTrip.bind(this);
   }
-
-//   componentDidMount(props) {
-//     this.props.addDatesToCities(
-//       this.state.minDate,
-//       this.state.maxDate,
-//       this.props.index
-//     );
-//   }
-
-  // componentWillReceiveProps(props) {
-
-  // }
 
   handleChangeMinDate = (event, date) => {
     this.setState({
       minDate: date
     });
-    this.props.updateStartDate(date, this.props.index);
+    this.props.updateStartDateEdit(date, this.props.index);
   };
 
   handleChangeMaxDate = (event, date) => {
@@ -63,21 +52,21 @@ class EditTripCard extends Component {
       maxDate: date
     });
     // console.log(this.state.maxDate)
-    this.props.updateEndDate(date, this.props.index);
+    this.props.updateEndDateEdit(date, this.props.index);
   };
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
-  updateTrip(cityName, state, country, latLng, placeId) {
-    console.log(cityName, state, country, latLng, placeId, this.props.index);
-    this.props.updateCitiesInTrip(
-      cityName,
+  updateEditTrip(city_name, state, country, lat_lng, place_id) {
+    console.log(city_name, state, country, lat_lng, place_id, this.props.index);
+    this.props.updateEditCitiesInTrip(
+      city_name,
       state,
       country,
-      latLng,
-      placeId,
+      lat_lng,
+      place_id,
       this.props.index
     );
     this.toggleEdit();
@@ -91,21 +80,20 @@ class EditTripCard extends Component {
         {this.state.edit === false ? null : (
           <div>
             <CreateTripSearch
-              source="createTripCard"
-              updateTrip={this.updateTrip}
+              source="editTripCard"
+              updateEditTrip={this.updateEditTrip}
             />
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
         <section className="create-trip-card-container">
-        <button onClick={()=>this.props.deleteCity(this.props.cityDetail.city_id)}>x</button>
+          <button onClick={() => this.props.deleteCity(this.props.index)}>
+            x
+          </button>
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
-            value={
-              this.props.cityDetail.city_name
-                
-            }
+            value={this.props.cityDetail.city_name}
             // {(this.state.cityName) ? this.state.cityName : 'no state'}
             // {(this.state.cityName) ? this.state.cityName : this.props.cityName}
           />
@@ -130,9 +118,8 @@ class EditTripCard extends Component {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps, {
-  updateCitiesInTrip,
-  addDatesToCities,
-  updateStartDate,
-  updateEndDate, 
+  updateEditCitiesInTrip,
+  updateStartDateEdit,
+  updateEndDateEdit,
   deleteCity
 })(EditTripCard);

@@ -29,7 +29,8 @@ const initialState = {
   index: "",
   past: [],
   current: [],
-  future: []
+  future: [],
+  allTrips: []
 
 };
 
@@ -120,6 +121,7 @@ export default function reducer(state = initialState, action) {
     console.log('HIIITTT', action);
       return Object.assign({}, state, {
         isLoading: false,
+        allTrips: action.payload.allTrips,
         past: action.payload.past,
         current: action.payload.current,
         future: action.payload.future
@@ -214,11 +216,13 @@ export function getAllTrips(id) {
   let past = [];
   let current = [];
   let future = [];
+  let allTrips = [];
   console.log(today);
   return {
     type: GET_ALL_TRIPS,
     payload: axios.get(`/api/getAllTrips/${id}`).then(resp => {
       console.log(resp);
+      allTrips = resp.data;
       resp.data.map(x => {
         if (x.start_date <= today && x.end_date >= today) {
           current.push(x);
@@ -229,7 +233,7 @@ export function getAllTrips(id) {
         } else null;
       });
       console.log(past, current, future);
-      return { past, current, future };
+      return { past, current, future, allTrips };
     })
     .catch(err => err.errMessage)
   };

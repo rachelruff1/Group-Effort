@@ -76,7 +76,6 @@ class CreateTrip extends Component {
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
-        
         <TextField
           id="text-field-default"
           floatingLabelText="Trip name"

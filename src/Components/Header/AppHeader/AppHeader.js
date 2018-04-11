@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./AppHeader.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import Search from "../../Search/SearchBox";
+import Search  from "../../Search/SearchBox";
 import { getProfile, verifyUser } from "../../../ducks/reducer1";
 import { Link, withRouter } from "react-router-dom";
 import test2 from "../../Logo/trippie_logo.png";
@@ -24,6 +24,7 @@ class AppHeader extends Component {
   componentDidMount() {
     this.props.getProfile();
     this.props.verifyUser();
+    
   }
   
    toggleDropDown() {
@@ -34,16 +35,17 @@ class AppHeader extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.location.pathname);
     return (
       <header className="app-header">
         <div className="login-buttons">
+              {this.props.location.pathname == "/" ? <div></div> :<div className="header-search"> <Search/>  </div>}
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
           <div className="navbar">
             <div className="responsive-nav">
-              
+              {/* <Search /> */}
             </div>
           </div>
         </div>

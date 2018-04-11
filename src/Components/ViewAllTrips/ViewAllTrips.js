@@ -5,6 +5,7 @@ import CreateTripButton from "./CreateTripButton/CreateTripButton";
 import IndividualTripCard from "../ViewAllTrips/IndividualTripCard/IndividualTripCard";
 import { Link } from "react-router-dom";
 import "./ViewAllTrips.css";
+import FlatButton from "material-ui/FlatButton";
 
 class ViewAllTrips extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
             </h2>
             {pastTrips}</div>}
 
-<Link to='/create-trip'><button>+ Create Trip</button></Link>
+<Link to='/create-trip'><FlatButton label="+ Create Trip" /></Link>
           {/* <CreateTripButton /> */}
         </main>
       </div>

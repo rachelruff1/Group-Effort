@@ -97,10 +97,27 @@ app.get(
 
 //------------- start of endpoints --------------
 
+
+
+app.get("/api/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("http://localhost:3000/#")
+  
+})
+
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
   res.status(200).json(req.user);
 });
+//endpoint to check logged in status
+app.get("/api/me", (req, res) => {
+  console.log(req.user);
+  if (req.user) {
+    res.status(200).json(req.user);
+  } else {
+    res.status(500).json({ message: "User is not logged in" });
+  }
+ });
 
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
@@ -130,12 +147,11 @@ app.get("/api/getParks/:id", ctrl.getParks);
 app.get("/api/getPhotoref/:id", ctrl.getPhotoref);
 app.get("/api/getPlaceimg/:id", ctrl.getPlaceimg);
 
-
 app.post("/api/createNewTrip", ctrl.createNewTrip);
 app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
-app.delete('/api/deleteTrip/:id', ctrl.deleteTrip);
-app.post('/api/createNewTrip', ctrl.createNewTrip);
-app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
+app.delete("/api/deleteTrip/:id", ctrl.deleteTrip);
+app.post("/api/createNewTrip", ctrl.createNewTrip);
+app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 

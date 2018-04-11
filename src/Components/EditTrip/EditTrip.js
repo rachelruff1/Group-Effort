@@ -57,8 +57,12 @@ class EditTrip extends Component {
     let toDelete = this.props.cityIds.filter(
       x => notDeletedCityIds.indexOf(x) == -1
     );
+    console.log('notDeletedCityIds', notDeletedCityIds );
+    console.log('newCities', newCities, )
+    console.log('existingCities', existingCities,)
+    console.log('toDelete', toDelete)
 
-    toDelete.map(x => this.props.deleteCityFromDatabase(x));
+    toDelete.map(x => {console.log(x); this.props.deleteCityFromDatabase(x)});
     this.props.updateTripOnEdit(
       this.props.tripId,
       this.props.tripName,
@@ -79,7 +83,6 @@ class EditTrip extends Component {
     const editTripCardMap =
       cities.length > 0 &&
       cities.map((c, i) => {
-        console.log(c.cityName);
         return <EditTripCard key={i} cityDetail={c} index={i} />;
       });
 

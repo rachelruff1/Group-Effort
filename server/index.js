@@ -97,14 +97,6 @@ app.get(
 
 //------------- start of endpoints --------------
 
-
-
-app.get("/api/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("http://localhost:3000/#")
-  
-})
-
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
   res.status(200).json(req.user);
@@ -157,7 +149,7 @@ app.get("/api/getMovie/:id", ctrl.getMovie);
 
 app.delete('/api/deleteCity/:id', ctrl.deleteCity);
 app.put('/api/updateTripOnEdit', ctrl.updateTripOnEdit);
-app.post(`/api/addCitiesOnEdit/:city/:tripId`, ctrl.addCitiesOnEdit);
+app.post(`/api/addCitiesOnEdit/:id`, ctrl.addCitiesOnEdit);
 app.put('/api/updateCitiesOnEdit', ctrl.updateCitiesOnEdit);
 
 app.get('/api/getAllTrips/:id', ctrl.getAllTrips);

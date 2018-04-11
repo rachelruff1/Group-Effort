@@ -11,13 +11,13 @@ class Popup extends Component {
     this.state = {
       name: ["dallas", "austin", "more", "more2", "more3"],
       name2: "this. place. name. 2",
-      id: 9
+      id: 9,
+      allTrips: []
     };
   }
 
   componentDidMount(props) {
-    this.props.getUser();
-    this.props.getAllTrips(this.state.id);
+    this.props.getAllTrips(this.props.user);
   }
 
   getUsersTrips() {}
@@ -32,18 +32,26 @@ class Popup extends Component {
             <Link to="/create-trip">
               <button className="popupbtn">+ Create New</button>
             </Link>
-            <section class="container">
-              <p>Select Existing</p>
-              <div class="dropdown">
-                <select name="one" class="dropdown-select">
-                  <option value="">Select…</option>
-                  {/* {this.props.allTrips.map((name, i) => (
-                    <option value="1">{this.state.name[i]}</option>
-                  ))} */}
-                </select>
+            {this.props.allTrips == false ? (
+              <div>
+                <p>gone</p>
               </div>
-            </section>
-            <button className="popupbtn"> Go</button>
+            ) : (
+              <div>
+                <section class="container">
+                  <p>Select Existing</p>
+                  <div class="dropdown">
+                    <select name="one" class="dropdown-select">
+                      <option value="">Select…</option>
+                      {this.props.allTrips.map((name, i) => (
+                        <option value="1">{name.trip_name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </section>
+                <button className="popupbtn"> Go</button>
+              </div>
+            )}
           </div>
         </div>
       </div>

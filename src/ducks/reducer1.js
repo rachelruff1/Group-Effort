@@ -51,14 +51,79 @@ const initialState = {
   cityId: "",
   trip: {},
   saved: {},
-  food: [],
+  food: [
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    }
+  ],
   thingsToDo: {},
-  museums: [],
+  museums: [
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    }
+  ],
   webcams: {},
   facts: {},
-  parks: [],
-  mall: [],
-  movie: [],
+  parks: [
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    }
+  ],
+  mall: [
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    }
+  ],
+  movie: [
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    }
+  ],
   placeimg: "",
   placephotoref: "",
 
@@ -69,7 +134,7 @@ const initialState = {
   citiesInTrip: [],
   tripName: "",
   //CONDITIONAL LOG-IN BUTTON STATE
-  auth_status: false  
+  auth_status: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -98,9 +163,9 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
 
-      case `${VERIFY_USER}_FULFILLED`:
-     console.log(action.payload, "payload");
-     return Object.assign({}, state, { auth_status: action.payload });
+    case `${VERIFY_USER}_FULFILLED`:
+      console.log(action.payload, "payload");
+      return Object.assign({}, state, { auth_status: action.payload });
 
     case `${UPDATE_PLACE_PHOTOREF}_FULFILLED`:
       console.log("reducer func:", action);
@@ -393,7 +458,7 @@ export function verifyUser() {
       })
       .catch(err => err.message)
   };
- }
+}
 
 export function getUser() {
   return {

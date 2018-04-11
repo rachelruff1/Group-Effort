@@ -1,5 +1,6 @@
 const axios = require("axios");
-const googleApiKey = "AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko";
+const OldgoogleApiKey = "AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko";
+const googleApiKey = "AIzaSyA88FOcacMikGWCrki1HUhCysZZ91y5JDs";
 const googlePlacesBase =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
 const googlePlacesImgBase =
@@ -300,7 +301,6 @@ const getPhotoref = (req, res, next) => {
     )
     .then(resp => {
       res.status(200).send(resp.data.result.photos[0].photo_reference);
-
     });
 };
 

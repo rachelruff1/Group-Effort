@@ -101,7 +101,8 @@ app.get(
 
 app.get("/api/logout", (req, res) => {
   req.session.destroy();
-  res.status(200).send("session destroyed, bitches")
+  res.redirect("http://localhost:3000/#")
+  
 })
 
 app.get("/api/getUserInfo", (req, res) => {

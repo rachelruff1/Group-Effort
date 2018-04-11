@@ -69,7 +69,7 @@ const initialState = {
   citiesInTrip: [],
   tripName: "",
   //CONDITIONAL LOG-IN BUTTON STATE
-  auth_status: false
+  auth_status: false  
 };
 
 export default function reducer(state = initialState, action) {

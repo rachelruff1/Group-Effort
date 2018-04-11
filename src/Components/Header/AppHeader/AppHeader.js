@@ -37,8 +37,6 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-      {this.props.auth_status !== true? (
-      <div><Login /></div>) : <div><Auth2 /></div>}
         <div className="login-buttons">
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
@@ -56,7 +54,7 @@ class AppHeader extends Component {
             onClick={() => this.toggleDropDown()}
           />
         
-        {this.state.toggle == true ? <ProfilePopOver /> : null}
+        {this.state.toggle == true ? <ProfilePopOver auth_status={this.props.auth_status}/> : null}
       </header>
     );
   }

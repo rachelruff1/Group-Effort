@@ -5,6 +5,8 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import './ProfilePopOver.css';
 import { NavLink } from 'react-router-dom';
+import Login from "../Auth/Auth";
+import Auth2 from "../Auth/Auth2";
 
 export default class ProfilePopOver extends React.Component {
 
@@ -14,7 +16,10 @@ export default class ProfilePopOver extends React.Component {
     this.state = {
       open: false,
     };
+    
+    
   }
+  
 
   handleClick = (event) => {
     // This prevents ghost click.
@@ -47,6 +52,7 @@ export default class ProfilePopOver extends React.Component {
           onRequestClose={this.handleRequestClose}
         >
           <Menu>
+          {this.props.auth_status !== true? (<div><Login /></div>) : (<div><Auth2 /></div>)}
             <span className="drawer-link-wrapper"><NavLink to="/view-all-trips" className="drawer-link">View Your Trips</NavLink></span>
             <span className="drawer-link-wrapper"><NavLink to="/profile" className="drawer-link">Your Profile</NavLink></span>
 

@@ -21,9 +21,7 @@ class MuseumCard extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getMuseums(this.props.latlng).then(res => {
-      this.setState({ museums: this.props.museums });
-    });
+    // this.props.getMuseums(this.props.latlng);
   }
 
   render() {
@@ -45,13 +43,14 @@ class MuseumCard extends Component {
                 }
               >
                 <img
-                  src={
-                    this.props.museums[i].photos != undefined
-                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                          this.props.museums[i].photos[0].photo_reference
-                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
-                      : noimg
-                  }
+                  src={noimg}
+                  // src={
+                  //   this.props.museums[i].photos != undefined
+                  //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                  //         this.props.museums[i].photos[0].photo_reference
+                  //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                  //     : noimg
+                  // }
                   alt=""
                 />
               </CardMedia>

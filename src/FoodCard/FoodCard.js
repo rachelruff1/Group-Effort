@@ -21,9 +21,7 @@ class FoodCard extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getFood(this.props.latlng).then(res => {
-      this.setState({ food: this.props.food });
-    });
+    // this.props.getFood(this.props.latlng);
   }
 
   render() {
@@ -45,13 +43,14 @@ class FoodCard extends Component {
                 }
               >
                 <img
-                  src={
-                    this.props.food[i].photos != undefined
-                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                          this.props.food[i].photos[0].photo_reference
-                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
-                      : noimg
-                  }
+                  src={noimg}
+                  // src={
+                  //   this.props.food[i].photos != undefined
+                  //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                  //         this.props.food[i].photos[0].photo_reference
+                  //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                  //     : noimg
+                  // }
                   alt=""
                 />
               </CardMedia>

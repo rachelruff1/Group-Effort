@@ -135,11 +135,17 @@
 		border-radius: 50px;
 		height: 50px;
 	}
+	.header-search {
+		float: right;
+		padding-top: 23px;
+		padding-left: 200px;
+
+	}
 }
 
 /*****************************AUTHORIZATION STYLES*****************************/
 
-.auth {
+/* .auth {
 	display: inline-block;
 }
 .auth-button {
@@ -160,4 +166,5 @@
 
 .auth-button:hover {
 	background-color: #1673c4;
-}
+} */
+

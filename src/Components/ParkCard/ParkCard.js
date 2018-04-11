@@ -39,30 +39,22 @@ class ParkCard extends Component {
                         ? this.props.parks[i].name
                         : ""
                     }
-<<<<<<< HEAD
                   </div>
-              
-                <img src={parkimg} className="park-img" alt="" />
-              
-              <div className="card-title">{
-=======
-                  />
                 }
-              >
+              <div className="park-img">
                 <img
-                  src={
-                    this.props.parks[i].photos != undefined
-                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                          this.props.parks[i].photos[0].photo_reference
-                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
-                      : noimg
-                  }
+                src={noimg}
+                  // src={
+                  //   this.props.parks[i].photos != undefined
+                  //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                  //         this.props.parks[i].photos[0].photo_reference
+                  //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                  //     : noimg
+                  // }
                   alt=""
                 />
-              </CardMedia>
-              <CardTitle
-                title={
->>>>>>> master
+              </div>
+              <div className="card-title">{
                   this.props.parks[i] != undefined
                     ? this.props.parks[i].rating
                     : ""

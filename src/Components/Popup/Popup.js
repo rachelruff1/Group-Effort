@@ -1,36 +1,49 @@
 import React, { Component } from "react";
 import "./Popup.css";
+import { Link } from "react-router-dom";
+import Axios from "axios";
+import { connect } from "react-redux";
+import { getUser } from "../../ducks/reducer1";
+import { getAllTrips } from "../../ducks/reducer2";
 class Popup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: ["dallas", "austin", "more", "more2", "more3"],
-      name2: "this. place. name. 2"
+      name2: "this. place. name. 2",
+      id: 9
     };
   }
 
-  render() {
-    // let img = document.createElement("img");
-    // img.src = "data:image/jpeg;base64," + btoa(this.props.placeimg);
-    // document.body.appendChild(img);
+  componentDidMount(props) {
+    this.props.getUser();
+    this.props.getAllTrips(this.state.id);
+  }
 
+  getUsersTrips() {}
+
+  render() {
+    console.log(this.props.user, this.props.allTrips, "!!!!!!!");
     return (
       <div className="popup">
         <div className="box">
           <div className="stuffinbox">
-            <button>+ Create New</button>
-
+            <p id="tripto">Add to existing trip or create a new trip</p>{" "}
+            <Link to="/create-trip">
+              <button className="popupbtn">+ Create New</button>
+            </Link>
             <section class="container">
+              <p>Select Existing</p>
               <div class="dropdown">
                 <select name="one" class="dropdown-select">
                   <option value="">Select…</option>
-                  {this.state.name.map((name, i) => (
+                  {/* {this.props.allTrips.map((name, i) => (
                     <option value="1">{this.state.name[i]}</option>
-                  ))}
+                  ))} */}
                 </select>
               </div>
             </section>
-            <button> go</button>
+            <button className="popupbtn"> Go</button>
           </div>
         </div>
       </div>
@@ -38,4 +51,10 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+function mapStateToProps(state) {
+  return {
+    user: state.reducer1.user,
+    allTrips: state.reducer2.allTrips
+  };
+}
+export default connect(mapStateToProps, { getUser, getAllTrips })(Popup);

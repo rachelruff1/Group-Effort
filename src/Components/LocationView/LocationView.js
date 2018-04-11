@@ -8,7 +8,7 @@ import FoodCard from "../../FoodCard/FoodCard";
 import MallCard from "../../MallCard/MallCard";
 import MovieCard from "../../MovieCard/MovieCard";
 import { getPlaceimg } from "../../ducks/reducer1";
-
+import Popup from "../Popup/Popup";
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +52,7 @@ class LocationView extends Component {
         <div>
           <MovieCard />
         </div>
+        <Popup />
       </div>
     );
   }

@@ -21,12 +21,11 @@ class ParkCard extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getParks(this.props.latlng).then(res => {
-      this.setState({ parks: this.props.parks });
-    });
+    // this.props.getParks(this.props.latlng);
   }
 
   render() {
+    console.log(this.props.parks, "&&&&&&&&&&&#####");
     return (
       <div className="parkcards">
         <p>Parks:</p>
@@ -43,7 +42,7 @@ class ParkCard extends Component {
                 }
               <div className="park-img">
                 <img
-                src={noimg}
+                  src={noimg}
                   // src={
                   //   this.props.parks[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${

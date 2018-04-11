@@ -21,9 +21,7 @@ class MovieCard extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getMovie(this.props.latlng).then(res => {
-      this.setState({ mall: this.props.movie });
-    });
+    // this.props.getMovie(this.props.latlng);
   }
 
   render() {
@@ -45,13 +43,14 @@ class MovieCard extends Component {
                 }
               >
                 <img
-                  src={
-                    this.props.movie[i].photos != undefined
-                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                          this.props.movie[i].photos[0].photo_reference
-                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
-                      : noimg
-                  }
+                  src={noimg}
+                  // src={
+                  //   this.props.movie[i].photos != undefined
+                  //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                  //         this.props.movie[i].photos[0].photo_reference
+                  //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                  //     : noimg
+                  // }
                   alt=""
                 />
               </CardMedia>

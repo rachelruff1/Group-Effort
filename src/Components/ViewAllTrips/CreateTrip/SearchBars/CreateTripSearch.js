@@ -36,21 +36,39 @@ const CreateTripSearch = compose(
           //   places[0].address_components[3].long_name
           // );
           const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
-          this.props.source === "createTripContainer"
-            ? this.props.addDestination(
+          if (this.props.source === "createTripContainer") {
+            this.props.addDestination(
+              places[0].address_components[0].long_name,
+              places[0].address_components[2].short_name,
+              places[0].address_components[3].long_name,
+              latlng,
+              places[0].place_id
+            );
+          } else if (this.props.source === "createTripCard") {
+            this.props.updateTrip(
+              places[0].address_components[0].long_name,
+              places[0].address_components[2].short_name,
+              places[0].address_components[3].long_name,
+              latlng,
+              places[0].place_id
+            );
+          } else if (this.props.source === "editTripContainer"){
+            this.props.addEditTrip(
+              places[0].address_components[0].long_name,
+              places[0].address_components[2].short_name,
+              places[0].address_components[3].long_name,
+              latlng,
+              places[0].place_id
+            )}
+            else {
+              this.props.updateEditTrip(
                 places[0].address_components[0].long_name,
                 places[0].address_components[2].short_name,
                 places[0].address_components[3].long_name,
                 latlng,
                 places[0].place_id
-              )
-            : this.props.updateTrip(
-                places[0].address_components[0].long_name,
-                places[0].address_components[2].short_name,
-                places[0].address_components[3].long_name,
-                latlng,
-                places[0].place_id
-              );
+              );;
+          }
         }
       });
     }

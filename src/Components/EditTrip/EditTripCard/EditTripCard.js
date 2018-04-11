@@ -6,7 +6,7 @@ import {
   updateCitiesInTrip,
   addDatesToCities,
   updateStartDate,
-  updateEndDate
+  updateEndDate, deleteCity
 } from "../../../ducks/reducer1";
 import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
@@ -98,6 +98,7 @@ class EditTripCard extends Component {
           </div>
         )}
         <section className="create-trip-card-container">
+        <button onClick={()=>this.props.deleteCity(this.props.cityDetail.city_id)}>x</button>
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
@@ -110,12 +111,12 @@ class EditTripCard extends Component {
           />
           <div style={optionsStyle}>
             <DatePicker
-              value={this.props.cityDetail.start_date}
+              value={new Date(this.props.cityDetail.start_date)}
               onChange={this.handleChangeMinDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
             <DatePicker
-              value={this.props.cityDetail.start_date}
+              value={new Date(this.props.cityDetail.end_date)}
               onChange={this.handleChangeMaxDate}
               formatDate={date => moment(date).format("ddd, MMM D")}
             />
@@ -132,5 +133,6 @@ export default connect(mapStateToProps, {
   updateCitiesInTrip,
   addDatesToCities,
   updateStartDate,
-  updateEndDate
+  updateEndDate, 
+  deleteCity
 })(EditTripCard);

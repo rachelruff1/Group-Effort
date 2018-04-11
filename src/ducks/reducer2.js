@@ -243,6 +243,5 @@ export function deleteTrip(tripId, index){
     .then(resp =>index)
     .catch(err => err.errMessage)
   }
-
-  
 }
+

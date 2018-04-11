@@ -34,10 +34,11 @@ const UPDATE_START_DATE = "UPDATE_START_DATE";
 const UPDATE_END_DATE = "UPDATE_END_DATE";
 
 //EDITTRIP.JS
-const SET_TRIP_NAME = "SET_TRIP_NAME";
+const DELETE_CITY = 'DELETE_CITY';
 
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
+
 const initialState = {
   user: {},
   image: "",
@@ -312,9 +313,6 @@ export default function reducer(state = initialState, action) {
         citiesInTrip: newArr
         // state.citiesInTrip.splice(action.index, 1, action.payload)
       });
-
-      case SET_TRIP_NAME:
-      return Object.assign({}, state, { tripName: action.payload });
 
     case UPDATE_TRIP_NAME:
       return Object.assign({}, state, { tripName: action.payload });
@@ -693,9 +691,41 @@ export function updateEndDate(endMUI, index) {
   };
 }
 
-export function setTripName(tripName){
+export function updateTripInDatabase(tripName, cities){
+  console.log(cities);
+  let dates = [];
+  cities.map(x => {
+    console.log(x, x.startDate, x.endDate);
+    let newStart = x.startDate;
+    let newEnd = x.endDate;
+    dates.push(newStart, newEnd);
+    console.log(dates);
+  });
+  dates.sort();
+  let startDate = dates[0];
+  let endDate = dates[dates.length-1];
+
+  console.log("newtrip1", tripName, startDate, endDate);
   return {
-    type: SET_TRIP_NAME,
-    payload: tripName
+    type: CREATE_NEW_TRIP,
+    payload: axios
+      .post("/api/updateTripInDatabase", { tripName, startDate, endDate })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+
+export function deleteCity(cityId){
+  console.log(cityId);
+  return {
+    type: DELETE_CITY,
+    payload: axios
+    .delete(`/api/deleteCity/${cityId}`)
+    .then(resp =>  resp.data)
+    .catch(err => err.errMessage)
   }
 }

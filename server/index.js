@@ -136,6 +136,8 @@ app.post('/api/addCityToDatabase', ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 
+app.delete('/api/deleteCity/:id', ctrl.deleteCity);
+
 app.get('/api/getAllTrips/:id', ctrl.getAllTrips);
 //------------- end of endpoints ----------------
 app.listen(port, () => {

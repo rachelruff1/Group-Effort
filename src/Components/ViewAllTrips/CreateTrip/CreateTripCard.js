@@ -6,7 +6,8 @@ import {
   updateCitiesInTrip,
   addDatesToCities,
   updateStartDate,
-  updateEndDate
+  updateEndDate,
+  deleteCity
 } from "../../../ducks/reducer1";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 import "./CreateTripCard.css";
@@ -97,6 +98,10 @@ class CreateTripCard extends Component {
           </div>
         )}
         <section className="create-trip-card-container">
+
+        {/* check delete for cityId phrasing in the object */}
+        
+        <button onClick={()=>this.props.deleteCity(this.props.cityDetail.cityId)}>x</button>
           <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
@@ -131,5 +136,6 @@ export default connect(mapStateToProps, {
   updateCitiesInTrip,
   addDatesToCities,
   updateStartDate,
-  updateEndDate
+  updateEndDate,
+  deleteCity
 })(CreateTripCard);

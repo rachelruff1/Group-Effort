@@ -295,6 +295,20 @@ const deleteTrip = (req, res, next) => {
     });
 };
 
+const deleteCity = (req, res, next) => {
+  const db = req.app.get("db");
+  db
+    .delete_city([id])
+    .then(resp => {
+      console.log(resp);
+      res.status(200).send(resp);
+    })
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -312,5 +326,6 @@ module.exports = {
   addCityToDatabase,
   getMall,
   getMovie,
-  getAllTrips
+  getAllTrips,
+  deleteCity
 };

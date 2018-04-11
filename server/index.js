@@ -97,13 +97,15 @@ app.get(
 
 //------------- start of endpoints --------------
 
-
-
 app.get("/api/logout", (req, res) => {
   req.session.destroy();
-  res.redirect("http://localhost:3000/#")
-  
-})
+  res.redirect("http://localhost:3000/#");
+});
+
+app.get("/api/getUser", (req, res) => {
+  console.log(req.user, "fffffffffffff");
+  res.status(200).json(req.user);
+});
 
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
@@ -117,7 +119,7 @@ app.get("/api/me", (req, res) => {
   } else {
     res.status(500).json({ message: "User is not logged in" });
   }
- });
+});
 
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");
@@ -155,7 +157,13 @@ app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 
-app.get("/api/getAllTrips/:id", ctrl.getAllTrips);
+app.delete('/api/deleteCity/:id', ctrl.deleteCity);
+app.put('/api/updateTripOnEdit', ctrl.updateTripOnEdit);
+app.post(`/api/addCitiesOnEdit/:city/:tripId`, ctrl.addCitiesOnEdit);
+app.put('/api/updateCitiesOnEdit', ctrl.updateCitiesOnEdit);
+
+app.get('/api/getAllTrips/:id', ctrl.getAllTrips);
+
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

@@ -7,15 +7,24 @@ import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
 import MallCard from "../../MallCard/MallCard";
 import MovieCard from "../../MovieCard/MovieCard";
-import { getPlaceimg } from "../../ducks/reducer1";
-
+import { getPlaceimg, getUser } from "../../ducks/reducer1";
+import Popup from "../Popup/Popup";
 class LocationView extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      toggle: false
+    };
   }
 
   componentDidMount(props) {
     this.props.getPlaceimg(this.props.placephotoref);
+    this.props.getUser();
+  }
+  onclock() {
+    this.setState({
+      toggle: !this.state.toggle
+    });
   }
 
   render() {
@@ -39,6 +48,7 @@ class LocationView extends Component {
           />
         </div>
 
+        <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
         <div>
           <MuseumCard />
@@ -52,6 +62,7 @@ class LocationView extends Component {
         <div>
           <MovieCard />
         </div>
+        {this.state.toggle === true ? <Popup /> : null}
       </div>
     );
   }
@@ -66,4 +77,4 @@ function mapStateToProps(state) {
     placeimg: state.reducer1.placeimg
   };
 }
-export default connect(mapStateToProps, { getPlaceimg })(LocationView);
+export default connect(mapStateToProps, { getPlaceimg, getUser })(LocationView);

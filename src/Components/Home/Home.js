@@ -25,6 +25,9 @@ class Home extends Component {
           <Link to="/view-all-trips">
             <button>ViewAllTrips</button>
           </Link>
+          <Link to="/location">
+            <button>ViewLocation</button>
+          </Link>
         </div>
         <figure className="search">
           <SearchBox />

@@ -36,8 +36,20 @@ const CREATE_NEW_TRIP = "CREATE_NEW_TRIP";
 const UPDATE_START_DATE = "UPDATE_START_DATE";
 const UPDATE_END_DATE = "UPDATE_END_DATE";
 
+//EDITTRIP.JS
+const DELETE_CITY = "DELETE_CITY";
+const ADD_CITY_TO_EDIT_TRIP = "ADD_CITY_TO_EDIT_TRIP";
+const UPDATE_START_DATE_EDIT = "UPDATE_START_DATE_EDIT";
+const UPDATE_END_DATE_EDIT = "UPDATE_END_DATE_EDIT";
+const UPDATE_EDIT_CITIES_IN_TRIP = "UPDATE_EDIT_CITIES_IN_TRIP";
+const DELETE_CITY_FROM_DATABASE = "DELETE_CITY_FROM_DATABASE";
+const UPDATE_TRIP_ON_EDIT = "UPDATE_TRIP_ON_EDIT";
+const UPDATE_CITIES_ON_EDIT = "UPDATE_CITIES_ON_EDIT";
+const ADD_CITIES_ON_EDIT = 'ADD_CITIES_ON_EDIT';
+
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
+
 const initialState = {
   user: {},
   image: "",
@@ -133,6 +145,8 @@ const initialState = {
   //CREATETRIP.JS
   citiesInTrip: [],
   tripName: "",
+  tripId: "",
+  cityIds: [],
   //CONDITIONAL LOG-IN BUTTON STATE
   auth_status: false
 };
@@ -196,9 +210,15 @@ export default function reducer(state = initialState, action) {
       });
     case `${GET_CITIES}_FULFILLED`:
       // console.log("reducer func:", action.payload);
+      let existingIds = [];
+      action.payload.map(x => existingIds.push(x.city_id));
+      console.log(existingIds);
       return Object.assign({}, state, {
         isLoading: false,
-        cities: action.payload
+        cities: action.payload,
+        tripName: action.payload[0].trip_name,
+        tripId: action.payload[0].trip_id,
+        cityIds: existingIds
       });
     case `${GET_TRIP}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -436,6 +456,41 @@ export default function reducer(state = initialState, action) {
       console.log(updateCityEnd);
       return Object.assign({}, state, { citiesInTrip: updateCityEnd });
 
+    case ADD_CITY_TO_EDIT_TRIP:
+      return Object.assign({}, state, {
+        cities: [...state.cities, action.payload]
+      });
+
+    case UPDATE_START_DATE_EDIT:
+      let updateCityStartEdit = state.cities.slice();
+      updateCityStartEdit[action.payload.index].start_date =
+        action.payload.startDate;
+      console.log(updateCityStartEdit);
+      return Object.assign({}, state, { cities: updateCityStartEdit });
+
+    case UPDATE_END_DATE_EDIT:
+      console.log(action.payload.index, action.payload.endDate);
+      let updateCityEndEdit = state.cities.slice();
+      updateCityEndEdit[action.payload.index].end_date = action.payload.endDate;
+      console.log(updateCityEndEdit);
+      return Object.assign({}, state, { cities: updateCityEndEdit });
+
+    case DELETE_CITY:
+      let deleteCityFromCities = state.cities.slice();
+      deleteCityFromCities.splice(action.payload, 1);
+      return Object.assign({}, state, {
+        cities: deleteCityFromCities
+      });
+
+    case UPDATE_EDIT_CITIES_IN_TRIP:
+      let newEditArr = state.cities.slice();
+      newEditArr.splice(action.index, 1, action.payload);
+      console.log(newEditArr);
+      return Object.assign({}, state, {
+        cities: newEditArr
+        // state.cities.splice(action.index, 1, action.payload)
+      });
+
     default:
       return state;
   }
@@ -467,7 +522,7 @@ export function getUser() {
       .get("/api/getUser")
       .then(resp => {
         // console.log('getUser reducer:', resp.data);
-        return resp.data[0];
+        return resp.data.user_id;
       })
       .catch(console.log)
   };
@@ -827,5 +882,175 @@ export function updateEndDate(endMUI, index) {
   return {
     type: UPDATE_END_DATE,
     payload: { endDate, index }
+  };
+}
+
+export function updateTripInDatabase(tripName, cities) {
+  console.log(cities);
+  let dates = [];
+  cities.map(x => {
+    console.log(x, x.startDate, x.endDate);
+    let newStart = x.startDate;
+    let newEnd = x.endDate;
+    dates.push(newStart, newEnd);
+    console.log(dates);
+  });
+  dates.sort();
+  let startDate = dates[0];
+  let endDate = dates[dates.length - 1];
+
+  console.log("newtrip1", tripName, startDate, endDate);
+  return {
+    type: CREATE_NEW_TRIP,
+    payload: axios
+      .post("/api/updateTripInDatabase", { tripName, startDate, endDate })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function deleteCity(index) {
+  console.log(index);
+  return {
+    type: DELETE_CITY,
+    payload: index
+
+    // payload: axios
+    // .delete(`/api/deleteCity/${cityId}`)
+    // .then(resp =>  resp.data)
+    // .catch(err => err.errMessage)
+  };
+}
+
+export function addCityToEditTrip(
+  city_name,
+  state,
+  country,
+  lat_lng,
+  place_id
+) {
+  let today = moment().format("MM/DD/YYYY");
+  return {
+    type: ADD_CITY_TO_EDIT_TRIP,
+    payload: {
+      city_name,
+      state,
+      country,
+      lat_lng,
+      place_id,
+      start_date: today,
+      end_date: today
+    }
+  };
+}
+
+export function updateStartDateEdit(startMUI, index) {
+  let s = startMUI.toString();
+  let startDate = moment(s).format("MM/DD/YYYY");
+  return {
+    type: UPDATE_START_DATE_EDIT,
+    payload: { startDate, index }
+  };
+}
+
+export function updateEndDateEdit(endMUI, index) {
+  let s = endMUI.toString();
+  let endDate = moment(s).format("MM/DD/YYYY");
+  return {
+    type: UPDATE_END_DATE_EDIT,
+    payload: { endDate, index }
+  };
+}
+
+export function updateEditCitiesInTrip(
+  city_name,
+  state,
+  country,
+  lat_lng,
+  place_id,
+  index
+) {
+  let todaysDate = moment().format("MM/DD/YYYY");
+  return {
+    type: UPDATE_EDIT_CITIES_IN_TRIP,
+    payload: {
+      city_name,
+      state,
+      country,
+      lat_lng,
+      place_id,
+      start_date: todaysDate,
+      end_date: todaysDate
+    },
+    index: index
+  };
+}
+
+export function deleteCityFromDatabase(cityId) {
+  return {
+    type: DELETE_CITY_FROM_DATABASE,
+    payload: axios
+      .delete(`/api/deleteCity/${cityId}`)
+      .then(resp => resp.data)
+      .catch(err => err.errMessage)
+  };
+}
+
+export function updateTripOnEdit(tripId, tripName, cities) {
+  console.log(cities);
+  let editCityDates = [];
+  cities.map(x => {
+    console.log(x, x.startDate, x.endDate);
+    let newStartOnSave = x.startDate;
+    let newEndOnSave = x.endDate;
+    editCityDates.push(newStartOnSave, newEndOnSave);
+    console.log(editCityDates);
+  });
+  editCityDates.sort();
+  let startDateOnUpdateTrip = editCityDates[0];
+  let endDateOnEditTrip = editCityDates[editCityDates.length - 1];
+
+  console.log("newtrip1", tripName, startDateOnUpdateTrip, endDateOnEditTrip);
+  return {
+    UPDATE_TRIP_ON_EDIT,
+    payload: axios
+      .put("/api/updateTripOnEdit", {
+        tripId,
+        tripName,
+        startDateOnUpdateTrip,
+        endDateOnEditTrip
+      })
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function addCitiesOnEdit(city, tripId) {
+  console.log(city, tripId);
+  return {
+    type: ADD_CITIES_ON_EDIT,
+    payload: axios
+      .post(`/api/addCitiesOnEdit/${city}/${tripId}`)
+      .then(resp => {
+        console.log(resp);
+        return resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}
+
+export function updateCitiesOnEdit(city) {
+  return {
+    type: UPDATE_CITIES_ON_EDIT,
+    payload: axios
+      .put("/api/updateCitiesOnEdit", { city })
+      .then(resp => resp.data)
+      .catch(err => err.errMessage)
   };
 }

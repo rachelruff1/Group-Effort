@@ -48,10 +48,9 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
         <main>
             <h1>MY TRIPS</h1>
 
-            {currentTrips === false && futureTrips === false && pastTrips === false ? null : <div><h2>
+            {/* {currentTrips === false && futureTrips === false && pastTrips === false ? <div><h2>
                 You have no trips. 
-            </h2>
-            {currentTrips}</div>}
+            </h2></div> : null} */}
 
             {currentTrips === false ? null : <div><h2>
                 Current Trips

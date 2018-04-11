@@ -11,6 +11,7 @@ import Login from "../../Auth/Auth";
 import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
 import Profile from "../../Profile/Profile";
 import Auth2 from "../../Auth/Auth2";
+import noUser from "../../../Assets/Images/defaultuser2.png";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -36,8 +37,6 @@ class AppHeader extends Component {
     console.log(this.props);
     return (
       <header className="app-header">
-      {this.props.auth_status !== true? (
-      <div><Login /></div>) : <div><Auth2 /></div>}
         <div className="login-buttons">
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
@@ -48,14 +47,14 @@ class AppHeader extends Component {
             </div>
           </div>
         </div>
-        {this.props.picture && (
+        
           <img
             className="user-photo"
-            src={this.props.picture}
+            src={this.props.auth_status !== true ? noUser  : this.props.picture }
             onClick={() => this.toggleDropDown()}
           />
-        )}
-        {this.state.toggle == true ? <ProfilePopOver /> : null}
+        
+        {this.state.toggle == true ? <ProfilePopOver auth_status={this.props.auth_status}/> : null}
       </header>
     );
   }

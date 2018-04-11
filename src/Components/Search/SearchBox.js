@@ -2,7 +2,8 @@ import React from "react";
 import {
   updatePlaceId,
   updateLatLng,
-  updateLocationData
+  updateLocationData,
+  updatePlacephotoref
 } from "../../ducks/reducer1";
 import { connect } from "react-redux";
 const { compose, withProps, lifecycle } = require("recompose");
@@ -50,6 +51,8 @@ const SearchBox = compose(
             places[0].address_components[3].long_name
           );
           // props.updatePlaceId(places.place_id);
+
+          this.props.updatePlacephotoref(places[0].place_id);
         }
       });
     }
@@ -101,5 +104,6 @@ const mapStatetoProps = state => state;
 export default connect(mapStatetoProps, {
   updatePlaceId,
   updateLatLng,
-  updateLocationData
+  updateLocationData,
+  updatePlacephotoref
 })(SearchBox);

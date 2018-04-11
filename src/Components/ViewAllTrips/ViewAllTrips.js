@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { createTrip, getAllTrips } from "../../ducks/reducer2";
 import { connect } from "react-redux";
 import CreateTripButton from "./CreateTripButton/CreateTripButton";
-import IndividualTripCard from "./IndividualTripCard/IndividualTripCard";
-import {Link} from 'react-router-dom';
+import IndividualTripCard from "../ViewAllTrips/IndividualTripCard/IndividualTripCard";
+import { Link } from "react-router-dom";
 
 class ViewAllTrips extends Component {
   constructor(props) {

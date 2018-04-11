@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import testimg from "../Components/Home/home-img.jpg";
+import noimg from "../Assets/Images/icon-no-image.svg";
 import { getMovie } from "../ducks/reducer1";
 import "./MovieCard.css";
 import {
@@ -29,7 +29,7 @@ class MovieCard extends Component {
   render() {
     return (
       <div className="Moviecards">
-        <p>malls:</p>
+        <p>movie theaters :</p>
         {this.props.movie.length > 0 &&
           this.props.movie.map((movie, i) => (
             <Card>
@@ -44,7 +44,16 @@ class MovieCard extends Component {
                   />
                 }
               >
-                <img src={testimg} alt="" />
+                <img
+                  src={
+                    this.props.movie[i].photos != undefined
+                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                          this.props.movie[i].photos[0].photo_reference
+                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                      : noimg
+                  }
+                  alt=""
+                />
               </CardMedia>
               <CardTitle
                 title={

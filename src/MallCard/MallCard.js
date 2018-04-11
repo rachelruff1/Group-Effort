@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import testimg from "../Components/Home/home-img.jpg";
+import noimg from "../Assets/Images/icon-no-image.svg";
 import { getMall } from "../ducks/reducer1";
 import "./MallCard.css";
 import {
@@ -44,7 +44,16 @@ class FoodCard extends Component {
                   />
                 }
               >
-                <img src={testimg} alt="" />
+                <img
+                  src={
+                    this.props.mall[i].photos != undefined
+                      ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+                          this.props.mall[i].photos[0].photo_reference
+                        }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
+                      : noimg
+                  }
+                  alt=""
+                />
               </CardMedia>
               <CardTitle
                 title={

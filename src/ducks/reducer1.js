@@ -6,6 +6,7 @@ const EDIT_USER = "EDIT_USER";
 const LOGOUT = "LOGOUT";
 const GET_PROFILE = "GET_PROFILE";
 
+const UPDATE_PLACE_PHOTOREF = "UPDATE_PLACE_PHOTOREF";
 const UPDATE_PLACE_ID = "UPDATE_PLACE_ID";
 const UPDATE_LAT_LNG = "UPDATE_LAT_LNG";
 const GET_CITIES = "GET_CITIES";
@@ -20,6 +21,8 @@ const GET_WEBCAMS = "GET_WEBCAMS";
 const GET_FACTS = "GET_FACTS";
 const UPDATE_LOCATION_DATA = "UPDATE_LOCATION_DATA";
 const GET_PARKS = "GET_PARKS";
+const VERIFY_USER = "VERIFY_USER";
+const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
@@ -60,13 +63,17 @@ const initialState = {
   parks: [],
   mall: [],
   movie: [],
+  placeimg: "",
+  placephotoref: "",
 
   city: "",
   state: "",
   country: "",
   //CREATETRIP.JS
   citiesInTrip: [],
-  tripName: ""
+  tripName: "",
+  //CONDITIONAL LOG-IN BUTTON STATE
+  auth_status: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -95,6 +102,23 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
 
+      case `${VERIFY_USER}_FULFILLED`:
+     console.log(action.payload, "payload");
+     return Object.assign({}, state, { auth_status: action.payload });
+
+    case `${UPDATE_PLACE_PHOTOREF}_FULFILLED`:
+      console.log("reducer func:", action);
+      return Object.assign({}, state, {
+        isLoading: false,
+        placephotoref: action.payload
+      });
+    case `${UPDATE_PLACE_PHOTOREF}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${UPDATE_PLACE_PHOTOREF}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
     case UPDATE_PLACE_ID:
       return Object.assign({}, state, { placeId: action.payload });
 
@@ -272,6 +296,19 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         movie: action.payload
       });
+    case `${GET_PLACE_IMG}_PENDING`:
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_PLACE_IMG}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_PLACE_IMG}_FULFILLED`:
+      // console.log("reducer func:", action.payload[0]);
+      return Object.assign({}, state, {
+        isLoading: false,
+        placeimg: action.payload
+      });
 
     //CREATETRIP.JS
 
@@ -346,6 +383,23 @@ export default function reducer(state = initialState, action) {
 
 //FUNCTIONS
 
+export function verifyUser() {
+  return {
+    type: VERIFY_USER,
+    payload: axios
+      .request({ url: "/api/me" })
+      .then(res => {
+        if (!res.data.authid.includes("google")) {
+          return false;
+        } else {
+          console.log("else");
+          return true;
+        }
+      })
+      .catch(err => err.message)
+  };
+ }
+
 export function getUser() {
   return {
     type: GET_USER,
@@ -396,6 +450,18 @@ export function updatePlaceId(placeId) {
   return {
     type: UPDATE_PLACE_ID,
     payload: placeId
+  };
+}
+export function updatePlacephotoref(placeId) {
+  console.log("hit:$$$$$$", placeId);
+  return {
+    type: UPDATE_PLACE_PHOTOREF,
+    payload: axios
+      .get(`/api/getPhotoref/${placeId}`)
+      .then(resp => {
+        return resp.data;
+      })
+      .catch(console.log)
   };
 }
 
@@ -575,6 +641,19 @@ export function getParks(latlng) {
   };
 }
 
+export function getPlaceimg(placephotoref) {
+  console.log("hit:^^^^^^", placephotoref);
+  return {
+    type: GET_PLACE_IMG,
+    payload: axios
+      .get(`/api/getPlaceimg/${placephotoref}`)
+      .then(resp => {
+        return resp.data;
+      })
+      .catch(console.log)
+  };
+}
+
 //CREATETRIP.JS
 
 export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
@@ -645,7 +724,7 @@ export function createNewTrip(tripName, cities) {
   });
   dates.sort();
   let startDate = dates[0];
-  let endDate = dates[dates.length-1];
+  let endDate = dates[dates.length - 1];
 
   console.log("newtrip1", tripName, startDate, endDate);
   return {
@@ -690,6 +769,7 @@ export function updateEndDate(endMUI, index) {
     payload: { endDate, index }
   };
 }
+<<<<<<< HEAD
 
 export function updateTripInDatabase(tripName, cities){
   console.log(cities);
@@ -729,3 +809,5 @@ export function deleteCity(cityId){
     .catch(err => err.errMessage)
   }
 }
+=======
+>>>>>>> master

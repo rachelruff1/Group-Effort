@@ -15,19 +15,19 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
-          {/* <br />
           <br />
           <br />
-          <br /> */}
-          {/* <Link to="/location-details">
+          <br />
+          <br />
+          <Link to="/location-details">
             <button>TripView</button>
           </Link>
           <Link to="/view-all-trips">
             <button>ViewAllTrips</button>
           </Link>
           <Link to="/location">
-            <button>location</button>
-          </Link> */}
+            <button>ViewLocation</button>
+          </Link>
         </div>
         <figure className="search">
           <SearchBox />

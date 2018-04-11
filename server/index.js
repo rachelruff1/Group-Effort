@@ -97,13 +97,15 @@ app.get(
 
 //------------- start of endpoints --------------
 
-
-
 app.get("/api/logout", (req, res) => {
   req.session.destroy();
-  res.redirect("http://localhost:3000/#")
-  
-})
+  res.redirect("http://localhost:3000/#");
+});
+
+app.get("/api/getUser", (req, res) => {
+  console.log(req.user, "fffffffffffff");
+  res.status(200).json(req.user);
+});
 
 app.get("/api/getUserInfo", (req, res) => {
   console.log(req.user);
@@ -117,7 +119,7 @@ app.get("/api/me", (req, res) => {
   } else {
     res.status(500).json({ message: "User is not logged in" });
   }
- });
+});
 
 app.get("/api/test", (req, res) => {
   res.status(200).send("working");

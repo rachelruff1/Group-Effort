@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  updatePlaceId,
-  updateLatLng,
-  updateLocationData,
-  updatePlacephotoref
-} from "../../ducks/reducer1";
+import { updatePlaceId, updateLatLng, updateLocationData, updatePlacephotoref } from "../../ducks/reducer1";
 import { connect } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
+
+
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
-const {
-  StandaloneSearchBox
-} = require("react-google-maps/lib/components/places/StandaloneSearchBox");
+const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
 
 const SearchBox = compose(
   withProps({
@@ -53,7 +49,8 @@ const SearchBox = compose(
           // props.updatePlaceId(places.place_id);
 
           this.props.updatePlacephotoref(places[0].place_id);
-        //potential search box formating
+        
+
         }
       });
     }

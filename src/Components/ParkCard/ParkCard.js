@@ -25,21 +25,18 @@ class ParkCard extends Component {
   }
 
   render() {
-    console.log(this.props.parks, "&&&&&&&&&&&#####");
     return (
       <div className="parkcards">
         <p>Parks:</p>
         {this.props.parks.length > 0 &&
           this.props.parks.map((parks, i) => (
-            <Card>
-              
-                  <div className="card-name">{
+            <Card>              
+                  <div className="park-name">{
                       this.props.parks[i] != undefined
                         ? this.props.parks[i].name
                         : ""
                     }
-                  </div>
-                }
+                  </div>                
               <div className="park-img">
                 <img
                   src={noimg}
@@ -53,16 +50,15 @@ class ParkCard extends Component {
                   alt=""
                 />
               </div>
-              <div className="card-title">{
+              <div className="park-title">{
                   this.props.parks[i] != undefined
                     ? this.props.parks[i].rating
                     : ""
                 }
                 </div>
-              <CardText />
-              <div>
+              
+              <div className="park-buttons">
                 <button className="add-button">Add to trip</button>
-                <button className="new-button">New</button>
                 {console.log(
                   this.props.parks[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"

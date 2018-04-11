@@ -1,6 +1,46 @@
-.Foodcards {
-  height: 60px;
-  width: 300px;
+img {
+  max-height: 135px;
+  
+}
+
+.food-name {
+  height: 10vh;
+  font-size: 16px;
   position: relative;
-  left: 700px;
+  top: 35px;
+  left: 5px;
+}
+
+.food-img {
+  max-width: 200px;
+  position: relative;
+  left: 20px;
+  bottom: 20px;
+}
+
+.food-title {
+  font-size: 20px;
+  width: 10vw;
+  max-height: 50px;
+}
+
+.food-buttons {
+  position: relative;
+  bottom: 20px;
+  left: 60px;
+  
+}
+
+.foodcards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+  
+  height: 33vh;
+  width: 90vw;
+  position: relative;
+  top: 0vh;
 }

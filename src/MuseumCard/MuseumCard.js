@@ -31,17 +31,14 @@ class MuseumCard extends Component {
         {this.props.museums.length > 0 &&
           this.props.museums.map((museums, i) => (
             <Card>
-              <CardMedia
-                overlay={
-                  <CardTitle
-                    title={
+              <div className="museum-name">{
                       this.props.museums[i] != undefined
                         ? this.props.museums[i].name
                         : ""
                     }
-                  />
-                }
-              >
+                  </div>
+                
+              <div className="museum-img">
                 <img
                   src={noimg}
                   // src={
@@ -53,24 +50,22 @@ class MuseumCard extends Component {
                   // }
                   alt=""
                 />
-              </CardMedia>
-              <CardTitle
-                title={
+                </div>              
+              <div className="museum-title">{
                   this.props.museums[i] != undefined
                     ? this.props.museums[i].rating
                     : ""
                 }
-                subtitle=""
-              />
-              <CardText />
-              <CardActions>
-                <FlatButton label="Add to trip" />
-                <FlatButton label="new" />
+               </div>
+              
+              <div className="museum-buttons">
+                <button className="add-button">Add to trip</button>
+                
                 {console.log(
                   this.props.museums[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"
                 )}
-              </CardActions>
+              </div>
             </Card>
           ))}
       </div>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
 import "./LocationView.css";
-import DummyCard from "../DummyCard/DummyCard";
 import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
@@ -43,7 +42,7 @@ class LocationView extends Component {
         </div>
         
         <section className="location-card-group">
-          <div className="park-card"><DummyCard /></div>
+          <div className="park-card"><ParkCard /></div>
           <div className="museum-card"><MuseumCard /></div>
           <div className="food-card"><FoodCard /></div>
           <div className="mall-card"><MallCard /></div>

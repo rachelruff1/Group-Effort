@@ -31,17 +31,13 @@ class FoodCard extends Component {
         {this.props.mall.length > 0 &&
           this.props.mall.map((mall, i) => (
             <Card>
-              <CardMedia
-                overlay={
-                  <CardTitle
-                    title={
+              <div className="mall-name">{
                       this.props.mall[i] != undefined
                         ? this.props.mall[i].name
                         : ""
                     }
-                  />
-                }
-              >
+                  </div>
+                  <div className="mall-img">
                 <img
                   src={noimg}
                   // src={
@@ -53,21 +49,18 @@ class FoodCard extends Component {
                   // }
                   alt=""
                 />
-              </CardMedia>
-              <CardTitle
-                title={
+                </div>
+                <div className="mall-title">{
                   this.props.mall[i] != undefined
                     ? this.props.mall[i].rating
                     : ""
                 }
-                subtitle=""
-              />
-              <CardText />
-              <CardActions>
-                <FlatButton label="Add to trip" />
-                <FlatButton label="new" />
+               </div>
+
+               <div className="mall-buttons">
+                <button className="add-button">Add to trip</button>
                 {console.log(this.props.mall[i], "mall")}
-              </CardActions>
+              </div>
             </Card>
           ))}
       </div>

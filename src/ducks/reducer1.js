@@ -522,7 +522,7 @@ export function getUser() {
       .get("/api/getUser")
       .then(resp => {
         // console.log('getUser reducer:', resp.data);
-        return resp.data[0];
+        return resp.data.user_id;
       })
       .catch(console.log)
   };

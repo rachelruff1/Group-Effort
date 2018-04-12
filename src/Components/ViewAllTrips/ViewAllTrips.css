@@ -1,9 +1,57 @@
+/*For Small Mobile Phones*/
+@media only screen and (min-width: 320px) {
+    .trips-main{
+        background-image: url("view-all-img.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        overflow: hidden;
+        min-height: 100vh;
+        color: rgb(255, 255, 255);
+        text-shadow: 2px 2px 2px rgb(0, 0, 0);
+        animation: showup 7s;
+    }
+    
+    .trips-body{
+        padding: 40px;    
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        top: 20vh;
+        left: 20vw;
+        width:40vw;   
+    }
+    
+    .trips-title{
+        position: -webkit-sticky;
+  position: sticky;
+  top: 60;
+  padding: 5px;
+        border-bottom: 2px solid black;
+    }
+    
+    @keyframes showup {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
+/*For Full Screen*/
+@media only screen and (min-width: 1900px) {
 .trips-main{
     background-image: url("view-all-img.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: auto;
+    overflow: hidden;
     min-height: 100vh;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
@@ -21,13 +69,12 @@
     position: relative;
     top: 20vh;
     left: 40vw;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    width:20vw;   
 }
 
 .trips-title{
-    position: fixed;
-    top: 15vh;
+    position: relative;
+    /* top: 15vh; */
     border-bottom: 2px solid black;
 }
 
@@ -39,4 +86,4 @@
       opacity: 1;
     }
   }
-
+}

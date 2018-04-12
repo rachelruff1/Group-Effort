@@ -18,7 +18,7 @@
     align-content: space-around;
     align-items: flex-start;
     justify-content: center;
-    position: absolute;
+    position: relative;
     top: 20vh;
     left: 40vw;
     border-left: 1px solid black;
@@ -26,6 +26,8 @@
 }
 
 .trips-title{
+    position: fixed;
+    top: 15vh;
     border-bottom: 2px solid black;
 }
 

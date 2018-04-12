@@ -10,6 +10,8 @@ import MallCard from "../../MallCard/MallCard";
 import MovieCard from "../../MovieCard/MovieCard";
 import { getPlaceimg, getUser } from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
+import FlatButton from "material-ui/FlatButton";
+
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -49,17 +51,7 @@ class LocationView extends Component {
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
-<<<<<<< HEAD
-        
-        <section className="location-card-group">
-          <div className="park-card"><ParkCard /></div>
-          <div className="museum-card"><MuseumCard /></div>
-          <div className="food-card"><FoodCard /></div>
-          <div className="mall-card"><MallCard /></div>
-          <div className="movie-card"><MovieCard /></div>
-        </section>
-=======
-
+        <div className="location-card-group">
         <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
         <div>
@@ -75,7 +67,7 @@ class LocationView extends Component {
           <MovieCard />
         </div>
         {this.state.toggle === true ? <Popup /> : null}
->>>>>>> master
+      </div>
       </div>
     );
   }

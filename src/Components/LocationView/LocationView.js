@@ -10,6 +10,8 @@ import MallCard from "../../MallCard/MallCard";
 import MovieCard from "../../MovieCard/MovieCard";
 import { getPlaceimg, getUser } from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
+import FlatButton from "material-ui/FlatButton";
+
 class LocationView extends Component {
   constructor(props) {
     super(props);
@@ -42,11 +44,12 @@ class LocationView extends Component {
             {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
         </div>
-        <div className="location-image">
+        <div >
           <img
             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
+            className="location-image"
           />
         </div>
         <div className="location-card-group">

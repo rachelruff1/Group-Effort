@@ -8,44 +8,32 @@ import MuseumCard from '../GooglePlacesAPI/MuseumCard/MuseumCard';
 import FoodCard from "../GooglePlacesAPI/FoodCard/FoodCard";
 import MallCard from "../GooglePlacesAPI/MallCard/MallCard";
 import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
-import { getPlaceimg, getUser, getFood, getParks } from "../../ducks/reducer1";
+import { getPlaceimg, getUser } from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
-import ApiCard from "../ApiCard/ApiCard";
 
 class LocationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      auth_status: true,
-      test: "32.7766642,-96.79698789999998"
+      toggle: false
     };
-
+    this.onclock = this.onclock.bind(this);
   }
 
   componentDidMount(props) {
     this.props.getPlaceimg(this.props.placephotoref);
     this.props.getUser();
-    // this.props.getFood(this.state.test);
-    // this.props.getParks(this.state.test);
-//this.props.match.params.id
-
+  }
+  onclock() {
+    this.setState({
+      toggle: !this.state.toggle
+    });
   }
 
-
   render() {
-const parksMap =
-this.props.parks.length > 0 &&
-this.props.parks.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
-
-const foodMap =
-this.props.food.length > 0 &&
-this.props.food.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    // let img = document.createElement("img");
+    // img.src = "data:image/jpeg;base64," + btoa(this.props.placeimg);
+    // document.body.appendChild(img);
 
     return (
       <div className="location-body">
@@ -63,14 +51,21 @@ this.props.food.map((c, i) => {
           />
         </div>
         <div className="location-card-group">
-          {/* <ParkCard  /> */}
+          <ParkCard toggle={this.onclock} />
           <div>
-            <h1>Parks</h1>
-           {parksMap}
-           <h1>Food</h1>
-           {foodMap}
-           </div>
-          
+            <MuseumCard toggle={this.onclock} />
+          </div>
+
+          <div>
+            <FoodCard toggle={this.onclock} />
+          </div>
+          <div>
+            <MallCard toggle={this.onclock} />
+          </div>
+          <div>
+            <MovieCard toggle={this.onclock} />
+          </div>
+          {this.state.toggle === true ? <Popup toggle={this.onclock} /> : null}
         </div>
       </div>
     );
@@ -79,14 +74,11 @@ this.props.food.map((c, i) => {
 
 function mapStateToProps(state) {
   return {
-    parks: state.reducer1.parks,
-    food: state.reducer1.food,
     city: state.reducer1.city,
     state: state.reducer1.state,
     country: state.reducer1.country,
     placephotoref: state.reducer1.placephotoref,
-    placeimg: state.reducer1.placeimg,
-    auth_status: state.reducer1.auth_status
+    placeimg: state.reducer1.placeimg
   };
 }
-export default connect(mapStateToProps, { getPlaceimg, getUser, getFood, getParks })(LocationView);
+export default connect(mapStateToProps, { getPlaceimg, getUser })(LocationView);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMuseums, updateMuseumCard } from "../ducks/reducer1";
+import noimg from "../../../Assets/Images/icon-no-image.svg";
+import { getMuseums, updateMuseumCard } from "../../../ducks/reducer1";
 import "./MuseumCard.css";
 import {
   Card,

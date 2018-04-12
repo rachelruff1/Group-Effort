@@ -27,6 +27,7 @@ const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 // saved cards
 
+const UPDATE_SAVED_LIST = 'UPDATE_SAVED_LIST';
 const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
 const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
 const UPDATE_PARK_CARD = "UPDATE_PARK_CARD";
@@ -277,14 +278,6 @@ export default function reducer(state = initialState, action) {
         trip: action.payload[0]
       });
 
-    case `${GET_SAVED}_PENDING`:
-      return Object.assign({}, state, { isLoading: true });
-    case `${GET_SAVED}_REJECTED`:
-      return Object.assign({}, state, {
-        isLoading: false,
-        didErr: true
-      });
-
     case `${GET_CITY_DETAIL}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_CITY_DETAIL}_REJECTED`:
@@ -314,12 +307,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         parks: action.payload
       });
-    case `${GET_SAVED}_FULFILLED`:
-      // console.log("reducer func:", action.payload[0]);
-      return Object.assign({}, state, {
-        isLoading: false,
-        saved: action.payload[0]
-      });
+  
     case `${GET_FOOD}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_FOOD}_REJECTED`:
@@ -533,6 +521,9 @@ export default function reducer(state = initialState, action) {
         cities: newEditArr
         // state.cities.splice(action.index, 1, action.payload)
       });
+    case UPDATE_SAVED_LIST:
+    console.log(action.payload);
+    return Object.assign({}, state, {saved: action.payload});
 
     default:
       return state;
@@ -1145,3 +1136,13 @@ export function updateCitiesOnEdit(city) {
       .catch(err => err.errMessage)
   };
 }
+
+
+export function updateSavedList(card){
+  console.log(card);
+  return{
+    type:UPDATE_SAVED_LIST,
+    payload: card
+  }
+}
+

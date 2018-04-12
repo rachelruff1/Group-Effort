@@ -1,0 +1,22 @@
+.search-and-go-bar {
+    /* background-color: black; */
+    /* display: inline-flex; */
+}
+
+.searchbar-container{
+    margin-right: 3px;
+    float: left;
+}
+.go-button-container{
+    margin: auto;
+    float: right;
+
+}
+.go-button-container button {
+    font-family: 'Poppins', sans-serif;
+   font-weight: bolder;
+    height: 32px;
+    border-radius: 1px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+}

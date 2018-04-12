@@ -1,108 +1,101 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   updatePlaceId,
   updateLatLng,
   updateLocationData,
   updatePlacephotoref
 } from "../../ducks/reducer1";
-import { connect } from "react-redux";
-const { compose, withProps, lifecycle } = require("recompose");
-const { withScriptjs } = require("react-google-maps");
-const {
-  StandaloneSearchBox
-} = require("react-google-maps/lib/components/places/StandaloneSearchBox");
+import SearchBar from "./SearchBar";
+import "./SearchBox.css";
 
-const SearchBox = compose(
-  withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />
-  }),
-  lifecycle({
-    componentWillMount() {
-      const refs = {};
+class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      placeId: "",
+      latlng: "",
+      city: "",
+      state: "",
+      country: "",
+      photoref: ""
+    };
 
-      this.setState({
-        places: [],
-        onSearchBoxMounted: ref => {
-          refs.searchBox = ref;
-        },
-        onPlacesChanged: () => {
-          const places = refs.searchBox.getPlaces();
+    this.updatePlaceId = this.updatePlaceId.bind(this);
+    this.updateLatLng = this.updateLatLng.bind(this);
+    this.updateLocationData = this.updateLocationData.bind(this);
+    this.updatePlacephotoref = this.updatePlacephotoref.bind(this);
+  }
 
-          this.setState({
-            places
-          });
-          console.log(
-            places[0].address_components[0].long_name,
-            places[0].address_components[2].short_name,
-            places[0].address_components[3].long_name
-          );
+  updatePlaceId(placeId) {
+    this.setState({
+      placeId
+    });
+  }
 
-          this.props.updatePlaceId(places[0].place_id);
+  updateLatLng(latlng) {
+    this.setState({
+      latlng
+    });
+  }
 
-          this.props.updatePlaceId(places[0].place_id);
-          const latlng = `${places[0].geometry.location.lat()},${places[0].geometry.location.lng()}`;
-          this.props.updateLatLng(latlng);
-          this.props.updateLocationData(
-            places[0].address_components[0].long_name,
-            places[0].address_components[2].short_name,
-            places[0].address_components[3].long_name
-          );
-          // props.updatePlaceId(places.place_id);
+  updateLocationData(city, state, country) {
+    this.setState({
+      city,
+      state,
+      country
+    });
+  }
 
-          this.props.updatePlacephotoref(places[0].place_id);
-        //potential search box formating
-        }
-      });
-    }
-  }),
-  withScriptjs
-)(goog => (
-  <div
-    data-standalone-searchbox=""
-    // onclick={console.log(props)}
-  >
-    <StandaloneSearchBox
-      ref={goog.onSearchBoxMounted}
-      bounds={goog.bounds}
-      onPlacesChanged={goog.onPlacesChanged}
-    >
-      <input
-        type="text"
-        placeholder="Where do you want to go?"
-        style={{
-          boxSizing: `border-box`,
-          border: `1px solid transparent`,
-          width: `240px`,
-          height: `32px`,
-          padding: `0 12px`,
-          borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-          fontSize: `14px`,
-          outline: `none`,
-          textOverflow: `ellipses`
-        }}
-      />
-    </StandaloneSearchBox>
-    {goog.places.map(
-      ({ place_id, formatted_address, geometry: { location } }) => (
-        <p key={place_id}>
-          {/* {
-            // this.props.updateLatLng(`${location.lat()},${location.lng()}`)
-            console.log(location.lat())} {console.log(location.lng())
-            }{console.log(this)
-            } */}
-        </p>
-      )
-    )}
-  </div>
-));
+  updatePlacephotoref(photoref) {
+    this.setState({
+      photoref
+    });
+  }
 
-const mapStatetoProps = state => state;
+  saveData() {
+    this.props.updatePlaceId(this.state.placeId);
+    this.props.updatePlaceId(this.state.latlng);
+    this.props.updateLocationData(
+      this.state.city,
+      this.state.state,
+      this.state.country
+    );
+    this.props.updatePlacephotoref(this.state.photoref);
+  }
 
-export default connect(mapStatetoProps, {
+  render() {
+      console.log(this.state);
+    return (
+      <div className='search-and-go-bar'>
+      <div className='searchbar-container'>
+        <SearchBar
+          updatePlaceId={this.updatePlaceId}
+          updateLatLng={this.updateLatLng}
+          updateLocationData={this.updateLocationData}
+          updatePlacephotoref={this.updatePlacephotoref}
+        />
+        </div>
+        <div className='go-button-container'>
+        {(this.state.latlng)? <Link to={`/location/${this.state.latlng}`}>
+          <button onClick={() => this.saveData()}>Go</button>
+        </Link> : <button>Go</button>}
+
+        {/* <Link to={`/location/${this.state.latlng}`}>
+          <button onClick={() => this.saveData()}>Go</button>
+        </Link> */}
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  latlng: state.reducer1.latlng
+});
+
+export default connect(mapStateToProps, {
   updatePlaceId,
   updateLatLng,
   updateLocationData,

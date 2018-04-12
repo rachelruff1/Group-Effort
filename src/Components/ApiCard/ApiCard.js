@@ -68,7 +68,6 @@ class ApiCard extends Component {
                  ? this.props.results.rating
                  : ""
              }
-             subtitle="Card subtitle"
            />
            <CardActions>
                {this.props.auth === true ?<FlatButton

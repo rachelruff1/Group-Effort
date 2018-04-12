@@ -22,7 +22,7 @@ class MuseumCard extends Component {
   }
 
   componentDidMount(props) {
-    // this.props.getMuseums(this.props.latlng);
+    
   }
 
   dostuff(props) {

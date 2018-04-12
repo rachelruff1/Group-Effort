@@ -8,7 +8,7 @@ import MuseumCard from '../GooglePlacesAPI/MuseumCard/MuseumCard';
 import FoodCard from "../GooglePlacesAPI/FoodCard/FoodCard";
 import MallCard from "../GooglePlacesAPI/MallCard/MallCard";
 import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
-import { getPlaceimg, getUser, getFood, getParks } from "../../ducks/reducer1";
+import { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall } from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
 import ApiCard from "../ApiCard/ApiCard";
 import FlatButton from "material-ui/FlatButton";
@@ -28,7 +28,13 @@ class LocationView extends Component {
     this.props.getUser();
     // this.props.getFood(this.state.test);
     // this.props.getParks(this.state.test);
-//this.props.match.params.id
+    // this.props.getMuseums(this.state.test);
+    // this.props.getMovie(this.state.test);
+    //  this.props.getMall(this.state.test);
+
+
+
+//replace this.state.test with this.props.match.params.id
 
   }
 
@@ -44,6 +50,27 @@ this.props.parks.map((c, i) => {
 const foodMap =
 this.props.food.length > 0 &&
 this.props.food.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const museumsMap =
+this.props.museums.length > 0 &&
+this.props.museums.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const mallsMap =
+this.props.mall.length > 0 &&
+this.props.mall.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const moviesMap =
+this.props.movie.length > 0 &&
+this.props.movie.map((c, i) => {
   console.log(c);
   return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
 });
@@ -69,8 +96,15 @@ this.props.food.map((c, i) => {
           <div>
             <h1>Parks</h1>
            {parksMap}
-           <h1>Food</h1>
+           <h1>Restaurants</h1>
            {foodMap}
+           <h1>Museums</h1>
+           {museumsMap}
+           <h1>Malls</h1>
+           {mallsMap}
+           <h1>Movies</h1>
+           {moviesMap}
+           
            </div>
           
         </div>
@@ -83,6 +117,11 @@ function mapStateToProps(state) {
   return {
     parks: state.reducer1.parks,
     food: state.reducer1.food,
+    movie: state.reducer1.movie,
+    mall: state.reducer1.mall,
+    museums: state.reducer1.museums,
+
+
     city: state.reducer1.city,
     state: state.reducer1.state,
     country: state.reducer1.country,
@@ -91,4 +130,4 @@ function mapStateToProps(state) {
     auth_status: state.reducer1.auth_status
   };
 }
-export default connect(mapStateToProps, { getPlaceimg, getUser, getFood, getParks })(LocationView);
+export default connect(mapStateToProps, { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall })(LocationView);

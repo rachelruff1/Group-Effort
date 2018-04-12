@@ -16,6 +16,7 @@ class NameForm extends React.Component {
   
     handleSubmit(event) {
       alert('A name change was submitted: ' + this.state.value);
+      // axios.post('/api/users')
       event.preventDefault();
     }
   

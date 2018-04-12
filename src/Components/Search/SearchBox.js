@@ -66,23 +66,27 @@ class SearchBox extends Component {
   }
 
   render() {
-      console.log(this.state);
+    console.log(this.state);
     return (
-      <div className='search-and-go-bar'>
-      <div className='searchbar-container'>
-        <SearchBar
-          updatePlaceId={this.updatePlaceId}
-          updateLatLng={this.updateLatLng}
-          updateLocationData={this.updateLocationData}
-          updatePlacephotoref={this.updatePlacephotoref}
-        />
+      <div className="search-and-go-bar">
+        <div className="searchbar-container">
+          <SearchBar
+            updatePlaceId={this.updatePlaceId}
+            updateLatLng={this.updateLatLng}
+            updateLocationData={this.updateLocationData}
+            updatePlacephotoref={this.updatePlacephotoref}
+          />
         </div>
-        <div className='go-button-container'>
-        {(this.state.latlng)? <Link to={`/location/${this.state.latlng}`}>
-          <button onClick={() => this.saveData()}>Go</button>
-        </Link> : <button>Go</button>}
+        <div className="go-button-container">
+          {this.state.latlng ? (
+            <Link to={`/location/${this.state.latlng}`}>
+              <button onClick={() => this.saveData()}>Go</button>
+            </Link>
+          ) : (
+            <button>Go</button>
+          )}
 
-        {/* <Link to={`/location/${this.state.latlng}`}>
+          {/* <Link to={`/location/${this.state.latlng}`}>
           <button onClick={() => this.saveData()}>Go</button>
         </Link> */}
         </div>

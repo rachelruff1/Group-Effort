@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMuseums } from "../ducks/reducer1";
+import { getMuseums, updateMuseumCard } from "../ducks/reducer1";
 import "./MuseumCard.css";
 import {
   Card,
@@ -16,12 +16,19 @@ class MuseumCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      museums: []
+      museums: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getMuseums(this.props.latlng);
+  }
+
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateMuseumCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -31,13 +38,12 @@ class MuseumCard extends Component {
         {this.props.museums.length > 0 &&
           this.props.museums.map((museums, i) => (
             <Card>
-              <div className="museum-name">{
-                      this.props.museums[i] != undefined
-                        ? this.props.museums[i].name
-                        : ""
-                    }
-                  </div>
-                
+              <div className="museum-name">
+                {this.props.museums[i] != undefined
+                  ? this.props.museums[i].name
+                  : ""}
+              </div>
+
               <div className="museum-img">
                 <img
                   src={noimg}
@@ -50,17 +56,22 @@ class MuseumCard extends Component {
                   // }
                   alt=""
                 />
-                </div>              
-              <div className="museum-title">{
-                  this.props.museums[i] != undefined
-                    ? this.props.museums[i].rating
-                    : ""
-                }
-               </div>
-              
+              </div>
+              <div className="museum-title">
+                {this.props.museums[i] != undefined
+                  ? this.props.museums[i].rating
+                  : ""}
+              </div>
+
               <div className="museum-buttons">
-                <button className="add-button">Add to trip</button>
-                
+                <button
+                  className="add-button"
+                  onFocus={() => this.setState({ slectedcard: museums })}
+                  onClick={() => this.dostuff()}
+                >
+                  Add to trip
+                </button>
+
                 {console.log(
                   this.props.museums[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"
@@ -79,4 +90,6 @@ function mapStateToProps(state) {
     latlng: state.reducer1.latlng
   };
 }
-export default connect(mapStateToProps, { getMuseums })(MuseumCard);
+export default connect(mapStateToProps, { getMuseums, updateMuseumCard })(
+  MuseumCard
+);

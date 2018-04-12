@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../../Assets/Images/icon-no-image.svg";
-import { getParks } from "../../ducks/reducer1";
+import { getParks, updateParkCard } from "../../ducks/reducer1";
 import "./ParkCard.css";
 import {
   Card,
@@ -16,12 +16,19 @@ class ParkCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parks: []
+      parks: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getParks(this.props.latlng);
+  }
+
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateParkCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -30,13 +37,12 @@ class ParkCard extends Component {
         <p>Parks:</p>
         {this.props.parks.length > 0 &&
           this.props.parks.map((parks, i) => (
-            <Card>              
-                  <div className="park-name">{
-                      this.props.parks[i] != undefined
-                        ? this.props.parks[i].name
-                        : ""
-                    }
-                  </div>                
+            <Card>
+              <div className="park-name">
+                {this.props.parks[i] != undefined
+                  ? this.props.parks[i].name
+                  : ""}
+              </div>
               <div className="park-img">
                 <img
                   src={noimg}
@@ -50,15 +56,24 @@ class ParkCard extends Component {
                   alt=""
                 />
               </div>
-              <div className="park-title">{
-                  this.props.parks[i] != undefined
-                    ? this.props.parks[i].rating
-                    : ""
-                }
-                </div>
-              
+              <div className="park-title">
+                {this.props.parks[i] != undefined
+                  ? this.props.parks[i].rating
+                  : ""}
+              </div>
+
               <div className="park-buttons">
-                <button className="add-button">Add to trip</button>
+                {/* <button onClick={() => this.setState({ slectedcard: parks })}>
+                  adfadf
+                </button> */}
+                {/* need to combine  */}
+                <button
+                  className="add-button"
+                  onFocus={() => this.setState({ slectedcard: parks })}
+                  onClick={() => this.dostuff()}
+                >
+                  Add to trip
+                </button>
                 {console.log(
                   this.props.parks[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"
@@ -77,4 +92,4 @@ function mapStateToProps(state) {
     latlng: state.reducer1.latlng
   };
 }
-export default connect(mapStateToProps, { getParks })(ParkCard);
+export default connect(mapStateToProps, { getParks, updateParkCard })(ParkCard);

@@ -44,9 +44,9 @@ class MuseumCard extends Component {
                   : ""}
               </div>
 
-              <div className="museum-img">
+              <div>
                 <img
-                  src={noimg}
+                  src={noimg} className="museum-img"
                   // src={
                   //   this.props.museums[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${

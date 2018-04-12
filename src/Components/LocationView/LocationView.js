@@ -51,7 +51,7 @@ class LocationView extends Component {
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
-        <div className="location-card-group">
+<div className='location-card-group'>
         <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
         <div>

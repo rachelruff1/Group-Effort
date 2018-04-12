@@ -15,6 +15,8 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
+        {/* <Search/> */}
+        
           {/* <br />
           <br />
           <br />
@@ -44,4 +46,5 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Home; 
+

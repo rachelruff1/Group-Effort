@@ -31,13 +31,12 @@ class MovieCard extends Component {
         {this.props.movie.length > 0 &&
           this.props.movie.map((movie, i) => (
             <Card>
-              <div className="movie-name">{
-                      this.props.movie[i] != undefined
-                        ? this.props.movie[i].name
-                        : ""
-                    }
-                </div>
-                <div className="movie-img">
+              <div className="movie-name">
+                {this.props.movie[i] != undefined
+                  ? this.props.movie[i].name
+                  : ""}
+              </div>
+              <div className="movie-img">
                 <img
                   src={noimg}
                   // src={
@@ -50,15 +49,19 @@ class MovieCard extends Component {
                   alt=""
                 />
               </div>
-              <div className="movie-title">{
-                  this.props.movie[i] != undefined
-                    ? this.props.movie[i].rating
-                    : ""
-                }
-                 </div>
-              
+              <div className="movie-title">
+                {this.props.movie[i] != undefined
+                  ? this.props.movie[i].rating
+                  : ""}
+              </div>
+
               <div className="movie-buttons">
-                <button className="add-button">Add to trip</button>
+                <button
+                  className="add-button"
+                  onClick={() => this.props.toggle()}
+                >
+                  Add to trip
+                </button>
                 {console.log(this.props.movie[i], "movie")}
               </div>
             </Card>

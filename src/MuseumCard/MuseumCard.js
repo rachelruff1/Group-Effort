@@ -25,19 +25,19 @@ class MuseumCard extends Component {
   }
 
   render() {
+    console.log(this.props, "<<<<<<<<<<<");
     return (
       <div className="Museumcards">
         <p>museums:</p>
         {this.props.museums.length > 0 &&
           this.props.museums.map((museums, i) => (
             <Card>
-              <div className="museum-name">{
-                      this.props.museums[i] != undefined
-                        ? this.props.museums[i].name
-                        : ""
-                    }
-                  </div>
-                
+              <div className="museum-name">
+                {this.props.museums[i] != undefined
+                  ? this.props.museums[i].name
+                  : ""}
+              </div>
+
               <div className="museum-img">
                 <img
                   src={noimg}
@@ -50,17 +50,21 @@ class MuseumCard extends Component {
                   // }
                   alt=""
                 />
-                </div>              
-              <div className="museum-title">{
-                  this.props.museums[i] != undefined
-                    ? this.props.museums[i].rating
-                    : ""
-                }
-               </div>
-              
+              </div>
+              <div className="museum-title">
+                {this.props.museums[i] != undefined
+                  ? this.props.museums[i].rating
+                  : ""}
+              </div>
+
               <div className="museum-buttons">
-                <button className="add-button">Add to trip</button>
-                
+                <button
+                  className="add-button"
+                  onClick={() => this.props.toggle()}
+                >
+                  Add to trip
+                </button>
+
                 {console.log(
                   this.props.museums[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"

@@ -16,6 +16,7 @@ class LocationView extends Component {
     this.state = {
       toggle: false
     };
+    this.onclock = this.onclock.bind(this);
   }
 
   componentDidMount(props) {
@@ -35,7 +36,6 @@ class LocationView extends Component {
 
     return (
       <div className="location-body">
-        
         <div className="location-title">
           <h1>
             {/* add conditinal  */}
@@ -49,33 +49,23 @@ class LocationView extends Component {
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
-<<<<<<< HEAD
-        
-        <section className="location-card-group">
-          <div className="park-card"><ParkCard /></div>
-          <div className="museum-card"><MuseumCard /></div>
-          <div className="food-card"><FoodCard /></div>
-          <div className="mall-card"><MallCard /></div>
-          <div className="movie-card"><MovieCard /></div>
-        </section>
-=======
-
-        <button onClick={() => this.onclock()}>hi </button>
-        <ParkCard />
-        <div>
-          <MuseumCard />
+        <div className="location-card-group">
+          <ParkCard toggle={this.onclock} />
+          <div>
+            <MuseumCard toggle={this.onclock} />
+          </div>
+          <button onClick={() => this.onclock()}> hoiadsfadsfadsf</button>
+          <div>
+            <FoodCard toggle={this.onclock} />
+          </div>
+          <div>
+            <MallCard toggle={this.onclock} />
+          </div>
+          <div>
+            <MovieCard toggle={this.onclock} />
+          </div>
+          {this.state.toggle === true ? <Popup /> : null}
         </div>
-        <div>
-          <FoodCard />
-        </div>
-        <div>
-          <MallCard />
-        </div>
-        <div>
-          <MovieCard />
-        </div>
-        {this.state.toggle === true ? <Popup /> : null}
->>>>>>> master
       </div>
     );
   }

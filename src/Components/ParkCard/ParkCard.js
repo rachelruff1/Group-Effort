@@ -30,13 +30,12 @@ class ParkCard extends Component {
         <p>Parks:</p>
         {this.props.parks.length > 0 &&
           this.props.parks.map((parks, i) => (
-            <Card>              
-                  <div className="park-name">{
-                      this.props.parks[i] != undefined
-                        ? this.props.parks[i].name
-                        : ""
-                    }
-                  </div>                
+            <Card>
+              <div className="park-name">
+                {this.props.parks[i] != undefined
+                  ? this.props.parks[i].name
+                  : ""}
+              </div>
               <div className="park-img">
                 <img
                   src={noimg}
@@ -50,15 +49,19 @@ class ParkCard extends Component {
                   alt=""
                 />
               </div>
-              <div className="park-title">{
-                  this.props.parks[i] != undefined
-                    ? this.props.parks[i].rating
-                    : ""
-                }
-                </div>
-              
+              <div className="park-title">
+                {this.props.parks[i] != undefined
+                  ? this.props.parks[i].rating
+                  : ""}
+              </div>
+
               <div className="park-buttons">
-                <button className="add-button">Add to trip</button>
+                <button
+                  className="add-button"
+                  onClick={() => this.props.toggle()}
+                >
+                  Add to trip
+                </button>
                 {console.log(
                   this.props.parks[i],
                   "44444adsfasdfasdfasdfsfghhgjfgjkghjkljh"

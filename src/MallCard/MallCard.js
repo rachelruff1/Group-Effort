@@ -31,13 +31,10 @@ class FoodCard extends Component {
         {this.props.mall.length > 0 &&
           this.props.mall.map((mall, i) => (
             <Card>
-              <div className="mall-name">{
-                      this.props.mall[i] != undefined
-                        ? this.props.mall[i].name
-                        : ""
-                    }
-                  </div>
-                  <div className="mall-img">
+              <div className="mall-name">
+                {this.props.mall[i] != undefined ? this.props.mall[i].name : ""}
+              </div>
+              <div className="mall-img">
                 <img
                   src={noimg}
                   // src={
@@ -49,16 +46,20 @@ class FoodCard extends Component {
                   // }
                   alt=""
                 />
-                </div>
-                <div className="mall-title">{
-                  this.props.mall[i] != undefined
-                    ? this.props.mall[i].rating
-                    : ""
-                }
-               </div>
+              </div>
+              <div className="mall-title">
+                {this.props.mall[i] != undefined
+                  ? this.props.mall[i].rating
+                  : ""}
+              </div>
 
-               <div className="mall-buttons">
-                <button className="add-button">Add to trip</button>
+              <div className="mall-buttons">
+                <button
+                  className="add-button"
+                  onClick={() => this.props.toggle()}
+                >
+                  Add to trip
+                </button>
                 {console.log(this.props.mall[i], "mall")}
               </div>
             </Card>

@@ -33,9 +33,7 @@ class Popup extends Component {
               <button className="popupbtn">+ Create New</button>
             </Link>
             {this.props.allTrips == false ? (
-              <div>
-                <p>gone</p>
-              </div>
+              <div />
             ) : (
               <div>
                 <section class="container">

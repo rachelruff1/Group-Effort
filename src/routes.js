@@ -17,9 +17,8 @@ export default (
     <Route component={TripView} path="/location-details" />
     <Route component={ViewAllTrips} path="/view-all-trips" />
     <Route component={LocationView} path="/location" />
-    <Route component={CreateTrip} path="/create-trip"/>
-    <Route component={Profile} path="/profile"/>
-    <Route component={EditTrip} path='/edit-trip/:id' />
-    
+    <Route component={CreateTrip} path="/create-trip" />
+    <Route component={Profile} path="/profile" />
+    <Route component={EditTrip} path="/edit-trip/:id" />
   </Switch>
 );

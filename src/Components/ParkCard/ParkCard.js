@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../../Assets/Images/icon-no-image.svg";
-import { getParks } from "../../ducks/reducer1";
+import { getParks, updateParkCard } from "../../ducks/reducer1";
 import "./ParkCard.css";
 import {
   Card,
@@ -16,12 +16,19 @@ class ParkCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      parks: []
+      parks: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getParks(this.props.latlng);
+  }
+
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateParkCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -56,9 +63,14 @@ class ParkCard extends Component {
               </div>
 
               <div className="park-buttons">
+                {/* <button onClick={() => this.setState({ slectedcard: parks })}>
+                  adfadf
+                </button> */}
+                {/* need to combine  */}
                 <button
                   className="add-button"
-                  onClick={() => this.props.toggle()}
+                  onFocus={() => this.setState({ slectedcard: parks })}
+                  onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
@@ -80,4 +92,4 @@ function mapStateToProps(state) {
     latlng: state.reducer1.latlng
   };
 }
-export default connect(mapStateToProps, { getParks })(ParkCard);
+export default connect(mapStateToProps, { getParks, updateParkCard })(ParkCard);

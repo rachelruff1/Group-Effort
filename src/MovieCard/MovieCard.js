@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMovie } from "../ducks/reducer1";
+import { getMovie, updateMoiveCard } from "../ducks/reducer1";
 import "./MovieCard.css";
 import {
   Card,
@@ -16,12 +16,19 @@ class MovieCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Movie: []
+      Movie: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getMovie(this.props.latlng);
+  }
+
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateMovieCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -58,7 +65,8 @@ class MovieCard extends Component {
               <div className="movie-buttons">
                 <button
                   className="add-button"
-                  onClick={() => this.props.toggle()}
+                  onFocus={() => this.setState({ slectedcard: movie })}
+                  onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
@@ -77,4 +85,6 @@ function mapStateToProps(state) {
     movie: state.reducer1.movie
   };
 }
-export default connect(mapStateToProps, { getMovie })(MovieCard);
+export default connect(mapStateToProps, { getMovie, updateMoiveCard })(
+  MovieCard
+);

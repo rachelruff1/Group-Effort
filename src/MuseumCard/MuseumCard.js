@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMuseums } from "../ducks/reducer1";
+import { getMuseums, updateMuseumCard } from "../ducks/reducer1";
 import "./MuseumCard.css";
 import {
   Card,
@@ -16,12 +16,19 @@ class MuseumCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      museums: []
+      museums: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getMuseums(this.props.latlng);
+  }
+
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateMuseumCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -59,7 +66,8 @@ class MuseumCard extends Component {
               <div className="museum-buttons">
                 <button
                   className="add-button"
-                  onClick={() => this.props.toggle()}
+                  onFocus={() => this.setState({ slectedcard: museums })}
+                  onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
@@ -82,4 +90,6 @@ function mapStateToProps(state) {
     latlng: state.reducer1.latlng
   };
 }
-export default connect(mapStateToProps, { getMuseums })(MuseumCard);
+export default connect(mapStateToProps, { getMuseums, updateMuseumCard })(
+  MuseumCard
+);

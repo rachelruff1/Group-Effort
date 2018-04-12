@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../Assets/Images/icon-no-image.svg";
-import { getFood } from "../ducks/reducer1";
+import { getFood, updateFoodCard } from "../ducks/reducer1";
 import "./FoodCard.css";
 import {
   Card,
@@ -16,7 +16,8 @@ class FoodCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      food: []
+      food: [],
+      slectedcard: {}
     };
   }
 
@@ -24,6 +25,11 @@ class FoodCard extends Component {
     // this.props.getFood(this.props.latlng);
   }
 
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateFoodCard(this.state.slectedcard);
+    this.props.toggle();
+  }
   render() {
     return (
       <div className="Foodcards">
@@ -56,7 +62,8 @@ class FoodCard extends Component {
               <div className="food-buttons">
                 <button
                   className="add-button"
-                  onClick={() => this.props.toggle()}
+                  onFocus={() => this.setState({ slectedcard: food })}
+                  onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
@@ -75,4 +82,4 @@ function mapStateToProps(state) {
     food: state.reducer1.food
   };
 }
-export default connect(mapStateToProps, { getFood })(FoodCard);
+export default connect(mapStateToProps, { getFood, updateFoodCard })(FoodCard);

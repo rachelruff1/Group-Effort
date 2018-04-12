@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMall } from "../ducks/reducer1";
+import { getMall, updateMallCard } from "../ducks/reducer1";
 import "./MallCard.css";
 import {
   Card,
@@ -16,12 +16,18 @@ class FoodCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mall: []
+      mall: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getMall(this.props.latlng);
+  }
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateMallCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -56,7 +62,8 @@ class FoodCard extends Component {
               <div className="mall-buttons">
                 <button
                   className="add-button"
-                  onClick={() => this.props.toggle()}
+                  onFocus={() => this.setState({ slectedcard: mall })}
+                  onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
@@ -75,4 +82,4 @@ function mapStateToProps(state) {
     mall: state.reducer1.mall
   };
 }
-export default connect(mapStateToProps, { getMall })(FoodCard);
+export default connect(mapStateToProps, { getMall, updateMallCard })(FoodCard);

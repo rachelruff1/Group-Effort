@@ -806,11 +806,14 @@ export function updateCitiesInTrip(
   country,
   latLng,
   placeId,
+  startDate,
+  endDate,
   index
 ) {
+  console.log(startDate, endDate);
   return {
     type: UPDATE_CITIES_IN_TRIP,
-    payload: { cityName, state, country, latLng, placeId },
+    payload: { cityName, state, country, latLng, placeId, startDate, endDate },
     index: index
   };
 }

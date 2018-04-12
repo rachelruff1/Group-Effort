@@ -30,6 +30,7 @@ toggle(){
 }
 
   render() {
+    const status = 'new';
     console.log(this.props.future, this.props.current, this.props.past);
     const futureTrips =
       this.props.future.length > 0 &&
@@ -65,7 +66,7 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
             </h2>
             {pastTrips}</div>}
 
-<Link to='/create-trip'><button>+ Create Trip</button></Link>
+<Link to={`/create-trip/${status}`}><button>+ Create Trip</button></Link>
           {/* <CreateTripButton /> */}
         </main>
       </div>

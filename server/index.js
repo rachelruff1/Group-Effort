@@ -159,7 +159,7 @@ app.get("/api/getMovie/:id", ctrl.getMovie);
 
 app.delete('/api/deleteCity/:id', ctrl.deleteCity);
 app.put('/api/updateTripOnEdit', ctrl.updateTripOnEdit);
-app.post(`/api/addCitiesOnEdit/:city/:tripId`, ctrl.addCitiesOnEdit);
+app.post(`/api/addCitiesOnEdit/:id`, ctrl.addCitiesOnEdit);
 app.put('/api/updateCitiesOnEdit', ctrl.updateCitiesOnEdit);
 
 app.get('/api/getAllTrips/:id', ctrl.getAllTrips);

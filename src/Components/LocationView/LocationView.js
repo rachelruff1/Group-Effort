@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
+import "./LocationView.css";
 import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
@@ -33,20 +34,31 @@ class LocationView extends Component {
     // document.body.appendChild(img);
 
     return (
-      <div className="LocationView">
-        <div className="SearchbaronLocation">
-          <SearchBox />
-
+      <div className="location-body">
+        
+        <div className="location-title">
           <h1>
             {/* add conditinal  */}
-            {this.props.city},{this.props.state},{this.props.country}
+            {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
+        </div>
+        <div className="location-image">
           <img
-            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
+<<<<<<< HEAD
+        
+        <section className="location-card-group">
+          <div className="park-card"><ParkCard /></div>
+          <div className="museum-card"><MuseumCard /></div>
+          <div className="food-card"><FoodCard /></div>
+          <div className="mall-card"><MallCard /></div>
+          <div className="movie-card"><MovieCard /></div>
+        </section>
+=======
 
         <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
@@ -63,6 +75,7 @@ class LocationView extends Component {
           <MovieCard />
         </div>
         {this.state.toggle === true ? <Popup /> : null}
+>>>>>>> master
       </div>
     );
   }

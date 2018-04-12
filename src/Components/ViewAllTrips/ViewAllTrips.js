@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import CreateTripButton from "./CreateTripButton/CreateTripButton";
 import IndividualTripCard from "../ViewAllTrips/IndividualTripCard/IndividualTripCard";
 import { Link } from "react-router-dom";
+import "./ViewAllTrips.css";
+import FlatButton from "material-ui/FlatButton";
 
 class ViewAllTrips extends Component {
   constructor(props) {
@@ -30,6 +32,7 @@ toggle(){
 }
 
   render() {
+    const status = 'new';
     console.log(this.props.future, this.props.current, this.props.past);
     const futureTrips =
       this.props.future.length > 0 &&
@@ -44,9 +47,9 @@ toggle(){
       this.props.current.map((c, i) => <IndividualTripCard key={i} city={c} index={i} toggle={this.toggle}/>);
 console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
     return (
-      <div>
-        <main>
-            <h1>MY TRIPS</h1>
+      <div className="trips-main">
+        <main className="trips-body">
+            <h1 className="trips-title">MY TRIPS</h1>
 
             {/* {currentTrips === false && futureTrips === false && pastTrips === false ? <div><h2>
                 You have no trips. 
@@ -65,7 +68,9 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
             </h2>
             {pastTrips}</div>}
 
-<Link to='/create-trip'><button>+ Create Trip</button></Link>
+
+<Link to={`/create-trip/${status}`}><button>+ Create Trip</button></Link>
+
           {/* <CreateTripButton /> */}
         </main>
       </div>

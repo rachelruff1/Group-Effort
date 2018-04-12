@@ -806,11 +806,14 @@ export function updateCitiesInTrip(
   country,
   latLng,
   placeId,
+  startDate,
+  endDate,
   index
 ) {
+  console.log(startDate, endDate);
   return {
     type: UPDATE_CITIES_IN_TRIP,
-    payload: { cityName, state, country, latLng, placeId },
+    payload: { cityName, state, country, latLng, placeId, startDate, endDate },
     index: index
   };
 }
@@ -990,6 +993,7 @@ export function updateEditCitiesInTrip(
 }
 
 export function deleteCityFromDatabase(cityId) {
+  console.log(cityId);
   return {
     type: DELETE_CITY_FROM_DATABASE,
     payload: axios
@@ -1000,12 +1004,12 @@ export function deleteCityFromDatabase(cityId) {
 }
 
 export function updateTripOnEdit(tripId, tripName, cities) {
-  console.log(cities);
+  console.log(tripId, tripName, cities);
   let editCityDates = [];
   cities.map(x => {
-    console.log(x, x.startDate, x.endDate);
-    let newStartOnSave = x.startDate;
-    let newEndOnSave = x.endDate;
+    console.log(x, x.start_date, x.end_date);
+    let newStartOnSave = x.start_date;
+    let newEndOnSave = x.end_date;
     editCityDates.push(newStartOnSave, newEndOnSave);
     console.log(editCityDates);
   });
@@ -1013,7 +1017,7 @@ export function updateTripOnEdit(tripId, tripName, cities) {
   let startDateOnUpdateTrip = editCityDates[0];
   let endDateOnEditTrip = editCityDates[editCityDates.length - 1];
 
-  console.log("newtrip1", tripName, startDateOnUpdateTrip, endDateOnEditTrip);
+  console.log("updaterip", tripName, startDateOnUpdateTrip, endDateOnEditTrip);
   return {
     UPDATE_TRIP_ON_EDIT,
     payload: axios
@@ -1036,7 +1040,7 @@ export function addCitiesOnEdit(city, tripId) {
   return {
     type: ADD_CITIES_ON_EDIT,
     payload: axios
-      .post(`/api/addCitiesOnEdit/${city}/${tripId}`)
+      .post(`/api/addCitiesOnEdit/${tripId}`, {city})
       .then(resp => {
         console.log(resp);
         return resp.data;
@@ -1046,6 +1050,7 @@ export function addCitiesOnEdit(city, tripId) {
 }
 
 export function updateCitiesOnEdit(city) {
+  console.log(city);
   return {
     type: UPDATE_CITIES_ON_EDIT,
     payload: axios

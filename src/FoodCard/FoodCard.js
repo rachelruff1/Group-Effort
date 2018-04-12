@@ -31,17 +31,13 @@ class FoodCard extends Component {
         {this.props.food.length > 0 &&
           this.props.food.map((food, i) => (
             <Card>
-              <CardMedia
-                overlay={
-                  <CardTitle
-                    title={
+              <div className="food-name">{
                       this.props.food[i] != undefined
                         ? this.props.food[i].name
                         : ""
                     }
-                  />
-                }
-              >
+                  </div>
+              <div className="food-img">
                 <img
                   src={noimg}
                   // src={
@@ -53,21 +49,18 @@ class FoodCard extends Component {
                   // }
                   alt=""
                 />
-              </CardMedia>
-              <CardTitle
-                title={
+              </div>
+              <div>{
                   this.props.food[i] != undefined
                     ? this.props.food[i].rating
                     : ""
                 }
-                subtitle={"food price level " + this.props.food[i].price_level}
-              />
-              <CardText />
-              <CardActions>
-                <FlatButton label="Add to trip" />
-                <FlatButton label="new" />
+                </div>
+
+                <div className="food-buttons">
+                <button className="add-button">Add to trip</button>
                 {console.log(this.props.food[i], "food")}
-              </CardActions>
+                </div>
             </Card>
           ))}
       </div>

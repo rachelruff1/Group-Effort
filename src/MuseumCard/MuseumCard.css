@@ -1,6 +1,45 @@
-.Museumcards {
-  height: 60px;
-  width: 300px;
+img {
+  max-height: 135px;
+  
+}
+
+.museum-name {
+  height: 10vh;
+  font-size: 16px;
   position: relative;
-  left: 400px;
+  top: 25px;
+  left: 5px;
+}
+
+.museum-img {
+  max-width: 200px;
+  position: relative;
+  left: 20px;
+  bottom: 20px;
+}
+
+.museum-title {
+  font-size: 20px;
+  width: 10vw;
+  max-height: 50px;
+}
+
+.museum-buttons {
+  position: relative;
+  bottom: 20px;
+  left: 60px;
+}
+
+.Museumcards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+
+  height: 33vh;
+  width: 90vw;
+  position: relative;
+  top: 0vh;
 }

@@ -321,6 +321,8 @@ const deleteTrip = (req, res, next) => {
 };
 
 const deleteCity = (req, res, next) => {
+  const {id} = req.params;
+  console.log(id);
   const db = req.app.get("db");
   db
     .delete_city([id])
@@ -350,7 +352,8 @@ const updateTripOnEdit = (req, res, next) => {
 };
 
 const addCitiesOnEdit = (req, res, next) => {
-  const {tripId} = req.params;
+  console.log(req.body, req.params);
+  const {id} = req.params;
   const {city_name,
     state,
     country,
@@ -358,7 +361,15 @@ const addCitiesOnEdit = (req, res, next) => {
     place_id,
     start_date,
     end_date,
-    trip_id} = req.params.city;  
+    trip_id} = req.body.city;  
+
+    console.log(id, state,
+      country,
+      lat_lng,
+      place_id,
+      start_date,
+      end_date,
+      trip_id);
   const db = req.app.get("db");
   db
     .add_city_on_edit([city_name,
@@ -368,7 +379,7 @@ const addCitiesOnEdit = (req, res, next) => {
       place_id,
       start_date,
       end_date,
-      trip_id])
+      id])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
@@ -382,10 +393,12 @@ const addCitiesOnEdit = (req, res, next) => {
 const updateCitiesOnEdit = (req, res, next) => {
   const {
     start_date,
-    end_date, city_id} = req.body;
+    end_date, city_id} = req.body.city;
+    console.log(start_date,
+      end_date, city_id)
   const db = req.app.get("db");
   db
-    .update_trip_on_edit([
+    .update_cities_on_edit([
       start_date,
       end_date, city_id])
     .then(resp => {

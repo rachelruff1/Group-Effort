@@ -68,9 +68,9 @@ class CreateTripCard extends Component {
   }
 
   updateTrip(cityName, state, country, latLng, placeId) {
-    console.log(cityName, state, country, latLng, placeId, this.props.index);
+    console.log(cityName, state, country, latLng, placeId, this.state.minDate, this.state.maxDate, this.props.index);
     this.props.updateCitiesInTrip(
-      cityName, state, country, latLng, placeId,
+      cityName, state, country, latLng, placeId,moment(this.state.minDate).format("MM/DD/YYYY"), moment(this.state.maxDate).format("MM/DD/YYYY"),
       this.props.index
     );
     this.toggleEdit();
@@ -95,16 +95,23 @@ class CreateTripCard extends Component {
         {/* check delete for cityId phrasing in the object */}
         
         <button onClick={()=>this.props.deleteCity(this.props.cityDetail.cityId)}>x</button>
-          <TextField
+          {(this.props.cityDetail.cityName )? <TextField
             onClick={() => this.toggleEdit()}
             id="text-field-default"
-            value={
-              this.props.cityDetail.cityName
-                
-            }
-            // {(this.state.cityName) ? this.state.cityName : 'no state'}
-            // {(this.state.cityName) ? this.state.cityName : this.props.cityName}
-          />
+            value={this.props.cityDetail.cityName}
+        
+          />:<TextField
+          onClick={() => this.toggleEdit()}
+          floatingLabelText='Pick a city'
+          id="text-field-default"
+          value={this.props.cityDetail.cityName}
+      
+        />}
+          
+          
+          
+          
+          
           <div style={optionsStyle}>
             <DatePicker
               value={this.state.minDate}

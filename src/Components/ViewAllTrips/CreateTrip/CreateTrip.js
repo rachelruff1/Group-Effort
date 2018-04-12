@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -14,7 +13,6 @@ import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 
-
 class CreateTrip extends Component {
   constructor(props) {
     super(props);
@@ -24,25 +22,14 @@ class CreateTrip extends Component {
     };
     this.toggleEdit = this.toggleEdit.bind(this);
     this.addDestination = this.addDestination.bind(this);
+    this.saveEvent = this.saveEvent.bind(this);
   }
 
   componentDidMount(props) {
-    // console.log("HIT DIDMOUNT", this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId);
-
     this.props.getCitiesInTrip();
-    // this.props.city, this.props.state, this.props.country, this.props.latlng, this.props.placeId );
+    this.props.match.params.status !== "new" ? this.props.updateTripName(`Trip to ${this.props.city}`) : null;
+
   }
-
-  //This runs on component did mount to set initial State w/ data from reducer
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(
-  //     "HIT WILL RECEIVE",
-  //     "index",
-  //     this.props.citiesInTrip
-  //   );
-  //   this.toggleEdit();
-  // }
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
@@ -52,9 +39,15 @@ class CreateTrip extends Component {
     this.props.addCityToTrip(cityName, state, country, latLng, placeId);
     this.toggleEdit();
   }
+  saveEvent() {
+    this.props.createNewTrip(this.props.tripName, this.props.citiesInTrip)
+      .then(resp => {this.props.citiesInTrip.map(x => {this.props.addCityToDatabase(x, resp.action.payload[0].trip_id);});
+      });
+      this.props.match.params.status === "new" ? window.history.back() : this.props.history.push(`/location-details/${this.props.citiesInTrip[0].lagLng}`);;
+  }
 
   render() {
-    console.log(this.props.citiesInTrip);
+    // console.log(this.props.citiesInTrip);
     const style = {
       margin: 12
     };
@@ -64,9 +57,15 @@ class CreateTrip extends Component {
         console.log(c.cityName);
         return <CreateTripCard key={i} cityDetail={c} index={i} />;
       });
-
+    console.log(window.history);
     return (
       <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
         {this.state.edit === false ? null : (
           <div className="searchBox">
             <CreateTripSearch
@@ -76,12 +75,23 @@ class CreateTrip extends Component {
             <button onClick={() => this.toggleEdit()}>back</button>
           </div>
         )}
-        <TextField
-          id="text-field-default"
-          floatingLabelText="Trip name"
-          defaultValue={`Trip to ${this.props.city}`}
-          onChange={e => this.props.updateTripName(e.target.value)}
-        />
+
+        {this.props.match.params.status === "new" ? (
+          <TextField
+            id="text-field-default"
+            floatingLabelText="Name your trip"
+            // value={`Trip to ${this.props.city}`}
+            onChange={e => this.props.updateTripName(e.target.value)}
+          />
+        ) : (
+          <TextField
+            id="text-field-default"
+            floatingLabelText="Name your trip"
+            value={this.props.tripName}
+            onChange={e => this.props.updateTripName(e.target.value)}
+          />
+        )}
+
         {createTripCardMap}
 
         <RaisedButton
@@ -90,20 +100,7 @@ class CreateTrip extends Component {
           style={style}
         />
         <RaisedButton
-          onClick={() =>
-            this.props
-              .createNewTrip(this.props.tripName, this.props.citiesInTrip)
-              .then(resp => {
-                console.log(resp.action.payload[0].trip_id);
-                this.props.citiesInTrip.map(x => {
-                  console.log(x);
-                  this.props.addCityToDatabase(
-                    x,
-                    resp.action.payload[0].trip_id
-                  );
-                });
-              })
-          }
+          onClick={() => this.saveEvent()}
           label="SAVE"
           style={style}
         />

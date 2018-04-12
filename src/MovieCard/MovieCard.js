@@ -43,9 +43,9 @@ class MovieCard extends Component {
                   ? this.props.movie[i].name
                   : ""}
               </div>
-              <div className="movie-img">
+              <div>
                 <img
-                  src={noimg}
+                  src={noimg} className="movie-img"
                   // src={
                   //   this.props.movie[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${

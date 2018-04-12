@@ -1,9 +1,9 @@
 
 
 
-img{
+/* img{
   max-width: 135px;
-}
+} */
 
 .park-name {
   height: 10vh;
@@ -14,7 +14,7 @@ img{
 }
 
 .park-img {
-  max-width: 200px;
+  max-width: 135px;
   position: relative;
   left: 20px;
   bottom: 20px;

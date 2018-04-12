@@ -40,9 +40,9 @@ class FoodCard extends Component {
               <div className="mall-name">
                 {this.props.mall[i] != undefined ? this.props.mall[i].name : ""}
               </div>
-              <div className="mall-img">
+              <div>
                 <img
-                  src={noimg}
+                  src={noimg} className="mall-img"
                   // src={
                   //   this.props.mall[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${

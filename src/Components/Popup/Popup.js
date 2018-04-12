@@ -12,18 +12,33 @@ class Popup extends Component {
       name: ["dallas", "austin", "more", "more2", "more3"],
       name2: "this. place. name. 2",
       id: 9,
-      allTrips: []
+      allTrips: [],
+      tripId : ''
+
     };
+    this.saveTrip = this.saveTrip.bind(this);
   }
 
   componentDidMount(props) {
     this.props.getAllTrips(this.props.user);
   }
 
-  getUsersTrips() {}
+saveTrip(tripId){
+  console.log('hit', tripId)
+  this.setState({
+    tripId: tripId
+  })
+}
 
   render() {
     console.log(this.props.user, this.props.allTrips, "!!!!!!!");
+    const tripsMap =
+      this.props.allTrips.length > 0 &&
+      this.props.allTrips.map((c, i) => {
+        console.log(c);
+        return <option value={c.trip_id}>{c.trip_name}</option>;
+      });
+
     return (
       <div className="popup">
         <div className="box">
@@ -41,20 +56,27 @@ class Popup extends Component {
                 <section class="container">
                   <p>Select Existing</p>
                   <div class="dropdown">
-                    <select name="one" class="dropdown-select">
+                    <select onChange={(e)=>this.saveTrip(e.target.value) } className="dropdown-select">
                       <option value="">Select…</option>
-                      {this.props.allTrips.map((name, i) => (
-                        <option value="1">{name.trip_name}</option>
-                      ))}
+                      {tripsMap}
                     </select>
                   </div>
                 </section>
 
                 <button
                   className="popupbtn"
-                  onClick={name => console.log(this.props.name, "~~~~~~~~~~")}
+                  onClick={()=> console.log('hi:', this.state.tripId)}
                 >
-                  {/* take to trip view and add to database for that trip  */}
+                  {/* 
+                  this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference
+                  redirect to the TripView page
+                  add to the database this.props.saved
+
+                  
+                  take to trip view and add to database for that trip  
+                  
+                  
+                  */}
                   Go
                 </button>
               </div>

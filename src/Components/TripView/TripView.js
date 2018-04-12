@@ -29,10 +29,10 @@ class TripView extends Component {
   }
 
   componentDidMount() {
-    this.props.getPlace(this.state.testId);
-    this.props.getTrip(this.state.tripId);
+    this.props.getPlace(this.props.match.params.id);
+    this.props.getTrip(this.props.match.params.id);
     this.props
-      .getCities(this.state.tripId)
+      .getCities(this.props.match.params.id)
       .then(resp => this.setState({ latLng: this.props.cities[0].lat_lng }));
   }
 

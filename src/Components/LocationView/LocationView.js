@@ -3,38 +3,77 @@ import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
 import "./LocationView.css";
-import ParkCard from "../ParkCard/ParkCard";
-import MuseumCard from "../../MuseumCard/MuseumCard";
-import FoodCard from "../../FoodCard/FoodCard";
-import MallCard from "../../MallCard/MallCard";
-import MovieCard from "../../MovieCard/MovieCard";
-import { getPlaceimg, getUser } from "../../ducks/reducer1";
+import ParkCard from "../GooglePlacesAPI/ParkCard/ParkCard";
+import MuseumCard from '../GooglePlacesAPI/MuseumCard/MuseumCard';
+import FoodCard from "../GooglePlacesAPI/FoodCard/FoodCard";
+import MallCard from "../GooglePlacesAPI/MallCard/MallCard";
+import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
+import { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall } from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
+import ApiCard from "../ApiCard/ApiCard";
 import FlatButton from "material-ui/FlatButton";
 
 class LocationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggle: false
+      auth_status: true,
+      test: "32.7766642,-96.79698789999998"
     };
-    this.onclock = this.onclock.bind(this);
+
   }
 
   componentDidMount(props) {
     this.props.getPlaceimg(this.props.placephotoref);
     this.props.getUser();
-  }
-  onclock() {
-    this.setState({
-      toggle: !this.state.toggle
-    });
+    // this.props.getFood(this.state.test);
+    // this.props.getParks(this.state.test);
+    // this.props.getMuseums(this.state.test);
+    // this.props.getMovie(this.state.test);
+    //  this.props.getMall(this.state.test);
+
+
+
+//replace this.state.test with this.props.match.params.id
+
   }
 
+
   render() {
-    // let img = document.createElement("img");
-    // img.src = "data:image/jpeg;base64," + btoa(this.props.placeimg);
-    // document.body.appendChild(img);
+const parksMap =
+this.props.parks.length > 0 &&
+this.props.parks.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const foodMap =
+this.props.food.length > 0 &&
+this.props.food.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const museumsMap =
+this.props.museums.length > 0 &&
+this.props.museums.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const mallsMap =
+this.props.mall.length > 0 &&
+this.props.mall.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
+
+const moviesMap =
+this.props.movie.length > 0 &&
+this.props.movie.map((c, i) => {
+  console.log(c);
+  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
+});
 
     return (
       <div className="location-body">
@@ -53,21 +92,21 @@ class LocationView extends Component {
           />
         </div>
         <div className="location-card-group">
-          <ParkCard toggle={this.onclock} />
+          {/* <ParkCard  /> */}
           <div>
-            <MuseumCard toggle={this.onclock} />
-          </div>
-
-          <div>
-            <FoodCard toggle={this.onclock} />
-          </div>
-          <div>
-            <MallCard toggle={this.onclock} />
-          </div>
-          <div>
-            <MovieCard toggle={this.onclock} />
-          </div>
-          {this.state.toggle === true ? <Popup toggle={this.onclock} /> : null}
+            <h1>Parks</h1>
+           {parksMap}
+           <h1>Restaurants</h1>
+           {foodMap}
+           <h1>Museums</h1>
+           {museumsMap}
+           <h1>Malls</h1>
+           {mallsMap}
+           <h1>Movies</h1>
+           {moviesMap}
+           
+           </div>
+          
         </div>
       </div>
     );
@@ -76,11 +115,19 @@ class LocationView extends Component {
 
 function mapStateToProps(state) {
   return {
+    parks: state.reducer1.parks,
+    food: state.reducer1.food,
+    movie: state.reducer1.movie,
+    mall: state.reducer1.mall,
+    museums: state.reducer1.museums,
+
+
     city: state.reducer1.city,
     state: state.reducer1.state,
     country: state.reducer1.country,
     placephotoref: state.reducer1.placephotoref,
-    placeimg: state.reducer1.placeimg
+    placeimg: state.reducer1.placeimg,
+    auth_status: state.reducer1.auth_status
   };
 }
-export default connect(mapStateToProps, { getPlaceimg, getUser })(LocationView);
+export default connect(mapStateToProps, { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall })(LocationView);

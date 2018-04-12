@@ -1,6 +1,4 @@
-img{
-    max-height: 175px;
-}
+
 
 .location-body{
     background-image: url("location-view-img.jpg");
@@ -25,7 +23,7 @@ img{
     position: absolute;
     top: 10vh;
     left: 25vw;
-    width: 50vh;
+    width: 45vh;
     overflow: hidden;
     
 }

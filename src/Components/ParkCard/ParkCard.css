@@ -1,6 +1,9 @@
 
 
 
+img{
+  max-width: 135px;
+}
 
 .park-name {
   height: 10vh;

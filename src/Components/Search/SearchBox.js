@@ -3,7 +3,6 @@ import { updatePlaceId, updateLatLng, updateLocationData, updatePlacephotoref } 
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-
 const { compose, withProps, lifecycle } = require("recompose");
 const { withScriptjs } = require("react-google-maps");
 const { StandaloneSearchBox } = require("react-google-maps/lib/components/places/StandaloneSearchBox");
@@ -24,7 +23,7 @@ const SearchBox = compose(
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
         },
-        onPlacesChanged: () => {
+        onPlacesChanged: (props) => {
           const places = refs.searchBox.getPlaces();
 
           this.setState({
@@ -46,11 +45,19 @@ const SearchBox = compose(
             places[0].address_components[2].short_name,
             places[0].address_components[3].long_name
           );
-          // props.updatePlaceId(places.place_id);
-
+          
           this.props.updatePlacephotoref(places[0].place_id);
-        
 
+          //TODO: Jordan, update some sort of state here that will redirect to Location
+          // You can use <Redirect to="/Location"/>
+          // You can use the .redirect() thing we did on the API
+          // You can maybe find another thing by googling "React redirect"
+
+          // ** This should go within a `render()` on this file **
+          // const shouldRedirect = this.state.shouldRedirect
+          // if (shouldRedirect) {
+          //   return ( <Redirect to="/Location" /> )
+          // }
         }
       });
     }
@@ -66,7 +73,7 @@ const SearchBox = compose(
       bounds={goog.bounds}
       onPlacesChanged={goog.onPlacesChanged}
     >
-      <input
+      <input 
         type="text"
         placeholder="Where do you want to go?"
         style={{

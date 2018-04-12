@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './Profile.css';
 import { connect } from 'react-redux';
 import {getUserInfo} from '../../ducks/reducer2';
+import NameForm from "./NameForm";
+import EmailForm from "./EmailForm";
 
 class Profile extends Component {
     constructor(props) {
         super(props);
+        
     }
 
     componentDidMount(props) {
@@ -20,12 +23,17 @@ class Profile extends Component {
                 <div className="profile-info-container">
                     <h3>Your Profile Information</h3>
                     <div className="info-container">
-                        <p className="attributes">{this.props.userinfo.name}</p>
-                        <p className="attributes">{this.props.userinfo.email}</p>
+                      <NameForm />
+                      <p className="attributes">{this.props.userinfo.name}</p>
+                      <EmailForm />
+                      <p className="attributes">{this.props.userinfo.email}</p> 
                     </div>
                 </div>
             </div>
         </div>   
+                        
+                        
+                      
             
         )
     }

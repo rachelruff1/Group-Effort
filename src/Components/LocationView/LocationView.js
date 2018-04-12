@@ -49,16 +49,6 @@ class LocationView extends Component {
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
-<<<<<<< HEAD
-        
-        <section className="location-card-group">
-          <div className="park-card"><ParkCard /></div>
-          <div className="museum-card"><MuseumCard /></div>
-          <div className="food-card"><FoodCard /></div>
-          <div className="mall-card"><MallCard /></div>
-          <div className="movie-card"><MovieCard /></div>
-        </section>
-=======
 
         <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
@@ -75,7 +65,6 @@ class LocationView extends Component {
           <MovieCard />
         </div>
         {this.state.toggle === true ? <Popup /> : null}
->>>>>>> master
       </div>
     );
   }

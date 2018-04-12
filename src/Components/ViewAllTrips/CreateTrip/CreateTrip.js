@@ -12,6 +12,7 @@ import {
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
+import "./CreateTrip.css";
 
 class CreateTrip extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class CreateTrip extends Component {
       });
     console.log(window.history);
     return (
-      <div>
+      <div className="createtrip-main">
         <br />
         <br />
         <br />

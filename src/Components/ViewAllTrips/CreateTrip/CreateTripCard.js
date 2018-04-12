@@ -80,7 +80,7 @@ class CreateTripCard extends Component {
     console.log(this);
 
     return (
-      <div>
+      <div className="create-card-main">
         {this.state.edit === false ? null : (
           <div>
             <CreateTripSearch

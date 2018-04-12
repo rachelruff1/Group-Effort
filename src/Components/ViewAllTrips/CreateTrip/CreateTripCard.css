@@ -1,3 +1,12 @@
+.create-card-main{
+    background: url("create-trip-img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
 .create-trip-card-container {
     padding: 0 0 30px 30px;
     width: 300px;

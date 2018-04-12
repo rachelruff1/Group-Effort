@@ -1,7 +1,4 @@
-img {
-  max-height: 135px;
-  
-}
+
 
 .museum-name {
   height: 10vh;
@@ -12,10 +9,11 @@ img {
 }
 
 .museum-img {
-  max-width: 200px;
+  max-width: 135px;
   position: relative;
   left: 20px;
   bottom: 20px;
+  
 }
 
 .museum-title {

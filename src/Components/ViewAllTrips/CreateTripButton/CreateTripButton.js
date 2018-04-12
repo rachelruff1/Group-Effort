@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
-
+import FlatButton from "material-ui/FlatButton";
 
 
 class AddToTrip extends Component{
@@ -19,7 +19,7 @@ render(){
     return(
         <div>
             <figure>
-                <Link to='create-trip'><button>+ CREATE TRIP</button></Link>
+                <Link to='create-trip'><FlatButton label="+ Create Trip" /></Link>
             </figure>
         </div>
     )

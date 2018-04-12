@@ -84,10 +84,6 @@
 		top: 0;
 	}
 
-	 .responsive-nav{
-		visibility: hidden;
-	}
-
 	 .user-photo {
 		float: right;
 		margin-right: 15px;
@@ -115,17 +111,13 @@
 	
 	.logo {
 		width: 80px;
-		/*height will adjust according to the width*/
+		/* height will adjust according to the width */
 	 }
 
 	 .login-buttons{
 		position: fixed;
 		left: 45vw;
 		top: 0;
-	}
-
-	 .responsive-nav{
-		visibility: hidden;
 	}
 
 	 .user-photo {

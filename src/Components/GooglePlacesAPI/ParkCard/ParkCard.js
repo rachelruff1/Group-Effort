@@ -43,9 +43,9 @@ class ParkCard extends Component {
                   ? this.props.parks[i].name
                   : ""}
               </div>
-              <div className="park-img">
+              <div>
                 <img
-                  src={noimg}
+                  src={noimg}  className="park-img"
                   // src={
                   //   this.props.parks[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${

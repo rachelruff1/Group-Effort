@@ -49,9 +49,10 @@ class Popup extends Component {
                     </select>
                   </div>
                 </section>
+
                 <button
                   className="popupbtn"
-                  onClick={() => console.log(this.props.allTrips, "~~~~~~~~~~")}
+                  onClick={name => console.log(this.props.name, "~~~~~~~~~~")}
                 >
                   {/* take to trip view and add to database for that trip  */}
                   Go

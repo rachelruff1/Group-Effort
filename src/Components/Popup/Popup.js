@@ -28,9 +28,11 @@ class Popup extends Component {
       <div className="popup">
         <div className="box">
           <div className="stuffinbox">
+            <button onClick={() => this.props.toggle()}> Close</button>
             <p id="tripto">Add to existing trip or create a new trip</p>{" "}
             <Link to="/create-trip">
               <button className="popupbtn">+ Create New</button>
+              {/* save the card to reducser and create trip*/}
             </Link>
             {this.props.allTrips == false ? (
               <div />
@@ -47,7 +49,13 @@ class Popup extends Component {
                     </select>
                   </div>
                 </section>
-                <button className="popupbtn"> Go</button>
+                <button
+                  className="popupbtn"
+                  onClick={() => console.log(this.props.allTrips, "~~~~~~~~~~")}
+                >
+                  {/* take to trip view and add to database for that trip  */}
+                  Go
+                </button>
               </div>
             )}
           </div>

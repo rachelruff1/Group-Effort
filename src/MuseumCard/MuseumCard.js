@@ -25,7 +25,6 @@ class MuseumCard extends Component {
   }
 
   render() {
-    console.log(this.props, "<<<<<<<<<<<");
     return (
       <div className="Museumcards">
         <p>museums:</p>

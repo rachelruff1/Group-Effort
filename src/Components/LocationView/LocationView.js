@@ -54,7 +54,7 @@ class LocationView extends Component {
           <div>
             <MuseumCard toggle={this.onclock} />
           </div>
-          <button onClick={() => this.onclock()}> hoiadsfadsfadsf</button>
+
           <div>
             <FoodCard toggle={this.onclock} />
           </div>
@@ -64,7 +64,7 @@ class LocationView extends Component {
           <div>
             <MovieCard toggle={this.onclock} />
           </div>
-          {this.state.toggle === true ? <Popup /> : null}
+          {this.state.toggle === true ? <Popup toggle={this.onclock} /> : null}
         </div>
       </div>
     );

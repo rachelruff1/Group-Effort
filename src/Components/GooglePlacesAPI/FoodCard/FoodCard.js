@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMovie, updateMoiveCard } from "../ducks/reducer1";
-import "./MovieCard.css";
+import noimg from "../../../Assets/Images/icon-no-image.svg";
+import { getFood, updateFoodCard } from "../../../ducks/reducer1";
+import "./FoodCard.css";
 import {
   Card,
   CardActions,
@@ -12,65 +12,62 @@ import {
   CardText
 } from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
-class MovieCard extends Component {
+class FoodCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Movie: [],
+      food: [],
       slectedcard: {}
     };
   }
 
   componentDidMount(props) {
-    // this.props.getMovie(this.props.latlng);
+    // this.props.getFood(this.props.latlng);
   }
 
   dostuff(props) {
     console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
-    this.props.updateMovieCard(this.state.slectedcard);
+    this.props.updateFoodCard(this.state.slectedcard);
     this.props.toggle();
   }
-
   render() {
     return (
-      <div className="Moviecards">
-        <p>movie theaters :</p>
-        {this.props.movie.length > 0 &&
-          this.props.movie.map((movie, i) => (
+      <div className="Foodcards">
+        <p>food:</p>
+        {this.props.food.length > 0 &&
+          this.props.food.map((food, i) => (
             <Card>
-              <div className="movie-name">
-                {this.props.movie[i] != undefined
-                  ? this.props.movie[i].name
-                  : ""}
+              <div className="food-name">
+                {this.props.food[i] != undefined ? this.props.food[i].name : ""}
               </div>
               <div>
                 <img
-                  src={noimg} className="movie-img"
+                  src={noimg} className="food-img"
                   // src={
-                  //   this.props.movie[i].photos != undefined
+                  //   this.props.food[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                  //         this.props.movie[i].photos[0].photo_reference
+                  //         this.props.food[i].photos[0].photo_reference
                   //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
                   //     : noimg
                   // }
                   alt=""
                 />
               </div>
-              <div className="movie-title">
-                {this.props.movie[i] != undefined
-                  ? this.props.movie[i].rating
+              <div>
+                {this.props.food[i] != undefined
+                  ? this.props.food[i].rating
                   : ""}
               </div>
 
-              <div className="movie-buttons">
+              <div className="food-buttons">
                 <button
                   className="add-button"
-                  onFocus={() => this.setState({ slectedcard: movie })}
+                  onFocus={() => this.setState({ slectedcard: food })}
                   onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
-                {console.log(this.props.movie[i], "movie")}
+                {console.log(this.props.food[i], "food")}
               </div>
             </Card>
           ))}
@@ -82,9 +79,7 @@ class MovieCard extends Component {
 function mapStateToProps(state) {
   return {
     latlng: state.reducer1.latlng,
-    movie: state.reducer1.movie
+    food: state.reducer1.food
   };
 }
-export default connect(mapStateToProps, { getMovie, updateMoiveCard })(
-  MovieCard
-);
+export default connect(mapStateToProps, { getFood, updateFoodCard })(FoodCard);

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMall, updateMallCard } from "../ducks/reducer1";
-import "./MallCard.css";
+import noimg from "../../../Assets/Images/icon-no-image.svg";
+import { getMovie, updateMoiveCard } from "../../../ducks/reducer1";
+import "./MovieCard.css";
 import {
   Card,
   CardActions,
@@ -12,62 +12,65 @@ import {
   CardText
 } from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
-class FoodCard extends Component {
+class MovieCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mall: [],
+      Movie: [],
       slectedcard: {}
     };
   }
 
   componentDidMount(props) {
-    // this.props.getMall(this.props.latlng);
+    // this.props.getMovie(this.props.latlng);
   }
+
   dostuff(props) {
     console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
-    this.props.updateMallCard(this.state.slectedcard);
+    this.props.updateMovieCard(this.state.slectedcard);
     this.props.toggle();
   }
 
   render() {
     return (
-      <div className="Mallcards">
-        <p>malls:</p>
-        {this.props.mall.length > 0 &&
-          this.props.mall.map((mall, i) => (
+      <div className="Moviecards">
+        <p>movie theaters :</p>
+        {this.props.movie.length > 0 &&
+          this.props.movie.map((movie, i) => (
             <Card>
-              <div className="mall-name">
-                {this.props.mall[i] != undefined ? this.props.mall[i].name : ""}
+              <div className="movie-name">
+                {this.props.movie[i] != undefined
+                  ? this.props.movie[i].name
+                  : ""}
               </div>
               <div>
                 <img
-                  src={noimg} className="mall-img"
+                  src={noimg} className="movie-img"
                   // src={
-                  //   this.props.mall[i].photos != undefined
+                  //   this.props.movie[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
-                  //         this.props.mall[i].photos[0].photo_reference
+                  //         this.props.movie[i].photos[0].photo_reference
                   //       }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
                   //     : noimg
                   // }
                   alt=""
                 />
               </div>
-              <div className="mall-title">
-                {this.props.mall[i] != undefined
-                  ? this.props.mall[i].rating
+              <div className="movie-title">
+                {this.props.movie[i] != undefined
+                  ? this.props.movie[i].rating
                   : ""}
               </div>
 
-              <div className="mall-buttons">
+              <div className="movie-buttons">
                 <button
                   className="add-button"
-                  onFocus={() => this.setState({ slectedcard: mall })}
+                  onFocus={() => this.setState({ slectedcard: movie })}
                   onClick={() => this.dostuff()}
                 >
                   Add to trip
                 </button>
-                {console.log(this.props.mall[i], "mall")}
+                {console.log(this.props.movie[i], "movie")}
               </div>
             </Card>
           ))}
@@ -79,7 +82,9 @@ class FoodCard extends Component {
 function mapStateToProps(state) {
   return {
     latlng: state.reducer1.latlng,
-    mall: state.reducer1.mall
+    movie: state.reducer1.movie
   };
 }
-export default connect(mapStateToProps, { getMall, updateMallCard })(FoodCard);
+export default connect(mapStateToProps, { getMovie, updateMoiveCard })(
+  MovieCard
+);

@@ -15,7 +15,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="homesearch">
-          <br />
+          {/* <br />
           <br />
           <br />
           <br />
@@ -25,6 +25,9 @@ class Home extends Component {
           <Link to="/view-all-trips">
             <button>ViewAllTrips</button>
           </Link>
+          <Link to="/location">
+            <button>ViewLocation</button>
+          </Link> */}
         </div>
         <figure className="search">
           <SearchBox />

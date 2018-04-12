@@ -2,20 +2,30 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
+import "./LocationView.css";
 import ParkCard from "../ParkCard/ParkCard";
 import MuseumCard from "../../MuseumCard/MuseumCard";
 import FoodCard from "../../FoodCard/FoodCard";
 import MallCard from "../../MallCard/MallCard";
 import MovieCard from "../../MovieCard/MovieCard";
-import { getPlaceimg } from "../../ducks/reducer1";
-
+import { getPlaceimg, getUser } from "../../ducks/reducer1";
+import Popup from "../Popup/Popup";
 class LocationView extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      toggle: false
+    };
   }
 
   componentDidMount(props) {
     this.props.getPlaceimg(this.props.placephotoref);
+    this.props.getUser();
+  }
+  onclock() {
+    this.setState({
+      toggle: !this.state.toggle
+    });
   }
 
   render() {
@@ -24,21 +34,33 @@ class LocationView extends Component {
     // document.body.appendChild(img);
 
     return (
-      <div className="LocationView">
-        <div className="SearchbaronLocation">
-          <SearchBox />
-
+      <div className="location-body">
+        
+        <div className="location-title">
           <h1>
             {/* add conditinal  */}
-            {this.props.city},{this.props.state},{this.props.country}
+            {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
+        </div>
+        <div className="location-image">
           <img
-            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
+            src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
           />
         </div>
+<<<<<<< HEAD
+        
+        <section className="location-card-group">
+          <div className="park-card"><ParkCard /></div>
+          <div className="museum-card"><MuseumCard /></div>
+          <div className="food-card"><FoodCard /></div>
+          <div className="mall-card"><MallCard /></div>
+          <div className="movie-card"><MovieCard /></div>
+        </section>
+=======
 
+        <button onClick={() => this.onclock()}>hi </button>
         <ParkCard />
         <div>
           <MuseumCard />
@@ -52,6 +74,8 @@ class LocationView extends Component {
         <div>
           <MovieCard />
         </div>
+        {this.state.toggle === true ? <Popup /> : null}
+>>>>>>> master
       </div>
     );
   }
@@ -66,4 +90,4 @@ function mapStateToProps(state) {
     placeimg: state.reducer1.placeimg
   };
 }
-export default connect(mapStateToProps, { getPlaceimg })(LocationView);
+export default connect(mapStateToProps, { getPlaceimg, getUser })(LocationView);

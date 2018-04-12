@@ -1,0 +1,93 @@
+
+
+.location-body{
+    background-image: url("location-view-img.jpg");
+    background-size: cover;
+    /* background-attachment: fixed; */
+    height:100vh;
+    /* overflow: hidden; */
+    
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    animation: showup 5s;
+}
+
+.location-title{
+    position: absolute;
+    top: 10vh;
+    left: 26vw;
+    z-index: 1;
+}
+
+.location-image{
+    position: absolute;
+    top: 10vh;
+    left: 25vw;
+    height: 45vh;
+    overflow: hidden;
+    
+}
+
+.location-card-group{
+    position: absolute;
+    top: 60vh;
+    left: 5vw;
+    width: 90vw;
+    height: 40vh;
+    overflow: scroll;
+    margin: 15px;
+}
+
+
+
+.park-card{  
+    margin: 0;
+    padding: 0;  
+    width: 90vw; 
+    height: 35vh; 
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.museum-card{
+    margin: 0;
+    padding: 0;  
+    width: 90vw; 
+    height: 35vh; 
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.food-card{
+    margin: 0;
+    padding: 0;  
+    width: 90vw; 
+    height: 35vh; 
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.mall-card{
+    margin: 0;
+    padding: 0;  
+    width: 90vw; 
+    height: 35vh; 
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.movie-card{
+    margin: 0;
+    padding: 0;  
+    width: 90vw; 
+    height: 35vh; 
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+
+@keyframes showup {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

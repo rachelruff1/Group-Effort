@@ -33,14 +33,21 @@
   display: flex;
   position: absolute;
   margin-left: 100px;
+  height: 110%;
+  width: 40%;
+  
 
 }
 .email-field {
   display: flex;
-  margin-left: 300px;
+  margin-left: 400px;
 }
 .username-field {
   display: flex;
-  margin-left: 300px;
+  margin-left: 400px;
+}
+
+.submit-button {
+  margin-left: 400px;
 }
 }

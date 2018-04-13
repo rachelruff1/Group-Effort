@@ -1,9 +1,12 @@
+
+@media only screen and (min-width: 769px) {
 .profile-shell {
     background-image: url("../Logo/Profilepagebackground.jpeg");
     background-position: center;
     background-size: cover;
     width:100vw;
     height: 100vh;
+    /* animation: showup 5s; */
 }
 
 .attributes {
@@ -18,6 +21,26 @@
   }
 
 .info-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
   position: absolute;
+  margin-left: 300px;
+  margin-top: 200px;
   
+}
+.user-photo-main {
+  display: flex;
+  position: absolute;
+  margin-left: 100px;
+
+}
+.email-field {
+  display: flex;
+  margin-left: 300px;
+}
+.username-field {
+  display: flex;
+  margin-left: 300px;
+}
 }

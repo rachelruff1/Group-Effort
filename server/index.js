@@ -166,6 +166,14 @@ app.get("/api/getAllTrips/:id", ctrl.getAllTrips);
 
 app.post("/api/addToSaved", ctrl.addToSaved);
 
+
+
+//post request for Profile.js (Jordan)
+app.put('/api/updateProfile', ctrl.updateProfile);
+
+
+
+
 //------------- end of endpoints ----------------
 app.listen(port, () => {
   console.log(`server is on port ${port}`);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import { RSA_NO_PADDING } from "constants";
 
 const GET_CITY = "GET_CITY";
 const GET_DESTINATION = "GET_DESTINATION";
@@ -10,6 +11,7 @@ const GET_USER_INFO = "GET_USER_INFO";
 const UPDATE_CITY_IN_TRIP = "UPDATE_CITY_IN_TRIP";
 const GET_ALL_TRIPS = "GET_ALL_TRIPS";
 const DELETE_TRIP = "DELETE_TRIP";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
 
 const initialState = {
   info: [],
@@ -239,6 +241,15 @@ export function getAllTrips(id) {
   };
 }
 
+export function updateProfile(email, username) {
+  return {
+    type: UPDATE_PROFILE,
+    payload: axios  
+      .put("/api/updateProfile", {username, email})
+      .then(resp => resp.data)
+      .catch(err => err.errMessage)
+  };
+}
 
 export function deleteTrip(tripId, index){
   console.log('hit delete', tripId);

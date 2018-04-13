@@ -411,6 +411,21 @@ const updateCitiesOnEdit = (req, res, next) => {
     });
 };
 
+
+ //------Function for Profile.js (Jordan)
+const updateProfile = (req, res, next) => {
+  console.log(req.body, "RRRRRRRR", req.user)
+  req.app
+    .get("db")
+    .update_profile([req.body.username, req.body.email, req.user.user_id])
+    .then(response => {
+      res.status(200).json(response)})
+      .catch(err => {
+        console.log(err);
+        next(err);
+      })
+  }
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -434,5 +449,6 @@ module.exports = {
   deleteCity,
   updateTripOnEdit,
   addCitiesOnEdit,
-  updateCitiesOnEdit
+  updateCitiesOnEdit,
+  updateProfile
 };

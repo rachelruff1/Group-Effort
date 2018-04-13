@@ -1,6 +1,10 @@
 import axios from "axios";
 import moment from "moment";
+<<<<<<< HEAD
+
+=======
 //
+>>>>>>> master
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -123,12 +127,22 @@ const initialState = {
       scope: "GOOGLE",
       types: ["park", "point_of_interest", "establishment"],
       vicinity: "1500 Marilla Street, Dallas"
-    },
-    {
-      icon:
+    },{
+    icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks otehre pare ",
+      name: "Dallas Parks Inspection3",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    },{
+    icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection3",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",

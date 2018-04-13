@@ -69,7 +69,7 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
             {pastTrips}</div>}
 
 
-<Link to={`/create-trip/${status}`}><button>+ Create Trip</button></Link>
+<Link to={`/create-trip/${status}`}><FlatButton label="+ Create Trip" labelStyle={{color: 'rgb(255, 255, 255)', fontSize: '110%'}} /></Link>
 
           {/* <CreateTripButton /> */}
         </main>

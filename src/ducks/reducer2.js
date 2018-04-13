@@ -12,6 +12,7 @@ const UPDATE_CITY_IN_TRIP = "UPDATE_CITY_IN_TRIP";
 const GET_ALL_TRIPS = "GET_ALL_TRIPS";
 const DELETE_TRIP = "DELETE_TRIP";
 const UPDATE_PROFILE = "UPDATE_PROFILE";
+const SEND_ALL_DATA = "SEND_ALL_DATA";
 
 const initialState = {
   info: [],
@@ -24,7 +25,7 @@ const initialState = {
   userinfo: {},
   newCityInTrip: {},
 
-  index: '',
+  index: "",
 
   test: "hi",
   newCityInTrip: {},
@@ -33,7 +34,6 @@ const initialState = {
   current: [],
   future: [],
   allTrips: []
-
 };
 
 export default function reducer(state = initialState, action) {
@@ -112,7 +112,7 @@ export default function reducer(state = initialState, action) {
         index: action.index
       });
 
-      case `${GET_ALL_TRIPS}_PENDING`:
+    case `${GET_ALL_TRIPS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_ALL_TRIPS}_REJECTED`:
       return Object.assign({}, state, {
@@ -120,7 +120,7 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_ALL_TRIPS}_FULFILLED`:
-    console.log('HIIITTT', action);
+      console.log("HIIITTT", action);
       return Object.assign({}, state, {
         isLoading: false,
         allTrips: action.payload.allTrips,
@@ -222,43 +222,58 @@ export function getAllTrips(id) {
   console.log(today);
   return {
     type: GET_ALL_TRIPS,
-    payload: axios.get(`/api/getAllTrips/${id}`).then(resp => {
-      console.log(resp);
-      allTrips = resp.data;
-      resp.data.map(x => {
-        if (x.start_date <= today && x.end_date >= today) {
-          current.push(x);
-        } else if (x.end_date < today) {
-          past.push(x);
-        } else if (x.start_date > today) {
-          future.push(x);
-        } else null;
-      });
-      console.log(past, current, future);
-      return { past, current, future, allTrips };
-    })
-    .catch(err => err.errMessage)
+    payload: axios
+      .get(`/api/getAllTrips/${id}`)
+      .then(resp => {
+        console.log(resp);
+        allTrips = resp.data;
+        resp.data.map(x => {
+          if (x.start_date <= today && x.end_date >= today) {
+            current.push(x);
+          } else if (x.end_date < today) {
+            past.push(x);
+          } else if (x.start_date > today) {
+            future.push(x);
+          } else null;
+        });
+        console.log(past, current, future);
+        return { past, current, future, allTrips };
+      })
+      .catch(err => err.errMessage)
   };
 }
 
 export function updateProfile(email, username) {
   return {
     type: UPDATE_PROFILE,
-    payload: axios  
-      .put("/api/updateProfile", {username, email})
+    payload: axios
+      .put("/api/updateProfile", { username, email })
       .then(resp => resp.data)
       .catch(err => err.errMessage)
   };
 }
 
-export function deleteTrip(tripId, index){
-  console.log('hit delete', tripId);
+export function deleteTrip(tripId, index) {
+  console.log("hit delete", tripId);
   return {
     type: DELETE_TRIP,
     payload: axios
-    .delete(`/api/deleteTrip/${tripId}`)
-    .then(resp =>index)
-    .catch(err => err.errMessage)
-  }
+      .delete(`/api/deleteTrip/${tripId}`)
+      .then(resp => index)
+      .catch(err => err.errMessage)
+  };
 }
 
+export function sendAllData(tripId, name, rating, photoRef) {
+  console.log("hit send", tripId, name, rating, photoRef);
+  return {
+    type: SEND_ALL_DATA,
+    payload: axios
+      .post("/api/addToSaved", { tripId, name, rating, photoRef })
+      .then(resp => {
+        console.log("hit end");
+        resp.data;
+      })
+      .catch(err => err.errMessage)
+  };
+}

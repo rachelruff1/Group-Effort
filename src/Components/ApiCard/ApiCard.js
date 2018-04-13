@@ -43,6 +43,13 @@ class ApiCard extends Component {
   render() {
     console.log(this.props.results);
 
+    // let button;
+
+    // if (this.props.location === 'TripView') {
+    //   button =  <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
+    // } else if (lj){}
+    //   ;
+
     return (
       <div className="api-card-container">
         <Card style={{ width: "200px", margin: "20px" }}>
@@ -65,6 +72,7 @@ class ApiCard extends Component {
                 : ""
             }/>
           <CardTitle />
+
           <CardActions>
             {this.props.auth === true ? (
               <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
@@ -79,7 +87,8 @@ class ApiCard extends Component {
           <Popup
             name={this.props.results.name}
             rating={this.props.results.rating}
-            photos={this.props.results.photos}
+            photoRef='CoQBeQAAAAgOdveT3dRtzoJ42BTBZfCdZptWsqLN3bROkP4FVHNNX'
+            // {this.props.results.photos[0].photo_reference}
             toggle={this.onclock}
 
             // photoRef={this.props.results.photos[0].photo_reference}

@@ -41,8 +41,16 @@ class ApiCard extends Component {
   }
 
   render() {
+<<<<<<< HEAD
+    let styles = {
+      maxWidth: 255,
+      marginRight: "auto"
+    };
+    console.log(this.props.results);
+=======
     console.log(this.props.results);
 
+<<<<<<< HEAD
     // let button;
 
     // if (this.props.location === 'TripView') {
@@ -50,6 +58,9 @@ class ApiCard extends Component {
     // } else if (lj){}
     //   ;
 
+=======
+>>>>>>> master
+>>>>>>> master
     return (
       <div className="api-card-container">
         <Card style={{ width: "200px", margin: "20px" }}>

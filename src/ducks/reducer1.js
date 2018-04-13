@@ -50,6 +50,8 @@ const ADD_CITIES_ON_EDIT = 'ADD_CITIES_ON_EDIT';
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
 
+
+
 const initialState = {
   user: {},
   image: "",

@@ -1,66 +1,104 @@
-import React, { Component } from 'react';
-import './Profile.css';
-import { connect } from 'react-redux';
-import {getUserInfo} from '../../ducks/reducer2';
-
+import React, { Component } from "react";
+import "./Profile.css";
+import { connect } from "react-redux";
+import { getUserInfo, updateProfile } from "../../ducks/reducer2";
+import axios from "axios";
+import TextField from "material-ui/TextField";
+import noUser from "../../Assets/Images/defaultuser2.png";
+import { getProfile, verifyUser } from "../../ducks/reducer1";
 class Profile extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      testE: "r@r.com",
+      testU: "ruffy101",
       email: this.props.userinfo.email,
-      username: this.props.userinfo.name
-    }
+      username: this.props.userinfo.name,
+      toggle: false
+    };
+    this.updateEmail = this.updateEmail.bind(this);
+    this.updateUserName = this.updateUserName.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
-
   componentDidMount(props) {
-    this.props.getUserInfo()
+    this.props.getProfile();
+    this.props.verifyUser();
+    
+    this.props.getUserInfo().then(resp =>
+      this.setState({
+        email: this.props.userinfo.email,
+        username: this.props.userinfo.name
+      })
+    );
   }
-
-  handleInputChange(event) {
-    // set variable to name of input
-    const n = event.target.name
-
-    // set variable to value of input
-    const v = event.target.value
-
-    // set state to whatever is the name
-    // (in this case, it's either "email" or "username"
+  updateEmail(e) {
     this.setState({
-      [n]: v
-    })
+      email: e
+    });
   }
-
-  handleSubmit() {
-    // here you can access the values of the inputs through this.state
-    const username = this.state.username
-    const email = this.state.email
-
-    // Then update your DB with these values.
+  updateUserName(e) {
+    this.setState({
+      username: e
+    });
   }
-
+  toggle() {
+    this.setState({
+      toggle: true
+    });
+  }
   render() {
-    return(
+    console.log(this.state.toggle, "userInfo:", this.props.userinfo);
+    return (
       <div className="profile-shell">
-        <div className="main-content-wrapper">
-          <div className="profile-info-container">
-            <h3>Your Profile Information</h3>
-            <div className="info-container">
-              <form onSubmit={this.handleSubmit}>
-                <input name="email" value={this.state.email} onChange={this.handleInputChange} />
-                <input name="username" value={this.state.username} onChange={this.handleInputChange} />
-              </form>
-              <input type="submit" value="Submit" />
-            </div>
+        <div className="profile-info-container">
+          <h3>Your Profile Information</h3>
+          <div className="info-container">
+          <img className="user-photo-main"
+            src={this.props.auth_status !== true ? noUser  : this.props.picture }/>
+            <TextField className="email-field"
+              value={this.state.email}
+              onClick={() => this.toggle()}
+              onChange={e => this.updateEmail(e.target.value)}
+              floatingLabelText="Email"
+            />
+            <br />
+            <TextField className="username-field"
+              value={this.state.username}
+              onClick={() => this.toggle()}
+              onChange={e => this.updateUserName(e.target.value)}
+              floatingLabelText="Username"
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            {this.state.toggle === false ? null : (
+              <button
+                onClick={() => {
+                    console.log(this.state.email, this.state.username)
+                  this.props.updateProfile(
+                    this.state.email,
+                    this.state.username
+                  )}
+                }
+              >sumbit</button>
+            )}
+            
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 function mapStateToProps(state) {
   return {
-    userinfo: state.reducer2.userinfo
+    userinfo: state.reducer2.userinfo,
+    picture: state.reducer1.picture,
+    auth_status: state.reducer1.auth_status
   };
 }
-export default connect(mapStateToProps, { getUserInfo })(Profile);
+export default connect(mapStateToProps, { getUserInfo, updateProfile, getProfile, verifyUser })(
+  Profile
+);

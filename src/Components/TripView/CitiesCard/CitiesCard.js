@@ -7,7 +7,7 @@ class CitiesCard extends Component {
     super(props);
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <h3 onClick={() => this.props.updateLatLng(this.props.index)}>

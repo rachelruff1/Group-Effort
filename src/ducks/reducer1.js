@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import MovieCard from "../MovieCard/MovieCard";
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -24,6 +25,15 @@ const GET_PARKS = "GET_PARKS";
 const VERIFY_USER = "VERIFY_USER";
 const GET_PLACE_IMG = "GET_PLACE_IMG";
 
+// saved cards
+
+const UPDATE_SAVED_LIST = 'UPDATE_SAVED_LIST';
+const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
+const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
+const UPDATE_PARK_CARD = "UPDATE_PARK_CARD";
+const UPDATE_FOOD_CARD = "UPDATE_FOOD_CARD";
+const UPDATE_MALL_CARD = "UPDATE_MALL_CARD";
+
 //CREATETRIP.JS
 const GET_CITIES_IN_TRIP = "GET_CITIES_IN TRIP";
 const ADD_CITY_TO_TRIP = "ADD_CITY_TO_TRIP";
@@ -45,7 +55,7 @@ const UPDATE_EDIT_CITIES_IN_TRIP = "UPDATE_EDIT_CITIES_IN_TRIP";
 const DELETE_CITY_FROM_DATABASE = "DELETE_CITY_FROM_DATABASE";
 const UPDATE_TRIP_ON_EDIT = "UPDATE_TRIP_ON_EDIT";
 const UPDATE_CITIES_ON_EDIT = "UPDATE_CITIES_ON_EDIT";
-const ADD_CITIES_ON_EDIT = 'ADD_CITIES_ON_EDIT';
+const ADD_CITIES_ON_EDIT = "ADD_CITIES_ON_EDIT";
 
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
@@ -55,6 +65,11 @@ const GET_MOVIE = "GET_MOVIE";
 const initialState = {
   user: {},
   image: "",
+  savedMovieCard: {},
+  savedMuseumCard: {},
+  savedParkCard: {},
+  savedFoodCard: {},
+  savedMallCard: {},
   picture: "",
   isLoading: false,
   didErr: false,
@@ -85,7 +100,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection",
+      name: "Dallas Parks Inspection2",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -101,7 +116,19 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection",
+      name: "Dallas Parks Inspection3",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    },
+    {
+      icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks otehre pare ",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -115,7 +142,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection",
+      name: "Dallas Parks Inspection4",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -129,7 +156,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection",
+      name: "Dallas Parks Inspection5",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -178,6 +205,23 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
+
+    //saved cards
+
+    case UPDATE_MOVIE_CARD:
+      return Object.assign({}, state, { savedMovieCard: action.payload });
+
+    case UPDATE_MUSEUM_CARD:
+      return Object.assign({}, state, { savedMuseumCard: action.payload });
+
+    case UPDATE_PARK_CARD:
+      return Object.assign({}, state, { savedParkCard: action.payload });
+
+    case UPDATE_FOOD_CARD:
+      return Object.assign({}, state, { savedFoodCard: action.payload });
+
+    case UPDATE_MALL_CARD:
+      return Object.assign({}, state, { savedMallCard: action.payload });
 
     case `${VERIFY_USER}_FULFILLED`:
       console.log(action.payload, "payload");
@@ -236,14 +280,6 @@ export default function reducer(state = initialState, action) {
         trip: action.payload[0]
       });
 
-    case `${GET_SAVED}_PENDING`:
-      return Object.assign({}, state, { isLoading: true });
-    case `${GET_SAVED}_REJECTED`:
-      return Object.assign({}, state, {
-        isLoading: false,
-        didErr: true
-      });
-
     case `${GET_CITY_DETAIL}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_CITY_DETAIL}_REJECTED`:
@@ -273,12 +309,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         parks: action.payload
       });
-    case `${GET_SAVED}_FULFILLED`:
-      // console.log("reducer func:", action.payload[0]);
-      return Object.assign({}, state, {
-        isLoading: false,
-        saved: action.payload[0]
-      });
+  
     case `${GET_FOOD}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_FOOD}_REJECTED`:
@@ -492,6 +523,9 @@ export default function reducer(state = initialState, action) {
         cities: newEditArr
         // state.cities.splice(action.index, 1, action.payload)
       });
+    case UPDATE_SAVED_LIST:
+    console.log(action.payload);
+    return Object.assign({}, state, {saved: action.payload});
 
     default:
       return state;
@@ -561,6 +595,49 @@ export function getProfile() {
       .catch(err => err.errMessage)
   };
 }
+
+//savedcardfunctions
+
+export function updateMoiveCard(moviecard) {
+  // console.log(placeId);
+  return {
+    type: UPDATE_MOVIE_CARD,
+    payload: moviecard
+  };
+}
+
+export function updateMuseumCard(museumcard) {
+  // console.log(placeId);
+  return {
+    type: UPDATE_MUSEUM_CARD,
+    payload: museumcard
+  };
+}
+
+export function updateParkCard(parkcard) {
+  // console.log(placeId);
+  return {
+    type: UPDATE_PARK_CARD,
+    payload: parkcard
+  };
+}
+
+export function updateFoodCard(foodcard) {
+  // console.log(foodcard);
+  return {
+    type: UPDATE_FOOD_CARD,
+    payload: foodcard
+  };
+}
+
+export function updateMallCard(mallcard) {
+  // console.log(mallcard);
+  return {
+    type: UPDATE_MALL_CARD,
+    payload: mallcard
+  };
+}
+//----
 
 export function updatePlaceId(placeId) {
   // console.log(placeId);
@@ -1042,7 +1119,7 @@ export function addCitiesOnEdit(city, tripId) {
   return {
     type: ADD_CITIES_ON_EDIT,
     payload: axios
-      .post(`/api/addCitiesOnEdit/${tripId}`, {city})
+      .post(`/api/addCitiesOnEdit/${tripId}`, { city })
       .then(resp => {
         console.log(resp);
         return resp.data;
@@ -1061,3 +1138,13 @@ export function updateCitiesOnEdit(city) {
       .catch(err => err.errMessage)
   };
 }
+
+
+export function updateSavedList(card){
+  console.log(card);
+  return{
+    type:UPDATE_SAVED_LIST,
+    payload: card
+  }
+}
+

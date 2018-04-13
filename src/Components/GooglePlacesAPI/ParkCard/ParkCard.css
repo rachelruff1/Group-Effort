@@ -1,9 +1,11 @@
-img {
-  max-height: 135px;
-  
-}
 
-.mall-name {
+
+
+/* img{
+  max-width: 135px;
+} */
+
+.park-name {
   height: 10vh;
   font-size: 16px;
   position: relative;
@@ -11,27 +13,27 @@ img {
   left: 5px;
 }
 
-.mall-img {
-  max-width: 200px;
+.park-img {
+  max-width: 135px;
   position: relative;
   left: 20px;
   bottom: 20px;
 }
 
-.mall-title {
+.park-title {
   font-size: 20px;
   width: 10vw;
   max-height: 50px;
 }
 
-.mall-buttons {
+.park-buttons {
   position: relative;
   bottom: 20px;
   left: 60px;
   
 }
 
-.mallcards {
+.parkcards {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -44,4 +46,3 @@ img {
   position: relative;
   top: 0vh;
 }
-

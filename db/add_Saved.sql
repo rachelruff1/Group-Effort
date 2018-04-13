@@ -1,4 +1,4 @@
 INSERT INTO saved
-    (trip_id,trip_name,rating,picture)
+    (trip_id,trip_name)
 VALUES
-    ($1, $2, $3, $4);
+    ($1, $2);

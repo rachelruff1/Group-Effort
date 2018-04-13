@@ -31,16 +31,17 @@ class Popup extends Component {
     });
   }
 
-  sendAllData(data) {
+  sendAllData(stuff) {
     axios.post(
       `/api/addToSaved`,
-      { data }.then(results => {
+      { stuff }.then(results => {
         console.log(results, "yayayyayayayayayay");
       })
     );
   }
 
   render() {
+    let data = [this.state.tripId, this.props.name];
     console.log(this.props.user, this.props.allTrips, "!!!!!!!");
     const tripsMap =
       this.props.allTrips.length > 0 &&
@@ -78,14 +79,7 @@ class Popup extends Component {
 
                 <button
                   className="popupbtn"
-                  onClick={() =>
-                    this.sendAllData(
-                      this.state.tripId,
-                      this.props.name,
-                      this.props.rating,
-                      this.props.photos
-                    )
-                  }
+                  onClick={() => this.sendAllData(data)}
                 >
                   {/* 
                   this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference

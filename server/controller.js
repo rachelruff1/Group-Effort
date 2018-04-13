@@ -26,9 +26,9 @@ const getUser = (req, res, next) => {
 const addToSaved = (req, res, next) => {
   console.log(req.body);
   const db = req.app.get("db");
-  const { tripid, name, rating, photos } = req.body;
+
   db
-    .add_Saved([trip_id, trip_name, rating, photos])
+    .add_Saved([req.body.trip_id, req.body.trip_name])
     .then(res.status(200).send())
     .catch(() => res.status(500).send());
 };

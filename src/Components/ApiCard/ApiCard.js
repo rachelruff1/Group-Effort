@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { updateSavedList } from "../../ducks/reducer1";
 import noimg from "../../Assets/Images/icon-no-image.svg";
 import { Link } from "react-router-dom";
+import "./ApiCard.css";
 // import "./FoodCard.css";
 import {
   Card,
@@ -40,19 +41,14 @@ class ApiCard extends Component {
   }
 
   render() {
-
-    let styles = {
-      maxWidth: 255,
-      marginRight: "auto"
-    };
     console.log(this.props.results);
 
     return (
-      <div className="Foodcards">
-        <Card styles={styles}>
-          <CardHeader title={this.props.results.name} />
+      <div className="api-card-container">
+        <Card style={{ width: "200px", margin: "20px" }}>
           <CardMedia>
             <img
+              style={{ width: "200px" }}
               src={
                 this.props.results.photos != undefined
                   ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
@@ -63,13 +59,12 @@ class ApiCard extends Component {
               alt=""
             />
           </CardMedia>
-          <CardTitle
-            title={
+          <CardTitle title={this.props.results.name} subtitle={
               this.props.results.rating != undefined
                 ? this.props.results.rating
                 : ""
-            }
-          />
+            }/>
+          <CardTitle />
           <CardActions>
             {this.props.auth === true ? (
               <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
@@ -88,7 +83,6 @@ class ApiCard extends Component {
             toggle={this.onclock}
 
             // photoRef={this.props.results.photos[0].photo_reference}
-
           />
         ) : null}
       </div>

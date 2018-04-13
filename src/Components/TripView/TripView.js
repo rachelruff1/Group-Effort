@@ -46,7 +46,8 @@ class TripView extends Component {
     let newLat = this.props.cities[index].lat_lng;
     this.setState({
       latLng: newLat,
-      selectedCity: cityName
+      selectedCity: cityName,
+      overview: true
     });
   }
 
@@ -74,7 +75,7 @@ class TripView extends Component {
         <CitiesCard
           key={i}
           city={c}
-          updateLatLng={this.updateLatLng}
+          updateCityByIndex={this.updateCityByIndex}
           index={i}
         />
       ));
@@ -97,6 +98,7 @@ class TripView extends Component {
         <div>
           {this.state.overview === true ? (
             <CategoriesOverview 
+            
             updateContainer={this.updateContainer}
             latLng={this.state.latLng}
             />

@@ -4,11 +4,19 @@ import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
 import "./LocationView.css";
 import ParkCard from "../GooglePlacesAPI/ParkCard/ParkCard";
-import MuseumCard from '../GooglePlacesAPI/MuseumCard/MuseumCard';
+import MuseumCard from "../GooglePlacesAPI/MuseumCard/MuseumCard";
 import FoodCard from "../GooglePlacesAPI/FoodCard/FoodCard";
 import MallCard from "../GooglePlacesAPI/MallCard/MallCard";
-import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
-import { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall } from "../../ducks/reducer1";
+// import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
+import {
+  getPlaceimg,
+  getUser,
+  getFood,
+  getParks,
+  getMuseums,
+  getMovie,
+  getMall
+} from "../../ducks/reducer1";
 import Popup from "../Popup/Popup";
 import ApiCard from "../ApiCard/ApiCard";
 import FlatButton from "material-ui/FlatButton";
@@ -20,7 +28,6 @@ class LocationView extends Component {
       auth_status: true,
       test: "32.7766642,-96.79698789999998"
     };
-
   }
 
   componentDidMount(props) {
@@ -32,48 +39,79 @@ class LocationView extends Component {
     // this.props.getMovie(this.state.test);
     //  this.props.getMall(this.state.test);
 
-
-
-//replace this.state.test with this.props.match.params.id
-
+    //replace this.state.test with this.props.match.params.id
   }
 
-
   render() {
-const parksMap =
-this.props.parks.length > 0 &&
-this.props.parks.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    const parksMap =
+      this.props.parks.length > 0 &&
+      this.props.parks.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth={this.props.auth_status}
+          />
+        );
+      });
 
-const foodMap =
-this.props.food.length > 0 &&
-this.props.food.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    const foodMap =
+      this.props.food.length > 0 &&
+      this.props.food.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth={this.props.auth_status}
+          />
+        );
+      });
 
-const museumsMap =
-this.props.museums.length > 0 &&
-this.props.museums.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    const museumsMap =
+      this.props.museums.length > 0 &&
+      this.props.museums.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth={this.props.auth_status}
+          />
+        );
+      });
 
-const mallsMap =
-this.props.mall.length > 0 &&
-this.props.mall.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    const mallsMap =
+      this.props.mall.length > 0 &&
+      this.props.mall.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth={this.props.auth_status}
+          />
+        );
+      });
 
-const moviesMap =
-this.props.movie.length > 0 &&
-this.props.movie.map((c, i) => {
-  console.log(c);
-  return <ApiCard key={i} results={c} index={i} auth={this.props.auth_status}/>;
-});
+    const moviesMap =
+      this.props.movie.length > 0 &&
+      this.props.movie.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth={this.props.auth_status}
+          />
+        );
+      });
 
     return (
       <div className="location-body">
@@ -83,7 +121,7 @@ this.props.movie.map((c, i) => {
             {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
         </div>
-        <div >
+        <div>
           <img
             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
@@ -93,6 +131,7 @@ this.props.movie.map((c, i) => {
         </div>
         <div className="location-card-group">
           {/* <ParkCard  /> */}
+<<<<<<< HEAD
           <h1>Parks</h1>
           <div className="park-cards">            
            {parksMap}
@@ -115,6 +154,20 @@ this.props.movie.map((c, i) => {
            </div>
            
           
+=======
+          <div>
+            <h1>Parks</h1>
+            {parksMap}
+            <h1>Restaurants</h1>
+            {foodMap}
+            <h1>Museums</h1>
+            {museumsMap}
+            <h1>Malls</h1>
+            {mallsMap}
+            <h1>Movies</h1>
+            {moviesMap}
+          </div>
+>>>>>>> master
         </div>
       </div>
     );
@@ -129,7 +182,6 @@ function mapStateToProps(state) {
     mall: state.reducer1.mall,
     museums: state.reducer1.museums,
 
-
     city: state.reducer1.city,
     state: state.reducer1.state,
     country: state.reducer1.country,
@@ -138,4 +190,12 @@ function mapStateToProps(state) {
     auth_status: state.reducer1.auth_status
   };
 }
-export default connect(mapStateToProps, { getPlaceimg, getUser, getFood, getParks, getMuseums, getMovie, getMall })(LocationView);
+export default connect(mapStateToProps, {
+  getPlaceimg,
+  getUser,
+  getFood,
+  getParks,
+  getMuseums,
+  getMovie,
+  getMall
+})(LocationView);

@@ -36,6 +36,7 @@ class AppHeader extends Component {
 
   render() {
     console.log(this.props.location.pathname);
+
     return (
       <header className="app-header">
         <div className="login-buttons">

@@ -157,12 +157,22 @@ app.post("/api/addCityToDatabase", ctrl.addCityToDatabase);
 app.get("/api/getMall/:id", ctrl.getMall);
 app.get("/api/getMovie/:id", ctrl.getMovie);
 
-app.delete('/api/deleteCity/:id', ctrl.deleteCity);
-app.put('/api/updateTripOnEdit', ctrl.updateTripOnEdit);
+app.delete("/api/deleteCity/:id", ctrl.deleteCity);
+app.put("/api/updateTripOnEdit", ctrl.updateTripOnEdit);
 app.post(`/api/addCitiesOnEdit/:id`, ctrl.addCitiesOnEdit);
-app.put('/api/updateCitiesOnEdit', ctrl.updateCitiesOnEdit);
+app.put("/api/updateCitiesOnEdit", ctrl.updateCitiesOnEdit);
 
-app.get('/api/getAllTrips/:id', ctrl.getAllTrips);
+app.get("/api/getAllTrips/:id", ctrl.getAllTrips);
+
+app.post("/api/addToSaved", ctrl.addToSaved);
+
+
+
+//post request for Profile.js (Jordan)
+app.put('/api/updateProfile', ctrl.updateProfile);
+
+
+
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

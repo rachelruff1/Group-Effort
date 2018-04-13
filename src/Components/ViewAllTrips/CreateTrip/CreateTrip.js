@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
 import {
   getCitiesInTrip,
   addCityToTrip,
@@ -50,7 +50,7 @@ class CreateTrip extends Component {
   render() {
     // console.log(this.props.citiesInTrip);
     const style = {
-      margin: 12
+      margin: 12,
     };
     const createTripCardMap =
       this.props.citiesInTrip.length > 0 &&
@@ -95,12 +95,12 @@ class CreateTrip extends Component {
 
         {createTripCardMap}
 
-        <RaisedButton
+        <FlatButton
           onClick={() => this.toggleEdit()}
           label="+ ADD CITY"
           style={style}
         />
-        <RaisedButton
+        <FlatButton
           onClick={() => this.saveEvent()}
           label="SAVE"
           style={style}

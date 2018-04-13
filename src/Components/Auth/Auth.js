@@ -1,10 +1,11 @@
 import React from "react";
+import "../ProfilePopOver/ProfilePopOver.css"
 
 const Auth = () => {
   return (
     <div className="auth">
-      <div className="drawer-link-wrapper">
-        <a href={process.env.REACT_APP_LOGIN} className="drawer-link">Login</a>
+      <div className="drawer-link">
+        <a href={process.env.REACT_APP_LOGIN} style={{ textDecoration: 'none', color: 'rgb(255, 255, 255)'}}>Login</a>
         </div>
     </div>
   );

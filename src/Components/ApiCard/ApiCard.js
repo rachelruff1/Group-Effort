@@ -44,6 +44,7 @@ class ApiCard extends Component {
       let styles = {
         maxWidth: 255,
         marginRight: 'auto',
+        
       };
       console.log(this.props.results);
     return (

@@ -29,15 +29,6 @@
     .trips-title{
         border-bottom: 2px solid black;
     }
-    
-    @keyframes showup {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
     }
 
 
@@ -72,15 +63,6 @@
     .trips-title{
         border-bottom: 2px solid black;
     }
-    
-    @keyframes showup {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
 }
 
 /*For Full Screen*/
@@ -118,13 +100,4 @@
     /* top: 15vh; */
     border-bottom: 2px solid black;
 }
-
-@keyframes showup {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 }

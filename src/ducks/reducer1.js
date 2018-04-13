@@ -26,7 +26,7 @@ const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 // saved cards
 
-const UPDATE_SAVED_LIST = 'UPDATE_SAVED_LIST';
+const UPDATE_SAVED_LIST = "UPDATE_SAVED_LIST";
 const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
 const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
 const UPDATE_PARK_CARD = "UPDATE_PARK_CARD";
@@ -58,6 +58,8 @@ const ADD_CITIES_ON_EDIT = "ADD_CITIES_ON_EDIT";
 
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
+
+
 
 const initialState = {
   user: {},
@@ -120,12 +122,22 @@ const initialState = {
       scope: "GOOGLE",
       types: ["park", "point_of_interest", "establishment"],
       vicinity: "1500 Marilla Street, Dallas"
-    },
-    {
-      icon:
+    },{
+    icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks otehre pare ",
+      name: "Dallas Parks Inspection3",
+      place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
+      reference:
+        "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
+      scope: "GOOGLE",
+      types: ["park", "point_of_interest", "establishment"],
+      vicinity: "1500 Marilla Street, Dallas"
+    },{
+    icon:
+        "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+      id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
+      name: "Dallas Parks Inspection3",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -306,7 +318,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         parks: action.payload
       });
-  
+
     case `${GET_FOOD}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_FOOD}_REJECTED`:
@@ -521,8 +533,8 @@ export default function reducer(state = initialState, action) {
         // state.cities.splice(action.index, 1, action.payload)
       });
     case UPDATE_SAVED_LIST:
-    console.log(action.payload);
-    return Object.assign({}, state, {saved: action.payload});
+      console.log(action.payload);
+      return Object.assign({}, state, { saved: action.payload });
 
     default:
       return state;
@@ -1136,12 +1148,10 @@ export function updateCitiesOnEdit(city) {
   };
 }
 
-
-export function updateSavedList(card){
+export function updateSavedList(card) {
   console.log(card);
-  return{
-    type:UPDATE_SAVED_LIST,
+  return {
+    type: UPDATE_SAVED_LIST,
     payload: card
-  }
+  };
 }
-

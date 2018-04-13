@@ -36,6 +36,7 @@ class AppHeader extends Component {
 
   render() {
     console.log(this.props.location.pathname);
+
     return (
       <header className="app-header">
         <div className="login-buttons">
@@ -43,11 +44,6 @@ class AppHeader extends Component {
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
-          <div className="navbar">
-            <div className="responsive-nav">
-              {/* <Search /> */}
-            </div>
-          </div>
         </div>
         <img className="user-photo"
             src={this.props.auth_status !== true ? noUser  : this.props.picture }

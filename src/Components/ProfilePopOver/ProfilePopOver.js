@@ -1,12 +1,9 @@
-import React from "react";
-import RaisedButton from "material-ui/RaisedButton";
-import Popover from "material-ui/Popover";
-import Menu from "material-ui/Menu";
-import MenuItem from "material-ui/MenuItem";
-import "./ProfilePopOver.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './ProfilePopOver.css';
+import { Link } from 'react-router-dom';
 import Login from "../Auth/Auth";
 import Auth2 from "../Auth/Auth2";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 export default class ProfilePopOver extends React.Component {
   constructor(props) {
@@ -35,7 +32,7 @@ export default class ProfilePopOver extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="profile-menu">
         {this.props.auth_status !== true ? (
           <div>
             <Login />
@@ -45,13 +42,13 @@ export default class ProfilePopOver extends React.Component {
             <Auth2 />
           </div>
         )}
-        <Link to="/view-all-trips">
-          <div className="drawer-link">>View Your Trips</div>
+        <Link to="/view-all-trips" style={{ textDecoration: 'none' }}>
+          <div className="drawer-link">View Your Trips</div>
         </Link>
-        <Link to="/profile">
-          <div className="drawer-link">>Your Profile</div>
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
+          <div className="drawer-link">Your Profile</div>
         </Link>
       </div>
     );
   }
-}
+ }

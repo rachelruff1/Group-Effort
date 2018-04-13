@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/reducer1";
-import { getAllTrips } from "../../ducks/reducer2";
+import { getAllTrips, sendAllData } from "../../ducks/reducer2";
 import axios from "axios";
 class Popup extends Component {
   constructor(props) {
@@ -19,44 +19,35 @@ class Popup extends Component {
     this.saveTrip = this.saveTrip.bind(this);
     this.sendAllData = this.saveTrip.bind(this);
   }
-
   componentDidMount(props) {
     this.props.getAllTrips(this.props.user);
   }
-
   saveTrip(tripId) {
     console.log("hit", tripId);
     this.setState({
       tripId: tripId
     });
   }
-
-  sendAllData(stuff) {
-    axios.post(
-      `/api/addToSaved`,
-      { stuff }.then(results => {
-        console.log(results, "yayayyayayayayayay");
-      })
-    );
-  }
-
+ 
   render() {
-    let data = [this.state.tripId, this.props.name];
-    console.log(this.props.user, this.props.allTrips, "!!!!!!!");
+    let rating;
+    (this.props.rating == undefined) ? rating = '' : rating = this.props.rating;
+
+    let data = [this.state.tripId, this.props.name, this.props.rating, this.props.photoRef, 'rating:', this.props.rating, 'ratingvar', rating ];
+    console.log(this.props.user, this.props.allTrips, "!!!!!!!", data);
     const tripsMap =
       this.props.allTrips.length > 0 &&
       this.props.allTrips.map((c, i) => {
         console.log(c);
         return <option value={c.trip_id}>{c.trip_name}</option>;
       });
-
     return (
       <div className="popup">
         <div className="box">
           <div className="stuffinbox">
             <button onClick={() => this.props.toggle()}> Close</button>
             <p id="tripto">Add to existing trip or create a new trip</p>{" "}
-            <Link to="/create-trip">
+            <Link to="/create-trip/new">
               <button className="popupbtn">+ Create New</button>
               {/* save the card to reducser and create trip*/}
             </Link>
@@ -76,16 +67,14 @@ class Popup extends Component {
                     </select>
                   </div>
                 </section>
-
                 <button
                   className="popupbtn"
-                  onClick={() => this.sendAllData(data)}
+                  onClick={() => this.props.sendAllData(this.state.tripId, this.props.name, rating, this.props.photoRef)}
                 >
                   {/* 
                   this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference
                   redirect to the TripView page
                   add to the database this.props.saved
-
                   
                   take to trip view and add to database for that trip  
                   
@@ -101,11 +90,10 @@ class Popup extends Component {
     );
   }
 }
-
 function mapStateToProps(state) {
   return {
     user: state.reducer1.user,
     allTrips: state.reducer2.allTrips
   };
 }
-export default connect(mapStateToProps, { getUser, getAllTrips })(Popup);
+export default connect(mapStateToProps, { getUser, getAllTrips, sendAllData })(Popup);

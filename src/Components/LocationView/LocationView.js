@@ -131,30 +131,6 @@ class LocationView extends Component {
         </div>
         <div className="location-card-group">
           {/* <ParkCard  /> */}
-<<<<<<< HEAD
-          <h1>Parks</h1>
-          <div className="park-cards">            
-           {parksMap}
-           </div>
-           <h1>Restaurants</h1>
-           <div className="food-cards">
-           {foodMap}
-           </div>
-           <h1>Museums</h1>
-           <div className="museum-cards">
-           {museumsMap}
-           </div>
-           <h1>Malls</h1>
-           <div className="mall-cards">           
-           {mallsMap}
-           </div>
-           <h1>Movies</h1>
-           <div className="movie-cards">           
-           {moviesMap}
-           </div>
-           
-          
-=======
           <div>
             <h1>Parks</h1>
             {parksMap}
@@ -167,7 +143,6 @@ class LocationView extends Component {
             <h1>Movies</h1>
             {moviesMap}
           </div>
->>>>>>> master
         </div>
       </div>
     );

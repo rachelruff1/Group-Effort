@@ -1,0 +1,10 @@
+/* .api-card-container img{
+    height: 50px;
+    width: 50px;
+} */
+.api-card-container{
+    font-family: 'Poppins', sans-serif;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}

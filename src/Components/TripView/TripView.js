@@ -4,16 +4,13 @@ import { connect } from "react-redux";
 import { getPlace } from "../../ducks/reducer2";
 import {
   getTrip,
-  getCities,
-  getSaved,
-  getFood,
-  getThingsToDo,
-  getMuseums,
-  getWebcams,
-  getFacts
+  getCities
 } from "../../ducks/reducer1";
 import CitiesCard from "./CitiesCard/CitiesCard";
 import "./TripView.css";
+import ApiCard from "../ApiCard/ApiCard";
+import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
+import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
 
 class TripView extends Component {
   constructor(props) {
@@ -23,90 +20,100 @@ class TripView extends Component {
       testId: "ChIJPZQJvBo8TIYRov7INbBx08o",
       tripId: 16,
       latLng: "",
-      index: ''
+      index: "",
+      container: "",
+      source: "",
+      overview: true
     };
-    this.updateLatLng = this.updateLatLng.bind(this);
+    this.updateCityByIndex = this.updateCityByIndex.bind(this);
+    this.updateContainer = this.updateContainer.bind(this);
+    this.toggleView = this.toggleView.bind(this);
   }
 
   componentDidMount() {
     this.props.getPlace(this.props.match.params.id);
     this.props.getTrip(this.props.match.params.id);
-    this.props
-      .getCities(this.props.match.params.id)
-      .then(resp => this.setState({ latLng: this.props.cities[0].lat_lng }));
+    this.props.getCities(this.props.match.params.id).then(resp => {
+      this.setState({
+        latLng: this.props.cities[0].lat_lng,
+        selectedCity: this.props.cities[0].city_name
+      });
+    });
   }
 
-updateLatLng (index){
-  this.setState({
-    latLng: this.props.cities[index].lat_lng
-  });
-}
+  updateCityByIndex(index, cityName) {
+    console.log(index, cityName);
+    let newLat = this.props.cities[index].lat_lng;
+    this.setState({
+      latLng: newLat,
+      selectedCity: cityName,
+      overview: true
+    });
+  }
+
+  updateContainer(title) {
+    console.log('hit:', title)
+    this.setState({
+      container: title,
+      overview: false
+    });
+  }
+  toggleView() {
+    console.log('hit toggle')
+    this.setState({
+      overview: true
+    });
+  }
 
   render() {
-    console.log('this', this);
-    const { tripId } = this.state;
+    console.log("this", this);
+    const { tripId, latLng, container } = this.state;
     const { trip, cities } = this.props;
     const citiesMap =
       cities.length > 0 &&
-      cities.map((c, i) => <CitiesCard key={i} city={c} updateLatLng={this.updateLatLng} index={i}/>);
+      cities.map((c, i) => (
+        <CitiesCard
+          key={i}
+          city={c}
+          updateCityByIndex={this.updateCityByIndex}
+          index={i}
+        />
+      ));
+
+    const savedMap = {};
     return (
       <body className="trip-view-container">
         <header className="trip-title">
-        <div className="trip-box">
-          <h1>{trip.trip_name} </h1>
-          
-          <h3>
-            {trip.start_date} - {trip.end_date}
-          </h3>
+          <div className="trip-box">
+            <h1>{trip.trip_name} </h1>
+            <h3>
+              {trip.start_date} - {trip.end_date}
+            </h3>
           </div>
         </header>
-        <div>
-        <div className="trip-view-selectors">
-          <div
-            className="saved-container"
-            onClick={() => this.props.getSaved(tripId)}
-          >
-            Saved
-          </div>
-          <div
-            className="restaurant-container"
-            onClick={() => this.props.getFood(tripId)}
-          >
-            Restaurants
-          </div>
-          <div
-            className="theater-container"
-            onClick={() => this.props.getThingsToDo(tripId)}
-          >
-            Theaters
-          </div>
-          <div
-            className="museums-container"
-            onClick={() => this.props.getMuseums(this.state.latLng)}
-          >
-            Museums
-          </div>
-          <div
-            className="parks-container"
-            onClick={() => this.props.getWebcams()}
-          >
-            Parks
-          </div>
-          <div
-            className="shopping-container"
-            onClick={() => this.props.getFacts(tripId)}
-          >
-           Shopping
-          </div>
-        </div>
         <div className="side-bar">
-        <sidebar className="city-side-bar">{citiesMap}</sidebar>
+          <sidebar className="city-side-bar">{citiesMap}</sidebar>
         </div>
+
+        <div>
+          {this.state.overview === true ? (
+            <CategoriesOverview 
+            
+            updateContainer={this.updateContainer}
+            latLng={this.state.latLng}
+            />
+          ) : (
+            <CategoryDisplay
+              toggleView={this.toggleView}
+              container={container}
+            />
+          )}
         </div>
-      </body> 
+      </body>
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   placeDetail: state.reducer2.placeDetail,
@@ -120,11 +127,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getPlace,
   getTrip,
-  getCities,
-  getSaved,
-  getFood,
-  getThingsToDo,
-  getMuseums,
-  getWebcams,
-  getFacts
+  getCities
 })(TripView);

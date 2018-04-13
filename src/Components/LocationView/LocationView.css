@@ -39,56 +39,67 @@
     margin: 15px;
 }
 
-
-
-.park-card{  
-    margin: 0;
-    padding: 0;  
-    width: 90vw; 
-    height: 35vh; 
-    overflow-y: hidden;
-    overflow-x: auto;
-}
-.museum-card{
-    margin: 0;
-    padding: 0;  
-    width: 90vw; 
-    height: 35vh; 
-    overflow-y: hidden;
-    overflow-x: auto;
-}
-.food-card{
-    margin: 0;
-    padding: 0;  
-    width: 90vw; 
-    height: 35vh; 
-    overflow-y: hidden;
-    overflow-x: auto;
-}
-.mall-card{
-    margin: 0;
-    padding: 0;  
-    width: 90vw; 
-    height: 35vh; 
-    overflow-y: hidden;
-    overflow-x: auto;
+.park-cards{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    max-width: 200px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    padding: 5px;
 }
 
-.movie-card{
-    margin: 0;
-    padding: 0;  
-    width: 90vw; 
-    height: 35vh; 
-    overflow-y: hidden;
-    overflow-x: auto;
+.food-cards{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    max-width: 200px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    
+}
+
+.museum-cards{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    max-width: 200px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    
+}
+
+.mall-cards{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    max-width: 200px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    
+}
+
+.movie-cards{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    max-width: 200px;
+    position: relative;
+    left: 20px;
+    bottom: 20px;
+    
 }
 
 
-@keyframes showup {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+
+
+

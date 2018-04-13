@@ -90,6 +90,7 @@
 		border: 1px solid white;
 		border-radius: 50px;
 		height: 50px;
+		z-index: 2;
 	}
 }
 
@@ -101,16 +102,23 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 50px;
-		background: transparent;
-		overflow: hidden;
+		height: 75px;
+		background: rgb(189, 189, 189);
+		/* overflow: hidden; */
 		padding: 1em;
-		width: 98%;
+		width: 100%;
 		border-bottom: 2px solid #000;
+		box-shadow: 1px 4px 8px #777777;
+		z-index: 3;
 	}
 	
 	.logo {
 		width: 80px;
+		position: absolute;
+		top: 1vh;
+		right: 40vw;
+		border-radius: 50px;
+		box-shadow: 2px 5px 12px #444444;
 		/* height will adjust according to the width */
 	 }
 
@@ -122,17 +130,21 @@
 
 	 .user-photo {
 		float: right;
+		position: fixed;
+		right: 2vw;
+		top: 2.5vh;
 		margin-right: 15px;
 		border: 1px solid white;
 		border-radius: 50px;
 		height: 50px;
-		box-shadow: 2px 3px 5px rgb(2, 1, 1);
+		box-shadow: 2px 5px 12px #444444;
 	}
 	.header-search {
 		float: right;
-		padding-top: 23px;
-		padding-left: 200px;
-
+		position: fixed;
+		top: 4vh;
+		right: 7vw;
+		box-shadow: 2px 5px 12px #444444;
 	}
 }
 

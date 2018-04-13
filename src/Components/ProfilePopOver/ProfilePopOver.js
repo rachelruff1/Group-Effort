@@ -1,12 +1,9 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
 import './ProfilePopOver.css';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Login from "../Auth/Auth";
 import Auth2 from "../Auth/Auth2";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 export default class ProfilePopOver extends React.Component {
 
@@ -19,7 +16,7 @@ export default class ProfilePopOver extends React.Component {
     
     
   }
-  
+
 
   handleClick = (event) => {
     // This prevents ghost click.
@@ -39,26 +36,23 @@ export default class ProfilePopOver extends React.Component {
 
   render() {
     return (
-      <div>
-        <RaisedButton className="profile-menu"
-          onClick={this.handleClick}
-          label=" + "
-        />
-        <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose}
-        >
-          <Menu>
-          {this.props.auth_status !== true? (<div><Login /></div>) : (<div><Auth2 /></div>)}
-            <span className="drawer-link-wrapper"><NavLink to="/view-all-trips" className="drawer-link">View Your Trips</NavLink></span>
-            <span className="drawer-link-wrapper"><NavLink to="/profile" className="drawer-link">Your Profile</NavLink></span>
-
-          </Menu>
-        </Popover>
+      <div className="profile-menu">
+        {this.props.auth_status !== true ? (
+          <div>
+            <Login />
+          </div>
+        ) : (
+          <div>
+            <Auth2 />
+          </div>
+        )}
+        <Link to="/view-all-trips" style={{ textDecoration: 'none' }}>
+          <div className="drawer-link">View Your Trips</div>
+        </Link>
+        <Link to="/profile" style={{ textDecoration: 'none' }}>
+          <div className="drawer-link">Your Profile</div>
+        </Link>
       </div>
     );
   }
-}
+ }

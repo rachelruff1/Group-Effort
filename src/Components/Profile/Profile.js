@@ -55,6 +55,7 @@ class Profile extends Component {
           <div className="info-container">
           <img className="user-photo-main"
             src={this.props.auth_status !== true ? noUser  : this.props.picture }/>
+            <div className="flex-container">
             <TextField className="email-field"
               value={this.state.email}
               onClick={() => this.toggle()}
@@ -68,6 +69,7 @@ class Profile extends Component {
               onChange={e => this.updateUserName(e.target.value)}
               floatingLabelText="Username"
             />
+
             <br />
             <br />
             <br />
@@ -75,7 +77,7 @@ class Profile extends Component {
             <br />
 
             {this.state.toggle === false ? null : (
-              <button
+              <button className="submit-button"
                 onClick={() => {
                     console.log(this.state.email, this.state.username)
                   this.props.updateProfile(
@@ -83,9 +85,9 @@ class Profile extends Component {
                     this.state.username
                   )}
                 }
-              >sumbit</button>
+              >Submit</button>
             )}
-            
+            </div>
           </div>
         </div>
       </div>

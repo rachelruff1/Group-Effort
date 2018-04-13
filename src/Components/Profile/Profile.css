@@ -22,7 +22,7 @@
 
 .info-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: row;
   flex-direction: row;
   position: absolute;
   margin-left: 300px;

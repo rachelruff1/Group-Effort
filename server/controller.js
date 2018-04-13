@@ -68,7 +68,7 @@ const getCities = (req, res, next) => {
     });
 };
 const getTrip = (req, res, next) => {
-  console.log("user:", req.user, "params:", req.params);
+  console.log("params:", req.params);
   const db = req.app.get("db");
   db
     .get_trip([req.params.tripid])

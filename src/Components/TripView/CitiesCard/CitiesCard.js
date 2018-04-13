@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import { getCityDetail } from "../../../ducks/reducer1";
+import './CitiesCard.css';
 
 class CitiesCard extends Component {
   constructor(props) {
@@ -9,8 +10,8 @@ class CitiesCard extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
-        <h3 onClick={() => this.props.updateLatLng(this.props.index)}>
+      <div onClick={() => this.props.updateCityByIndex(this.props.index, this.props.city.city_name)} className='cities-card-trip-view-container'>
+        <h3 >
           {this.props.city.city_name}
         </h3>
         <p>

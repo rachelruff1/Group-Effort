@@ -1,6 +1,6 @@
 import axios from "axios";
 import moment from "moment";
-import MovieCard from "../MovieCard/MovieCard";
+//
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -27,7 +27,7 @@ const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 // saved cards
 
-const UPDATE_SAVED_LIST = 'UPDATE_SAVED_LIST';
+const UPDATE_SAVED_LIST = "UPDATE_SAVED_LIST";
 const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
 const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
 const UPDATE_PARK_CARD = "UPDATE_PARK_CARD";
@@ -307,7 +307,7 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         parks: action.payload
       });
-  
+
     case `${GET_FOOD}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
     case `${GET_FOOD}_REJECTED`:
@@ -522,8 +522,8 @@ export default function reducer(state = initialState, action) {
         // state.cities.splice(action.index, 1, action.payload)
       });
     case UPDATE_SAVED_LIST:
-    console.log(action.payload);
-    return Object.assign({}, state, {saved: action.payload});
+      console.log(action.payload);
+      return Object.assign({}, state, { saved: action.payload });
 
     default:
       return state;
@@ -1137,12 +1137,10 @@ export function updateCitiesOnEdit(city) {
   };
 }
 
-
-export function updateSavedList(card){
+export function updateSavedList(card) {
   console.log(card);
-  return{
-    type:UPDATE_SAVED_LIST,
+  return {
+    type: UPDATE_SAVED_LIST,
     payload: card
-  }
+  };
 }
-

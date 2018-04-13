@@ -5,6 +5,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/reducer1";
 import { getAllTrips } from "../../ducks/reducer2";
+import axios from "axios";
 class Popup extends Component {
   constructor(props) {
     super(props);
@@ -13,22 +14,31 @@ class Popup extends Component {
       name2: "this. place. name. 2",
       id: 9,
       allTrips: [],
-      tripId : ''
-
+      tripId: ""
     };
     this.saveTrip = this.saveTrip.bind(this);
+    this.sendAllData = this.saveTrip.bind(this);
   }
 
   componentDidMount(props) {
     this.props.getAllTrips(this.props.user);
   }
 
-saveTrip(tripId){
-  console.log('hit', tripId)
-  this.setState({
-    tripId: tripId
-  })
-}
+  saveTrip(tripId) {
+    console.log("hit", tripId);
+    this.setState({
+      tripId: tripId
+    });
+  }
+
+  sendAllData(data) {
+    axios.post(
+      `/api/addToSaved`,
+      { data }.then(results => {
+        console.log(results, "yayayyayayayayayay");
+      })
+    );
+  }
 
   render() {
     console.log(this.props.user, this.props.allTrips, "!!!!!!!");
@@ -56,7 +66,10 @@ saveTrip(tripId){
                 <section class="container">
                   <p>Select Existing</p>
                   <div class="dropdown">
-                    <select onChange={(e)=>this.saveTrip(e.target.value) } className="dropdown-select">
+                    <select
+                      onChange={e => this.saveTrip(e.target.value)}
+                      className="dropdown-select"
+                    >
                       <option value="">Select…</option>
                       {tripsMap}
                     </select>
@@ -65,7 +78,14 @@ saveTrip(tripId){
 
                 <button
                   className="popupbtn"
-                  onClick={()=> console.log('hi:', this.state.tripId)}
+                  onClick={() =>
+                    this.sendAllData(
+                      this.state.tripId,
+                      this.props.name,
+                      this.props.rating,
+                      this.props.photos
+                    )
+                  }
                 >
                   {/* 
                   this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference

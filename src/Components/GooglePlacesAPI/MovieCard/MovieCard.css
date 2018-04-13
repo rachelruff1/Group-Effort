@@ -1,9 +1,6 @@
-img {
-  max-height: 135px;
-  
-}
 
-.food-name {
+
+.movie-name {
   height: 10vh;
   font-size: 16px;
   position: relative;
@@ -11,27 +8,27 @@ img {
   left: 5px;
 }
 
-.food-img {
-  max-width: 200px;
+.movie-img {
+  max-width: 135px;
   position: relative;
   left: 20px;
   bottom: 20px;
 }
 
-.food-title {
+.movie-title {
   font-size: 20px;
   width: 10vw;
   max-height: 50px;
 }
 
-.food-buttons {
+.movie-buttons {
   position: relative;
   bottom: 20px;
   left: 60px;
   
 }
 
-.foodcards {
+.moviecards {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

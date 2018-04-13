@@ -23,6 +23,16 @@ const getUser = (req, res, next) => {
     .catch(() => res.status(500).send());
 };
 
+const addToSaved = (req, res, next) => {
+  console.log(req.body);
+  const db = req.app.get("db");
+
+  db
+    .add_Saved([req.body.trip_id, req.body.trip_name])
+    .then(res.status(200).send())
+    .catch(() => res.status(500).send());
+};
+
 const editUser = (req, res, next) => {
   const db = req.app.get("db");
   const { name, email, picture } = req.body;
@@ -321,7 +331,7 @@ const deleteTrip = (req, res, next) => {
 };
 
 const deleteCity = (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
   console.log(id);
   const db = req.app.get("db");
   db
@@ -337,10 +347,20 @@ const deleteCity = (req, res, next) => {
 };
 
 const updateTripOnEdit = (req, res, next) => {
-  const {tripId, tripName, startDateOnUpdateTrip, endDateOnEditTrip} = req.body;
+  const {
+    tripId,
+    tripName,
+    startDateOnUpdateTrip,
+    endDateOnEditTrip
+  } = req.body;
   const db = req.app.get("db");
   db
-    .update_trip_on_edit([tripId, tripName, startDateOnUpdateTrip, endDateOnEditTrip])
+    .update_trip_on_edit([
+      tripId,
+      tripName,
+      startDateOnUpdateTrip,
+      endDateOnEditTrip
+    ])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
@@ -353,33 +373,40 @@ const updateTripOnEdit = (req, res, next) => {
 
 const addCitiesOnEdit = (req, res, next) => {
   console.log(req.body, req.params);
-  const {id} = req.params;
-  const {city_name,
+  const { id } = req.params;
+  const {
+    city_name,
     state,
     country,
     lat_lng,
     place_id,
     start_date,
     end_date,
-    trip_id} = req.body.city;  
+    trip_id
+  } = req.body.city;
 
-    console.log(id, state,
-      country,
-      lat_lng,
-      place_id,
-      start_date,
-      end_date,
-      trip_id);
+  console.log(
+    id,
+    state,
+    country,
+    lat_lng,
+    place_id,
+    start_date,
+    end_date,
+    trip_id
+  );
   const db = req.app.get("db");
   db
-    .add_city_on_edit([city_name,
+    .add_city_on_edit([
+      city_name,
       state,
       country,
       lat_lng,
       place_id,
       start_date,
       end_date,
-      id])
+      id
+    ])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
@@ -391,16 +418,11 @@ const addCitiesOnEdit = (req, res, next) => {
 };
 
 const updateCitiesOnEdit = (req, res, next) => {
-  const {
-    start_date,
-    end_date, city_id} = req.body.city;
-    console.log(start_date,
-      end_date, city_id)
+  const { start_date, end_date, city_id } = req.body.city;
+  console.log(start_date, end_date, city_id);
   const db = req.app.get("db");
   db
-    .update_cities_on_edit([
-      start_date,
-      end_date, city_id])
+    .update_cities_on_edit([start_date, end_date, city_id])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
@@ -439,6 +461,7 @@ module.exports = {
   getParks,
   getPlaceimg,
   getPhotoref,
+  addToSaved,
 
   deleteTrip,
   createNewTrip,

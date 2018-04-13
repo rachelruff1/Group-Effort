@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import noimg from "../Assets/Images/icon-no-image.svg";
-import { getMall } from "../ducks/reducer1";
+import noimg from "../../../Assets/Images/icon-no-image.svg";
+import { getMall, updateMallCard } from "../../../ducks/reducer1";
 import "./MallCard.css";
 import {
   Card,
@@ -16,12 +16,18 @@ class FoodCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mall: []
+      mall: [],
+      slectedcard: {}
     };
   }
 
   componentDidMount(props) {
     // this.props.getMall(this.props.latlng);
+  }
+  dostuff(props) {
+    console.log(this.state.slectedcard, ">>>>>>>>>><<<<<<<<<");
+    this.props.updateMallCard(this.state.slectedcard);
+    this.props.toggle();
   }
 
   render() {
@@ -31,15 +37,12 @@ class FoodCard extends Component {
         {this.props.mall.length > 0 &&
           this.props.mall.map((mall, i) => (
             <Card>
-              <div className="mall-name">{
-                      this.props.mall[i] != undefined
-                        ? this.props.mall[i].name
-                        : ""
-                    }
-                  </div>
-                  <div className="mall-img">
+              <div className="mall-name">
+                {this.props.mall[i] != undefined ? this.props.mall[i].name : ""}
+              </div>
+              <div>
                 <img
-                  src={noimg}
+                  src={noimg} className="mall-img"
                   // src={
                   //   this.props.mall[i].photos != undefined
                   //     ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
@@ -49,16 +52,21 @@ class FoodCard extends Component {
                   // }
                   alt=""
                 />
-                </div>
-                <div className="mall-title">{
-                  this.props.mall[i] != undefined
-                    ? this.props.mall[i].rating
-                    : ""
-                }
-               </div>
+              </div>
+              <div className="mall-title">
+                {this.props.mall[i] != undefined
+                  ? this.props.mall[i].rating
+                  : ""}
+              </div>
 
-               <div className="mall-buttons">
-                <button className="add-button">Add to trip</button>
+              <div className="mall-buttons">
+                <button
+                  className="add-button"
+                  onFocus={() => this.setState({ slectedcard: mall })}
+                  onClick={() => this.dostuff()}
+                >
+                  Add to trip
+                </button>
                 {console.log(this.props.mall[i], "mall")}
               </div>
             </Card>
@@ -74,4 +82,4 @@ function mapStateToProps(state) {
     mall: state.reducer1.mall
   };
 }
-export default connect(mapStateToProps, { getMall })(FoodCard);
+export default connect(mapStateToProps, { getMall, updateMallCard })(FoodCard);

@@ -6,31 +6,27 @@ import Auth2 from "../Auth/Auth2";
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 export default class ProfilePopOver extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false,
+      open: false
     };
-    
-    
   }
 
-
-  handleClick = (event) => {
+  handleClick = event => {
     // This prevents ghost click.
     event.preventDefault();
 
     this.setState({
       open: true,
-      anchorEl: event.currentTarget,
+      anchorEl: event.currentTarget
     });
   };
 
   handleRequestClose = () => {
     this.setState({
-      open: false,
+      open: false
     });
   };
 

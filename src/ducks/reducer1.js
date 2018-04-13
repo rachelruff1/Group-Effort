@@ -1,10 +1,5 @@
 import axios from "axios";
 import moment from "moment";
-<<<<<<< HEAD
-
-=======
-//
->>>>>>> master
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";

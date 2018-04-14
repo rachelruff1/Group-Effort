@@ -8,10 +8,12 @@ const IndividualTripCard = props => {
   console.log(props);
   return (
     <div>
+      <Link to={`/location-details/${props.city.trip_id}`}>
       <h3>{props.city.trip_name}</h3>
       <p>
         {props.city.start_date} - {props.city.end_date}
       </p>
+      </Link>
       <Link to={`/edit-trip/${props.city.trip_id}`}><FlatButton label="+ Edit" labelStyle={{color: 'rgb(255, 255, 255)', fontSize: '75%'}} /></Link>
       <FlatButton label="+ Delete" labelStyle={{color: 'rgb(255, 255, 255)', fontSize: '75%'}} onClick={() => {props.deleteTrip(props.city.trip_id); 
     //   props.toggle();

@@ -33,8 +33,7 @@ class Popup extends Component {
     let rating;
     (this.props.rating == undefined) ? rating = '' : rating = this.props.rating;
 
-    let data = [this.state.tripId, this.props.name, this.props.rating, this.props.photoRef, 'rating:', this.props.rating, 'ratingvar', rating ];
-    console.log(this.props.user, this.props.allTrips, "!!!!!!!", data);
+    console.log(this);
     const tripsMap =
       this.props.allTrips.length > 0 &&
       this.props.allTrips.map((c, i) => {
@@ -55,9 +54,9 @@ class Popup extends Component {
               <div />
             ) : (
               <div>
-                <section class="container">
+                <section className="container">
                   <p>Select Existing</p>
-                  <div class="dropdown">
+                  <div className="dropdown">
                     <select
                       onChange={e => this.saveTrip(e.target.value)}
                       className="dropdown-select"
@@ -67,6 +66,7 @@ class Popup extends Component {
                     </select>
                   </div>
                 </section>
+                <Link to={`/location-details/${this.state.tripId}`}>
                 <button
                   className="popupbtn"
                   onClick={() => this.props.sendAllData(this.state.tripId, this.props.name, rating, this.props.photoRef)}
@@ -82,6 +82,7 @@ class Popup extends Component {
                   */}
                   Go
                 </button>
+                </Link>
               </div>
             )}
           </div>

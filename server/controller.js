@@ -93,10 +93,10 @@ const getTrip = (req, res, next) => {
     });
 };
 const getSaved = (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.params);
   const db = req.app.get("db");
   db
-    .get_saved([req.body.cityId])
+    .get_saved([req.params.id])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);

@@ -1,1 +1,1 @@
-SELECT * FROM saved WHERE city_id = $1;
+SELECT * FROM saved WHERE trip_id = $1;

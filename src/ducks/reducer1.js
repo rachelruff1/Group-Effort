@@ -1,10 +1,5 @@
 import axios from "axios";
 import moment from "moment";
-<<<<<<< HEAD
-
-=======
-//
->>>>>>> master
 
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
@@ -63,8 +58,6 @@ const ADD_CITIES_ON_EDIT = "ADD_CITIES_ON_EDIT";
 
 const GET_MALL = "GET_MALL";
 const GET_MOVIE = "GET_MOVIE";
-
-
 
 const initialState = {
   user: {},
@@ -127,8 +120,9 @@ const initialState = {
       scope: "GOOGLE",
       types: ["park", "point_of_interest", "establishment"],
       vicinity: "1500 Marilla Street, Dallas"
-    },{
-    icon:
+    },
+    {
+      icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
       name: "Dallas Parks Inspection3",
@@ -138,8 +132,9 @@ const initialState = {
       scope: "GOOGLE",
       types: ["park", "point_of_interest", "establishment"],
       vicinity: "1500 Marilla Street, Dallas"
-    },{
-    icon:
+    },
+    {
+      icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
       name: "Dallas Parks Inspection3",

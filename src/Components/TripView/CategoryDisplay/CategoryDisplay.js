@@ -23,6 +23,7 @@ class CategoryDisplay extends Component {
             index={i}
             auth="true"
             location="TripView"
+            tripId={this.props.tripId}
           />
         );
       });
@@ -38,6 +39,7 @@ class CategoryDisplay extends Component {
             index={i}
             auth="true"
             location="TripView"
+            tripId={this.props.tripId}
           />
         );
       });
@@ -53,6 +55,7 @@ class CategoryDisplay extends Component {
             index={i}
             auth="true"
             location="TripView"
+            tripId={this.props.tripId}
           />
         );
       });
@@ -68,6 +71,7 @@ class CategoryDisplay extends Component {
             index={i}
             auth="true"
             location="TripView"
+            tripId={this.props.tripId}
           />
         );
       });
@@ -83,6 +87,7 @@ class CategoryDisplay extends Component {
             index={i}
             auth="true"
             location="TripView"
+            tripId={this.props.tripId}
           />
         );
       });
@@ -96,7 +101,8 @@ class CategoryDisplay extends Component {
             results={c}
             index={i}
             auth="true"
-            location="TripView"
+            location="saved"
+            update={this.props.update}
           />
         );
       });
@@ -140,7 +146,8 @@ const mapStateToProps = state => ({
   food: state.reducer1.food,
   movie: state.reducer1.movie,
   mall: state.reducer1.mall,
-  museums: state.reducer1.museums
+  museums: state.reducer1.museums,
+  update: state.reducer1.update
 });
 
 export default connect(mapStateToProps)(CategoryDisplay);

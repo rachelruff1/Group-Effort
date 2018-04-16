@@ -25,10 +25,11 @@ const getUser = (req, res, next) => {
 
 const addToSaved = (req, res, next) => {
   console.log(req.body);
+  const {tripId, name, rating, photoRef} = req.body;
   const db = req.app.get("db");
 
   db
-    .add_Saved([req.body.trip_id, req.body.trip_name])
+    .add_Saved([tripId, name, rating, photoRef])
     .then(res.status(200).send())
     .catch(() => res.status(500).send());
 };
@@ -78,7 +79,7 @@ const getCities = (req, res, next) => {
     });
 };
 const getTrip = (req, res, next) => {
-  console.log("user:", req.user, "params:", req.params);
+  console.log("params:", req.params);
   const db = req.app.get("db");
   db
     .get_trip([req.params.tripid])

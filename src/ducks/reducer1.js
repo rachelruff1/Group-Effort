@@ -1,6 +1,5 @@
 import axios from "axios";
 import moment from "moment";
-
 const GET_USER = "GET_USER";
 const EDIT_USER = "EDIT_USER";
 const LOGOUT = "LOGOUT";
@@ -283,7 +282,7 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_TRIP}_FULFILLED`:
-      // console.log("reducer func:", action.payload[0]);
+      console.log("reducer func:", action);
       return Object.assign({}, state, {
         isLoading: false,
         trip: action.payload[0]
@@ -697,7 +696,7 @@ export function getTrip(tripId) {
     payload: axios
       .get(`/api/getTrip/${tripId}`)
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         return response.data;
       })
       .catch(err => err.errMessage)

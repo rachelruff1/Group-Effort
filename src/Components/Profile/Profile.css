@@ -1,5 +1,4 @@
 
-@media only screen and (min-width: 769px) {
 .profile-shell {
     background-image: url("../Logo/Profilepagebackground.jpeg");
     background-position: center;
@@ -7,6 +6,16 @@
     width:100vw;
     height: 100vh;
     /* animation: showup 5s; */
+}
+
+.profile-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-title {
+  width: 100%;
+  font-size: 24px;
 }
 
 .attributes {
@@ -22,32 +31,39 @@
 
 .info-container {
   display: flex;
-  justify-content: row;
+  justify-content: center;
   flex-direction: row;
-  position: absolute;
-  margin-left: 300px;
-  margin-top: 200px;
-  
+  flex-basis: auto;
+  padding: 20px;
+  background:rgba(255,255,255,0.5);
+  border-radius: 10px;
+
 }
 .user-photo-main {
   display: flex;
-  position: absolute;
-  margin-left: 100px;
-  height: 110%;
-  width: 40%;
-  
+  width: 150px;
+  height: 150px;
 
 }
+.profile-fields {
+  color: #000;
+  margin-left: 25px;
+}
 .email-field {
+  color: #000;
   display: flex;
-  margin-left: 400px;
 }
 .username-field {
   display: flex;
-  margin-left: 400px;
 }
 
 .submit-button {
-  margin-left: 400px;
 }
+
+
+@media only screen and (max-width: 769px) {
+  .info-container {
+    flex-direction: column;
+    justify-content: center;
+  }
 }

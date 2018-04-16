@@ -41,16 +41,8 @@ class ApiCard extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    let styles = {
-      maxWidth: 255,
-      marginRight: "auto"
-    };
-    console.log(this.props.results);
-=======
     console.log(this.props.results);
 
->>>>>>> master
     return (
       <div className="api-card-container">
         <Card style={{ width: "200px", margin: "20px" }}>

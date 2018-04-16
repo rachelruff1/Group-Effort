@@ -50,43 +50,40 @@ class Profile extends Component {
     console.log(this.state.toggle, "userInfo:", this.props.userinfo);
     return (
       <div className="profile-shell">
-        <div className="profile-info-container">
-          <h3>Your Profile Information</h3>
-          <div className="info-container">
-          <img className="user-photo-main"
-            src={this.props.auth_status !== true ? noUser  : this.props.picture }/>
-            <div className="flex-container">
-            <TextField className="email-field"
-              value={this.state.email}
-              onClick={() => this.toggle()}
-              onChange={e => this.updateEmail(e.target.value)}
-              floatingLabelText="Email"
-            />
-            <br />
-            <TextField className="username-field"
-              value={this.state.username}
-              onClick={() => this.toggle()}
-              onChange={e => this.updateUserName(e.target.value)}
-              floatingLabelText="Username"
-            />
+        <div className="main-content-wrapper">
+          <div className="profile-info-container">
+            <h3 className="profile-title">Your Profile Information</h3>
+            <div className="info-container">
+            <img className="user-photo-main"
+              src={this.props.auth_status !== true ? noUser  : this.props.picture }/>
+              <div className="profile-fields">
+              <TextField className="email-field"
+                value={this.state.email}
+                onClick={() => this.toggle()}
+                onChange={e => this.updateEmail(e.target.value)}
+                floatingLabelText="Email"
+              />
+              <br />
+              <TextField className="username-field"
+                value={this.state.username}
+                onClick={() => this.toggle()}
+                onChange={e => this.updateUserName(e.target.value)}
+                floatingLabelText="Username"
+              />
+              <br />
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
-            {this.state.toggle === false ? null : (
-              <button className="submit-button"
-                onClick={() => {
-                    console.log(this.state.email, this.state.username)
-                  this.props.updateProfile(
-                    this.state.email,
-                    this.state.username
-                  )}
-                }
-              >Submit</button>
-            )}
+              {this.state.toggle === false ? null : (
+                <button className="submit-button"
+                  onClick={() => {
+                      console.log(this.state.email, this.state.username)
+                    this.props.updateProfile(
+                      this.state.email,
+                      this.state.username
+                    )}
+                  }
+                >Submit</button>
+              )}
+              </div>
             </div>
           </div>
         </div>

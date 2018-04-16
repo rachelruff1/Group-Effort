@@ -28,10 +28,10 @@ class CategoriesOverview extends Component {
           onClick={() => {
             console.log("clickd!");
             this.props.updateContainer("Saved");
-            // this.props.getSaved(latLng);
+            this.props.getSaved(this.props.tripId);
           }}
         >
-          Saved
+          All Saved
         </div>
 
         <div

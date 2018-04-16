@@ -76,6 +76,7 @@ const initialState = {
   cityId: "",
   trip: {},
   saved: {},
+  savedFromDatabase: {},
   food: [
     {
       icon:
@@ -303,6 +304,20 @@ export default function reducer(state = initialState, action) {
       });
 
     //TRIP CALLS FROM DB AND APIS
+    case `${GET_SAVED}_PENDING`:
+    return Object.assign({}, state, { isLoading: true });
+  case `${GET_SAVED}_REJECTED`:
+    return Object.assign({}, state, {
+      isLoading: false,
+      didErr: true
+    });
+  case `${GET_SAVED}_FULFILLED`:
+    console.log("reducer saved", action.payload);
+    return Object.assign({}, state, {
+      isLoading: false,
+      savedFromDatabase: action.payload
+    });
+
 
     case `${GET_PARKS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -724,7 +739,7 @@ export function getSaved(tripId) {
   return {
     type: GET_SAVED,
     payload: axios
-      .get(`/api/get/${tripId}`)
+      .get(`/api/getSaved/${tripId}`)
       .then(resp => {
         console.log(resp.data);
         return resp.data;

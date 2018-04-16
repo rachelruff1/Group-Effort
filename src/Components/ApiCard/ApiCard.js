@@ -45,7 +45,10 @@ class ApiCard extends Component {
       maxWidth: 255,
       marginRight: "auto"
     };
+
     console.log(this.props.results);
+
+    // let button;
 
     console.log(this.props.results);
 
@@ -79,9 +82,9 @@ class ApiCard extends Component {
             {this.props.auth === true ? (
               <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
             ) : (
-              <Link to="/auth">
+              <a href={process.env.REACT_APP_LOGIN}>
                 <FlatButton label="Log in to save" />
-              </Link>
+              </a>
             )}
           </CardActions>
         </Card>

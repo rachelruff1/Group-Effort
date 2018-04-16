@@ -1,5 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
+  transform: none;
  }
  .main-content-wrapper {
   margin: 40px auto;

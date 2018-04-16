@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getPlace } from "../../ducks/reducer2";
 import {
   getTrip,
@@ -67,7 +67,7 @@ class TripView extends Component {
 
   render() {
     console.log("this", this);
-    const { tripId, latLng, container } = this.state;
+    const { latLng, container } = this.state;
     const { trip, cities } = this.props;
     const citiesMap =
       cities.length > 0 &&
@@ -89,6 +89,7 @@ class TripView extends Component {
             <h3>
               {trip.start_date} - {trip.end_date}
             </h3>
+            <Link to={`/edit-trip/${trip.trip_id}`}><button>Edit trip details</button></Link>
           </div>
         </header>
         <div className="side-bar">
@@ -98,7 +99,7 @@ class TripView extends Component {
         <div>
           {this.state.overview === true ? (
             <CategoriesOverview 
-            
+            tripId={this.props.match.params.id}
             updateContainer={this.updateContainer}
             latLng={this.state.latLng}
             />

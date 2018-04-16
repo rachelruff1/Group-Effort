@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateSavedList } from "../../ducks/reducer1";
+import { updateSavedList, deleteFromSaved, spliceSaved } from "../../ducks/reducer1";
+import { sendAllData } from "../../ducks/reducer2";
 import noimg from "../../Assets/Images/icon-no-image.svg";
 import { Link } from "react-router-dom";
+import swal from 'sweetalert';
 import "./ApiCard.css";
 // import "./FoodCard.css";
 import {
@@ -22,7 +24,8 @@ class ApiCard extends Component {
     this.state = {
       toggle: false,
       food: [],
-      slectedcard: {}
+      slectedcard: {},
+      photoRef: "CoQBeQAAAAgOdveT3dRtzoJ42BTBZfCdZptWsqLN3bROkP4FVHNNX"
     };
     this.dostuff = this.dostuff.bind(this);
     this.onclock = this.onclock.bind(this);
@@ -40,22 +43,48 @@ class ApiCard extends Component {
     this.props.updateSavedList(this.props.results);
   }
 
-  render() {
 
+  render() {
     let styles = {
       maxWidth: 255,
       marginRight: "auto"
     };
- 
+
     console.log(this.props.results);
 
-    // let button;
+    let rating;
+    (this.props.rating == undefined) ? rating = '' : rating = this.props.rating;
 
-    // if (this.props.location === 'TripView') {
-    //   button =  <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
-    // } else if (lj){}
-    //   ;
+    let button;
 
+    if (this.props.location === "TripView") {
+      button = (
+        <FlatButton
+          onClick={() => {this.props.sendAllData(this.props.tripId, this.props.results.name, rating, this.state.photoRef); swal('Added to trip!');}}
+  
+          label="Add to saved"
+        />
+      );
+    } else if (this.props.location === "saved") {
+      button = (
+        <FlatButton
+          onClick={() =>{
+            this.props.deleteFromSaved(this.props.results.saved_id); this.props.spliceSaved(this.props.index);}
+          }
+          label="Remove"
+        />
+      );
+    } else if (this.props.auth === true) {
+      button = (
+        <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
+      );
+    } else {
+      button = (
+        <a href={process.env.REACT_APP_LOGIN}>
+          <FlatButton label="Log in to save" />
+        </a>
+      );
+    }
     return (
       <div className="api-card-container">
         <Card style={{ width: "200px", margin: "20px" }}>
@@ -72,28 +101,25 @@ class ApiCard extends Component {
               alt=""
             />
           </CardMedia>
-          <CardTitle title={this.props.results.name} subtitle={
+          <CardTitle
+            title={this.props.results.name}
+            subtitle={
               this.props.results.rating != undefined
                 ? this.props.results.rating
                 : ""
-            }/>
+            }
+          />
           <CardTitle />
 
           <CardActions>
-            {this.props.auth === true ? (
-              <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
-            ) : (
-              <a href={process.env.REACT_APP_LOGIN}>
-                <FlatButton label="Log in to save" />
-              </a>
-            )}
+            {button}
           </CardActions>
         </Card>
         {this.state.toggle === true ? (
           <Popup
             name={this.props.results.name}
             rating={this.props.results.rating}
-            photoRef='CoQBeQAAAAgOdveT3dRtzoJ42BTBZfCdZptWsqLN3bROkP4FVHNNX'
+            photoRef={this.state.photoRef}
             // {this.props.results.photos[0].photo_reference}
             toggle={this.onclock}
 
@@ -111,4 +137,6 @@ function mapStateToProps(state) {
     food: state.reducer1.food
   };
 }
-export default connect(mapStateToProps, { updateSavedList })(ApiCard);
+export default connect(mapStateToProps, { updateSavedList, deleteFromSaved, sendAllData, spliceSaved })(
+  ApiCard
+);

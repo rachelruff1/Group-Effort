@@ -11,6 +11,7 @@ import "./TripView.css";
 import ApiCard from "../ApiCard/ApiCard";
 import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
 import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
+import RaisedButton from 'material-ui/RaisedButton';
 
 class TripView extends Component {
   constructor(props) {
@@ -85,11 +86,12 @@ class TripView extends Component {
       <body className="trip-view-container">
         <header className="trip-title">
           <div className="trip-box">
+          <Link to={`/edit-trip/${trip.trip_id}`}><button>Edit trip details</button></Link>
             <h1>{trip.trip_name} </h1>
             <h3>
               {trip.start_date} - {trip.end_date}
             </h3>
-            <Link to={`/edit-trip/${trip.trip_id}`}><button>Edit trip details</button></Link>
+            
           </div>
         </header>
         <div className="side-bar">
@@ -105,6 +107,7 @@ class TripView extends Component {
             />
           ) : (
             <CategoryDisplay
+            tripId={this.props.match.params.id}
               toggleView={this.toggleView}
               container={container}
             />

@@ -23,7 +23,7 @@ class ViewAllTrips extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllTrips(this.state.id);
+    this.props.getAllTrips();
   }
 toggle(){
     this.setState({
@@ -32,6 +32,7 @@ toggle(){
 }
 
   render() {
+    console.log(this.props.userinfo);
     const status = 'new';
     console.log(this.props.future, this.props.current, this.props.past);
     const futureTrips =

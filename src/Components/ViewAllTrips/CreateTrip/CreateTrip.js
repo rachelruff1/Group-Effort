@@ -9,6 +9,7 @@ import {
   addCityToDatabase,
   createNewTrip
 } from "../../../ducks/reducer1";
+import {sendAllData} from '../../../ducks/reducer2';
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
@@ -27,9 +28,10 @@ class CreateTrip extends Component {
   }
 
   componentDidMount(props) {
-    this.props.getCitiesInTrip();
-    this.props.match.params.status !== "new" ? this.props.updateTripName(`Trip to ${this.props.city}`) : null;
-
+    // this.props.getCitiesInTrip();
+    this.props.match.params.status !== "new"
+      ? this.props.getCitiesInTrip() && this.props.updateTripName(`Trip to ${this.props.city}`)
+      : null;
   }
 
   toggleEdit() {
@@ -41,16 +43,29 @@ class CreateTrip extends Component {
     this.toggleEdit();
   }
   saveEvent() {
-    this.props.createNewTrip(this.props.tripName, this.props.citiesInTrip)
-      .then(resp => {this.props.citiesInTrip.map(x => {this.props.addCityToDatabase(x, resp.action.payload[0].trip_id);});
+    let rating;
+    (this.props.saved.rating == undefined) ? rating = '' : rating = this.props.rating;
+    this.props
+      .createNewTrip(this.props.tripName, this.props.citiesInTrip)
+      .then(resp => {
+        this.props.citiesInTrip.map(x => {
+          this.props.addCityToDatabase(x, resp.action.payload[0].trip_id);
+        });
+        this.props.history.push(
+          `/location-details/${resp.action.payload[0].trip_id}`
+        );
+//SWITCH out reference with photo reference -- it's a place holder right now, switch for run time
+(this.props.match.params.status !== "new") ?
+        this.props.sendAllData(resp.action.payload[0].trip_id, this.props.saved.name, rating, this.props.saved.reference) : null;
+
+        this.props.saved
       });
-      this.props.match.params.status === "new" ? window.history.back() : this.props.history.push(`/location-details/${this.props.citiesInTrip[0].lagLng}`);;
   }
 
   render() {
     // console.log(this.props.citiesInTrip);
     const style = {
-      margin: 12,
+      margin: 12
     };
     const createTripCardMap =
       this.props.citiesInTrip.length > 0 &&
@@ -58,7 +73,7 @@ class CreateTrip extends Component {
         console.log(c.cityName);
         return <CreateTripCard key={i} cityDetail={c} index={i} />;
       });
-    console.log(window.history);
+    console.log(this.props);
     return (
       <div className="createtrip-main">
         <br />
@@ -100,6 +115,7 @@ class CreateTrip extends Component {
           label="+ ADD CITY"
           style={style}
         />
+
         <FlatButton
           onClick={() => this.saveEvent()}
           label="SAVE"
@@ -118,7 +134,8 @@ const mapStateToProps = state => ({
   placeId: state.reducer1.placeId,
   newCityInTrip: state.reducer2.newCityInTrip,
   index: state.reducer2.index,
-  citiesInTrip: state.reducer1.citiesInTrip
+  citiesInTrip: state.reducer1.citiesInTrip,
+  saved: state.reducer1.saved
 });
 
 export default connect(mapStateToProps, {
@@ -126,5 +143,6 @@ export default connect(mapStateToProps, {
   getCitiesInTrip,
   addCityToTrip,
   updateTripName,
-  addCityToDatabase
+  addCityToDatabase,
+  sendAllData
 })(CreateTrip);

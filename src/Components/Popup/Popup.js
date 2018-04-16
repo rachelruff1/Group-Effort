@@ -5,6 +5,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/reducer1";
 import { getAllTrips, sendAllData } from "../../ducks/reducer2";
+import swal from 'sweetalert';
 import axios from "axios";
 class Popup extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Popup extends Component {
           <div className="stuffinbox">
             <button onClick={() => this.props.toggle()}> Close</button>
             <p id="tripto">Add to existing trip or create a new trip</p>{" "}
-            <Link to="/create-trip/new">
+            <Link to="/create-trip/location">
               <button className="popupbtn">+ Create New</button>
               {/* save the card to reducser and create trip*/}
             </Link>
@@ -69,7 +70,7 @@ class Popup extends Component {
                 <Link to={`/location-details/${this.state.tripId}`}>
                 <button
                   className="popupbtn"
-                  onClick={() => this.props.sendAllData(this.state.tripId, this.props.name, rating, this.props.photoRef)}
+                  onClick={() => {this.props.sendAllData(this.state.tripId, this.props.name, rating, this.props.photoRef); swal('Added to trip!');}}
                 >
                   {/* 
                   this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference

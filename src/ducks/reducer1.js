@@ -24,7 +24,8 @@ const VERIFY_USER = "VERIFY_USER";
 const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 // saved cards
-
+const SPLICE_SAVED = 'SPLICE_SAVED';
+const DELETE_FROM_SAVED = 'DELETE_FROM_SAVED';
 const UPDATE_SAVED_LIST = "UPDATE_SAVED_LIST";
 const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
 const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
@@ -82,7 +83,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection",
+      name: "FOOD",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -97,7 +98,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection2",
+      name: "MUSEUMS",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -113,7 +114,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection3",
+      name: "PARKS",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -125,7 +126,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection3",
+      name: "PARKS2",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -137,7 +138,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection3",
+      name: "PARKS3",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -151,7 +152,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection4",
+      name: "MALL",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -165,7 +166,7 @@ const initialState = {
       icon:
         "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
       id: "dd37b9267ee0fa5389a003d73289c8a8180f8a8a",
-      name: "Dallas Parks Inspection5",
+      name: "MOVIE",
       place_id: "ChIJMZrdqh6ZToYRhRQ9NXQUeB0",
       reference:
         "CmRRAAAAuDYLgDtOKb4Q8xfCfG6DuLB5t6hI-n_W5qHaXmYQxbLAtYnI2P3oRUYoKCGbEUcL9g8_H0ExzHAyaLGsZ7B_PkWe8hxtBHeQeQEXNGSnTnk9ThhHZvsqp6GKlhd5yZRzEhCFuFH0pDelHzGCVHfF5weoGhQ0eMEsvuCdCu82VZ9e4iKVg5Ji2w",
@@ -549,6 +550,13 @@ export default function reducer(state = initialState, action) {
     case UPDATE_SAVED_LIST:
       console.log(action.payload);
       return Object.assign({}, state, { saved: action.payload });
+
+    case SPLICE_SAVED:
+    console.log(action.payload);
+    let newSaved = state.savedFromDatabase.slice();
+    newSaved.splice(action.payload, 1);
+    return Object.assign({}, state, { savedFromDatabase: newSaved });
+
 
     default:
       return state;
@@ -1163,9 +1171,28 @@ export function updateCitiesOnEdit(city) {
 }
 
 export function updateSavedList(card) {
-  console.log(card);
+  console.log('HIHIHIHIHIHI:', card);
   return {
     type: UPDATE_SAVED_LIST,
     payload: card
   };
+}
+
+export function deleteFromSaved(id){
+  console.log(id);
+  return{
+    type: DELETE_FROM_SAVED,
+    payload: axios
+      .delete(`/api/deleteFromSaved/${id}`)
+      .then(resp => resp)
+      .catch(err => err.errMessage)
+  };
+}
+
+export function spliceSaved(index){
+  console.log(index);
+  return{
+    type: SPLICE_SAVED,
+    payload: index
+  }
 }

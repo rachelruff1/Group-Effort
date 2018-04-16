@@ -24,7 +24,7 @@ const getUser = (req, res, next) => {
 };
 
 const addToSaved = (req, res, next) => {
-  console.log(req.body);
+  console.log('req.body:', req.body);
   const {tripId, name, rating, photoRef} = req.body;
   const db = req.app.get("db");
 
@@ -288,11 +288,11 @@ const addCityToDatabase = (req, res, next) => {
 };
 
 const getAllTrips = (req, res, next) => {
-  const { id } = req.params;
-  console.log(id);
+  // const { id } = req.params;
+  console.log(req.user);
   const db = req.app.get("db");
   db
-    .get_all_trips([id])
+    .get_all_trips([req.user.user_id])
     .then(resp => {
       console.log(resp);
       res.status(200).send(resp);
@@ -449,6 +449,19 @@ const updateProfile = (req, res, next) => {
       })
   }
 
+const deleteFromSaved = (req, res, next) => {
+  console.log('delete from saved', req.params.id);
+  req.app
+  .get('db')
+  .delete_from_saved([req.params.id])
+  .then(response => {
+    res.status(200).json(response)})
+    .catch(err => {
+      console.log(err);
+      next(err);
+    })
+}
+
 module.exports = {
   getPlaceData,
   getCities,
@@ -463,6 +476,7 @@ module.exports = {
   getPlaceimg,
   getPhotoref,
   addToSaved,
+  deleteFromSaved,
 
   deleteTrip,
   createNewTrip,

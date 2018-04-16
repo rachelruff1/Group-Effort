@@ -213,7 +213,7 @@ export function updateCityInTrip(
   };
 }
 
-export function getAllTrips(id) {
+export function getAllTrips() {
   let today = moment().format("MM/DD/YYYY");
   let past = [];
   let current = [];
@@ -223,7 +223,7 @@ export function getAllTrips(id) {
   return {
     type: GET_ALL_TRIPS,
     payload: axios
-      .get(`/api/getAllTrips/${id}`)
+      .get(`/api/getAllTrips`)
       .then(resp => {
         console.log(resp);
         allTrips = resp.data;

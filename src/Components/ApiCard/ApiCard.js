@@ -41,16 +41,14 @@ class ApiCard extends Component {
   }
 
   render() {
-<<<<<<< HEAD
+
     let styles = {
       maxWidth: 255,
       marginRight: "auto"
     };
-    console.log(this.props.results);
-=======
+ 
     console.log(this.props.results);
 
-<<<<<<< HEAD
     // let button;
 
     // if (this.props.location === 'TripView') {
@@ -58,9 +56,6 @@ class ApiCard extends Component {
     // } else if (lj){}
     //   ;
 
-=======
->>>>>>> master
->>>>>>> master
     return (
       <div className="api-card-container">
         <Card style={{ width: "200px", margin: "20px" }}>
@@ -88,9 +83,9 @@ class ApiCard extends Component {
             {this.props.auth === true ? (
               <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
             ) : (
-              <Link to="/auth">
+              <a href={process.env.REACT_APP_LOGIN}>
                 <FlatButton label="Log in to save" />
-              </Link>
+              </a>
             )}
           </CardActions>
         </Card>

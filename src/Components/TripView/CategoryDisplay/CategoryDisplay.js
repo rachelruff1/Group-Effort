@@ -86,7 +86,20 @@ class CategoryDisplay extends Component {
           />
         );
       });
-    const savedMap = {};
+    const savedMap = 
+    this.props.savedFromDatabase.length > 0 &&
+      this.props.savedFromDatabase.map((c, i) => {
+        console.log(c);
+        return (
+          <ApiCard
+            key={i}
+            results={c}
+            index={i}
+            auth="true"
+            location="TripView"
+          />
+        );
+      });
 
     let cards;
     if (this.props.container === "Saved") {
@@ -121,6 +134,7 @@ const mapStateToProps = state => ({
   cities: state.reducer1.cities,
   placeId: state.reducer1.placeId,
   latlng: state.reducer1.latlng,
+  savedFromDatabase: state.reducer1.savedFromDatabase,
 
   parks: state.reducer1.parks,
   food: state.reducer1.food,

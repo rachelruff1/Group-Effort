@@ -65,7 +65,8 @@ class CreateTrip extends Component {
   render() {
     // console.log(this.props.citiesInTrip);
     const style = {
-      margin: 12
+      margin: 12,
+      fontSize: 20,
     };
     const createTripCardMap =
       this.props.citiesInTrip.length > 0 &&
@@ -81,7 +82,7 @@ class CreateTrip extends Component {
         <br />
         <br />
         <br />
-
+      <div className="createtrip-group">
         {this.state.edit === false ? null : (
           <div className="searchBox">
             <CreateTripSearch
@@ -121,6 +122,7 @@ class CreateTrip extends Component {
           label="SAVE"
           style={style}
         />
+      </div>
       </div>
     );
   }

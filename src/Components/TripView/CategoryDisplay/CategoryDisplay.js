@@ -123,7 +123,7 @@ class CategoryDisplay extends Component {
     } else null;
 
     return (
-      <div>
+      <div className='category-main'>
         <div className="test-category-display">
           <h1 onClick={() => this.props.toggleView()}>{this.props.city}</h1>{" "}
           -> {this.props.container}

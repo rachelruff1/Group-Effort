@@ -5,7 +5,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/reducer1";
 import { getAllTrips, sendAllData } from "../../ducks/reducer2";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 class Popup extends Component {
   constructor(props) {
@@ -24,21 +24,20 @@ class Popup extends Component {
     this.props.getAllTrips(this.props.user);
   }
   saveTrip(tripId) {
-    console.log("hit", tripId);
     this.setState({
       tripId: tripId
     });
   }
- 
+
   render() {
     let rating;
-    (this.props.rating == undefined) ? rating = '' : rating = this.props.rating;
+    this.props.rating == undefined
+      ? (rating = "")
+      : (rating = this.props.rating);
 
-    console.log(this);
     const tripsMap =
       this.props.allTrips.length > 0 &&
       this.props.allTrips.map((c, i) => {
-        console.log(c);
         return <option value={c.trip_id}>{c.trip_name}</option>;
       });
     return (
@@ -68,11 +67,19 @@ class Popup extends Component {
                   </div>
                 </section>
                 <Link to={`/location-details/${this.state.tripId}`}>
-                <button
-                  className="popupbtn"
-                  onClick={() => {this.props.sendAllData(this.state.tripId, this.props.name, rating, this.props.photoRef); swal('Added to trip!');}}
-                >
-                  {/* 
+                  <button
+                    className="popupbtn"
+                    onClick={() => {
+                      this.props.sendAllData(
+                        this.state.tripId,
+                        this.props.name,
+                        rating,
+                        this.props.photoRef
+                      );
+                      swal("Added to trip!");
+                    }}
+                  >
+                    {/* 
                   this.props.name, this.props.rating, this.props.photos, this.props.results.photos[0].photo_reference
                   redirect to the TripView page
                   add to the database this.props.saved
@@ -81,8 +88,8 @@ class Popup extends Component {
                   
                   
                   */}
-                  Go
-                </button>
+                    Go
+                  </button>
                 </Link>
               </div>
             )}
@@ -98,4 +105,6 @@ function mapStateToProps(state) {
     allTrips: state.reducer2.allTrips
   };
 }
-export default connect(mapStateToProps, { getUser, getAllTrips, sendAllData })(Popup);
+export default connect(mapStateToProps, { getUser, getAllTrips, sendAllData })(
+  Popup
+);

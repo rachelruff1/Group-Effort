@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateSavedList, deleteFromSaved, spliceSaved } from "../../ducks/reducer1";
+import {
+  updateSavedList,
+  deleteFromSaved,
+  spliceSaved
+} from "../../ducks/reducer1";
 import { sendAllData } from "../../ducks/reducer2";
 import noimg from "../../Assets/Images/icon-no-image.svg";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import "./ApiCard.css";
 // import "./FoodCard.css";
 import {
@@ -38,11 +42,9 @@ class ApiCard extends Component {
   }
 
   dostuff() {
-    console.log("hit apicard", this.props.results);
     this.onclock();
     this.props.updateSavedList(this.props.results);
   }
-
 
   render() {
     let styles = {
@@ -50,27 +52,35 @@ class ApiCard extends Component {
       marginRight: "auto"
     };
 
-    console.log(this.props.results);
-
     let rating;
-    (this.props.rating == undefined) ? rating = '' : rating = this.props.rating;
+    this.props.rating == undefined
+      ? (rating = "")
+      : (rating = this.props.rating);
 
     let button;
 
     if (this.props.location === "TripView") {
       button = (
         <FlatButton
-          onClick={() => {this.props.sendAllData(this.props.tripId, this.props.results.name, rating, this.state.photoRef); swal('Added to trip!');}}
-  
+          onClick={() => {
+            this.props.sendAllData(
+              this.props.tripId,
+              this.props.results.name,
+              rating,
+              this.state.photoRef
+            );
+            swal("Added to trip!");
+          }}
           label="Add to saved"
         />
       );
     } else if (this.props.location === "saved") {
       button = (
         <FlatButton
-          onClick={() =>{
-            this.props.deleteFromSaved(this.props.results.saved_id); this.props.spliceSaved(this.props.index);}
-          }
+          onClick={() => {
+            this.props.deleteFromSaved(this.props.results.saved_id);
+            this.props.spliceSaved(this.props.index);
+          }}
           label="Remove"
         />
       );
@@ -111,9 +121,7 @@ class ApiCard extends Component {
           />
           <CardTitle />
 
-          <CardActions>
-            {button}
-          </CardActions>
+          <CardActions>{button}</CardActions>
         </Card>
         {this.state.toggle === true ? (
           <Popup
@@ -137,6 +145,9 @@ function mapStateToProps(state) {
     food: state.reducer1.food
   };
 }
-export default connect(mapStateToProps, { updateSavedList, deleteFromSaved, sendAllData, spliceSaved })(
-  ApiCard
-);
+export default connect(mapStateToProps, {
+  updateSavedList,
+  deleteFromSaved,
+  sendAllData,
+  spliceSaved
+})(ApiCard);

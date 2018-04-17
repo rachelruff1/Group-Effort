@@ -66,7 +66,6 @@ class SearchBox extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="search-and-go-bar">
         <div className="searchbar-container">

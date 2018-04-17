@@ -1,0 +1,193 @@
+{
+	"info": {
+		"name": "trippie test ",
+		"_postman_id": "0b018e64-7630-1694-85af-c501a41480f8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5306252-f1ed-43bc-9943-50a51340b01c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"me"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/me",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5306252-f1ed-43bc-9943-50a51340b01c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"me"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/getUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5306252-f1ed-43bc-9943-50a51340b01c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/getUser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getUser",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53f94ed9-b210-443b-a08c-80ad78d3f398",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/logout/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"logout",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/getProfile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3029d817-3a51-4d2c-83d7-271f885e2fdc",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/getProfile/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getProfile",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -106,7 +106,6 @@ export default function reducer(state = initialState, action) {
 
     //get trip info from search bar in create trip card to replace in create trip
     case UPDATE_CITY_IN_TRIP:
-      console.log(action);
       return Object.assign({}, state, {
         newCityInTrip: action.payload,
         index: action.index
@@ -120,7 +119,6 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_ALL_TRIPS}_FULFILLED`:
-      console.log("HIIITTT", action);
       return Object.assign({}, state, {
         isLoading: false,
         allTrips: action.payload.allTrips,
@@ -172,7 +170,6 @@ export function getPlace(placeId) {
 }
 
 export function getUserInfo() {
-  console.log("444444544455555");
   return {
     type: GET_USER_INFO,
     payload: axios
@@ -191,7 +188,6 @@ export function createNewTrip(tripName, tripStart, tripEnd) {
         tripEnd
       })
       .then(response => {
-        console.log(response);
         return response.data;
       })
       .catch(console.log)
@@ -219,13 +215,12 @@ export function getAllTrips() {
   let current = [];
   let future = [];
   let allTrips = [];
-  console.log(today);
+
   return {
     type: GET_ALL_TRIPS,
     payload: axios
       .get(`/api/getAllTrips`)
       .then(resp => {
-        console.log(resp);
         allTrips = resp.data;
         resp.data.map(x => {
           if (x.start_date <= today && x.end_date >= today) {
@@ -236,7 +231,7 @@ export function getAllTrips() {
             future.push(x);
           } else null;
         });
-        console.log(past, current, future);
+
         return { past, current, future, allTrips };
       })
       .catch(err => err.errMessage)
@@ -254,7 +249,6 @@ export function updateProfile(email, username) {
 }
 
 export function deleteTrip(tripId, index) {
-  console.log("hit delete", tripId);
   return {
     type: DELETE_TRIP,
     payload: axios
@@ -265,13 +259,11 @@ export function deleteTrip(tripId, index) {
 }
 
 export function sendAllData(tripId, name, rating, photoRef) {
-  console.log("hit send", tripId, name, rating, photoRef);
   return {
     type: SEND_ALL_DATA,
     payload: axios
       .post("/api/addToSaved", { tripId, name, rating, photoRef })
       .then(resp => {
-        console.log("hit end");
         resp.data;
       })
       .catch(err => err.errMessage)

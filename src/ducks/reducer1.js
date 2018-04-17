@@ -24,8 +24,8 @@ const VERIFY_USER = "VERIFY_USER";
 const GET_PLACE_IMG = "GET_PLACE_IMG";
 
 // saved cards
-const SPLICE_SAVED = 'SPLICE_SAVED';
-const DELETE_FROM_SAVED = 'DELETE_FROM_SAVED';
+const SPLICE_SAVED = "SPLICE_SAVED";
+const DELETE_FROM_SAVED = "DELETE_FROM_SAVED";
 const UPDATE_SAVED_LIST = "UPDATE_SAVED_LIST";
 const UPDATE_MOVIE_CARD = "UPDATE_MOVIE_CARD";
 const UPDATE_MUSEUM_CARD = "UPDATE_MUSEUM_CARD";
@@ -234,11 +234,9 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { savedMallCard: action.payload });
 
     case `${VERIFY_USER}_FULFILLED`:
-      console.log(action.payload, "payload");
       return Object.assign({}, state, { auth_status: action.payload });
 
     case `${UPDATE_PLACE_PHOTOREF}_FULFILLED`:
-      console.log("reducer func:", action);
       return Object.assign({}, state, {
         isLoading: false,
         placephotoref: action.payload
@@ -268,7 +266,7 @@ export default function reducer(state = initialState, action) {
       // console.log("reducer func:", action.payload);
       let existingIds = [];
       action.payload.map(x => existingIds.push(x.city_id));
-      console.log(existingIds);
+
       return Object.assign({}, state, {
         isLoading: false,
         cities: action.payload,
@@ -284,7 +282,6 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_TRIP}_FULFILLED`:
-      console.log("reducer func:", action);
       return Object.assign({}, state, {
         isLoading: false,
         trip: action.payload[0]
@@ -298,7 +295,6 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_CITY_DETAIL}_FULFILLED`:
-      console.log("reducer func:", action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         cityId: action.payload
@@ -306,19 +302,17 @@ export default function reducer(state = initialState, action) {
 
     //TRIP CALLS FROM DB AND APIS
     case `${GET_SAVED}_PENDING`:
-    return Object.assign({}, state, { isLoading: true });
-  case `${GET_SAVED}_REJECTED`:
-    return Object.assign({}, state, {
-      isLoading: false,
-      didErr: true
-    });
-  case `${GET_SAVED}_FULFILLED`:
-    console.log("reducer saved", action.payload);
-    return Object.assign({}, state, {
-      isLoading: false,
-      savedFromDatabase: action.payload
-    });
-
+      return Object.assign({}, state, { isLoading: true });
+    case `${GET_SAVED}_REJECTED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        didErr: true
+      });
+    case `${GET_SAVED}_FULFILLED`:
+      return Object.assign({}, state, {
+        isLoading: false,
+        savedFromDatabase: action.payload
+      });
 
     case `${GET_PARKS}_PENDING`:
       return Object.assign({}, state, { isLoading: true });
@@ -368,7 +362,6 @@ export default function reducer(state = initialState, action) {
         didErr: true
       });
     case `${GET_MUSEUMS}_FULFILLED`:
-      console.log("reducer func:", action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         museums: action.payload
@@ -450,7 +443,6 @@ export default function reducer(state = initialState, action) {
     //CREATETRIP.JS
 
     case GET_CITIES_IN_TRIP:
-      console.log(action);
       return Object.assign({}, state, {
         citiesInTrip: [
           {
@@ -467,22 +459,14 @@ export default function reducer(state = initialState, action) {
       });
 
     case ADD_CITY_TO_TRIP:
-      console.log(state, action.payload);
       return Object.assign({}, state, {
         citiesInTrip: [...state.citiesInTrip, action.payload]
       });
 
     case UPDATE_CITIES_IN_TRIP:
-      console.log(
-        state.citiesInTrip,
-        "index",
-        action.index,
-        "resp",
-        action.payload
-      );
       let newArr = state.citiesInTrip.slice();
       newArr.splice(action.index, 1, action.payload);
-      console.log(newArr);
+
       return Object.assign({}, state, {
         citiesInTrip: newArr
         // state.citiesInTrip.splice(action.index, 1, action.payload)
@@ -496,7 +480,7 @@ export default function reducer(state = initialState, action) {
       let updateCityArr = state.citiesInTrip.slice();
       updateCityArr[action.payload.index].startDate = action.payload.startDate;
       updateCityArr[action.payload.index].endDate = action.payload.endDate;
-      console.log(updateCityArr);
+
       return Object.assign({}, state, {
         citiesInTrip: updateCityArr
       });
@@ -504,13 +488,12 @@ export default function reducer(state = initialState, action) {
       let updateCityStart = state.citiesInTrip.slice();
       updateCityStart[action.payload.index].startDate =
         action.payload.startDate;
-      console.log(updateCityStart);
+
       return Object.assign({}, state, { citiesInTrip: updateCityStart });
     case UPDATE_END_DATE:
-      console.log(action.payload.index, action.payload.endDate);
       let updateCityEnd = state.citiesInTrip.slice();
       updateCityEnd[action.payload.index].endDate = action.payload.endDate;
-      console.log(updateCityEnd);
+
       return Object.assign({}, state, { citiesInTrip: updateCityEnd });
 
     case ADD_CITY_TO_EDIT_TRIP:
@@ -522,14 +505,13 @@ export default function reducer(state = initialState, action) {
       let updateCityStartEdit = state.cities.slice();
       updateCityStartEdit[action.payload.index].start_date =
         action.payload.startDate;
-      console.log(updateCityStartEdit);
+
       return Object.assign({}, state, { cities: updateCityStartEdit });
 
     case UPDATE_END_DATE_EDIT:
-      console.log(action.payload.index, action.payload.endDate);
       let updateCityEndEdit = state.cities.slice();
       updateCityEndEdit[action.payload.index].end_date = action.payload.endDate;
-      console.log(updateCityEndEdit);
+
       return Object.assign({}, state, { cities: updateCityEndEdit });
 
     case DELETE_CITY:
@@ -542,21 +524,18 @@ export default function reducer(state = initialState, action) {
     case UPDATE_EDIT_CITIES_IN_TRIP:
       let newEditArr = state.cities.slice();
       newEditArr.splice(action.index, 1, action.payload);
-      console.log(newEditArr);
+
       return Object.assign({}, state, {
         cities: newEditArr
         // state.cities.splice(action.index, 1, action.payload)
       });
     case UPDATE_SAVED_LIST:
-      console.log(action.payload);
       return Object.assign({}, state, { saved: action.payload });
 
     case SPLICE_SAVED:
-    console.log(action.payload);
-    let newSaved = state.savedFromDatabase.slice();
-    newSaved.splice(action.payload, 1);
-    return Object.assign({}, state, { savedFromDatabase: newSaved });
-
+      let newSaved = state.savedFromDatabase.slice();
+      newSaved.splice(action.payload, 1);
+      return Object.assign({}, state, { savedFromDatabase: newSaved });
 
     default:
       return state;
@@ -574,7 +553,6 @@ export function verifyUser() {
         if (!res.data.authid.includes("google")) {
           return false;
         } else {
-          console.log("else");
           return true;
         }
       })
@@ -596,7 +574,6 @@ export function getUser() {
 }
 
 export function editUser(name, email, picture) {
-  console.log("hit edit", name, email, picture);
   //eventid, name, date, time, location, description
   return {
     type: EDIT_USER,
@@ -678,7 +655,6 @@ export function updatePlaceId(placeId) {
   };
 }
 export function updatePlacephotoref(placeId) {
-  console.log("hit:$$$$$$", placeId);
   return {
     type: UPDATE_PLACE_PHOTOREF,
     payload: axios
@@ -705,7 +681,6 @@ export function getCities(tripId) {
     payload: axios
       .get(`/api/getCities/${tripId}`)
       .then(response => {
-        console.log(response.data);
         return response.data;
       })
       .catch(err => err.errMessage)
@@ -713,7 +688,6 @@ export function getCities(tripId) {
 }
 
 export function getTrip(tripId) {
-  console.log("hit:", tripId);
   return {
     type: GET_TRIP,
     payload: axios
@@ -727,13 +701,11 @@ export function getTrip(tripId) {
 }
 
 export function getCityDetail(cityId) {
-  console.log("hit:", cityId);
   return {
     type: GET_CITY_DETAIL,
     payload: axios
       .get(`/api/getCityDetail/${cityId}`)
       .then(resp => {
-        console.log(resp.data);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -743,13 +715,11 @@ export function getCityDetail(cityId) {
 //TRIP DETAIL CALLS (DB AND API CALLS)
 
 export function getSaved(tripId) {
-  console.log("hit:", tripId);
   return {
     type: GET_SAVED,
     payload: axios
       .get(`/api/getSaved/${tripId}`)
       .then(resp => {
-        console.log(resp.data);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -761,20 +731,17 @@ export function getFood(latlng) {
     payload: axios
       .get(`/api/getFood/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results, "foooooooodssssss");
         return resp.data.results;
       })
       .catch(err => err.errMessage)
   };
 }
 export function getThingsToDo(tripId) {
-  console.log("hit:", tripId);
   return {
     type: GET_THINGS_TO_DO,
     payload: axios
       .get(`/api/get/${tripId}`)
       .then(resp => {
-        console.log(resp.data);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -792,26 +759,22 @@ export function getMuseums(latlng) {
   };
 }
 export function getWebcams(tripId) {
-  console.log("hit:", tripId);
   return {
     type: GET_WEBCAMS,
     payload: axios
       .get(`/api/get/${tripId}`)
       .then(resp => {
-        console.log(resp.data);
         return resp.data;
       })
       .catch(err => err.errMessage)
   };
 }
 export function getFacts(tripId) {
-  console.log("hit:", tripId);
   return {
     type: GET_FACTS,
     payload: axios
       .get(`/api/get/${tripId}`)
       .then(resp => {
-        console.log(resp.data);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -824,7 +787,6 @@ export function getMall(latlng) {
     payload: axios
       .get(`/api/getMall/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results, "Malllllllls");
         return resp.data.results;
       })
       .catch(err => err.errMessage)
@@ -836,7 +798,6 @@ export function getMovie(latlng) {
     payload: axios
       .get(`/api/getMovie/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results, "Moviessssssss");
         return resp.data.results;
       })
       .catch(err => err.errMessage)
@@ -853,13 +814,11 @@ export function updateLocationData(city, state, country) {
   };
 }
 export function getParks(latlng) {
-  console.log("hit:", latlng);
   return {
     type: GET_PARKS,
     payload: axios
       .get(`/api/getParks/${latlng}`)
       .then(resp => {
-        console.log(resp.data.results);
         return resp.data.results;
       })
       .catch(err => err.errMessage)
@@ -867,7 +826,6 @@ export function getParks(latlng) {
 }
 
 export function getPlaceimg(placephotoref) {
-  console.log("hit:^^^^^^", placephotoref);
   return {
     type: GET_PLACE_IMG,
     payload: axios
@@ -882,7 +840,6 @@ export function getPlaceimg(placephotoref) {
 //CREATETRIP.JS
 
 export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
-  console.log(cityName, state, country, latLng, placeId);
   return {
     type: GET_CITIES_IN_TRIP,
     payload: { cityName, state, country, latLng, placeId }
@@ -890,7 +847,6 @@ export function getCitiesInTrip(cityName, state, country, latLng, placeId) {
 }
 
 export function addCityToTrip(cityName, state, country, latLng, placeId) {
-  console.log(cityName, state, country, latLng, placeId);
   return {
     type: ADD_CITY_TO_TRIP,
     payload: {
@@ -920,7 +876,6 @@ export function updateCitiesInTrip(
   endDate,
   index
 ) {
-  console.log(startDate, endDate);
   return {
     type: UPDATE_CITIES_IN_TRIP,
     payload: { cityName, state, country, latLng, placeId, startDate, endDate },
@@ -933,7 +888,7 @@ export function addDatesToCities(startMUI, endMUI, index) {
   let e = endMUI.toString();
   let startDate = moment(s).format("MM/DD/YYYY");
   let endDate = moment(e).format("MM/DD/YYYY");
-  console.log(startDate, endDate, index);
+
   return {
     type: ADD_DATES_TO_CITIES,
     payload: { startDate, endDate, index }
@@ -941,26 +896,21 @@ export function addDatesToCities(startMUI, endMUI, index) {
 }
 
 export function createNewTrip(tripName, cities) {
-  console.log(cities);
   let dates = [];
   cities.map(x => {
-    console.log(x, x.startDate, x.endDate);
     let newStart = x.startDate;
     let newEnd = x.endDate;
     dates.push(newStart, newEnd);
-    console.log(dates);
   });
   dates.sort();
   let startDate = dates[0];
   let endDate = dates[dates.length - 1];
 
-  console.log("newtrip1", tripName, startDate, endDate);
   return {
     type: CREATE_NEW_TRIP,
     payload: axios
       .post("/api/createNewTrip", { tripName, startDate, endDate })
       .then(resp => {
-        console.log(resp);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -973,7 +923,6 @@ export function addCityToDatabase(city, tripId) {
     payload: axios
       .post("/api/addCityToDatabase", { city, tripId })
       .then(resp => {
-        console.log(resp);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -999,26 +948,21 @@ export function updateEndDate(endMUI, index) {
 }
 
 export function updateTripInDatabase(tripName, cities) {
-  console.log(cities);
   let dates = [];
   cities.map(x => {
-    console.log(x, x.startDate, x.endDate);
     let newStart = x.startDate;
     let newEnd = x.endDate;
     dates.push(newStart, newEnd);
-    console.log(dates);
   });
   dates.sort();
   let startDate = dates[0];
   let endDate = dates[dates.length - 1];
 
-  console.log("newtrip1", tripName, startDate, endDate);
   return {
     type: CREATE_NEW_TRIP,
     payload: axios
       .post("/api/updateTripInDatabase", { tripName, startDate, endDate })
       .then(resp => {
-        console.log(resp);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -1103,7 +1047,6 @@ export function updateEditCitiesInTrip(
 }
 
 export function deleteCityFromDatabase(cityId) {
-  console.log(cityId);
   return {
     type: DELETE_CITY_FROM_DATABASE,
     payload: axios
@@ -1114,20 +1057,16 @@ export function deleteCityFromDatabase(cityId) {
 }
 
 export function updateTripOnEdit(tripId, tripName, cities) {
-  console.log(tripId, tripName, cities);
   let editCityDates = [];
   cities.map(x => {
-    console.log(x, x.start_date, x.end_date);
     let newStartOnSave = x.start_date;
     let newEndOnSave = x.end_date;
     editCityDates.push(newStartOnSave, newEndOnSave);
-    console.log(editCityDates);
   });
   editCityDates.sort();
   let startDateOnUpdateTrip = editCityDates[0];
   let endDateOnEditTrip = editCityDates[editCityDates.length - 1];
 
-  console.log("updaterip", tripName, startDateOnUpdateTrip, endDateOnEditTrip);
   return {
     UPDATE_TRIP_ON_EDIT,
     payload: axios
@@ -1138,7 +1077,6 @@ export function updateTripOnEdit(tripId, tripName, cities) {
         endDateOnEditTrip
       })
       .then(resp => {
-        console.log(resp);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -1146,13 +1084,11 @@ export function updateTripOnEdit(tripId, tripName, cities) {
 }
 
 export function addCitiesOnEdit(city, tripId) {
-  console.log(city, tripId);
   return {
     type: ADD_CITIES_ON_EDIT,
     payload: axios
       .post(`/api/addCitiesOnEdit/${tripId}`, { city })
       .then(resp => {
-        console.log(resp);
         return resp.data;
       })
       .catch(err => err.errMessage)
@@ -1160,7 +1096,6 @@ export function addCitiesOnEdit(city, tripId) {
 }
 
 export function updateCitiesOnEdit(city) {
-  console.log(city);
   return {
     type: UPDATE_CITIES_ON_EDIT,
     payload: axios
@@ -1171,16 +1106,14 @@ export function updateCitiesOnEdit(city) {
 }
 
 export function updateSavedList(card) {
-  console.log('HIHIHIHIHIHI:', card);
   return {
     type: UPDATE_SAVED_LIST,
     payload: card
   };
 }
 
-export function deleteFromSaved(id){
-  console.log(id);
-  return{
+export function deleteFromSaved(id) {
+  return {
     type: DELETE_FROM_SAVED,
     payload: axios
       .delete(`/api/deleteFromSaved/${id}`)
@@ -1189,10 +1122,9 @@ export function deleteFromSaved(id){
   };
 }
 
-export function spliceSaved(index){
-  console.log(index);
-  return{
+export function spliceSaved(index) {
+  return {
     type: SPLICE_SAVED,
     payload: index
-  }
+  };
 }

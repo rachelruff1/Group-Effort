@@ -42,7 +42,6 @@ class ApiCard extends Component {
   }
 
   dostuff() {
-    console.log("hit apicard", this.props.results);
     this.onclock();
     this.props.updateSavedList(this.props.results);
   }
@@ -52,8 +51,6 @@ class ApiCard extends Component {
       maxWidth: 255,
       marginRight: "auto"
     };
-
-    console.log(this.props.results);
 
     let rating;
     this.props.rating == undefined

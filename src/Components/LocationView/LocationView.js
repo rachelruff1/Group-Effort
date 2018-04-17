@@ -46,7 +46,6 @@ class LocationView extends Component {
     const parksMap =
       this.props.parks.length > 0 &&
       this.props.parks.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -60,7 +59,6 @@ class LocationView extends Component {
     const foodMap =
       this.props.food.length > 0 &&
       this.props.food.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -74,7 +72,6 @@ class LocationView extends Component {
     const museumsMap =
       this.props.museums.length > 0 &&
       this.props.museums.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -88,7 +85,6 @@ class LocationView extends Component {
     const mallsMap =
       this.props.mall.length > 0 &&
       this.props.mall.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -102,7 +98,6 @@ class LocationView extends Component {
     const moviesMap =
       this.props.movie.length > 0 &&
       this.props.movie.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}

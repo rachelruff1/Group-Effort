@@ -41,7 +41,7 @@ class EditTrip extends Component {
 
   //Needs to delete cities that aren't in the current array
   //update trip name and starting and end dates
-  //add new cities to the exiting trip 
+  //add new cities to the exiting trip
   //edit existing trips
   saveOnEdit() {
     let notDeletedCityIds = [];
@@ -57,12 +57,10 @@ class EditTrip extends Component {
     let toDelete = this.props.cityIds.filter(
       x => notDeletedCityIds.indexOf(x) == -1
     );
-    console.log('notDeletedCityIds', notDeletedCityIds );
-    console.log('newCities', newCities, )
-    console.log('existingCities', existingCities,)
-    console.log('toDelete', toDelete)
 
-    toDelete.map(x => {console.log(x); this.props.deleteCityFromDatabase(x)});
+    toDelete.map(x => {
+      this.props.deleteCityFromDatabase(x);
+    });
     this.props.updateTripOnEdit(
       this.props.tripId,
       this.props.tripName,
@@ -71,12 +69,9 @@ class EditTrip extends Component {
     newCities.map(x => this.props.addCitiesOnEdit(x, this.props.tripId));
     existingCities.map(x => this.props.updateCitiesOnEdit(x));
     window.history.back();
-
   }
 
   render() {
-    console.log(this.props.cities);
-    console.log(this.props.tripName);
     const { tripName, cities } = this.props;
     const style = {
       margin: 12

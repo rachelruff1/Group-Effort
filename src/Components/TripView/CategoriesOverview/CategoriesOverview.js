@@ -18,7 +18,6 @@ class CategoriesOverview extends Component {
   }
 
   render() {
-    console.log("this", this);
     const { latLng } = this.props;
 
     return (
@@ -26,7 +25,6 @@ class CategoriesOverview extends Component {
         <div
           className="saved-container"
           onClick={() => {
-            console.log("clickd!");
             this.props.updateContainer("Saved");
             this.props.getSaved(this.props.tripId);
           }}
@@ -37,7 +35,6 @@ class CategoriesOverview extends Component {
         <div
           className="restaurant-container"
           onClick={() => {
-            console.log("clickd!");
             this.props.updateContainer("Restaurants");
             // this.props.getFood(latLng);
           }}

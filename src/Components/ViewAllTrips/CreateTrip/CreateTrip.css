@@ -1,14 +1,18 @@
 .createtrip-main{
-    background:  linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
-    url("create-trip-img.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: linear-gradient(rgb(189, 189, 189), rgb(110, 110, 145), rgb(131, 131, 131));  
     background-attachment: fixed;
-    overflow: hidden;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: showup 7s;
-    
+    animation: showup 7s;    
+}
+
+.createtrip-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;    
+    top: 15vh;
+    left: 45vw; 
 }

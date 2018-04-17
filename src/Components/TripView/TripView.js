@@ -11,7 +11,9 @@ import "./TripView.css";
 import ApiCard from "../ApiCard/ApiCard";
 import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
 import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import {grey50} from 'material-ui/styles/colors';
+
 
 class TripView extends Component {
   constructor(props) {
@@ -81,17 +83,20 @@ class TripView extends Component {
         />
       ));
 
+      
+
     const savedMap = {};
     return (
       <body className="trip-view-container">
         <header className="trip-title">
           <div className="trip-box">
-          <Link to={`/edit-trip/${trip.trip_id}`}><button>Edit trip details</button></Link>
+          <Link to={`/edit-trip/${trip.trip_id}`}><FlatButton label="+ Edit Trip" className="edit-button" /></Link>
+          <div className="trip-details">
             <h1>{trip.trip_name} </h1>
             <h3>
               {trip.start_date} - {trip.end_date}
             </h3>
-            
+            </div>
           </div>
         </header>
         <div className="side-bar">

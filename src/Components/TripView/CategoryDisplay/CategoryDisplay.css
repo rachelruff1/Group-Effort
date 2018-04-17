@@ -2,9 +2,15 @@
     background-color: black;
     margin-top: 300px;
     margin-left: 150px;
-   
+
 }
 
 .test-category-display h1 {
     font-size: 400%
+}
+
+.category-main{
+    position: absolute;
+    left: 15vw;
+    top: 1vh;
 }

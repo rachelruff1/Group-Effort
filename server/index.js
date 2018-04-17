@@ -165,15 +165,10 @@ app.put("/api/updateCitiesOnEdit", ctrl.updateCitiesOnEdit);
 app.get("/api/getAllTrips", ctrl.getAllTrips);
 
 app.post("/api/addToSaved", ctrl.addToSaved);
-app.delete('/api/deleteFromSaved/:id', ctrl.deleteFromSaved);
-
-
+app.delete("/api/deleteFromSaved/:id", ctrl.deleteFromSaved);
 
 //post request for Profile.js (Jordan)
-app.put('/api/updateProfile', ctrl.updateProfile);
-
-
-
+app.put("/api/updateProfile", ctrl.updateProfile);
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {

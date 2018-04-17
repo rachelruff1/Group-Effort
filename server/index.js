@@ -71,7 +71,6 @@ passport.use(
               ])
               .then(created => done(null, created[0]));
           } else {
-            console.log(profile);
             return done(null, response[0]);
           }
         })
@@ -103,17 +102,14 @@ app.get("/api/logout", (req, res) => {
 });
 
 app.get("/api/getUser", (req, res) => {
-  console.log(req.user, "fffffffffffff");
   res.status(200).json(req.user);
 });
 
 app.get("/api/getUserInfo", (req, res) => {
-  console.log(req.user);
   res.status(200).json(req.user);
 });
 //endpoint to check logged in status
 app.get("/api/me", (req, res) => {
-  console.log(req.user);
   if (req.user) {
     res.status(200).json(req.user);
   } else {
@@ -127,12 +123,10 @@ app.get("/api/test", (req, res) => {
 app.get("/api/getPlaceDetail/:placeid", ctrl.getPlaceData);
 
 app.get("/api/getProfile", (req, res) => {
-  console.log(req.user);
   req.app
     .get("db")
     .getUserImage([req.user.authid])
     .then(response => {
-      console.log(response, "look here!");
       res.status(200).json(response);
     })
     .catch(console.log);

@@ -30,12 +30,16 @@
 }
 
 .edit-trip-card-search {
+  margin: auto;
+  
     width: 330px;
     background-color: rgb(180, 180, 180);
-    display: flex;
+    /* display: flex; */
     height: 65px;
-   margin: 10px 0 10px 0;
-    justify-content: center;
+   margin-bottom: 10px;
+   margin-top: 10px;
+   padding-top: 5px;
+    /* justify-content: center; */
     box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.287);
 }
 

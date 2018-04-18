@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPlace } from "../../ducks/reducer2";
-import {
-  getTrip,
-  getCities
-} from "../../ducks/reducer1";
+import { getTrip, getCities } from "../../ducks/reducer1";
 import CitiesCard from "./CitiesCard/CitiesCard";
 import "./TripView.css";
 import ApiCard from "../ApiCard/ApiCard";
 import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
 import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from "material-ui/FlatButton";
+import { grey50 } from "material-ui/styles/colors";
 
 class TripView extends Component {
   constructor(props) {
@@ -43,7 +41,6 @@ class TripView extends Component {
   }
 
   updateCityByIndex(index, cityName) {
-    console.log(index, cityName);
     let newLat = this.props.cities[index].lat_lng;
     this.setState({
       latLng: newLat,
@@ -53,21 +50,18 @@ class TripView extends Component {
   }
 
   updateContainer(title) {
-    console.log('hit:', title)
     this.setState({
       container: title,
       overview: false
     });
   }
   toggleView() {
-    console.log('hit toggle')
     this.setState({
       overview: true
     });
   }
 
   render() {
-    console.log("this", this);
     const { latLng, container } = this.state;
     const { trip, cities } = this.props;
     const citiesMap =
@@ -86,12 +80,15 @@ class TripView extends Component {
       <body className="trip-view-container">
         <header className="trip-title">
           <div className="trip-box">
-          <Link to={`/edit-trip/${trip.trip_id}`}><button>Edit trip details</button></Link>
-            <h1>{trip.trip_name} </h1>
-            <h3>
-              {trip.start_date} - {trip.end_date}
-            </h3>
-            
+            <Link to={`/edit-trip/${trip.trip_id}`}>
+              <FlatButton label="+ Edit Trip" className="edit-button" />
+            </Link>
+            <div className="trip-details">
+              <h1>{trip.trip_name} </h1>
+              <h3>
+                {trip.start_date} - {trip.end_date}
+              </h3>
+            </div>
           </div>
         </header>
         <div className="side-bar">
@@ -100,14 +97,14 @@ class TripView extends Component {
 
         <div>
           {this.state.overview === true ? (
-            <CategoriesOverview 
-            tripId={this.props.match.params.id}
-            updateContainer={this.updateContainer}
-            latLng={this.state.latLng}
+            <CategoriesOverview
+              tripId={this.props.match.params.id}
+              updateContainer={this.updateContainer}
+              latLng={this.state.latLng}
             />
           ) : (
             <CategoryDisplay
-            tripId={this.props.match.params.id}
+              tripId={this.props.match.params.id}
               toggleView={this.toggleView}
               container={container}
             />
@@ -117,7 +114,6 @@ class TripView extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   placeDetail: state.reducer2.placeDetail,

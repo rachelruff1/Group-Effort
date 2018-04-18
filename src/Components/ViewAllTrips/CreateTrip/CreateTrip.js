@@ -9,7 +9,7 @@ import {
   addCityToDatabase,
   createNewTrip
 } from "../../../ducks/reducer1";
-import {sendAllData} from '../../../ducks/reducer2';
+import { sendAllData } from "../../../ducks/reducer2";
 import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
@@ -30,7 +30,8 @@ class CreateTrip extends Component {
   componentDidMount(props) {
     // this.props.getCitiesInTrip();
     this.props.match.params.status !== "new"
-      ? this.props.getCitiesInTrip() && this.props.updateTripName(`Trip to ${this.props.city}`)
+      ? this.props.getCitiesInTrip() &&
+        this.props.updateTripName(`Trip to ${this.props.city}`)
       : null;
   }
 
@@ -44,7 +45,9 @@ class CreateTrip extends Component {
   }
   saveEvent() {
     let rating;
-    (this.props.saved.rating == undefined) ? rating = '' : rating = this.props.rating;
+    this.props.saved.rating == undefined
+      ? (rating = "")
+      : (rating = this.props.rating);
     this.props
       .createNewTrip(this.props.tripName, this.props.citiesInTrip)
       .then(resp => {
@@ -54,26 +57,32 @@ class CreateTrip extends Component {
         this.props.history.push(
           `/location-details/${resp.action.payload[0].trip_id}`
         );
-//SWITCH out reference with photo reference -- it's a place holder right now, switch for run time
-(this.props.match.params.status !== "new") ?
-        this.props.sendAllData(resp.action.payload[0].trip_id, this.props.saved.name, rating, this.props.saved.reference) : null;
+        //SWITCH out reference with photo reference -- it's a place holder right now, switch for run time
+        this.props.match.params.status !== "new"
+          ? this.props.sendAllData(
+              resp.action.payload[0].trip_id,
+              this.props.saved.name,
+              rating,
+              this.props.saved.reference
+            )
+          : null;
 
-        this.props.saved
+        this.props.saved;
       });
   }
 
   render() {
     // console.log(this.props.citiesInTrip);
     const style = {
-      margin: 12
+      margin: 12,
+      fontSize: 20
     };
     const createTripCardMap =
       this.props.citiesInTrip.length > 0 &&
       this.props.citiesInTrip.map((c, i) => {
-        console.log(c.cityName);
         return <CreateTripCard key={i} cityDetail={c} index={i} />;
       });
-    console.log(this.props);
+
     return (
       <div className="createtrip-main">
         <br />
@@ -81,46 +90,47 @@ class CreateTrip extends Component {
         <br />
         <br />
         <br />
+        <div className="createtrip-group">
+          {this.state.edit === false ? null : (
+            <div className="searchBox">
+              <CreateTripSearch
+                source="createTripContainer"
+                addDestination={this.addDestination}
+              />
+              <button onClick={() => this.toggleEdit()}>back</button>
+            </div>
+          )}
 
-        {this.state.edit === false ? null : (
-          <div className="searchBox">
-            <CreateTripSearch
-              source="createTripContainer"
-              addDestination={this.addDestination}
+          {this.props.match.params.status === "new" ? (
+            <TextField
+              id="text-field-default"
+              floatingLabelText="Name your trip"
+              // value={`Trip to ${this.props.city}`}
+              onChange={e => this.props.updateTripName(e.target.value)}
             />
-            <button onClick={() => this.toggleEdit()}>back</button>
-          </div>
-        )}
+          ) : (
+            <TextField
+              id="text-field-default"
+              floatingLabelText="Name your trip"
+              value={this.props.tripName}
+              onChange={e => this.props.updateTripName(e.target.value)}
+            />
+          )}
 
-        {this.props.match.params.status === "new" ? (
-          <TextField
-            id="text-field-default"
-            floatingLabelText="Name your trip"
-            // value={`Trip to ${this.props.city}`}
-            onChange={e => this.props.updateTripName(e.target.value)}
+          {createTripCardMap}
+
+          <FlatButton
+            onClick={() => this.toggleEdit()}
+            label="+ ADD CITY"
+            style={style}
           />
-        ) : (
-          <TextField
-            id="text-field-default"
-            floatingLabelText="Name your trip"
-            value={this.props.tripName}
-            onChange={e => this.props.updateTripName(e.target.value)}
+
+          <FlatButton
+            onClick={() => this.saveEvent()}
+            label="SAVE"
+            style={style}
           />
-        )}
-
-        {createTripCardMap}
-
-        <FlatButton
-          onClick={() => this.toggleEdit()}
-          label="+ ADD CITY"
-          style={style}
-        />
-
-        <FlatButton
-          onClick={() => this.saveEvent()}
-          label="SAVE"
-          style={style}
-        />
+        </div>
       </div>
     );
   }

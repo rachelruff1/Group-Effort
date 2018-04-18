@@ -24,8 +24,7 @@ const getUser = (req, res, next) => {
 };
 
 const addToSaved = (req, res, next) => {
-  console.log('req.body:', req.body);
-  const {tripId, name, rating, photoRef} = req.body;
+  const { tripId, name, rating, photoRef } = req.body;
   const db = req.app.get("db");
 
   db
@@ -79,7 +78,6 @@ const getCities = (req, res, next) => {
     });
 };
 const getTrip = (req, res, next) => {
-  console.log("params:", req.params);
   const db = req.app.get("db");
   db
     .get_trip([req.params.tripid])
@@ -93,7 +91,6 @@ const getTrip = (req, res, next) => {
     });
 };
 const getSaved = (req, res, next) => {
-  console.log(req.params);
   const db = req.app.get("db");
   db
     .get_saved([req.params.id])
@@ -107,7 +104,6 @@ const getSaved = (req, res, next) => {
     });
 };
 const getFood = (req, res, next) => {
-  console.log("m", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -135,7 +131,6 @@ const getThingsToDo = (req, res, next) => {
     .catch(() => res.status(500).json());
 };
 const getMuseums = (req, res, next) => {
-  console.log("MUSEUMMMMMSSS:", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -157,7 +152,6 @@ const getFacts = (req, res, next) => {
       }&key=${googleApiKey}`
     )
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -175,7 +169,6 @@ const getWebcams = (req, res, next) => {
       }&key=${googleApiKey}`
     )
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -184,7 +177,6 @@ const getWebcams = (req, res, next) => {
     });
 };
 const getParks = (req, res, next) => {
-  console.log("THE PARKS:", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -198,7 +190,6 @@ const getParks = (req, res, next) => {
     .catch(() => res.status(500).json());
 };
 const getMall = (req, res, next) => {
-  console.log("Malllllllls", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -212,7 +203,6 @@ const getMall = (req, res, next) => {
     .catch(() => res.status(500).json());
 };
 const getMovie = (req, res, next) => {
-  console.log("MOOOOViessss", req.params);
   axios
     .get(
       `${googlePlacesBase}${
@@ -227,7 +217,6 @@ const getMovie = (req, res, next) => {
 };
 
 const createNewTrip = (req, res, next) => {
-  console.log("new trip ctrl", req.body);
   let tempId = 9;
   //REPLACE TEMP WITH REQ.USER.ID WHEN IT IS WORKING!!!!!
   const { tripName, startDate, endDate } = req.body;
@@ -235,7 +224,6 @@ const createNewTrip = (req, res, next) => {
   db
     .create_new_trip([tripName, startDate, endDate, tempId])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -254,7 +242,6 @@ const getPlaceimg = (req, res, next) => {
 };
 
 const addCityToDatabase = (req, res, next) => {
-  console.log("new trip ctrl", req.body);
   const {
     cityName,
     country,
@@ -289,12 +276,11 @@ const addCityToDatabase = (req, res, next) => {
 
 const getAllTrips = (req, res, next) => {
   // const { id } = req.params;
-  console.log(req.user);
+
   const db = req.app.get("db");
   db
     .get_all_trips([req.user.user_id])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -317,12 +303,11 @@ const getPhotoref = (req, res, next) => {
 
 const deleteTrip = (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+
   const db = req.app.get("db");
   db
     .delete_trip([id])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -333,12 +318,11 @@ const deleteTrip = (req, res, next) => {
 
 const deleteCity = (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
+
   const db = req.app.get("db");
   db
     .delete_city([id])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -363,7 +347,6 @@ const updateTripOnEdit = (req, res, next) => {
       endDateOnEditTrip
     ])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -373,7 +356,6 @@ const updateTripOnEdit = (req, res, next) => {
 };
 
 const addCitiesOnEdit = (req, res, next) => {
-  console.log(req.body, req.params);
   const { id } = req.params;
   const {
     city_name,
@@ -386,16 +368,16 @@ const addCitiesOnEdit = (req, res, next) => {
     trip_id
   } = req.body.city;
 
-  console.log(
-    id,
-    state,
-    country,
-    lat_lng,
-    place_id,
-    start_date,
-    end_date,
-    trip_id
-  );
+  // console.log(
+  //   id,
+  //   state,
+  //   country,
+  //   lat_lng,
+  //   place_id,
+  //   start_date,
+  //   end_date,
+  //   trip_id
+  // );
   const db = req.app.get("db");
   db
     .add_city_on_edit([
@@ -409,7 +391,6 @@ const addCitiesOnEdit = (req, res, next) => {
       id
     ])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -420,12 +401,11 @@ const addCitiesOnEdit = (req, res, next) => {
 
 const updateCitiesOnEdit = (req, res, next) => {
   const { start_date, end_date, city_id } = req.body.city;
-  console.log(start_date, end_date, city_id);
+
   const db = req.app.get("db");
   db
     .update_cities_on_edit([start_date, end_date, city_id])
     .then(resp => {
-      console.log(resp);
       res.status(200).send(resp);
     })
     .catch(err => {
@@ -434,33 +414,32 @@ const updateCitiesOnEdit = (req, res, next) => {
     });
 };
 
-
- //------Function for Profile.js (Jordan)
+//------Function for Profile.js (Jordan)
 const updateProfile = (req, res, next) => {
-  console.log(req.body, "RRRRRRRR", req.user)
   req.app
     .get("db")
     .update_profile([req.body.username, req.body.email, req.user.user_id])
     .then(response => {
-      res.status(200).json(response)})
-      .catch(err => {
-        console.log(err);
-        next(err);
-      })
-  }
-
-const deleteFromSaved = (req, res, next) => {
-  console.log('delete from saved', req.params.id);
-  req.app
-  .get('db')
-  .delete_from_saved([req.params.id])
-  .then(response => {
-    res.status(200).json(response)})
+      res.status(200).json(response);
+    })
     .catch(err => {
       console.log(err);
       next(err);
+    });
+};
+
+const deleteFromSaved = (req, res, next) => {
+  req.app
+    .get("db")
+    .delete_from_saved([req.params.id])
+    .then(response => {
+      res.status(200).json(response);
     })
-}
+    .catch(err => {
+      console.log(err);
+      next(err);
+    });
+};
 
 module.exports = {
   getPlaceData,

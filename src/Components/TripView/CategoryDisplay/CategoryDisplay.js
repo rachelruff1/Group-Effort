@@ -15,7 +15,6 @@ class CategoryDisplay extends Component {
     const parksMap =
       this.props.parks.length > 0 &&
       this.props.parks.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -31,7 +30,6 @@ class CategoryDisplay extends Component {
     const foodMap =
       this.props.food.length > 0 &&
       this.props.food.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -47,7 +45,6 @@ class CategoryDisplay extends Component {
     const museumsMap =
       this.props.museums.length > 0 &&
       this.props.museums.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -63,7 +60,6 @@ class CategoryDisplay extends Component {
     const mallsMap =
       this.props.mall.length > 0 &&
       this.props.mall.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -79,7 +75,6 @@ class CategoryDisplay extends Component {
     const moviesMap =
       this.props.movie.length > 0 &&
       this.props.movie.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -91,10 +86,9 @@ class CategoryDisplay extends Component {
           />
         );
       });
-    const savedMap = 
-    this.props.savedFromDatabase.length > 0 &&
+    const savedMap =
+      this.props.savedFromDatabase.length > 0 &&
       this.props.savedFromDatabase.map((c, i) => {
-        console.log(c);
         return (
           <ApiCard
             key={i}
@@ -123,10 +117,10 @@ class CategoryDisplay extends Component {
     } else null;
 
     return (
-      <div>
+      <div className="category-main">
         <div className="test-category-display">
-          <h1 onClick={() => this.props.toggleView()}>{this.props.city}</h1>{" "}
-          -> {this.props.container}
+          <h1 onClick={() => this.props.toggleView()}>{this.props.city}</h1> ->{" "}
+          {this.props.container}
         </div>
         {cards}
       </div>

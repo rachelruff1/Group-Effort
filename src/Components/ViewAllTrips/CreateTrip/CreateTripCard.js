@@ -47,7 +47,6 @@ class CreateTripCard extends Component {
     );
   }
 
-
   handleChangeMinDate = (event, date) => {
     this.setState({
       minDate: date
@@ -68,17 +67,21 @@ class CreateTripCard extends Component {
   }
 
   updateTrip(cityName, state, country, latLng, placeId) {
-    console.log(cityName, state, country, latLng, placeId, this.state.minDate, this.state.maxDate, this.props.index);
+    // console.log(cityName, state, country, latLng, placeId, this.state.minDate, this.state.maxDate, this.props.index);
     this.props.updateCitiesInTrip(
-      cityName, state, country, latLng, placeId,moment(this.state.minDate).format("MM/DD/YYYY"), moment(this.state.maxDate).format("MM/DD/YYYY"),
+      cityName,
+      state,
+      country,
+      latLng,
+      placeId,
+      moment(this.state.minDate).format("MM/DD/YYYY"),
+      moment(this.state.maxDate).format("MM/DD/YYYY"),
       this.props.index
     );
     this.toggleEdit();
   }
 
   render() {
-    console.log(this);
-
     return (
       <div className="create-card-main">
         {this.state.edit === false ? null : (
@@ -91,27 +94,28 @@ class CreateTripCard extends Component {
           </div>
         )}
         <section className="create-trip-card-container">
+          {/* check delete for cityId phrasing in the object */}
 
-        {/* check delete for cityId phrasing in the object */}
-        
-        <button onClick={()=>this.props.deleteCity(this.props.cityDetail.cityId)}>x</button>
-          {(this.props.cityDetail.cityName )? <TextField
-            onClick={() => this.toggleEdit()}
-            id="text-field-default"
-            value={this.props.cityDetail.cityName}
-        
-          />:<TextField
-          onClick={() => this.toggleEdit()}
-          floatingLabelText='Pick a city'
-          id="text-field-default"
-          value={this.props.cityDetail.cityName}
-      
-        />}
-          
-          
-          
-          
-          
+          <button
+            onClick={() => this.props.deleteCity(this.props.cityDetail.cityId)}
+          >
+            x
+          </button>
+          {this.props.cityDetail.cityName ? (
+            <TextField
+              onClick={() => this.toggleEdit()}
+              id="text-field-default"
+              value={this.props.cityDetail.cityName}
+            />
+          ) : (
+            <TextField
+              onClick={() => this.toggleEdit()}
+              floatingLabelText="Pick a city"
+              id="text-field-default"
+              value={this.props.cityDetail.cityName}
+            />
+          )}
+
           <div style={optionsStyle}>
             <DatePicker
               value={this.state.minDate}

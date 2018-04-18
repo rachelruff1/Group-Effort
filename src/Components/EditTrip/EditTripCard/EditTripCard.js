@@ -60,7 +60,6 @@ class EditTripCard extends Component {
   }
 
   updateEditTrip(city_name, state, country, lat_lng, place_id) {
-    console.log(city_name, state, country, lat_lng, place_id, this.props.index);
     this.props.updateEditCitiesInTrip(
       city_name,
       state,
@@ -73,8 +72,6 @@ class EditTripCard extends Component {
   }
 
   render() {
-    console.log(this);
-
     return (
       <div>
         {this.state.edit === false ? null : (

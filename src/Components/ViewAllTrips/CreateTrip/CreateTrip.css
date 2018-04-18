@@ -1,19 +1,26 @@
-.createtrip-main{
-    background: linear-gradient(rgb(189, 189, 189), rgb(110, 110, 145), rgb(131, 131, 131));  
+.create-trip-main{
+    font-family: 'Montserrat', sans-serif;
+    /* background: linear-gradient(rgb(189, 189, 189), rgb(110, 110, 145), rgb(131, 131, 131));  
     background-attachment: fixed;
     background-size: 100vw 100vh;
-    height: 200vh;
+    height: 200vh; */
     display: flex;
-    flex-direction: column;
+    margin: auto;
     align-items: center;
-    animation: showup 7s;    
+    width: 100%;   
+    margin-top: 110px;
 }
 
-.createtrip-group{
+.create-trip-group{
     display: flex;
+    width: 40%;
     flex-direction: column;
-    align-items: center;
-    position: absolute;    
-    top: 15vh;
-    left: 45vw; 
+    /* align-items: center; */
+    margin:auto;  
+    
+}
+
+.trip-name-container-create {
+    margin-left: 10px;
+    background-color: black;
 }

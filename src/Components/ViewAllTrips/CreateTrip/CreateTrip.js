@@ -14,6 +14,7 @@ import CreateTripCard from "./CreateTripCard";
 import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 import "./CreateTrip.css";
+import "../../EditTrip/EditTrip.css";
 
 class CreateTrip extends Component {
   constructor(props) {
@@ -84,53 +85,88 @@ class CreateTrip extends Component {
       });
 
     return (
-      <div className="createtrip-main">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div className="createtrip-group">
-          {this.state.edit === false ? null : (
-            <div className="searchBox">
+      <div className="create-trip-main">
+        {this.state.edit === false ? (
+          <div className="create-trip-group">
+            <h1>Create New Trip</h1>
+
+            {this.props.match.params.status === "new" ? (
+              <TextField
+                id="text-field-default"
+                floatingLabelText="Name your trip"
+                // value={`Trip to ${this.props.city}`}
+                onChange={e => this.props.updateTripName(e.target.value)}
+              />
+            ) : (
+              <TextField
+                id="text-field-default"
+                floatingLabelText="Name your trip"
+                value={this.props.tripName}
+                onChange={e => this.props.updateTripName(e.target.value)}
+              />
+            )}
+
+            {createTripCardMap}
+
+            <FlatButton
+              onClick={() => this.toggleEdit()}
+              label="+ ADD CITY"
+              style={style}
+            />
+
+            <FlatButton
+              onClick={() => this.saveEvent()}
+              label="SAVE"
+              style={style}
+            />
+          </div>
+        ) : (
+          <div className="create-trip-group">
+            <h1>Create New Trip</h1>
+            {this.props.match.params.status === "new" ? (
+              <div className='trip-name-container-create'>
+              <TextField
+                id="text-field-default"
+                floatingLabelText="Name your trip"
+                // value={`Trip to ${this.props.city}`}
+                onChange={e => this.props.updateTripName(e.target.value)}
+              /></div>
+            ) : (
+              <TextField
+                id="text-field-default"
+                floatingLabelText="Name your trip"
+                value={this.props.tripName}
+                onChange={e => this.props.updateTripName(e.target.value)}
+              />
+            )}
+
+            {createTripCardMap}
+
+            <FlatButton
+              onClick={() => this.toggleEdit()}
+              label="+ ADD CITY"
+              style={style}
+            />
+
+            <FlatButton
+              onClick={() => this.saveEvent()}
+              label="SAVE"
+              style={style}
+            />
+            <div id="page-mask" />
+            <div id="window">
+            <div className='search-bar-edit-pop'>
               <CreateTripSearch
                 source="createTripContainer"
                 addDestination={this.addDestination}
               />
+              <div className ='search-bar-edit-pop-btn'>
               <button onClick={() => this.toggleEdit()}>back</button>
             </div>
-          )}
-
-          {this.props.match.params.status === "new" ? (
-            <TextField
-              id="text-field-default"
-              floatingLabelText="Name your trip"
-              // value={`Trip to ${this.props.city}`}
-              onChange={e => this.props.updateTripName(e.target.value)}
-            />
-          ) : (
-            <TextField
-              id="text-field-default"
-              floatingLabelText="Name your trip"
-              value={this.props.tripName}
-              onChange={e => this.props.updateTripName(e.target.value)}
-            />
-          )}
-
-          {createTripCardMap}
-
-          <FlatButton
-            onClick={() => this.toggleEdit()}
-            label="+ ADD CITY"
-            style={style}
-          />
-
-          <FlatButton
-            onClick={() => this.saveEvent()}
-            label="SAVE"
-            style={style}
-          />
-        </div>
+            </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

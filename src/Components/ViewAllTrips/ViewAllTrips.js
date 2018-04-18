@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import CreateTripButton from "./CreateTripButton/CreateTripButton";
 import IndividualTripCard from "../ViewAllTrips/IndividualTripCard/IndividualTripCard";
 import { Link } from "react-router-dom";
-import "./ViewAllTrips.css";
+import './AllTrips.css';
 import FlatButton from "material-ui/FlatButton";
 
 class ViewAllTrips extends Component {
@@ -32,6 +32,10 @@ class ViewAllTrips extends Component {
   }
 
   render() {
+
+    const style = {
+      margin: 12
+    };
     const status = "new";
 
     const futureTrips =
@@ -61,29 +65,24 @@ class ViewAllTrips extends Component {
                 You have no trips. 
             </h2></div> : null} */}
 
-          {currentTrips === false ? null : (
-            <div>
-              <h2>Current Trips</h2>
-              {currentTrips}
-            </div>
-          )}
-          {futureTrips === false ? null : (
-            <div>
-              <h2>Future Trips</h2>
-              {futureTrips}
-            </div>
-          )}
-          {pastTrips === false ? null : (
-            <div>
-              <h2>Past Trips</h2>
-              {pastTrips}
-            </div>
-          )}
+            {currentTrips === false ? null : <div className='current-trips'><h2>
+                Current Trips
+            </h2>
+            {currentTrips}</div>}
+            {futureTrips === false ? null : <div className='future-trips'><h2>
+                Future Trips
+            </h2>
+            {futureTrips}</div>}
+            {pastTrips === false ? null : <div className='past-trips'><h2>
+                Past Trips
+            </h2>
+            {pastTrips}</div>}
 
-          <Link to={`/create-trip/${status}`}>
+
+          <Link to={`/create-trip/${status}`} className='create-new-trip-btn'>
             <FlatButton
               label="+ Create Trip"
-              labelStyle={{ color: "rgb(255, 255, 255)", fontSize: "110%" }}
+              style={style}
             />
           </Link>
 

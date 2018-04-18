@@ -1,15 +1,59 @@
 .create-card-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    margin: auto;
+    /* background-color: black; */
 }
 
 .create-trip-card-container {
-    padding: 0 0 30px 30px;
-    max-width: 300px;
+    width: 300px;
     height:auto;
-    box-shadow: 1px 2px 5px rgb(70, 70, 70);
-    margin: 15px;
-    padding: 5%;
+    margin: auto;
+    box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.287);
+    margin-bottom: 20px;
+    padding: 5px 0 20px 30px;
+    /* padding: 10%; */
     
+}
+
+
+#create-trip-remove-btn{
+    float: right;
+}
+
+
+
+.create-trip-card-container button {
+    background-color: rgb(212, 212, 212);
+    height: 40px;
+    width: 40px;
+    border-radius: 3px;
+}
+
+.edit-trip-card-search {
+    width: 330px;
+    background-color: rgb(180, 180, 180);
+    display: flex;
+    height: 65px;
+   margin: 10px 0 10px 0;
+    justify-content: center;
+    box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.287);
+}
+
+.edit-trip-card-search-content{
+    width: 100%;
+    margin-left: 45px;
+    margin-top: 5px;
+}
+.edit-trip-card-search-content button{
+    border-radius: 3px;
+}
+
+.edit-trip-card-search-content button:hover{
+    border-radius: 3px;
+    background-color: rgb(231, 231, 231);
+}
+
+#search-back-btn {
+
+    margin: 3px 0 0 92px;
 }

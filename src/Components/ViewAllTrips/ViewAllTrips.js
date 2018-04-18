@@ -32,6 +32,10 @@ class ViewAllTrips extends Component {
   }
 
   render() {
+
+    const style = {
+      margin: 12
+    };
     const status = "new";
 
     const futureTrips =
@@ -61,7 +65,6 @@ class ViewAllTrips extends Component {
                 You have no trips. 
             </h2></div> : null} */}
 
-<<<<<<< HEAD
             {currentTrips === false ? null : <div className='current-trips'><h2>
                 Current Trips
             </h2>
@@ -75,31 +78,11 @@ class ViewAllTrips extends Component {
             </h2>
             {pastTrips}</div>}
 
-=======
-          {currentTrips === false ? null : (
-            <div>
-              <h2>Current Trips</h2>
-              {currentTrips}
-            </div>
-          )}
-          {futureTrips === false ? null : (
-            <div>
-              <h2>Future Trips</h2>
-              {futureTrips}
-            </div>
-          )}
-          {pastTrips === false ? null : (
-            <div>
-              <h2>Past Trips</h2>
-              {pastTrips}
-            </div>
-          )}
->>>>>>> master
 
-          <Link to={`/create-trip/${status}`}>
+          <Link to={`/create-trip/${status}`} className='create-new-trip-btn'>
             <FlatButton
               label="+ Create Trip"
-              labelStyle={{ color: "rgb(255, 255, 255)", fontSize: "110%" }}
+              style={style}
             />
           </Link>
 

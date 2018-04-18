@@ -85,21 +85,26 @@ class CreateTripCard extends Component {
     return (
       <div className="create-card-main">
         {this.state.edit === false ? null : (
-          <div>
-            <CreateTripSearch
-              source="createTripCard"
-              updateTrip={this.updateTrip}
-            />
-            <button onClick={() => this.toggleEdit()}>back</button>
+          <div className="edit-trip-card-search">
+            <div className="edit-trip-card-search-content">
+              <CreateTripSearch
+                source="createTripCard"
+                updateTrip={this.updateTrip}
+              />
+              <div id="search-back-btn">
+                <button onClick={() => this.toggleEdit()}>back</button>
+              </div>
+            </div>
           </div>
         )}
         <section className="create-trip-card-container">
           {/* check delete for cityId phrasing in the object */}
 
           <button
+            id="create-trip-remove-btn"
             onClick={() => this.props.deleteCity(this.props.cityDetail.cityId)}
           >
-            x
+            X
           </button>
           {this.props.cityDetail.cityName ? (
             <TextField

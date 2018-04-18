@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import CreateTripButton from "./CreateTripButton/CreateTripButton";
 import IndividualTripCard from "../ViewAllTrips/IndividualTripCard/IndividualTripCard";
 import { Link } from "react-router-dom";
-import "./ViewAllTrips.css";
+import './AllTrips.css';
 import FlatButton from "material-ui/FlatButton";
 
 class ViewAllTrips extends Component {
@@ -56,15 +56,15 @@ console.log('future', futureTrips, 'past', pastTrips, 'current', currentTrips, )
                 You have no trips. 
             </h2></div> : null} */}
 
-            {currentTrips === false ? null : <div><h2>
+            {currentTrips === false ? null : <div className='current-trips'><h2>
                 Current Trips
             </h2>
             {currentTrips}</div>}
-            {futureTrips === false ? null : <div><h2>
+            {futureTrips === false ? null : <div className='future-trips'><h2>
                 Future Trips
             </h2>
             {futureTrips}</div>}
-            {pastTrips === false ? null : <div><h2>
+            {pastTrips === false ? null : <div className='past-trips'><h2>
                 Past Trips
             </h2>
             {pastTrips}</div>}

@@ -564,6 +564,8 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       });
+
+   
     case `${GET_MOVIE}_FULFILLED`:
       // console.log("reducer func:", action.payload[0]);
       return Object.assign({}, state, {
@@ -1092,27 +1094,27 @@ export function updateEndDate(endMUI, index) {
   };
 }
 
-export function updateTripInDatabase(tripName, cities) {
-  let dates = [];
-  cities.map(x => {
-    let newStart = x.startDate;
-    let newEnd = x.endDate;
-    dates.push(newStart, newEnd);
-  });
-  dates.sort();
-  let startDate = dates[0];
-  let endDate = dates[dates.length - 1];
+// export function updateTripInDatabase(tripName, cities) {
+//   let dates = [];
+//   cities.map(x => {
+//     let newStart = x.startDate;
+//     let newEnd = x.endDate;
+//     dates.push(newStart, newEnd);
+//   });
+//   dates.sort();
+//   let startDate = dates[0];
+//   let endDate = dates[dates.length - 1];
 
-  return {
-    type: CREATE_NEW_TRIP,
-    payload: axios
-      .post("/api/updateTripInDatabase", { tripName, startDate, endDate })
-      .then(resp => {
-        return resp.data;
-      })
-      .catch(err => err.errMessage)
-  };
-}
+//   return {
+//     type: CREATE_NEW_TRIP,
+//     payload: axios
+//       .post("/api/updateTripInDatabase", { tripName, startDate, endDate })
+//       .then(resp => {
+//         return resp.data;
+//       })
+//       .catch(err => err.errMessage)
+//   };
+// }
 
 export function deleteCity(index) {
   console.log(index);

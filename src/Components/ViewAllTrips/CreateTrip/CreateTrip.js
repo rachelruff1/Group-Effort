@@ -64,7 +64,7 @@ class CreateTrip extends Component {
               resp.action.payload[0].trip_id,
               this.props.saved.name,
               rating,
-              this.props.saved.reference
+              this.props.saved.photo_ref
             )
           : null;
 
@@ -73,7 +73,8 @@ class CreateTrip extends Component {
   }
 
   render() {
-    // console.log(this.props.citiesInTrip);
+    console.log('PHOTOREFFF:', this.props.saved) 
+    // 'maybe?', this.props.saved.photos[0].photo_reference);
     const style = {
       margin: 12,
       fontSize: 20

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
 import "./LocationView2.css";
@@ -28,11 +28,11 @@ class LocationView extends Component {
   componentDidMount(props) {
     this.props.getPlaceimg(this.props.placephotoref);
     this.props.getUser();
-    // this.props.getFood(this.state.test);
-    // this.props.getParks(this.state.test);
-    // this.props.getMuseums(this.state.test);
-    // this.props.getMovie(this.state.test);
-    //  this.props.getMall(this.state.test);
+    this.props.getFood(this.props.latlng);
+    this.props.getParks(this.props.latlng);
+    this.props.getMuseums(this.props.latlng);
+    this.props.getMovie(this.props.latlng);
+     this.props.getMall(this.props.latlng);
 
     //replace this.state.test with this.props.match.params.id
   }
@@ -102,7 +102,7 @@ class LocationView extends Component {
           />
         );
       });
-
+console.log('latlng', this.props.latlng, 'match', this.props, 'parks', this.props.parks)
     return (
       <div className="location-body">
         <div className="location-title">
@@ -151,6 +151,7 @@ function mapStateToProps(state) {
     mall: state.reducer1.mall,
     museums: state.reducer1.museums,
 
+    latlng: state.reducer1.latlng,
     city: state.reducer1.city,
     state: state.reducer1.state,
     country: state.reducer1.country,
@@ -159,7 +160,7 @@ function mapStateToProps(state) {
     auth_status: state.reducer1.auth_status
   };
 }
-export default connect(mapStateToProps, {
+export default withRouter( connect(mapStateToProps, {
   getPlaceimg,
   getUser,
   getFood,
@@ -167,4 +168,4 @@ export default connect(mapStateToProps, {
   getMuseums,
   getMovie,
   getMall
-})(LocationView);
+})(LocationView));

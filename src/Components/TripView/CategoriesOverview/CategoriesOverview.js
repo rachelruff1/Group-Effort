@@ -10,7 +10,8 @@ import {
   getMovie,
   getMall
 } from "../../../ducks/reducer1";
-import "../TripView.css";
+import '../CategoryBoxes.css';
+// import "../TripView.css";
 
 class CategoriesOverview extends Component {
   constructor(props) {

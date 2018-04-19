@@ -7,7 +7,7 @@
     background-color: rgba(224, 224, 224, 0.808);
     opacity:.7;  
     box-shadow: 1px 2.5px 6px #444444; */
-
+z-index: 2;
     position: absolute;
     display: flex;
     flex-direction: column;

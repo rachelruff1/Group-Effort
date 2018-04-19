@@ -41,12 +41,15 @@ class ApiCard extends Component {
     });
   }
 
+  //this.props.results is an object being saved from locaiton view
   dostuff() {
     this.onclock();
     this.props.updateSavedList(this.props.results);
   }
 
   render() {
+    console.log('PHOTOREFFF:', this.props.results)
+    // 'test', this.props.results.photos[0].photo_reference)
     let styles = {
       maxWidth: 255,
       marginRight: "auto"
@@ -67,7 +70,7 @@ class ApiCard extends Component {
               this.props.tripId,
               this.props.results.name,
               rating,
-              this.state.photoRef
+              this.props.results.photos[0].photo_reference
             );
             swal("Added to trip!");
           }}>
@@ -88,7 +91,7 @@ class ApiCard extends Component {
     } else {
       button = (
         <a href={process.env.REACT_APP_LOGIN}>
-          <button>Log in to save" </button>
+          <button>Log in to save</button>
         </a>
       );
     }
@@ -123,8 +126,9 @@ class ApiCard extends Component {
           <Popup
             name={this.props.results.name}
             rating={this.props.results.rating}
-            photoRef={this.state.photoRef}
-            // {this.props.results.photos[0].photo_reference}
+            photoRef=
+            // {this.state.photoRef}
+            {this.props.results.photos[0].photo_reference}
             toggle={this.onclock}
 
             // photoRef={this.props.results.photos[0].photo_reference}

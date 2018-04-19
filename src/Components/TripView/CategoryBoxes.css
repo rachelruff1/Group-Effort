@@ -1,0 +1,100 @@
+.trip-view-selectors {
+   
+    width: 100%;
+    display: grid;
+  /* justify-content: center; */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-content: space-evenly;
+ padding-left: 30px;
+    height: 70%;
+
+    font-size: 24px;
+    color: white;
+    opacity: .85;
+  }
+
+  .trip-view-selectors div {
+    background-color: lightgrey;
+    text-align: center;
+    box-shadow: 1px 2px 10px rgb(70, 70, 70);
+    
+  }
+
+
+.shopping-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("shopping-img.jpg");
+    background-repeat: no-repeat;
+    background-size: 50vh;
+   
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .restaurant-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("restaurant-img.jpg");
+    background-repeat: no-repeat;
+    background-size: 35vw;
+   
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .museums-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("museum-img.jpg");
+    background-repeat: no-repeat;
+    background-size: 35vw;
+   
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .theater-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("theater-img.jpg");
+    background-repeat: no-repeat;
+    background-size: 35vw;
+   
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .parks-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("parks-img.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35vw;
+   
+    cursor: pointer;
+  }
+
+  .saved-container {
+    margin: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("saved-img.jpg");
+    background-repeat: no-repeat;
+    background-size: 25vw;
+    background-position: center;
+    cursor: pointer;
+  }

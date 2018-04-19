@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getPlace } from "../../ducks/reducer2";
 import { getTrip, getCities } from "../../ducks/reducer1";
 import CitiesCard from "./CitiesCard/CitiesCard";
-import "./TripView.css";
+import "./TripView2.css";
 import ApiCard from "../ApiCard/ApiCard";
 import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
 import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
@@ -71,6 +71,7 @@ class TripView extends Component {
         <CitiesCard
           key={i}
           city={c}
+          homeCity={this.state.selectedCity}
           updateCityByIndex={this.updateCityByIndex}
           index={i}
         />
@@ -92,24 +93,29 @@ class TripView extends Component {
             </div>
           </div>
         </header>
-        <div className="side-bar">
-          <sidebar className="city-side-bar">{citiesMap}</sidebar>
-        </div>
+        
 
         <div>
           {this.state.overview === true ? (
+            <div className='categories-overview'>
+            
+          <sidebar className="city-side-bar">{citiesMap}</sidebar>
+        
             <CategoriesOverview
               tripId={this.props.match.params.id}
               updateContainer={this.updateContainer}
               latLng={this.state.latLng}
-            />
-          ) : (
+            /></div>
+          ) : (<div className='category-display'>
+          
+          <sidebar className="city-side-bar">{citiesMap}</sidebar>
+        
             <CategoryDisplay
             city={this.state.selectedCity}
               tripId={this.props.match.params.id}
               toggleView={this.toggleView}
               container={container}
-            />
+            /></div>
           )}
         </div>
       </body>

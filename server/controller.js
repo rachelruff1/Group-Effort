@@ -218,12 +218,11 @@ const getMovie = (req, res, next) => {
 };
 
 const createNewTrip = (req, res, next) => {
-  let tempId = 9;
-  //REPLACE TEMP WITH REQ.USER.ID WHEN IT IS WORKING!!!!!
+
   const { tripName, startDate, endDate } = req.body;
   const db = req.app.get("db");
   db
-    .create_new_trip([tripName, startDate, endDate, tempId])
+    .create_new_trip([tripName, startDate, endDate, req.user.user_id])
     .then(resp => {
       res.status(200).send(resp);
     })
@@ -277,7 +276,7 @@ const addCityToDatabase = (req, res, next) => {
 
 const getAllTrips = (req, res, next) => {
   // const { id } = req.params;
-
+console.log('hit get all trips',req.user.user_id)
   const db = req.app.get("db");
   db
     .get_all_trips([req.user.user_id])

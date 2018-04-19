@@ -2,13 +2,32 @@
     width: 100vw;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .trip-box{
-    width: 95%;
+    display: flex;
+    width: 99%;
     margin: auto;
     box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.363);
     background-color: rgb(248, 248, 248);
-    margin-top: 5px;
+    margin-top: 15px;
     
+}
+
+.categories-overview{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+.category-display{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
 }

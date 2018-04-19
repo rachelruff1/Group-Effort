@@ -1,50 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "./Home2.css";
 import SearchBox from "../Search/SearchBox";
 
-class Home extends Component {
-  constructor() {
-    super();
-  }
-
-  componentDidMount() {}
-
-  render() {
-    // .toString();
-    return (
-      <div className="Home">
-        <div className="homesearch">
-        {/* <Search/> */}
-        
-          {/* <br />
-          <br />
-          <br />
-          <br />
-          <Link to="/location-details">
-            <button>TripView</button>
-          </Link>
-          <Link to="/view-all-trips">
-            <button>ViewAllTrips</button>
-          </Link>
-          <Link to="/location">
-            <button>ViewLocation</button>
-          </Link> */}
-        </div>
-        <figure className="search">
-          <SearchBox />
-        </figure>
-        <div id="group-transition">
-          <div className="transition-1">Plan</div>
-          <div className="transition-2">Your</div>
-          <div className="transition-3">Trip</div>
-          <div className="transition-4">Today</div>
-          <hr className="hr-1" />
-        </div>
-      </div>
-    );
-  }
+const Home = () => {
+  return (
+    <div className='home-container'><div className='home-content'><h1>TRIPPIE</h1><SearchBox /></div></div>
+  )
 }
 
-export default Home; 
+export default Home;
 

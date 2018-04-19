@@ -87,7 +87,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
+    successRedirect: "http://localhost:3000/#/view-all-trips",
     failureRedirect: "/auth"
   })
 );

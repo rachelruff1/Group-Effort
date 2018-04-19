@@ -56,7 +56,7 @@ class SearchBox extends Component {
 
   saveData() {
     this.props.updatePlaceId(this.state.placeId);
-    this.props.updatePlaceId(this.state.latlng);
+    this.props.updateLatLng(this.state.latlng);
     this.props.updateLocationData(
       this.state.city,
       this.state.state,

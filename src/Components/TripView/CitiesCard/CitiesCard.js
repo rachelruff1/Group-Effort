@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import { getCityDetail } from "../../../ducks/reducer1";
-import './CitiesCard.css';
+// import './CitiesCard.css';
 
 class CitiesCard extends Component {
   constructor(props) {

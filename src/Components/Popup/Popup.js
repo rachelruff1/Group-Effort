@@ -70,6 +70,7 @@ class Popup extends Component {
                     </select>
                   </div>
                 </section>
+
                 <Link to={`/location-details/${this.state.tripId}`}>
                   <button
                     className="popupbtn"

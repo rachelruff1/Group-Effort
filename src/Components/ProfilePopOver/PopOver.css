@@ -1,0 +1,38 @@
+.profile-menu {
+    /* display: flex;
+    flex-direction: column;
+    width:8vw;
+    height: auto;
+    border-radius: 5%;
+    background-color: rgba(224, 224, 224, 0.808);
+    opacity:.7;  
+    box-shadow: 1px 2.5px 6px #444444; */
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+    /* right: 12vw; */
+    /* top: 14vh; */
+    /* width: 20vw; */
+    height: auto;
+    border-radius: 5%;
+    background-color: rgba(224, 224, 224, 0.808);
+    opacity:.7;  
+    /* font-size: 12px; */
+    padding: 7px;
+    /* padding-top: 0px; */
+    /* padding-bottom: 0px; */
+    justify-content: space-around;
+
+    box-shadow: 2px 5px 12px #444444;
+
+
+
+
+}
+
+.drawer-link{
+border-bottom: 1px solid grey;
+
+}

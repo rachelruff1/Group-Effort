@@ -43,6 +43,7 @@ const editUser = (req, res, next) => {
 };
 
 const logout = (req, res) => {
+  console.log('hit');
   req.session.destroy(() => {
     res.redirect("/#/");
   });

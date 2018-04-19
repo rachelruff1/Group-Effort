@@ -115,14 +115,15 @@ class CategoryDisplay extends Component {
     } else if (this.props.container === "Shopping") {
       cards = mallsMap;
     } else null;
-
+console.log(this.props.city);
     return (
       <div className="category-main">
         <div className="test-category-display">
-          <h1 onClick={() => this.props.toggleView()}>{this.props.city}</h1> ->{" "}
+          <h3 onClick={() => this.props.toggleView()}>{this.props.city}</h3> ->{" "}
           {this.props.container}
         </div>
-        {cards}
+        <div className='location-view-cards'>
+        {cards}</div>
       </div>
     );
   }

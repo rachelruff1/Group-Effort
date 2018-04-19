@@ -61,7 +61,7 @@ class ApiCard extends Component {
 
     if (this.props.location === "TripView") {
       button = (
-        <button>
+        <button
           onClick={() => {
             this.props.sendAllData(
               this.props.tripId,
@@ -70,7 +70,7 @@ class ApiCard extends Component {
               this.state.photoRef
             );
             swal("Added to trip!");
-          }}
+          }}>
           Add to saved</button>
       );
     } else if (this.props.location === "saved") {

@@ -1,0 +1,80 @@
+.ind-trip-card-body {
+  width: 80%;
+  margin: auto;
+}
+
+.ind-trip-card-content {
+  padding: 5px;
+  /* display: flex; */
+
+  background-color: white;
+  box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.287);
+  /* border: 1px solid grey; */
+  /* width: 80%; */
+  margin-bottom: 15px;
+  /* flex-direction: column; */
+  align-content: center;
+}
+
+
+
+.ind-trip-card-content h3 {
+  margin-left: 5%;
+  color: rgb(20, 20, 20);
+}
+.ind-trip-card-content p {
+  color: rgb(20, 20, 20);
+  margin-left: 10%;
+  font-size: 90%;
+}
+.ind-trip-card-content h3:hover {
+    text-decoration: underline;
+   }
+
+.ind-trip-card-content button {
+  width: 70px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.ind-trip-card-content button:hover{
+    color: rgb(238, 237, 237);
+  }
+.ind-trip-card-btns {
+  /* padding: 10px; */
+  
+}
+
+.long-button-edit {
+  background-color: rgb(212, 212, 212);
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  
+}
+
+.long-button-delete {
+  background-color: rgb(212, 212, 212);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* phone */
+@media only screen and (min-width: 320px) {
+  .ind-trip-card-btns {
+    margin-left: 28%;
+  }
+}
+
+/* comp */
+@media only screen and (min-width: 1024px) {
+  .ind-trip-card-btns {
+    margin-left: 36.5%;
+  }
+}
+/* tablet */
+/* @media only screen and (min-width: 768px) {
+  .ind-trip-card-btns {
+    margin-left: 30%;
+  }
+} */

@@ -3,7 +3,7 @@
     .search-input{
         box-sizing: border-box;
         border: 1px solid transparent;
-        width: 100px;
+        width: 150px;
         height: 32px;
         padding: 0 12px;
         border-radius: 3px;
@@ -35,9 +35,9 @@
 /*For tablets*/
 @media only screen and (min-width: 768px) {
     .search-input{
-        boxSizing: border-box;
+        
               border: 1px solid transparent;
-              width: 160px;
+              width: 180px;
               height: 32px;
               padding: 0 12px;
               border-radius: 3px;

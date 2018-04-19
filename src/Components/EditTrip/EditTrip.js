@@ -15,6 +15,7 @@ import {
 import CreateTripCard from "../ViewAllTrips/CreateTrip/CreateTripCard";
 import CreateTripSearch from "../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 import EditTripCard from "./EditTripCard/EditTripCard";
+import './EditTrip.css';
 
 class EditTrip extends Component {
   constructor(props) {
@@ -80,62 +81,73 @@ class EditTrip extends Component {
     const editTripCardMap =
       cities.length > 0 &&
       cities.map((c, i) => {
-        return <EditTripCard key={i} cityDetail={c} index={i} />;
+        return <EditTripCard key={i} cityDetail={c} index={i}/>;
       });
 
     return (
-      <div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
-        {this.state.edit === false ? null : (
-          <div className="searchBox">
-            <CreateTripSearch
-              source="editTripContainer"
-              addEditTrip={this.addEditTrip}
+      <div className='create-trip-main'>
+        {this.state.edit === false ? (
+          <div className='create-trip-group'>
+            <h1>Edit Trip</h1>
+            <TextField
+              id="text-field-default"
+              floatingLabelText="Trip name"
+              value={tripName}
+              //   {this.props.tripName === this.props.cities[0].trip_name ? null : this.props.tripName}
+              onChange={e => this.props.updateTripName(e.target.value)}
             />
-            <button onClick={() => this.toggleEdit()}>back</button>
+            {editTripCardMap}
+
+            <RaisedButton
+              onClick={() => this.toggleEdit()}
+              label="+ ADD CITY"
+              style={style}
+            />
+            <RaisedButton
+              onClick={() => this.saveOnEdit()}
+              label="SAVE"
+              style={style}
+            />
+          </div>
+        ) : (
+          <div className='create-trip-group'>
+            <h1>Edit Trip</h1>
+            <div className='trip-name-container-create'>
+            <TextField
+              id="text-field-default"
+              floatingLabelText="Trip name"
+              value={tripName}
+              //   {this.props.tripName === this.props.cities[0].trip_name ? null : this.props.tripName}
+              onChange={e => this.props.updateTripName(e.target.value)}
+            />
+            </div>
+            {editTripCardMap}
+
+            <RaisedButton
+              onClick={() => this.toggleEdit()}
+              label="+ ADD CITY"
+              style={style}
+            />
+            <RaisedButton
+              onClick={() => this.saveOnEdit()}
+              label="SAVE"
+              style={style}
+            />
+
+            <div id="page-mask" />
+            <div id="window">
+            <div className='search-bar-edit-pop'>
+              <CreateTripSearch
+                source="editTripContainer"
+                addEditTrip={this.addEditTrip}
+              />
+              <div className ='search-bar-edit-pop-btn'>
+              <button onClick={() => this.toggleEdit()}>back</button>
+              </div>
+            </div>
+            </div>
           </div>
         )}
-        <TextField
-          id="text-field-default"
-          floatingLabelText="Trip name"
-          value={tripName}
-          //   {this.props.tripName === this.props.cities[0].trip_name ? null : this.props.tripName}
-          onChange={e => this.props.updateTripName(e.target.value)}
-        />
-        {editTripCardMap}
-
-        <RaisedButton
-          onClick={() => this.toggleEdit()}
-          label="+ ADD CITY"
-          style={style}
-        />
-        <RaisedButton
-          onClick={
-            () => this.saveOnEdit()
-            // this.props
-            //   .createNewTrip(this.props.tripName, this.props.citiesInTrip)
-            //   .then(resp => {
-            //     console.log(resp.action.payload[0].trip_id);
-            //     this.props.citiesInTrip.map(x => {
-            //       console.log(x);
-            //       this.props.addCityToDatabase(
-            //         x,
-            //         resp.action.payload[0].trip_id
-            //       );
-            //     });
-            //   })
-          }
-          label="SAVE"
-          style={style}
-        />
       </div>
     );
   }

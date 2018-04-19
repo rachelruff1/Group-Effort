@@ -1,16 +1,26 @@
 .test-category-display {
-    background-color: black;
-    margin-top: 300px;
-    margin-left: 150px;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: black;
 }
 
-.test-category-display h1 {
-    font-size: 400%
+.category-main h3 {
+    text-shadow: none;
 }
 
-.category-main{
-    position: absolute;
-    left: 15vw;
-    top: 1vh;
+.category-main p {
+    text-shadow: none;
+}
+.category-main {
+  position: absolute;
+  margin-top: 160px;
+  margin-left: 240px;
+}
+
+.location-view-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-around;
 }

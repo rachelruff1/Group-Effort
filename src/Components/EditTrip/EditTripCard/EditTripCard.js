@@ -13,6 +13,7 @@ import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTri
 import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 import moment from "moment";
 import EditTrip from "../EditTrip";
+import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 
 const optionsStyle = {
   maxWidth: 255,
@@ -73,19 +74,26 @@ class EditTripCard extends Component {
 
   render() {
     return (
-      <div>
+      <div class="create-card-main">
         {this.state.edit === false ? null : (
-          <div>
-            <CreateTripSearch
-              source="editTripCard"
-              updateEditTrip={this.updateEditTrip}
-            />
-            <button onClick={() => this.toggleEdit()}>back</button>
+          <div className="edit-trip-card-search">
+            <div className="edit-trip-card-search-content">
+              <CreateTripSearch
+                source="editTripCard"
+                updateEditTrip={this.updateEditTrip}
+              />
+              <div id="search-back-btn">
+                <button onClick={() => this.toggleEdit()}>undo</button>
+              </div>
+            </div>
           </div>
         )}
         <section className="create-trip-card-container">
-          <button onClick={() => this.props.deleteCity(this.props.index)}>
-            x
+          <button
+            id="create-trip-remove-btn"
+            onClick={() => this.props.deleteCity(this.props.index)}
+          >
+            X
           </button>
           <TextField
             onClick={() => this.toggleEdit()}

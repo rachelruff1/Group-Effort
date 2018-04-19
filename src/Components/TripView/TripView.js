@@ -22,7 +22,8 @@ class TripView extends Component {
       index: "",
       container: "",
       source: "",
-      overview: true
+      overview: true,
+      selectedCity: ''
     };
     this.updateCityByIndex = this.updateCityByIndex.bind(this);
     this.updateContainer = this.updateContainer.bind(this);
@@ -104,6 +105,7 @@ class TripView extends Component {
             />
           ) : (
             <CategoryDisplay
+            city={this.state.selectedCity}
               tripId={this.props.match.params.id}
               toggleView={this.toggleView}
               container={container}

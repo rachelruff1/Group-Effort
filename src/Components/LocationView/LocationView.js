@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import SearchBox from "../Search/SearchBox";
 import { connect } from "react-redux";
-import "./LocationView.css";
-import ParkCard from "../GooglePlacesAPI/ParkCard/ParkCard";
-import MuseumCard from "../GooglePlacesAPI/MuseumCard/MuseumCard";
-import FoodCard from "../GooglePlacesAPI/FoodCard/FoodCard";
-import MallCard from "../GooglePlacesAPI/MallCard/MallCard";
-// import MovieCard from "../GooglePlacesAPI/MovieCard/MovieCard";
+import "./LocationView2.css";
 import {
   getPlaceimg,
   getUser,
@@ -115,8 +110,6 @@ class LocationView extends Component {
             {/* add conditinal  */}
             {this.props.city}, {this.props.state}, {this.props.country}
           </h1>
-        </div>
-        <div>
           <img
             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
@@ -124,18 +117,26 @@ class LocationView extends Component {
             className="location-image"
           />
         </div>
-        <div className="location-card-group">
-          {/* <ParkCard  /> */}
+        <div className="location-card-group" />
+        <div className="location-view-ind-category">
           <h1>Parks</h1>
-          <div className="park-cards">{parksMap}</div>
+          <div className="location-cards">{parksMap}</div>
+        </div>
+        <div className="location-view-ind-category">
           <h1>Restaurants</h1>
-          <div className="food-cards">{foodMap}</div>
+          <div className="location-cards">{foodMap}</div>
+        </div>
+        <div className="location-view-ind-category">
           <h1>Museums</h1>
-          <div className="museum-cards">{museumsMap}</div>
+          <div className="location-cards">{museumsMap}</div>
+        </div>
+        <div className="location-view-ind-category">
           <h1>Malls</h1>
-          <div className="mall-cards">{mallsMap}</div>
+          <div className="location-cards">{mallsMap}</div>
+        </div>
+        <div className="location-view-ind-category">
           <h1>Movies</h1>
-          <div className="movie-cards">{moviesMap}</div>
+          <div className="location-cards">{moviesMap}</div>
         </div>
       </div>
     );

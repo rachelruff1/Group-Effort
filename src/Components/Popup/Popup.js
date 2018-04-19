@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Popup.css";
+import "./Popup1.css";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { connect } from "react-redux";
@@ -44,18 +44,22 @@ class Popup extends Component {
       <div className="popup">
         <div className="box">
           <div className="stuffinbox">
-            <button onClick={() => this.props.toggle()}> Close</button>
-            <p id="tripto">Add to existing trip or create a new trip</p>{" "}
+            <button className="close" onClick={() => this.props.toggle()}>
+              {" "}
+              Close
+            </button>
+            <div className='popup-content'>
+            <h1 id="tripto">Create New Trip</h1>{" "}
             <Link to="/create-trip/location">
-              <button className="popupbtn">+ Create New</button>
+              <button className="popupbtn-new">+ Create New</button>
               {/* save the card to reducser and create trip*/}
             </Link>
             {this.props.allTrips == false ? (
               <div />
             ) : (
-              <div>
+              <div className="select-existing">
                 <section className="container">
-                  <p>Select Existing</p>
+                  <p>Or Select Existing</p>
                   <div className="dropdown">
                     <select
                       onChange={e => this.saveTrip(e.target.value)}
@@ -92,8 +96,10 @@ class Popup extends Component {
                     Go
                   </button>
                 </Link>
+                
               </div>
             )}
+          </div>
           </div>
         </div>
       </div>

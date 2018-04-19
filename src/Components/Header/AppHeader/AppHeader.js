@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./AppHeader.css";
+import "./Header.css";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Search  from "../../Search/SearchBox";
@@ -39,16 +39,28 @@ class AppHeader extends Component {
 
     return (
       <header className="app-header">
-        <div className="login-buttons">
-              {this.props.location.pathname == "/" ? <div></div> :<div className="header-search"> <Search/>  </div>}
+       
+
+        <div className="logo-div">
           <Link to="/">
             <img className="logo" src={test2} alt="logo" />
           </Link>
         </div>
-        <img className="user-photo"
-            src={this.props.auth_status !== true ? noUser  : this.props.picture }
-            onClick={() => this.toggleDropDown()} />
-        {this.state.toggle == true ? <ProfilePopOver auth_status={this.props.auth_status}/> : null}
+
+      <div className="search-bar-user-photo">
+          <div className="search-bar-div">
+              {this.props.location.pathname == "/" ? <div></div> :<div className="header-search"> <Search/>  </div>}
+          </div>
+
+          <div className="user-div">
+            <img className="user-photo"
+                src={this.props.auth_status !== true ? noUser  : this.props.picture }
+                onClick={() => this.toggleDropDown()} />
+            {this.state.toggle == true ? <ProfilePopOver toggle={this.toggleDropDown} auth_status={this.props.auth_status}/> : null}
+          </div>
+       </div>
+
+
       </header>
     );
   }

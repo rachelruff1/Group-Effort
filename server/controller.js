@@ -1,6 +1,6 @@
 const axios = require("axios");
-const OldgoogleApiKey = "AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko";
-const googleApiKey = "AIzaSyA88FOcacMikGWCrki1HUhCysZZ91y5JDs";
+const OldgoogleApiKey = "AIzaSyA88FOcacMikGWCrki1HUhCysZZ91y5JDs";
+const googleApiKey =  "AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko";
 const googlePlacesBase =
   "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=";
 const googlePlacesImgBase =

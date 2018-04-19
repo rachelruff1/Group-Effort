@@ -37,7 +37,7 @@ class CategoriesOverview extends Component {
           className="restaurant-container"
           onClick={() => {
             this.props.updateContainer("Restaurants");
-            // this.props.getFood(latLng);
+            this.props.getFood(latLng);
           }}
         >
           Restaurants
@@ -47,7 +47,7 @@ class CategoriesOverview extends Component {
           className="theater-container"
           onClick={() => {
             this.props.updateContainer("Theaters");
-            // this.props.getMovie(latLng);
+            this.props.getMovie(latLng);
           }}
         >
           Theaters
@@ -57,7 +57,7 @@ class CategoriesOverview extends Component {
           className="museums-container"
           onClick={() => {
             this.props.updateContainer("Museums");
-            // this.props.getMuseums(latLng);
+            this.props.getMuseums(latLng);
           }}
         >
           Museums
@@ -67,7 +67,7 @@ class CategoriesOverview extends Component {
           className="parks-container"
           onClick={() => {
             this.props.updateContainer("Parks");
-            // this.props.getParks(latLng);
+            this.props.getParks(latLng);
           }}
         >
           Parks
@@ -77,7 +77,7 @@ class CategoriesOverview extends Component {
           className="shopping-container"
           onClick={() => {
             this.props.updateContainer("Shopping");
-            // this.props.getMall(latLng);
+            this.props.getMall(latLng);
           }}
         >
           Shopping

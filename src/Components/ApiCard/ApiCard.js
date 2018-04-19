@@ -61,7 +61,7 @@ class ApiCard extends Component {
 
     if (this.props.location === "TripView") {
       button = (
-        <FlatButton
+        <button>
           onClick={() => {
             this.props.sendAllData(
               this.props.tripId,
@@ -71,36 +71,33 @@ class ApiCard extends Component {
             );
             swal("Added to trip!");
           }}
-          label="Add to saved"
-        />
+          Add to saved</button>
       );
     } else if (this.props.location === "saved") {
       button = (
-        <FlatButton
+        <button
           onClick={() => {
             this.props.deleteFromSaved(this.props.results.saved_id);
             this.props.spliceSaved(this.props.index);
-          }}
-          label="Remove"
-        />
+          }}>Remove</button>
       );
     } else if (this.props.auth === true) {
       button = (
-        <FlatButton onClick={() => this.dostuff()} label="Add to trip" />
+        <button onClick={() => this.dostuff()}>Add to trip</button> 
       );
     } else {
       button = (
         <a href={process.env.REACT_APP_LOGIN}>
-          <FlatButton label="Log in to save" />
+          <button>Log in to save" </button>
         </a>
       );
     }
     return (
       <div className="api-card-container">
-        <Card style={{ width: "200px", margin: "20px" }}>
-          <CardMedia>
+       
+          
             <img
-              style={{ width: "200px" }}
+              style={{ width: "175px" }}
               src={
                 this.props.results.photos != undefined
                   ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
@@ -110,19 +107,18 @@ class ApiCard extends Component {
               }
               alt=""
             />
-          </CardMedia>
-          <CardTitle
-            title={this.props.results.name}
-            subtitle={
+          
+          <h3>{this.props.results.name}</h3>
+            <p>{
               this.props.results.rating != undefined
                 ? this.props.results.rating
                 : ""
             }
-          />
-          <CardTitle />
+          </p>
+    
 
-          <CardActions>{button}</CardActions>
-        </Card>
+          {button}
+       
         {this.state.toggle === true ? (
           <Popup
             name={this.props.results.name}

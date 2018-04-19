@@ -1,0 +1,50 @@
+.location-body {
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.location-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.location-title h1 {
+    font-weight: bolder;
+}
+
+.location-card-group {
+
+}
+.location-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-around;
+  /* display: grid;
+  max-width: 800px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: space-between; */
+}
+
+
+
+.location-image {
+  margin: auto;
+
+  width: 40%;
+  resize: horizontal;
+  max-height: 30%;
+}
+
+.location-view-ind-category {
+  width: 95%;
+  margin: auto;
+  box-shadow: 0 12px 22px 0 rgba(0, 0, 0, 0.363);
+  background-color: rgb(248, 248, 248);
+  margin-bottom: 30px;
+  padding-bottom: 40px;
+}
+.location-view-ind-category h1 {
+    padding: 20px 0 0 20px;
+}

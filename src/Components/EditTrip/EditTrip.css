@@ -4,7 +4,7 @@
   right: 0;
   bottom: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #window {
@@ -16,8 +16,9 @@
     right: 20%;
     bottom: 20%;*/
   top: 40%;
-  background-color: white;
+  background: lightgray;
   box-shadow: 2px 3px 10px 0 rgba(0, 0, 0, 0.287);
+  border-radius: 30px;
 }
 
 .search-bar-edit-pop {

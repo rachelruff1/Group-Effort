@@ -1,0 +1,47 @@
+.app-header {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(204, 204, 204);
+    width: 100vw;
+    align-items: center;
+    
+  }
+
+  .search-bar-user-photo {
+      display: flex;
+      flex-direction: row;
+      margin-right: 30px; 
+      align-items: center; 
+  }
+
+  .logo-div {
+    margin-left: 30px;
+  }
+
+
+
+.header-search {
+    box-shadow: 2px 2.5px 5px #444444;
+}
+
+.user-photo {
+    margin-left: 20px;
+    border: 1px solid white;
+    border-radius: 50px;
+    height: 60px;
+    box-shadow: 2px 2.5px 5px #444444;
+}
+.logo {
+    width: 80px;
+    border-radius: 50px;
+    box-shadow: 2px 3px 5px #444444;
+   
+ }
+
+
+ @media only screen and (max-width:480px) {
+ .search-bar-div{
+     display: none;
+ }}

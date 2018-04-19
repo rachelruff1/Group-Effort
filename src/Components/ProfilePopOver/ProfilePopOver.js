@@ -1,9 +1,9 @@
-import React from 'react';
-import './ProfilePopOver.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./PopOver.css";
+import { Link } from "react-router-dom";
 import Login from "../Auth/Auth";
 import Auth2 from "../Auth/Auth2";
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FloatingActionButton from "material-ui/FloatingActionButton";
 
 export default class ProfilePopOver extends React.Component {
   constructor(props) {
@@ -12,27 +12,35 @@ export default class ProfilePopOver extends React.Component {
     this.state = {
       open: false
     };
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
-  handleClick = event => {
-    // This prevents ghost click.
-    event.preventDefault();
 
+  toggleMenu(){
     this.setState({
-      open: true,
-      anchorEl: event.currentTarget
-    });
-  };
+      open: !(this.state.open)
+    })
+  }
+  // handleClick = event => {
+  //   // This prevents ghost click.
+  //   event.preventDefault();
 
-  handleRequestClose = () => {
-    this.setState({
-      open: false
-    });
-  };
+  //   this.setState({
+  //     open: true,
+  //     anchorEl: event.currentTarget
+  //   });
+  // };
+
+  // handleRequestClose = () => {
+  //   this.setState({
+  //     open: false
+  //   });
+  // };
 
   render() {
+
     return (
-      <div className="profile-menu">
+      <div onClick={()=>this.toggleMenu()} className="profile-menu">
         {this.props.auth_status !== true ? (
           <div>
             <Login />
@@ -40,15 +48,20 @@ export default class ProfilePopOver extends React.Component {
         ) : (
           <div>
             <Auth2 />
+            <div className="drawer-link">
+              <Link to="/view-all-trips" style={{ textDecoration: "none" }}>
+                <span onClick={()=>this.props.toggle()}>View Your Trips</span>
+              </Link>
+            </div>
+            <br />
+            <div className="drawer-link">
+              <Link to="/profile" style={{ textDecoration: "none" }}>
+                <span onClick={()=>this.props.toggle()}>Your Profile</span>
+              </Link>
+            </div>
           </div>
         )}
-        <Link to="/view-all-trips" style={{ textDecoration: 'none' }}>
-          <div className="drawer-link">View Your Trips</div>
-        </Link>
-        <Link to="/profile" style={{ textDecoration: 'none' }}>
-          <div className="drawer-link">Your Profile</div>
-        </Link>
       </div>
     );
   }
- }
+}

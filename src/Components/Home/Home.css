@@ -11,14 +11,14 @@
 
   .search {
     position: fixed;
-    left: 0vw;
+    left: 10vw;
     top: 50vh;
     animation: showup 7s;
   }
 
   #group-transition {
     position: fixed;
-    top: -15vh;
+    top: -5vh;
     left: 40vw;
 
     text-align: center;
@@ -52,112 +52,7 @@
   }
 }
 
-/*For Med Mobile Phones*/
-@media only screen and (min-width: 375px) {
-  .Home {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-      url("mobile-home-img.jpg");
-    background-repeat: no-repeat;
-    height: 100vh;
-    /* background-size: 100vh; */
-    background-size: cover; /*this keeps us from seeing white gaps*/ 
-  }
 
-  .search {
-    position: fixed;
-    left: 8vw;
-    top: 50vh;
-    animation: showup 7s;
-  }
-
-  #group-transition {
-    position: fixed;
-    top: -10vh;
-    left: 42vw;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 2px rgb(0, 0, 0);
-    font-weight: 300;
-    font-size: 26px;
-    padding-top: 40vh;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .transition-1 {
-    animation: showup 5s;
-  }
-
-  .transition-2 {
-    animation: showup 5.5s;
-  }
-
-  .transition-3 {
-    animation: showup 6s;
-  }
-
-  .transition-4 {
-    animation: showup 6.5s;
-  }
-
-  .hr-1 {
-    visibility: hidden;
-  }
-}
-
-/*For Large Mobile Phones*/
-@media only screen and (min-width: 425px) {
-  .Home {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-      url("mobile-home-img.jpg");
-    background-repeat: no-repeat;
-    height: 100vh;
-    /* background-size: 100vh; */
-    background-size: cover; /*this keeps us from seeing white gaps*/ 
-  }
-
-  .search {
-    position: fixed;
-    left: 15vw;
-    top: 50vh;
-    animation: showup 7s;
-  }
-
-  #group-transition {
-    position: fixed;
-    top: -10vh;
-    left: 45vw;
-
-    text-align: center;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 2px rgb(0, 0, 0);
-    font-weight: 300;
-    font-size: 26px;
-    padding-top: 40vh;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .transition-1 {
-    animation: showup 5s;
-  }
-
-  .transition-2 {
-    animation: showup 5.5s;
-  }
-
-  .transition-3 {
-    animation: showup 6s;
-  }
-
-  .transition-4 {
-    animation: showup 6.5s;
-  }
-
-  .hr-1 {
-    visibility: hidden;
-  }
-}
 
 
 
@@ -219,91 +114,11 @@
 
 
 
-/*For Small Laptops*/
-@media only screen and (min-width: 1024px) {
-  /*remove element for final product*/
-  .homesearch {
-    visibility: hidden;
-  }
 
-  .Home {
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
-      url("home-img.jpg");
-    background-repeat: no-repeat;
-    overflow: hidden;
-    /* background-size: 130vw; */
-    background-size: cover; /*this keeps us from seeing white gaps*/ 
-    height: 100vh;
-  }
-
-  #group-transition {
-    position: fixed;
-    animation: showup 10s;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    text-shadow: 2px 2px 2px rgb(0, 0, 0);
-    font-weight: 300;
-    font-size: 28px;
-    padding-top: 40vh;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .transition-1 {
-    animation: slidein 5s;
-    position: fixed;
-    top: 44vh;
-    left: 38vw;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .transition-2 {
-    position: fixed;
-    top: 49.75vh;
-    left: 44vw;
-    margin-top: -45px;
-    animation: slidein 5s;
-  }
-
-  .transition-3 {
-    position: fixed;
-    top: 48.85vh;
-    right: 45vw;
-    margin-top: -37px;
-    animation: slidein2 5s;
-  }
-
-  .transition-4 {
-    position: fixed;
-    top: 48.85vh;
-    right: 37vw;
-    margin-top: -37px;
-    animation: slidein2 5s;
-  }
-
-  .hr-1 {
-    position: fixed;
-    top: 49vh;
-    left: 50vw;
-    width: 500px;
-    visibility: visible;
-    transform: translate(-50%, -50%);
-    animation: width-line 5s;
-  }
-
-  .search {
-    position: fixed;
-    left: 35vw;
-    top: 50vh;
-    animation: showup 10s;
-  }
-}
 
 /*For Full Screen*/
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 1024px) {
   .Home {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
       url("home-img.jpg");
@@ -344,8 +159,8 @@
 
   .transition-1 {
     position: fixed;
-    top: 44.9vh;
-    left: 42.5vw;
+    top: 45vh;
+    left: 42vw;
     animation: slidein 6s;
     /* margin-top: -37px; */
     /* display: inline-block;
@@ -355,24 +170,24 @@
 
   .transition-2 {
     position: fixed;
-    top: 49.75vh;
-    left: 46.5vw;
+    top: 45vh;
+    left: 46.20vw;
     /* margin-top: -37px; */
     animation: slidein 6s;
   }
 
   .transition-3 {
     position: fixed;
-    top: 48.85vh;
-    right: 46.5vw;
+    top: 45vh;
+    right: 46.20vw;
     /* margin-top: -37px; */
     animation: slidein2 6s;
   }
 
   .transition-4 {
     position: fixed;
-    top: 48.85vh;
-    right: 41.5vw;
+    top: 45vh;
+    right: 41vw;
     /* margin-top: -37px; */
     animation: slidein2 6s;
   }

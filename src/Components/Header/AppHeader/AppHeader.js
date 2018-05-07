@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import "./Header.css";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import Search  from "../../Search/SearchBox";
 import { getProfile, verifyUser } from "../../../ducks/reducer1";
 import { Link, withRouter } from "react-router-dom";
 import test2 from "../../Logo/trippie_logo.png";
-import Login from "../../Auth/Auth";
 import ProfilePopOver from "../../ProfilePopOver/ProfilePopOver";
-import Profile from "../../Profile/Profile";
-import Auth2 from "../../Auth/Auth2";
 import noUser from "../../../Assets/Images/defaultuser2.png";
-import Home from "../../Home/Home";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -55,7 +50,7 @@ class AppHeader extends Component {
           <div className="user-div">
             <img className="user-photo"
                 src={this.props.auth_status !== true ? noUser  : this.props.picture }
-                onClick={() => this.toggleDropDown()} />
+                onClick={() => this.toggleDropDown()} alt='no image' />
             {this.state.toggle == true ? <ProfilePopOver toggle={this.toggleDropDown} auth_status={this.props.auth_status}/> : null}
           </div>
        </div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import SearchBox from "../Search/SearchBox";
+import {withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import "./LocationView2.css";
 import {
@@ -12,9 +11,7 @@ import {
   getMovie,
   getMall
 } from "../../ducks/reducer1";
-import Popup from "../Popup/Popup";
 import ApiCard from "../ApiCard/ApiCard";
-import FlatButton from "material-ui/FlatButton";
 
 class LocationView extends Component {
   constructor(props) {
@@ -114,7 +111,7 @@ console.log('latlng', this.props.latlng, 'match', this.props, 'parks', this.prop
             src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
               this.props.placephotoref
             }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`}
-            className="location-image"
+            className="location-image" alt='no image'
           />
         </div>
         <div className="location-card-group" />

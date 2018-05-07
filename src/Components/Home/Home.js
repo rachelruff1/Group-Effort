@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Home2.css";
 import SearchBox from "../Search/SearchBox";
 

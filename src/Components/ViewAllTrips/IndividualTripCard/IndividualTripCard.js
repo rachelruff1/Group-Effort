@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { deleteTrip } from "../../../ducks/reducer2";
 import { Link } from "react-router-dom";
-import FlatButton from "material-ui/FlatButton";
 import "./IndividualTripCard.css";
 
 const IndividualTripCard = props => {

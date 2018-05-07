@@ -11,7 +11,6 @@ import {
 } from "../../../ducks/reducer1";
 import { sendAllData } from "../../../ducks/reducer2";
 import CreateTripCard from "./CreateTripCard";
-import SearchBox from "../../Search/SearchBox";
 import CreateTripSearch from "./SearchBars/CreateTripSearch";
 import "./CreateTrip.css";
 import "../../EditTrip/EditTrip.css";

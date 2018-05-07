@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
@@ -12,7 +11,6 @@ import {
   addCitiesOnEdit,
   updateCitiesOnEdit
 } from "../../ducks/reducer1";
-import CreateTripCard from "../ViewAllTrips/CreateTrip/CreateTripCard";
 import CreateTripSearch from "../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 import EditTripCard from "./EditTripCard/EditTripCard";
 import './EditTrip.css';

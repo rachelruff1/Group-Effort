@@ -7,19 +7,8 @@ import {
 } from "../../ducks/reducer1";
 import { sendAllData } from "../../ducks/reducer2";
 import noimg from "../../Assets/Images/icon-no-image.svg";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import "./ApiCard.css";
-// import "./FoodCard.css";
-import {
-  Card,
-  CardActions,
-  CardHeader,
-  CardMedia,
-  CardTitle,
-  CardText
-} from "material-ui/Card";
-import FlatButton from "material-ui/FlatButton";
 import Popup from "../Popup/Popup";
 
 class ApiCard extends Component {
@@ -50,10 +39,7 @@ class ApiCard extends Component {
   render() {
     console.log('PHOTOREFFF:', this.props.results)
     // 'test', this.props.results.photos[0].photo_reference)
-    let styles = {
-      maxWidth: 255,
-      marginRight: "auto"
-    };
+ 
 
     let rating;
     this.props.rating == undefined
@@ -102,7 +88,7 @@ class ApiCard extends Component {
             <img
               style={{ width: "175px" }}
               src={
-                this.props.results.photos != undefined
+                this.props.results.photos !== undefined
                   ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${
                       this.props.results.photos[0].photo_reference
                     }&key=AIzaSyCPGaO_f0TOLoIghVFObSvX5Yl6SR8Uvko`
@@ -113,7 +99,7 @@ class ApiCard extends Component {
           
           <h3>{this.props.results.name}</h3>
             <p>{
-              this.props.results.rating != undefined
+              this.props.results.rating !== undefined
                 ? this.props.results.rating
                 : ""
             }

@@ -3,7 +3,6 @@ import "./PopOver.css";
 import { Link } from "react-router-dom";
 import Login from "../Auth/Auth";
 import Auth2 from "../Auth/Auth2";
-import FloatingActionButton from "material-ui/FloatingActionButton";
 
 export default class ProfilePopOver extends React.Component {
   constructor(props) {

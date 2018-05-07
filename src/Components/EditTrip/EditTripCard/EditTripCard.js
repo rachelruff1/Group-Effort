@@ -3,7 +3,6 @@ import { TextField } from "material-ui";
 import DatePicker from "material-ui/DatePicker";
 import { connect } from "react-redux";
 import {
-  updateEditTrip,
   updateStartDateEdit,
   updateEndDateEdit,
   deleteCity,
@@ -12,7 +11,6 @@ import {
 import CreateTripSearch from "../../ViewAllTrips/CreateTrip/SearchBars/CreateTripSearch";
 import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 import moment from "moment";
-import EditTrip from "../EditTrip";
 import "../../ViewAllTrips/CreateTrip/CreateTripCard.css";
 
 const optionsStyle = {

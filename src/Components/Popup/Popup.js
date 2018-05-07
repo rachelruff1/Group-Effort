@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import "./Popup1.css";
 import { Link } from "react-router-dom";
-import Axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../../ducks/reducer1";
 import { getAllTrips, sendAllData } from "../../ducks/reducer2";
 import swal from "sweetalert";
-import axios from "axios";
+
 class Popup extends Component {
   constructor(props) {
     super(props);

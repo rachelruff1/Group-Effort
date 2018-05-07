@@ -1,6 +1,5 @@
 import axios from "axios";
 import moment from "moment";
-import { RSA_NO_PADDING } from "constants";
 
 const GET_CITY = "GET_CITY";
 const GET_DESTINATION = "GET_DESTINATION";
@@ -20,14 +19,8 @@ const initialState = {
   didErr: false,
   errMessage: "errrrrr",
   placeDetail: {},
-
   test: "hi",
   userinfo: {},
-  newCityInTrip: {},
-
-  index: "",
-
-  test: "hi",
   newCityInTrip: {},
   index: "",
   past: [],

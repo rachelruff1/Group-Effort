@@ -5,11 +5,9 @@ import { getPlace } from "../../ducks/reducer2";
 import { getTrip, getCities } from "../../ducks/reducer1";
 import CitiesCard from "./CitiesCard/CitiesCard";
 import "./TripView2.css";
-import ApiCard from "../ApiCard/ApiCard";
 import CategoryDisplay from "./CategoryDisplay/CategoryDisplay";
 import CategoriesOverview from "./CategoriesOverview/CategoriesOverview";
 import FlatButton from "material-ui/FlatButton";
-import { grey50 } from "material-ui/styles/colors";
 
 class TripView extends Component {
   constructor(props) {
@@ -77,7 +75,7 @@ class TripView extends Component {
         />
       ));
 
-    const savedMap = {};
+    
     return (
       <body className="trip-view-container">
         <header className="trip-title">

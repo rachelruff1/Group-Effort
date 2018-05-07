@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./Profile.css";
 import { connect } from "react-redux";
 import { getUserInfo, updateProfile } from "../../ducks/reducer2";
-import axios from "axios";
 import TextField from "material-ui/TextField";
 import noUser from "../../Assets/Images/defaultuser2.png";
 import { getProfile, verifyUser } from "../../ducks/reducer1";

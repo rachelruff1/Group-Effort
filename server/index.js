@@ -89,8 +89,8 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "/#/view-all-trips",
-    failureRedirect: "/auth"
+    successRedirect: "https://trippie.now.sh/#/view-all-trips",
+    failureRedirect: "https://trippie.now.sh/auth"
   })
 );
 

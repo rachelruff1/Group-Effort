@@ -89,7 +89,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/auth",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/view-all-trips",
+    successRedirect: "/#/view-all-trips",
     failureRedirect: "/auth"
   })
 );
@@ -100,7 +100,7 @@ app.get(
 
 app.get("/api/logout", (req, res) => {
   req.session.destroy();
-  res.redirect("http://localhost:3000/#");
+  res.redirect("/#");
 });
 
 app.get("/api/getUser", (req, res) => {

@@ -79,6 +79,8 @@ passport.use(
   )
 );
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -163,6 +165,13 @@ app.delete("/api/deleteFromSaved/:id", ctrl.deleteFromSaved);
 
 //post request for Profile.js (Jordan)
 app.put("/api/updateProfile", ctrl.updateProfile);
+
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 
 //------------- end of endpoints ----------------
 app.listen(port, () => {
